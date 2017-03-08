@@ -2,20 +2,22 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 
 import { MyApp } from './app.component';
-import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
-import { HomePage } from '../pages/home/home';
-import { TabsPage } from '../pages/tabs/tabs';
 import { PacketPage } from '../pages/packet/packet';
+
+// DA-31 Form Steps
+import { PersonalinfoFormPage } from '../pages/personalinfo-form/personalinfo-form';
+import { AddressFormPage } from '../pages/address-form/address-form';
+import { StationFormPage } from '../pages/station-form/station-form';
+import { LeaveFormPage } from '../pages/leave-form/leave-form';
 
 @NgModule({
   declarations: [
     MyApp,
-    AboutPage,
-    ContactPage,
-    HomePage,
-    TabsPage,
-    PacketPage
+    PacketPage,
+    PersonalinfoFormPage,
+    AddressFormPage,
+    StationFormPage,
+    LeaveFormPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -23,11 +25,11 @@ import { PacketPage } from '../pages/packet/packet';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    AboutPage,
-    ContactPage,
-    HomePage,
-    TabsPage,
-    PacketPage
+    PacketPage,
+    PersonalinfoFormPage,
+    AddressFormPage,
+    StationFormPage,
+    LeaveFormPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })

@@ -18,4 +18,8 @@ export class PacketPage {
     console.log('ionViewDidLoad PacketPage');
   }
 
+	tapEvent(input) {
+		console.log(input);
+		console.log('tap');
+  }
 }

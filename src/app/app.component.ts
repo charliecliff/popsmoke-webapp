@@ -3,13 +3,14 @@ import { Platform } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 
 import { PacketPage } from '../pages/packet/packet';
+import { PersonalinfoFormPage } from '../pages/personalinfo-form/personalinfo-form';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
 
-  rootPage = PacketPage;
+  rootPage = PersonalinfoFormPage;
 
   constructor(platform: Platform) {
     platform.ready().then(() => {

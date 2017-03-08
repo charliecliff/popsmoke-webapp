@@ -33,8 +33,7 @@ console.log("You're a wizard, Harry. I'm a what? Yes, a wizard, on port", app.ge
 });
 
 // Todo API Routes Will Go Below
-//server.js
-...
+
 /*
 * Endpoint --> "/api/todos"
 */

@@ -32,34 +32,40 @@ mongoClient.connect(MONGODB_URI, function (err, database) {
 	});
 });
 
-app.get("/api/da31", function(req, res) {
+app.get("/api/da31.pdf", function(req, res) {
 	console.log('getting to /api/da31');
+
+	var fillPdf = require("fill-pdf");
+	var formDate = { FieldName: 'Text to put into form field' };
+	var pdfTemplatePath = "./public/DA_31.pdf";
+
+	fillPdf.generatePdf(formDate, pdfTemplatePath, function(err, output) {
+
+    	if ( !err ) {
+      		res.type("application/pdf");
+      		res.send(output);
+    	}
+  	});
 });
 
-// POST: create a new da31 Form
 app.post("/api/da31", function(req, res) {
 	console.log('posting to /api/da31');
 
-	var pdfFiller   = require('pdffiller');
+	var fillPdf = require("fill-pdf");
+	var formDate = { FieldName: 'Text to put into form field' };
+	var pdfTemplatePath = "./public/DA_31.pdf";
 
-	var sourcePDF = "./public/DA_31.pdf";
-	var destinationPDF =  "./test_complete.pdf";
-	var data = {
- //    	"last_name" : "John",
- //    	"first_name" : "Doe",
- //    	"date" : "Jan 1, 2013",
- //    	"football" : "Off",
- //    	"baseball" : "Yes",
- //    	"basketball" : "Off",
- //    	"hockey" : "Yes",
- //    	"nascar" : "Off"
-	};
-
-	pdfFiller.fillForm( sourcePDF, destinationPDF, data, function(err) {
+	fillPdf.generatePdf(formDate, pdfTemplatePath, function(err, output) {
+		
+		console.log("output");
+		console.log(output);
 		console.log(err);
-    	if (err) throw err;
-    	console.log("In callback (we're done).");
-	});
+
+    	if ( !err ) {
+      		res.type("application/pdf");
+      		res.send(output);
+    	}
+  	});
 });
 
 // Error handler for the api

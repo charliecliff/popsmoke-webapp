@@ -32,28 +32,12 @@ mongoClient.connect(MONGODB_URI, function (err, database) {
 	});
 });
 
-app.get("/api/da31.pdf", function(req, res) {
-	console.log('getting to /api/da31');
-
-	var fillPdf = require("fill-pdf");
-	var formDate = { FieldName: 'Text to put into form field' };
-	var pdfTemplatePath = "../../public/DA_31.pdf";
-
-	fillPdf.generatePdf(formDate, pdfTemplatePath, function(err, output) {
-
-    	if ( !err ) {
-      		res.type("application/pdf");
-      		res.send(output);
-    	}
-  	});
-});
-
 app.post("/api/da31", function(req, res) {
 	console.log('posting to /api/da31');
 
 	var fillPdf = require("fill-pdf");
 	var formDate = { FieldName: 'Text to put into form field' };
-	var pdfTemplatePath = "./public/DA_31.pdf";
+	var pdfTemplatePath = "../../public/DA_31.pdf";
 
 	fillPdf.generatePdf(formDate, pdfTemplatePath, function(err, output) {
 		

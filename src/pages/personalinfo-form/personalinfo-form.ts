@@ -52,17 +52,21 @@ export class PersonalInfoFormPage {
     this.navCtrl.popToRoot();
   }
 
-  submit() {    
-    let personalInfo = {} as PersonalInfo;
-    personalInfo.firstName = this.personalInfoForm.value.firstName;
-    personalInfo.lastName = this.personalInfoForm.value.lastName;
-    personalInfo.middleInitial = this.personalInfoForm.value.middleInitial;
-    personalInfo.ssn = this.personalInfoForm.value.ssn;
-    personalInfo.rank = this.personalInfoForm.value.rank;
-    personalInfo.phoneNumber = this.personalInfoForm.value.phoneNumber;
-    this.store.dispatch(this.builderActions.addPersonalInfo(personalInfo));
+  submit() { 
+    console.log("submit");
+   
+    // let personalInfo = {} as PersonalInfo;
+    // personalInfo.firstName = this.personalInfoForm.value.firstName;
+    // personalInfo.lastName = this.personalInfoForm.value.lastName;
+    // personalInfo.middleInitial = this.personalInfoForm.value.middleInitial;
+    // personalInfo.ssn = this.personalInfoForm.value.ssn;
+    // personalInfo.rank = this.personalInfoForm.value.rank;
+    // personalInfo.phoneNumber = this.personalInfoForm.value.phoneNumber;
 
-    this.da31Service.postDa31FormData("test");
+    // this.store.dispatch(this.builderActions.addPersonalInfo(personalInfo));
+    this.da31Service.postDa31FormData("test").subscribe(res => {
+      console.log("subcribe closure");
+    });;
     // this.navCtrl.push(AddressFormPage);
   }
 }

@@ -18,112 +18,48 @@ var MONGODB_URI = process.env.MONGODB_URI || 'mongodb://heroku_qh0mdwmz:tnk9ln40
 
 // Initialize database connection and then start the server.
 mongoClient.connect(MONGODB_URI, function (err, database) {
-if (err) {
-process.exit(1);
-}
+	if (err) {
+		process.exit(1);
+	}
 
-db = database; // Our database object from mLab
+	db = database; // Our database object from mLab
 
-console.log("Database connection ready");
+	console.log("Database connection ready");
 
-// Initialize the app.
-app.listen(app.get('port'), function () {
-console.log("You're a wizard, Harry. I'm a what? Yes, a wizard, on port", app.get('port'));
-});
-});
-
-// Todo API Routes Will Go Below
-
-/*
-* Endpoint --> "/api/todos"
-*/
-
-// GET: retrieve all todos
-app.get("/api/todos", function(req, res) {
-db.collection("todos").find({}).toArray(function(err, docs) {
-if (err) {
-handleError(res, err.message, "Failed to get todos");
-} else {
-res.status(200).json(docs);
-}
-});
+	// Initialize the app.
+	app.listen(app.get('port'), function () {
+		console.log("You're a wizard, Harry. I'm a what? Yes, a wizard, on port", app.get('port'));
+	});
 });
 
-// POST: create a new todo
-app.post("/api/todos", function(req, res) {
-var newTodo = {
-description: req.body.description,
-isComplete: false
-}
-
-db.collection("todos").insertOne(newTodo, function(err, doc) {
-if (err) {
-handleError(res, err.message, "Failed to add todo");
-} else {
-res.status(201).json(doc.ops[0]);
-}
-});
-});
-
-/*
-* Endpoint "/api/todos/:id"
-*/
-
-// GET: retrieve a todo by id -- Note, not used on front-end
-app.get("/api/todos/:id", function(req, res) {
-db.collection("todos").findOne({ _id: new ObjectID(req.params.id) }, function(err, doc) {
-if (err) {
-handleError(res, err.message, "Failed to get todo by _id");
-} else {
-res.status(200).json(doc);
-}
-});
-});
-
-// PUT: update a todo by id
-app.put("/api/todos/:id", function(req, res) {
-var updateTodo = req.body;
-delete updateTodo._id;
-
-db.collection("todos").updateOne({_id: new ObjectID(req.params.id)}, updateTodo, function(err, doc) {
-if (err) {
-handleError(res, err.message, "Failed to update todo");
-} else {
-res.status(204).end();
-}
-});
-});
-
-// DELETE: delete a todo by id
-app.delete("/api/todos/:id", function(req, res) {
-db.collection("todos").deleteOne({_id: new ObjectID(req.params.id)}, function(err, result) {
-if (err) {
-handleError(res, err.message, "Failed to delete todo");
-} else {
-res.status(204).end();
-}
-});
+app.get("/api/da31", function(req, res) {
+	console.log('getting to /api/da31');
 });
 
 // POST: create a new da31 Form
 app.post("/api/da31", function(req, res) {
-	
-	System.err.println("Hello, logs!");
-
 	console.log('posting to /api/da31');
-	// var newTodo = {
-	// 	description: req.body.description,
-	// 	isComplete: false
-	// }
-	// db.collection("todos").insertOne(newTodo, function(err, doc) {
-	// 	if (err) {
-	// 		handleError(res, err.message, "Failed to add todo");
-	// 	} else {
-	// 		res.status(201).json(doc.ops[0]);
-	// 	}
-	// });
 
-	res.status(201).json(doc.ops[0]);
+	var pdfFiller   = require('pdffiller');
+
+	var sourcePDF = "./public/DA_31.pdf";
+	var destinationPDF =  "./test_complete.pdf";
+	var data = {
+ //    	"last_name" : "John",
+ //    	"first_name" : "Doe",
+ //    	"date" : "Jan 1, 2013",
+ //    	"football" : "Off",
+ //    	"baseball" : "Yes",
+ //    	"basketball" : "Off",
+ //    	"hockey" : "Yes",
+ //    	"nascar" : "Off"
+	};
+
+	pdfFiller.fillForm( sourcePDF, destinationPDF, data, function(err) {
+		console.log(err);
+    	if (err) throw err;
+    	console.log("In callback (we're done).");
+	});
 });
 
 // Error handler for the api

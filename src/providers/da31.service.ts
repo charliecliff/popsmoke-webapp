@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {Http, Headers} from '@angular/http';
-import {Observable} from 'rxjs/Observable';
+import { Http, Headers} from '@angular/http';
+import { Observable} from 'rxjs/Observable';
 import 'rxjs/Rx';
 
 @Injectable()
@@ -13,11 +13,12 @@ export class Da31Service {
   }
 
 	postDa31FormData(form: string): Observable<{}> {
+		console.log("postDa31FormData");
+		
     let body = JSON.stringify({description: "todo"});
     let headers = new Headers({'Content-Type': 'application/json'});
 
     return this.http.post(this.da31Url, body, {headers: headers})
-                    .map(res => {})
                     .catch(this.handleError);
   }
 

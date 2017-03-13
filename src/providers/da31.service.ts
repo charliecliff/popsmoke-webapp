@@ -1,0 +1,28 @@
+import { Injectable } from '@angular/core';
+import {Http, Headers} from '@angular/http';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/Rx';
+
+@Injectable()
+export class Da31Service {
+
+  da31Url = "/api/da31";
+
+  constructor(public http: Http) {
+    console.log('Hello Da31 Provider');
+  }
+
+	postDa31FormData(form: string): Observable<{}> {
+    let body = JSON.stringify({description: "todo"});
+    let headers = new Headers({'Content-Type': 'application/json'});
+
+    return this.http.post(this.da31Url, body, {headers: headers})
+                    .map(res => {})
+                    .catch(this.handleError);
+  }
+
+  handleError(error) {
+  	console.error(error);
+  	return Observable.throw(error.json().error || 'Server error');
+  }
+}

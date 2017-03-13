@@ -105,8 +105,27 @@ res.status(204).end();
 });
 });
 
+// POST: create a new da31 Form
+app.post("/api/da31", function(req, res) {
+	
+	console.log('posting to /api/da31');
+	// var newTodo = {
+	// 	description: req.body.description,
+	// 	isComplete: false
+	// }
+	// db.collection("todos").insertOne(newTodo, function(err, doc) {
+	// 	if (err) {
+	// 		handleError(res, err.message, "Failed to add todo");
+	// 	} else {
+	// 		res.status(201).json(doc.ops[0]);
+	// 	}
+	// });
+
+	res.status(201).json(doc.ops[0]);
+});
+
 // Error handler for the api
 function handleError(res, reason, message, code) {
-console.log("API Error: " + reason);
-res.status(code || 500).json({"Error": message});
+	console.log("API Error: " + reason);
+	res.status(code || 500).json({"Error": message});
 }

@@ -15,46 +15,46 @@
 
 <ion-content padding>
 
-	<ion-list>
+	<form [formGroup]="personalInfoForm">
 
   	<ion-item>
     	<ion-label floating>{{first_name}}</ion-label>
-    	<ion-input type="text"></ion-input>
+    	<ion-input formControlName="firstName" type="text"></ion-input>
   	</ion-item>
 
   	<ion-item>
     	<ion-label floating>{{middle_initial}}</ion-label>
-    	<ion-input type="text"></ion-input>
+    	<ion-input formControlName="middleInitial" type="text"></ion-input>
   	</ion-item>
 
    	<ion-item>
     	<ion-label floating>{{last_name}}</ion-label>
-    	<ion-input type="text"></ion-input>
+    	<ion-input formControlName="lastName" type="text"></ion-input>
   	</ion-item>
 
    	<ion-item>
     	<ion-label floating>{{ssn}}</ion-label>
-    	<ion-input type="number"></ion-input>
+    	<ion-input formControlName="ssn" type="number"></ion-input>
   	</ion-item>
 
   	<ion-item>
     	<ion-label floating>{{rank}}</ion-label>
-    	<ion-input type="text"></ion-input>
+    	<ion-input formControlName="rank" type="text"></ion-input>
   	</ion-item>
 
   	<ion-item>
     	<ion-label floating>{{phone}}</ion-label>
-    	<ion-input type="tel"></ion-input>
+    	<ion-input formControlName="phone" type="tel"></ion-input>
   	</ion-item>
 
-	</ion-list>
+	</form>
 
 </ion-content>
 
 <ion-footer>
   
   <ion-toolbar>
-  	<button ion-button full (click)="submit()">{{SUBMIT_BUTTON_TITLE}}</button>
+    <button ion-button full color="primary" (click)="submit()">{{SUBMIT_BUTTON_TITLE}}</button>
   </ion-toolbar>
 
 </ion-footer>

@@ -15,61 +15,61 @@
 
 <ion-content padding>
 	
-	<ion-list>
+	<form [formGroup]="stationForm">
 
   	<ion-item>
     	<ion-label floating>{{PLATOON}}</ion-label>
-    	<ion-input type="text"></ion-input>
+    	<ion-input formControlName="platoon" type="text"></ion-input>
   	</ion-item>
 
   	<ion-item>
     	<ion-label floating>{{COMPANY}}</ion-label>
-    	<ion-input type="text"></ion-input>
+    	<ion-input formControlName="company" type="text"></ion-input>
   	</ion-item>
 
    	<ion-item>
     	<ion-label floating>{{BATTALION}}</ion-label>
-    	<ion-input type="text"></ion-input>
+    	<ion-input formControlName="battalion" type="text"></ion-input>
   	</ion-item>
 
    	<ion-item>
     	<ion-label floating>{{BRIGADE}}</ion-label>
-    	<ion-input type="text"></ion-input>
+    	<ion-input formControlName="brigade" type="text"></ion-input>
   	</ion-item>
 
    	<ion-item>
     	<ion-label floating>{{BRIGADE}}</ion-label>
-    	<ion-input type="text"></ion-input>
+    	<ion-input formControlName="brigade" type="text"></ion-input>
   	</ion-item>
 
    	<ion-item>
     	<ion-label floating>{{DIVISION}}</ion-label>
-    	<ion-input type="text"></ion-input>
+    	<ion-input formControlName="division" type="text"></ion-input>
   	</ion-item>
 
   	<ion-item>
     	<ion-label floating>{{POST}}</ion-label>
-    	<ion-input type="text"></ion-input>
+    	<ion-input formControlName="post" type="text"></ion-input>
   	</ion-item>
 
    	<ion-item>
     	<ion-label floating>{{ZIP}}</ion-label>
-    	<ion-input type="text"></ion-input>
+    	<ion-input formControlName="zip" type="text"></ion-input>
   	</ion-item>
 
   	<ion-item>
     	<ion-label floating>{{PHONE}}</ion-label>
-    	<ion-input type="tel"></ion-input>
+    	<ion-input formControlName="phone" type="tel"></ion-input>
   	</ion-item>
 
-  </ion-list>
+  </form>
 
 </ion-content>
 
 <ion-footer>
   
   <ion-toolbar>
-  	<button ion-button full (click)="submit()">{{SUBMIT_BUTTON_TITLE}}</button>
+  	<button ion-button full color="primary" (click)="submit()">{{SUBMIT_BUTTON_TITLE}}</button>
   </ion-toolbar>
 
 </ion-footer>

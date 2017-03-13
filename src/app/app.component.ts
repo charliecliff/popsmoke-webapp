@@ -1,16 +1,15 @@
 import { Component } from '@angular/core';
 import { Platform } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
-
 import { PacketPage } from '../pages/packet/packet';
-import { PersonalinfoFormPage } from '../pages/personalinfo-form/personalinfo-form';
+import { PersonalInfoFormPage } from '../pages/personalinfo-form/personalinfo-form';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
 
-  rootPage = PersonalinfoFormPage;
+  rootPage = PersonalInfoFormPage;
 
   constructor(platform: Platform) {
     platform.ready().then(() => {

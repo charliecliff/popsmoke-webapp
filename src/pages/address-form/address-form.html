@@ -15,29 +15,29 @@
 
 <ion-content padding>
 
-	<ion-list>
+  <form [formGroup]="addressForm">
 
   	<ion-item>
     	<ion-label floating>{{STREET}}</ion-label>
-    	<ion-input type="text"></ion-input>
+    	<ion-input formControlName="street" type="text"></ion-input>
   	</ion-item>
 
   	<ion-item>
     	<ion-label floating>{{CITY}}</ion-label>
-    	<ion-input type="text"></ion-input>
+    	<ion-input formControlName="city" type="text"></ion-input>
   	</ion-item>
 
    	<ion-item>
     	<ion-label floating>{{STATE}}</ion-label>
-    	<ion-input type="text"></ion-input>
+    	<ion-input formControlName="state" type="text"></ion-input>
   	</ion-item>
 
    	<ion-item>
     	<ion-label floating>{{ZIP}}</ion-label>
-    	<ion-input type="number"></ion-input>
+    	<ion-input formControlName="zip" type="number"></ion-input>
   	</ion-item>
 
-  </ion-list>
+  </form>
 
 </ion-content>
 

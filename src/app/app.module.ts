@@ -1,36 +1,47 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
-
+import { StoreModule } from '@ngrx/store'; 
 import { MyApp } from './app.component';
-import { PacketPage } from '../pages/packet/packet';
+// Model
 
-// DA-31 Form Steps
-import { PersonalinfoFormPage } from '../pages/personalinfo-form/personalinfo-form';
+// Pages
+import { PacketPage } from '../pages/packet/packet';
+import { PersonalInfoFormPage } from '../pages/personalinfo-form/personalinfo-form';
 import { AddressFormPage } from '../pages/address-form/address-form';
 import { StationFormPage } from '../pages/station-form/station-form';
 import { LeaveFormPage } from '../pages/leave-form/leave-form';
+// Providers
+import { Da31Service } from '../providers/da31.service';
+// Actions
+import { Da31BuilderActions } from '../actions/da31builder.actions';
+// Reducers
+import { da31FormReducer } from '../reducers/da31Form.reducer';
 
 @NgModule({
   declarations: [
     MyApp,
     PacketPage,
-    PersonalinfoFormPage,
+    PersonalInfoFormPage,
     AddressFormPage,
     StationFormPage,
     LeaveFormPage
   ],
   imports: [
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    StoreModule.provideStore({ Da31Form: da31FormReducer }),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     PacketPage,
-    PersonalinfoFormPage,
+    PersonalInfoFormPage,
     AddressFormPage,
     StationFormPage,
     LeaveFormPage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
+  providers: [
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    Da31BuilderActions,
+    Da31Service]
 })
 export class AppModule {}

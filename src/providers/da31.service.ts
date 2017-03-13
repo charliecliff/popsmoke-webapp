@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, Response, RequestOptions } from '@angular/http';
+import { Http, Headers, Response, ResponseContentType, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 
@@ -12,15 +12,14 @@ export class Da31Service {
     console.log('Hello Da31 Provider');
   }
 
-	postDa31FormData(form: string): Observable<{}> {
+	postDa31FormData(form: string): Observable<Blob> {
 		console.log("postDa31FormData");
 		
     let body = JSON.stringify({description: "todo"});
     let headers = new Headers({"Content-Type": "application/json"});
 
-
-    return this.http.post(this.da31Url, body, {headers: headers})
-                    .map(this.extractPDFDataFromResponse)
+    return this.http.post(this.da31Url, body, {headers: headers, responseType: ResponseContentType.Blob})
+                    .map((res:Response) => res.blob())
                     .catch(this.handleError);
   }
 
@@ -30,14 +29,16 @@ export class Da31Service {
     return { };
   }
 
+// (res:Response) => res.json()
+
   private extractPDFDataFromResponse(res: Response) {
-    console.log("extractData");
+    console.log("extractPDFDataFromResponse");
     console.log(res);
     return { };
   }
 
   handleError(error) {
-  	console.error("error");
+  	console.log("error");
   	return Observable.throw('Server error');
   }
 }

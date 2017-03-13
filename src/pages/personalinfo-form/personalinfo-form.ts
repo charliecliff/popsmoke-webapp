@@ -64,8 +64,9 @@ export class PersonalInfoFormPage {
     // personalInfo.phoneNumber = this.personalInfoForm.value.phoneNumber;
 
     // this.store.dispatch(this.builderActions.addPersonalInfo(personalInfo));
-    this.da31Service.postDa31FormData("test").subscribe(res => {
-      
+    this.da31Service.postDa31FormData("test").subscribe(data => {
+
+      console.log(data);
       console.log("subcribe closure");
     });;
     // this.navCtrl.push(AddressFormPage);

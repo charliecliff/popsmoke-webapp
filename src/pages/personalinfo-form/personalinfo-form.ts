@@ -65,6 +65,7 @@ export class PersonalInfoFormPage {
 
     // this.store.dispatch(this.builderActions.addPersonalInfo(personalInfo));
     this.da31Service.postDa31FormData("test").subscribe(res => {
+      
       console.log("subcribe closure");
     });;
     // this.navCtrl.push(AddressFormPage);

@@ -33,18 +33,10 @@ mongoClient.connect(MONGODB_URI, function (err, database) {
 });
 
 app.post("/api/da31", function(req, res) {
-	console.log('posting to /api/da31');
-
 	var fillPdf = require("fill-pdf");
-	var formDate = { FieldName: 'Text to put into form field' };
-	var pdfTemplatePath = "../../public/DA_31.pdf";
-
+	var pdfTemplatePath = "../../public/DA_31.pdf"; // <-- TODO: Make this route a constant
+	var formDate = { FieldName: 'Text to put into form field' }; // <-- TODO: Build out the JSON Field Arguments
 	fillPdf.generatePdf(formDate, pdfTemplatePath, function(err, output) {
-		
-		console.log("output");
-		console.log(output);
-		console.log(err);
-
     	if ( !err ) {
       		res.type("application/pdf");
       		res.send(output);

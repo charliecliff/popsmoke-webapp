@@ -66,6 +66,7 @@ export class PersonalInfoFormPage {
     // this.store.dispatch(this.builderActions.addPersonalInfo(personalInfo));
     this.da31Service.postDa31FormData("test").subscribe(data => {
 
+      console.log("fuck you");
       console.log(data);
       console.log("subcribe closure");
     });;

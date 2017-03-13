@@ -108,6 +108,8 @@ res.status(204).end();
 // POST: create a new da31 Form
 app.post("/api/da31", function(req, res) {
 	
+	System.err.println("Hello, logs!");
+
 	console.log('posting to /api/da31');
 	// var newTodo = {
 	// 	description: req.body.description,

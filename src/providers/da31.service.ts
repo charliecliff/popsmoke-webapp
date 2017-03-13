@@ -20,6 +20,7 @@ export class Da31Service {
 
 
     return this.http.post(this.da31Url, body, {headers: headers})
+                    .map(this.extractPDFDataFromResponse)
                     .catch(this.handleError);
   }
 

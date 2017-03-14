@@ -44,10 +44,10 @@ app.post("/api/da31", function(req, res) {
 
 	  		console.log("Start AWS Upload");
     		var AWS = require("aws-sdk");
-    		
+
     		var params = {
   				Bucket: "popsmoke", /* pull these into a configuration file */
-  				Key: "AKIAIDMIESKUD4F657BQ", /* pull these into a configuration file */
+  				Key: "myarchive.pdf",
   				ACL: "public-read",
 	  			Body: output
 	  		};

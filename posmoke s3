@@ -3,6 +3,6 @@ S3_BUCKET => arn:aws:s3:::popsmoke
 AWS_ACCESS_KEY_ID => AKIAIDMIESKUD4F657BQ
 AWS_SECRET_ACCESS_KEY => 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
 
-heroku config:set AWS_ACCESS_KEY_ID=AKIAIDMIESKUD4F657BQ AWS_SECRET_ACCESS_KEY=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 --app sleepy-scrubland-83197
+heroku config:set AWS_ACCESS_KEY_ID = AKIAIDMIESKUD4F657BQ AWS_SECRET_ACCESS_KEY = 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 --app sleepy-scrubland-83197
 
 heroku config:set S3_BUCKET=popsmoke --app sleepy-scrubland-83197

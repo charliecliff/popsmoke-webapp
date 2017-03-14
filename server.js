@@ -44,7 +44,9 @@ app.post("/api/da31", function(req, res) {
 
 	  		console.log("Start AWS Upload");
     		var AWS = require("aws-sdk");
-
+			// AWS.config.update({ accessKeyId: "AKIAIDMIESKUD4F657BQ", 
+			// 					secretAccessKey: "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" });
+    		
     		var params = {
   				Bucket: "popsmoke", /* pull these into a configuration file */
   				Key: "myarchive.pdf",

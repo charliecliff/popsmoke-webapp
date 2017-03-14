@@ -47,6 +47,8 @@ app.post("/api/da31", function(req, res) {
 	  			Body: output
 	  		};
 	  		console.log("Made Params");
+
+	  		s3 = new AWS.S3({apiVersion: '2006-03-01'});
 			s3.putObject(params, function(err, data) {
   				if (err) console.log(err, err.stack); // an error occurred
   				else     console.log(data);           // successful response

@@ -51,6 +51,8 @@ app.post("/api/da31", function(req, res) {
   				Bucket: "popsmoke", /* pull these into a configuration file */
   				Key: "myarchive.pdf",
   				ACL: "public-read",
+  				ContentDisposition: "inline",
+  				ContentType: "application/pdf",
 	  			Body: output
 	  		};
 	  		console.log("Made Params");

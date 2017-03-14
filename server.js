@@ -35,38 +35,21 @@ mongoClient.connect(MONGODB_URI, function (err, database) {
 app.post("/api/da31", function(req, res) {
 	var fillPdf = require("fill-pdf");
 	var pdfTemplatePath = "../../public/DA_31.pdf"; // <-- TODO: Make this route a constant
-	var formDate = { FieldName: "Text to put into form field" }; // <-- TODO: Build out the JSON Field Arguments
+	
+	// <-- TODO: Build out the JSON Field Arguments
+	var formDate = { FieldName: "Text to put into form field" }; 
+
 	fillPdf.generatePdf(formDate, pdfTemplatePath, function(err, output) {
+    	
     	if ( !err ) {
-
-    		console.log("Output");
-    		console.log(output);
-
 	  		console.log("Start AWS Upload");
-    		var AWS = require("aws-sdk");
-			// AWS.config.update({ accessKeyId: "AKIAIDMIESKUD4F657BQ", 
-			// 					secretAccessKey: "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" });
     		
-    		var params = {
-  				Bucket: "popsmoke", /* pull these into a configuration file */
-  				Key: "myarchive.pdf",
-  				ACL: "public-read",
-  				ContentDisposition: "inline",
-  				ContentType: "application/pdf",
-	  			Body: output
-	  		};
-	  		console.log("Made Params");
-
-	  		s3 = new AWS.S3({apiVersion: "2006-03-01"});
-			s3.putObject(params, function(err, data) {
-  				if (err) 
-  					console.log(err, err.stack); // an error occurred
-  				else     
-  					console.log(data);           // successful response
-			});
+	  		this.putPDFFileToAmazonS3(res, output);
 
       		res.type("application/pdf");
       		res.send(output);
+    	} else {
+    		res.send(err);
     	}
   	});
 });
@@ -75,4 +58,28 @@ app.post("/api/da31", function(req, res) {
 function handleError(res, reason, message, code) {
 	console.log("API Error: " + reason);
 	res.status(code || 500).json({"Error": message});
+}
+
+function putPDFFileToAmazonS3(res, pdfDataBuffer) {
+	var AWS = require("aws-sdk");
+	// AWS.config.update({accessKeyId: "AKIAIDMIESKUD4F657BQ", 
+	//  				  secretAccessKey: "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" });
+    		
+	var params = {
+		Bucket: "popsmoke", /* pull these into a configuration file */
+		Key: "myarchive.pdf",
+		ACL: "public-read",
+		ContentDisposition: "inline",
+		ContentType: "application/pdf",
+		Body: pdfDataBuffer
+	};
+
+	s3 = new AWS.S3({apiVersion: "2006-03-01"});
+	s3.putObject(params, function(err, data) {
+		if (err) {
+			res.send(err);
+		} else {
+			console.log(data); // Return AWS File URL
+		}
+	});
 }

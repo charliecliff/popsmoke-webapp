@@ -33,21 +33,16 @@ mongoClient.connect(MONGODB_URI, function (err, database) {
 });
 
 app.post("/api/da31", function(req, res) {
-	var fillPdf = require("fill-pdf");
 	var pdfTemplatePath = "../../public/DA_31.pdf"; // <-- TODO: Make this route a constant
 	
 	// <-- TODO: Build out the JSON Field Arguments
 	var formDate = { FieldName: "Text to put into form field" }; 
 
+	var fillPdf = require("fill-pdf");
 	fillPdf.generatePdf(formDate, pdfTemplatePath, function(err, output) {
-    	
-    	if ( !err ) {
-	  		console.log("Start AWS Upload");
-    		
-	  		putPDFFileToAmazonS3(res, output);
 
-      		res.type("application/pdf");
-      		res.send(output);
+    	if ( !err ) {
+	  		postPDFFileToAmazonS3(res, output);
     	} else {
     		res.send(err);
     	}
@@ -60,7 +55,7 @@ function handleError(res, reason, message, code) {
 	res.status(code || 500).json({"Error": message});
 }
 
-function putPDFFileToAmazonS3(res, pdfDataBuffer) {
+function postPDFFileToAmazonS3(res, pdfDataBuffer) {
 	var AWS = require("aws-sdk");
 	// AWS.config.update({accessKeyId: "AKIAIDMIESKUD4F657BQ", 
 	//  				  secretAccessKey: "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" });
@@ -79,6 +74,7 @@ function putPDFFileToAmazonS3(res, pdfDataBuffer) {
 		if (err) {
 			res.send(err);
 		} else {
+			// https://s3-us-west-2.amazonaws.com/popsmoke/myarchive.pdf
 			console.log(data); // Return AWS File URL
 		}
 	});

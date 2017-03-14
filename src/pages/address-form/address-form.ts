@@ -46,11 +46,13 @@ export class AddressFormPage {
   }
 
   submit() {
+    
     let address = {} as Address;
     address.street = this.addressForm.value.street;
     address.city = this.addressForm.value.city;
     address.state = this.addressForm.value.state;
     address.zip = this.addressForm.value.zip;
+    
     this.store.dispatch(this.builderActions.addDestination(address));
     this.navCtrl.push(StationFormPage);
   }

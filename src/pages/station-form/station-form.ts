@@ -54,6 +54,7 @@ export class StationFormPage {
   }
 
   submit() {
+
     let stationInfo = {} as Station;
     stationInfo.platoon = this.stationForm.value.platoon;
     stationInfo.company = this.stationForm.value.company;
@@ -62,6 +63,7 @@ export class StationFormPage {
     stationInfo.division = this.stationForm.value.division;
     stationInfo.post = this.stationForm.value.post;
     stationInfo.division = this.stationForm.value.division;
+    
     this.store.dispatch(this.builderActions.addStation(stationInfo));
     this.navCtrl.push(LeaveFormPage);
   }

@@ -23,7 +23,13 @@ export class LeaveFormPage {
 	LEAVE_DATE_FROM	: string	= "FROM";
 	LEAVE_DATE_TO	: string		= "TO";
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private navCtrl: NavController, 
+    private navParams: NavParams,
+    private store: Store<AppState>,) {
+
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LeaveFormPage');
@@ -31,5 +37,13 @@ export class LeaveFormPage {
 
   submit() {
 
+    $completedFormData = this.store.da31Form;
+    console.log($completedFormData);
+    
+    // this.da31Service.postDa31FormData("test").subscribe(data => {
+    //   console.log("fuck you");
+    //   console.log(data);
+    //   console.log("subcribe closure");
+    // });
   }
 }

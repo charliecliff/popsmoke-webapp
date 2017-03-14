@@ -8,7 +8,7 @@ import { Da31Service } from '../../providers/da31.service';
 import { Da31BuilderActions } from '../../actions/da31builder.actions';
 import { AddressFormPage } from '../address-form/address-form';
 
-import { PdfPage } from '../pdf-page/pdf-page';
+// import { PdfPage } from '../pdf-page/pdf-page';
 
 @Component({
   selector: 'page-personalinfo-form',
@@ -55,23 +55,16 @@ export class PersonalInfoFormPage {
   }
 
   submit() { 
-    console.log("submit");
    
-    // let personalInfo = {} as PersonalInfo;
-    // personalInfo.firstName = this.personalInfoForm.value.firstName;
-    // personalInfo.lastName = this.personalInfoForm.value.lastName;
-    // personalInfo.middleInitial = this.personalInfoForm.value.middleInitial;
-    // personalInfo.ssn = this.personalInfoForm.value.ssn;
-    // personalInfo.rank = this.personalInfoForm.value.rank;
-    // personalInfo.phoneNumber = this.personalInfoForm.value.phoneNumber;
+    let personalInfo = {} as PersonalInfo;
+    personalInfo.firstName = this.personalInfoForm.value.firstName;
+    personalInfo.lastName = this.personalInfoForm.value.lastName;
+    personalInfo.middleInitial = this.personalInfoForm.value.middleInitial;
+    personalInfo.ssn = this.personalInfoForm.value.ssn;
+    personalInfo.rank = this.personalInfoForm.value.rank;
+    personalInfo.phoneNumber = this.personalInfoForm.value.phoneNumber;
 
-    // this.store.dispatch(this.builderActions.addPersonalInfo(personalInfo));
-    this.da31Service.postDa31FormData("test").subscribe(data => {
-
-      console.log("fuck you");
-      console.log(data);
-      console.log("subcribe closure");
-      this.navCtrl.push(AddressFormPage);
-    });
+    this.store.dispatch(this.builderActions.addPersonalInfo(personalInfo));
+    this.navCtrl.push(AddressFormPage);
   }
 }

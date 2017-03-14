@@ -44,7 +44,7 @@ app.post("/api/da31", function(req, res) {
     	if ( !err ) {
 	  		console.log("Start AWS Upload");
     		
-	  		this.putPDFFileToAmazonS3(res, output);
+	  		putPDFFileToAmazonS3(res, output);
 
       		res.type("application/pdf");
       		res.send(output);

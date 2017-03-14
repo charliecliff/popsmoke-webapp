@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavController, NavParams } from 'ionic-angular';
+import { Store } from '@ngrx/store';
 
-/*
-  Generated class for the LeaveForm page.
+import { AppState } from '../../AppState';  
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-leave-form',
   templateUrl: 'leave-form.html'
@@ -37,9 +35,9 @@ export class LeaveFormPage {
 
   submit() {
 
-    $completedFormData = this.store.da31Form;
-    console.log($completedFormData);
-    
+    let completedFormData = this.store;
+    console.log(completedFormData);
+
     // this.da31Service.postDa31FormData("test").subscribe(data => {
     //   console.log("fuck you");
     //   console.log(data);

@@ -27,8 +27,8 @@ export class Da31Service {
 
   private extractPDFDataFromResponse(res: Response) {
     var pdfBlob = new Blob([res.blob()], {type: 'application/pdf'});
-    var filename = 'file.pdf';
-    saveAs(pdfBlob, filename);
+    // var filename = 'file.pdf';
+    // saveAs(pdfBlob, filename);
     return pdfBlob;
   }
 

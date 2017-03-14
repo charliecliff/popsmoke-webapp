@@ -44,7 +44,7 @@ app.post("/api/da31", function(req, res) {
 
 	  		console.log("Start AWS Upload");
     		var AWS = require("aws-sdk");
-    		var pdfBlob = new Blob([output], { type: "application/pdf" });
+    		
     		var params = {
   				Bucket: "popsmoke", /* pull these into a configuration file */
   				Key: "AKIAIDMIESKUD4F657BQ", /* pull these into a configuration file */

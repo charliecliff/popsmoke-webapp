@@ -8,6 +8,8 @@ import { Da31Service } from '../../providers/da31.service';
 import { Da31BuilderActions } from '../../actions/da31builder.actions';
 import { AddressFormPage } from '../address-form/address-form';
 
+import { PdfPage } from '../pdf-page/pdf-page';
+
 @Component({
   selector: 'page-personalinfo-form',
   templateUrl: 'personalinfo-form.html',
@@ -69,7 +71,7 @@ export class PersonalInfoFormPage {
       console.log("fuck you");
       console.log(data);
       console.log("subcribe closure");
-    });;
-    // this.navCtrl.push(AddressFormPage);
+      this.navCtrl.push(AddressFormPage);
+    });
   }
 }

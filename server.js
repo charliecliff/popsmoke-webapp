@@ -38,6 +38,20 @@ app.post("/api/da31", function(req, res) {
 	var formDate = { FieldName: 'Text to put into form field' }; // <-- TODO: Build out the JSON Field Arguments
 	fillPdf.generatePdf(formDate, pdfTemplatePath, function(err, output) {
     	if ( !err ) {
+
+	  		console.log("Start AWS Upload");
+    		var AWS = require('aws-sdk');
+    		var params = {
+  				Bucket: 'popsmoke', /* required */
+  				Key: 'AKIAIDMIESKUD4F657BQ', /* required */
+	  			Body: output
+	  		};
+	  		console.log("Made Params");
+			s3.putObject(params, function(err, data) {
+  				if (err) console.log(err, err.stack); // an error occurred
+  				else     console.log(data);           // successful response
+			});
+
       		res.type("application/pdf");
       		res.send(output);
     	}

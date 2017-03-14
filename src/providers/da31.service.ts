@@ -19,22 +19,17 @@ export class Da31Service {
     let headers = new Headers({"Content-Type": "application/json"});
 
     return this.http.post(this.da31Url, body, {headers: headers, responseType: ResponseContentType.Blob})
-                    .map((res:Response) => res.blob())
+                    .map(this.extractPDFDataFromResponse)
                     .catch(this.handleError);
-  }
-
-  private extractData(res: Response) {
-    console.log("extractData");
-    console.log(res);
-    return { };
   }
 
 // (res:Response) => res.json()
 
   private extractPDFDataFromResponse(res: Response) {
-    console.log("extractPDFDataFromResponse");
-    console.log(res);
-    return { };
+    var pdfBlob = new Blob([res.blob()], {type: 'application/pdf'});
+    var filename = 'file.pdf';
+    saveAs(pdfBlob, filename);
+    return pdfBlob;
   }
 
   handleError(error) {

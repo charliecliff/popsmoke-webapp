@@ -1,6 +1,3 @@
-import * as constants from './src/constants';
-
-//server.js (todo-ionic2-heroku/server.js)
 var express = require('express');
 var bodyParser = require('body-parser');
 var cors = require('cors');
@@ -39,6 +36,12 @@ app.options('/api/da31', function (req, res) {
   res.setHeader('Access-Control-Allow-Methods', '*');
   res.setHeader("Access-Control-Allow-Headers", "*");
   res.end();
+});
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
 });
 
 app.post("/api/da31", function(req, res) {

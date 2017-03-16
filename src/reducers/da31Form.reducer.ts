@@ -27,7 +27,7 @@ const initialState: Da31Form = {
         state: "string",  
         zip: "string" 
     }
-};
+} as Da31Form;
 
 export function reducer(state = initialState, action: da31BuilderActions.Da31BuilderActions ): Da31Form {  
     switch(action.type) {

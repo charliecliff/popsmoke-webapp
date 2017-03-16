@@ -12,6 +12,7 @@ import { PersonalInfoFormPage } from '../pages/personalinfo-form/personalinfo-fo
 import { AddressFormPage } from '../pages/address-form/address-form';
 import { StationFormPage } from '../pages/station-form/station-form';
 import { LeaveFormPage } from '../pages/leave-form/leave-form';
+import { PdfPage } from '../pages/pdf/pdf';
 
 // Providers
 import { Da31Service } from '../providers/da31.service';
@@ -28,7 +29,8 @@ import { reducer } from '../reducers';
     PersonalInfoFormPage,
     AddressFormPage,
     StationFormPage,
-    LeaveFormPage
+    LeaveFormPage,
+    PdfPage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -41,7 +43,8 @@ import { reducer } from '../reducers';
     PersonalInfoFormPage,
     AddressFormPage,
     StationFormPage,
-    LeaveFormPage
+    LeaveFormPage,
+    PdfPage
   ],
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler},

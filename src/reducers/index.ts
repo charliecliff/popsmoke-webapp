@@ -18,7 +18,6 @@ const reducers = {
   da31Form: da31Reducer.reducer
 };
 
-
 const productionReducer: ActionReducer<AppState> = combineReducers(reducers);
 
 export function reducer(state: any, action: any) {
@@ -26,3 +25,4 @@ export function reducer(state: any, action: any) {
 }
 
 export const getCurrentForm = (appState: AppState) => appState.da31Form;
+

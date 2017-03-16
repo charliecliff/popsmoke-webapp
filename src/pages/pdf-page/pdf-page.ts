@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Store } from '@ngrx/store';
 
-import { AppState } from '../../AppState';  
+import { AppState } from '../../reducers';  
 
 @Component({
   selector: 'page-pdf-page',

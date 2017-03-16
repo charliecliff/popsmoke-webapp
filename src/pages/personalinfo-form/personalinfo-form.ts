@@ -2,18 +2,17 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavController, NavParams } from 'ionic-angular';
 import { Store } from '@ngrx/store';
-import { AppState } from '../../AppState';  
+
+import { AppState } from '../../reducers';  
 import { PersonalInfo } from '../../models/PersonalInfo';
-import { Da31Service } from '../../providers/da31.service';
-import { Da31BuilderActions } from '../../actions/da31builder.actions';
+
 import { AddressFormPage } from '../address-form/address-form';
 
-// import { PdfPage } from '../pdf-page/pdf-page';
+import * as da31BuilderActions from '../../actions/da31builder.actions';
 
 @Component({
   selector: 'page-personalinfo-form',
   templateUrl: 'personalinfo-form.html',
-  providers: [Da31Service]
 })
 export class PersonalInfoFormPage {
 
@@ -30,12 +29,10 @@ export class PersonalInfoFormPage {
   personalInfoForm: FormGroup;
   
   constructor(
-    public formBuilder: FormBuilder, 
+    private formBuilder: FormBuilder, 
     private navCtrl: NavController, 
-    private navParams: NavParams, 
-    private store: Store<AppState>, 
-    private builderActions: Da31BuilderActions,
-    private da31Service: Da31Service) {
+    private navParams: NavParams,
+    private store: Store<AppState>) {
       this.personalInfoForm = formBuilder.group({
         firstName: [''],
         middleInitial: [''],
@@ -64,7 +61,7 @@ export class PersonalInfoFormPage {
     personalInfo.rank = this.personalInfoForm.value.rank;
     personalInfo.phoneNumber = this.personalInfoForm.value.phoneNumber;
 
-    this.store.dispatch(this.builderActions.addPersonalInfo(personalInfo));
+    this.store.dispatch(new da31BuilderActions.AddPersonalInfoAction(personalInfo));
     this.navCtrl.push(AddressFormPage);
   }
 }

@@ -3,10 +3,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavController, NavParams } from 'ionic-angular';
 import { Store } from '@ngrx/store';
 
-import { AppState } from '../../AppState';
+import { AppState } from '../../reducers';
 import { Address } from '../../models/Address';
-import { Da31BuilderActions } from '../../actions/da31builder.actions';   
 import { StationFormPage } from '../station-form/station-form';
+
+import * as da31BuilderActions from '../../actions/da31builder.actions';
 
 @Component({
   selector: 'page-address-form',
@@ -28,8 +29,7 @@ export class AddressFormPage {
     public formBuilder: FormBuilder,
     private navCtrl: NavController, 
     private navParams: NavParams,
-    private store: Store<AppState>,
-    private builderActions: Da31BuilderActions) {
+    private store: Store<AppState>) {
       this.addressForm = formBuilder.group({
         street: [''],
         city: [''],
@@ -53,8 +53,8 @@ export class AddressFormPage {
     address.city = this.addressForm.value.city;
     address.state = this.addressForm.value.state;
     address.zip = this.addressForm.value.zip;
-    
-    this.store.dispatch(this.builderActions.addDestination(address));
+
+    this.store.dispatch(new da31BuilderActions.AddDestinationAction(address));
     this.navCtrl.push(StationFormPage);
   }
 }

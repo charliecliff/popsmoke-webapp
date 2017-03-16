@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavController, NavParams } from 'ionic-angular';
 import { Store } from '@ngrx/store';
 
-import { AppState } from '../../AppState';  
+import { AppState } from '../../reducers';  
 
 @Component({
   selector: 'page-leave-form',
@@ -35,8 +35,7 @@ export class LeaveFormPage {
 
   submit() {
 
-    let completedFormData = this.store;
-    console.log(completedFormData);
+    console.log("completedFormData");
 
     // this.da31Service.postDa31FormData("test").subscribe(data => {
     //   console.log("fuck you");

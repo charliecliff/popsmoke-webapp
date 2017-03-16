@@ -3,10 +3,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavController, NavParams } from 'ionic-angular';
 import { Store } from '@ngrx/store';
 
-import { AppState } from '../../AppState';  
+import { AppState } from '../../reducers';  
 import { Station } from '../../models/Station';  
 import { Da31BuilderActions } from '../../actions/da31builder.actions';
 import { LeaveFormPage } from '../leave-form/leave-form';
+
+import * as da31BuilderActions from '../../actions/da31builder.actions';
 
 @Component({
   selector: 'page-station-form',
@@ -32,8 +34,7 @@ export class StationFormPage {
     public formBuilder: FormBuilder,
     private navCtrl: NavController, 
     private navParams: NavParams,
-    private store: Store<AppState>, 
-    private builderActions: Da31BuilderActions) {
+    private store: Store<AppState>) {
       this.stationForm = formBuilder.group({
         platoon: [''],
         company: [''],
@@ -65,7 +66,7 @@ export class StationFormPage {
     stationInfo.post = this.stationForm.value.post;
     stationInfo.division = this.stationForm.value.division;
     
-    this.store.dispatch(this.builderActions.addStation(stationInfo));
+    this.store.dispatch(new da31BuilderActions.AddStationAction(stationInfo));
     this.navCtrl.push(LeaveFormPage);
   }
 }

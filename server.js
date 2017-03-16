@@ -31,13 +31,7 @@ mongoClient.connect(MONGODB_URI, function (err, database) {
 	});
 });
 
-// app.options('/api/da31', function (req, res) {
-//   res.setHeader("Access-Control-Allow-Origin", "*");
-//   res.setHeader('Access-Control-Allow-Methods', '*');
-//   res.setHeader("Access-Control-Allow-Headers", "*");
-//   res.end();
-// });
-
+// The Key to allowing CORS
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -52,7 +46,6 @@ app.post("/api/da31", function(req, res) {
 
 	var fillPdf = require("fill-pdf");
 	fillPdf.generatePdf(formDate, pdfTemplatePath, function(err, output) {
-
     	if ( !err ) {
 	  		postPDFFileToAmazonS3(res, output);
     	} else {
@@ -61,10 +54,14 @@ app.post("/api/da31", function(req, res) {
   	});
 });
 
-// Error handler for the api
+// TODO: Extract these into their files or modules
 function handleError(res, reason, message, code) {
 	console.log("API Error: " + reason);
 	res.status(code || 500).json({"Error": message});
+}
+
+function fillOutPdfForm(formData) { 
+
 }
 
 function postPDFFileToAmazonS3(res, pdfDataBuffer) {

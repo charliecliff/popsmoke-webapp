@@ -34,6 +34,13 @@ mongoClient.connect(MONGODB_URI, function (err, database) {
 	});
 });
 
+app.options('/api/da31', function (req, res) {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader('Access-Control-Allow-Methods', '*');
+  res.setHeader("Access-Control-Allow-Headers", "*");
+  res.end();
+});
+
 app.post("/api/da31", function(req, res) {
 	var pdfTemplatePath = "../../public/DA_31.pdf"; // <-- TODO: Make this route a constant
 	

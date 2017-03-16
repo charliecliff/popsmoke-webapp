@@ -17,7 +17,6 @@ export class Da31Service {
 		
     let body = JSON.stringify({description: "todo"});
     let headers = new Headers({"Content-Type": "application/json"});
-
     return this.http.post(this.da31Url, body, {headers: headers, responseType: ResponseContentType.Blob})
                     .map(this.extractPDFDataFromResponse)
                     .catch(this.handleError);

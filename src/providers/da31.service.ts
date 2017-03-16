@@ -6,7 +6,7 @@ import 'rxjs/Rx';
 @Injectable()
 export class Da31Service {
 
-  da31Url = "/api/da31";
+  da31Url = "https://sleepy-scrubland-83197.herokuapp.com/api/da31";
 
   constructor(public http: Http) {
     console.log('Hello Da31 Provider');

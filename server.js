@@ -1,3 +1,5 @@
+import * as constants from './src/constants';
+
 //server.js (todo-ionic2-heroku/server.js)
 var express = require('express');
 var bodyParser = require('body-parser');
@@ -74,8 +76,7 @@ function postPDFFileToAmazonS3(res, pdfDataBuffer) {
 		if (err) {
 			res.send(err);
 		} else {
-			// https://s3-us-west-2.amazonaws.com/popsmoke/myarchive.pdf
-			console.log(data); // Return AWS File URL
+			res.send("https://s3-us-west-2.amazonaws.com/popsmoke/myarchive.pdf");
 		}
 	});
 }

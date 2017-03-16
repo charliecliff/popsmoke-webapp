@@ -4,8 +4,6 @@ import { StoreModule } from '@ngrx/store';
 
 import { MyApp } from './app.component';
 
-// Model
-
 // Pages
 import { PacketPage } from '../pages/packet/packet';
 import { PersonalInfoFormPage } from '../pages/personalinfo-form/personalinfo-form';
@@ -19,8 +17,6 @@ import { Da31Service } from '../providers/da31.service';
 
 // Reducers
 import { reducer } from '../reducers';
-
-// 
 
 @NgModule({
   declarations: [

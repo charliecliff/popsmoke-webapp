@@ -1,19 +1,26 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController } from 'ionic-angular';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs/Observable';
 
-/*
-  Generated class for the Pdf page.
+import * as Reducers from '../../reducers';
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-pdf',
   templateUrl: 'pdf.html'
 })
 export class PdfPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  private pdfUrl;
+  private pdfUrlSubscription;
+
+  constructor(public navCtrl: NavController, 
+  						private store: Store<Reducers.AppState>) {
+    this.pdfUrlSubscription = store.select('da31Form')
+    															 .subscribe(da31Form => {
+    															 	this.pdfUrl = da31Form;
+    															 });
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PdfPage');

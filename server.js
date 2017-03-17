@@ -1,4 +1,4 @@
-var da31Fields = require('./da31Fields');
+var da31Pdf = require('./da31Pdf');
 var express = require('express');
 var bodyParser = require('body-parser');
 var cors = require('cors');
@@ -41,14 +41,7 @@ app.use(function(req, res, next) {
 
 app.post("/api/da31", function(req, res) {
 	var pdfTemplatePath = "../../public/DA_31.pdf"; // <-- TODO: Make this route a constant
-	
-	// <-- TODO: Build out the JSON Field Arguments
-
-	var formData = {};
-	formData[da31Fields.name] = "Testing Name";
-
-
-
+	var formData = fillOutPdfForm(req.body);
 	var fillPdf = require("fill-pdf");
 	fillPdf.generatePdf(formData, pdfTemplatePath, function(err, output) {
     	if ( !err ) {
@@ -66,7 +59,26 @@ function handleError(res, reason, message, code) {
 }
 
 function fillOutPdfForm(formData) { 
-
+	let formatter = new da31Pdf.Da31PdfFormat();
+	var formData = {};
+	formData[da31Pdf.name] = "Testing Name";
+	formData[da31Pdf.rank] = "Testing Name";
+	formData[da31Pdf.ssn] = "Testing Name";
+	formData[da31Pdf.date] = "Testing Name";
+	formData[da31Pdf.address] = "Testing Name";
+	formData[da31Pdf.station] = "Testing Name";
+	formData[da31Pdf.leave_ordinary] = "Testing Name";
+	formData[da31Pdf.leave_emergency] = "Testing Name";
+	formData[da31Pdf.leave_permissive] = "Testing Name";
+	formData[da31Pdf.leave_other] = "Testing Name";
+	formData[da31Pdf.leave_other_explanation] = "Testing Name";
+	formData[da31Pdf.accrued_leave] = "Testing Name";
+	formData[da31Pdf.advanced_leave] = "Testing Name";
+	formData[da31Pdf.excess_leave] = "Testing Name";
+	formData[da31Pdf.requested_leave] = "Testing Name";
+	formData[da31Pdf.date_to] = "Testing Name";
+	formData[da31Pdf.date_from] = "Testing Name";
+	return formData;
 }
 
 function postPDFFileToAmazonS3(res, pdfDataBuffer) {

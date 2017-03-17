@@ -6,13 +6,11 @@ module.exports = Object.freeze({
   date: "Date",
   address: "Address",
   station: "ORGN",
-
   leave_ordinary: "Ordinary",
   leave_emergency: "Emergency",
   leave_permissive: "Permissive",
   leave_other: "Other",
   leave_other_explanation: "Other Explainations",
-
   accrued_leave: "Accrued",
   advanced_leave: "Advanced",
   excess_leave: "Excess",
@@ -21,6 +19,11 @@ module.exports = Object.freeze({
   date_from: "Date-From"
 });
 
-module.exports.name = function () {
-  return "Name";
-};
+class Da31PdfFormat {
+
+  function formatNameBlock(firstName, middleInitial, lastName) {
+    return "${lastName}, ${firstName} ${middleInitial}.";
+  }
+}
+
+module.exports.Da31PdfFormat;

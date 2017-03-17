@@ -21,7 +21,7 @@ module.exports = Object.freeze({
   date_from: "Date-From"
 });
 
-function Da31PdfFormat() {
+module.exports.Da31PdfFormat = function() {
 
   this.formatNameBlock = function(formData) {
     var firstName = formData[requestParams.firstName];
@@ -52,4 +52,3 @@ function Da31PdfFormat() {
     return formData;
   };
 }
-module.exports.Da31PdfFormat;

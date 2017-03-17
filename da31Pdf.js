@@ -21,19 +21,18 @@ module.exports = Object.freeze({
   date_from: "Date-From"
 });
 
-class Da31PdfFormat {
+function Da31PdfFormat() {
 
-  formatNameBlock(formData) {
+  this.formatNameBlock = function(formData) {
     var firstName = formData[requestParams.firstName];
     var middleInitial = formData[requestParams.middleInitial];
     var lastName = formData[requestParams.middleInitial];
     return "${lastName}, ${firstName} ${middleInitial}.";
-  }
+  };
 
-  fillOutPdfForm(formData) { 
-    let formatter = da31Pdf.Da31PdfFormat();
+  this.fillOutPdfForm = function(formData) { 
     var formData = {};
-    formData[da31Pdf.name] = formatNameBlock(formData);
+    formData[da31Pdf.name] = this.formatNameBlock(formData);
     formData[da31Pdf.rank] = formData[requestParams.rank];
     formData[da31Pdf.ssn] = formData[requestParams.ssn];
     formData[da31Pdf.date] = "Testing Name";
@@ -51,6 +50,6 @@ class Da31PdfFormat {
     formData[da31Pdf.date_to] = "Testing Name";
     formData[da31Pdf.date_from] = "Testing Name";
     return formData;
-  }
+  };
 }
-module.exports.Da31PdfFormat;
+module.exports = Da31PdfFormat;

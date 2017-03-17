@@ -1,6 +1,6 @@
 var requestParams = require('./da31PdfRequestParamaters');
 
-module.exports = Object.freeze({
+module.exports.constants = Object.freeze({
   control_number: "Control Number",
   name: "Name",
   rank: "Rank",
@@ -32,23 +32,23 @@ module.exports.Da31PdfFormat = function() {
 
   this.fillOutPdfForm = function(formData) { 
     var formData = {};
-    formData[da31Pdf.name] = this.formatNameBlock(formData);
-    formData[da31Pdf.rank] = formData[requestParams.rank];
-    formData[da31Pdf.ssn] = formData[requestParams.ssn];
-    formData[da31Pdf.date] = "Testing Name";
-    formData[da31Pdf.address] = "Testing Name";
-    formData[da31Pdf.station] = "Testing Name";
-    formData[da31Pdf.leave_ordinary] = "Testing Name";
-    formData[da31Pdf.leave_emergency] = "Testing Name";
-    formData[da31Pdf.leave_permissive] = "Testing Name";
-    formData[da31Pdf.leave_other] = "Testing Name";
-    formData[da31Pdf.leave_other_explanation] = "Testing Name";
-    formData[da31Pdf.accrued_leave] = "Testing Name";
-    formData[da31Pdf.advanced_leave] = "Testing Name";
-    formData[da31Pdf.excess_leave] = "Testing Name";
-    formData[da31Pdf.requested_leave] = "Testing Name";
-    formData[da31Pdf.date_to] = "Testing Name";
-    formData[da31Pdf.date_from] = "Testing Name";
+    formData[da31Pdf.constants.name] = this.formatNameBlock(formData);
+    formData[da31Pdf.constants.rank] = formData[requestParams.rank];
+    formData[da31Pdf.constants.ssn] = formData[requestParams.ssn];
+    formData[da31Pdf.constants.date] = "Testing Name";
+    formData[da31Pdf.constants.address] = "Testing Name";
+    formData[da31Pdf.constants.station] = "Testing Name";
+    formData[da31Pdf.constants.leave_ordinary] = "Testing Name";
+    formData[da31Pdf.constants.leave_emergency] = "Testing Name";
+    formData[da31Pdf.constants.leave_permissive] = "Testing Name";
+    formData[da31Pdf.constants.leave_other] = "Testing Name";
+    formData[da31Pdf.constants.leave_other_explanation] = "Testing Name";
+    formData[da31Pdf.constants.accrued_leave] = "Testing Name";
+    formData[da31Pdf.constants.advanced_leave] = "Testing Name";
+    formData[da31Pdf.constants.excess_leave] = "Testing Name";
+    formData[da31Pdf.constants.requested_leave] = "Testing Name";
+    formData[da31Pdf.constants.date_to] = "Testing Name";
+    formData[da31Pdf.constants.date_from] = "Testing Name";
     return formData;
   };
 }

@@ -1,4 +1,4 @@
-// var da31Fields = require('./da31Fields');
+var da31Fields = require('./da31Fields');
 
 var express = require('express');
 var bodyParser = require('body-parser');

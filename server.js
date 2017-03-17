@@ -59,7 +59,7 @@ function handleError(res, reason, message, code) {
 }
 
 function fillOutPdfForm(formData) { 
-	let formatter = new da31Pdf.Da31PdfFormat();
+	let formatter = da31Pdf.Da31PdfFormat();
 	var formData = {};
 	formData[da31Pdf.name] = "Testing Name";
 	formData[da31Pdf.rank] = "Testing Name";

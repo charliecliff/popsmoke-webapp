@@ -58,9 +58,6 @@ app.post("/api/da31", function(req, res) {
   	});
 });
 
-// 
-let da31_pdf_name	= "Name"
-
 // TODO: Extract these into their files or modules
 function handleError(res, reason, message, code) {
 	console.log("API Error: " + reason);

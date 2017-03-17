@@ -42,7 +42,7 @@ app.use(function(req, res, next) {
 
 app.post("/api/da31", function(req, res) {
 	let pdfTemplatePath = "../../public/DA_31.pdf"; // <-- TODO: Make this route a constant
-	let formatter = da31Pdf.Da31PdfFormat;
+	let formatter = da31Pdf.Da31PdfFormat();
 	let formData = formatter.fillOutPdfForm(req.body);
 	let fillPdf = require("fill-pdf");
 	fillPdf.generatePdf(formData, pdfTemplatePath, function(err, output) {
@@ -58,29 +58,6 @@ app.post("/api/da31", function(req, res) {
 function handleError(res, reason, message, code) {
 	console.log("API Error: " + reason);
 	res.status(code || 500).json({"Error": message});
-}
-
-function fillOutPdfForm(formData) { 
-	let formatter = da31Pdf.Da31PdfFormat();
-	var formData = {};
-	formData[da31Pdf.name] = "Testing Name";
-	formData[da31Pdf.rank] = "Testing Name";
-	formData[da31Pdf.ssn] = "Testing Name";
-	formData[da31Pdf.date] = "Testing Name";
-	formData[da31Pdf.address] = "Testing Name";
-	formData[da31Pdf.station] = "Testing Name";
-	formData[da31Pdf.leave_ordinary] = "Testing Name";
-	formData[da31Pdf.leave_emergency] = "Testing Name";
-	formData[da31Pdf.leave_permissive] = "Testing Name";
-	formData[da31Pdf.leave_other] = "Testing Name";
-	formData[da31Pdf.leave_other_explanation] = "Testing Name";
-	formData[da31Pdf.accrued_leave] = "Testing Name";
-	formData[da31Pdf.advanced_leave] = "Testing Name";
-	formData[da31Pdf.excess_leave] = "Testing Name";
-	formData[da31Pdf.requested_leave] = "Testing Name";
-	formData[da31Pdf.date_to] = "Testing Name";
-	formData[da31Pdf.date_from] = "Testing Name";
-	return formData;
 }
 
 function postPDFFileToAmazonS3(res, pdfDataBuffer) {

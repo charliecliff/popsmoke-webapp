@@ -52,4 +52,4 @@ function Da31PdfFormat() {
     return formData;
   };
 }
-module.exports = Da31PdfFormat;
+module.exports.Da31PdfFormat;

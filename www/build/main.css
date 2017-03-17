@@ -8080,11 +8080,6 @@ a {
   color: #387ef5;
 }
 
-.scroll {
-  min-height: 100%;
-  height: 100%;
-}
-
 .scroll-content {
   position: absolute;
   top: 0;

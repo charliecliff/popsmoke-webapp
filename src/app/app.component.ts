@@ -1,17 +1,16 @@
 import { Component } from '@angular/core';
 import { Platform } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
+
 import { PacketPage } from '../pages/packet/packet';
 import { PersonalInfoFormPage } from '../pages/personalinfo-form/personalinfo-form';
-
-import { PdfPage } from '../pages/pdf/pdf';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
 
-  rootPage = PdfPage;
+  rootPage = PersonalInfoFormPage;
 
   constructor(platform: Platform) {
     platform.ready().then(() => {

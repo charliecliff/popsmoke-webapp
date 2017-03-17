@@ -43,7 +43,7 @@ app.use(function(req, res, next) {
 app.post("/api/da31", function(req, res) {
 	let pdfTemplatePath = "../../public/DA_31.pdf"; // <-- TODO: Make this route a constant
 	
-	let formatter = da31Pdf.Da31PdfFormat();
+	let formatter = new da31Pdf.Da31PdfFormat();
 	
 	let formData = formatter.fillOutPdfForm(req.body);
 	let fillPdf = require("fill-pdf");

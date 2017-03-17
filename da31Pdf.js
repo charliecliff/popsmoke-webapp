@@ -21,7 +21,7 @@ module.exports = Object.freeze({
 
 class Da31PdfFormat {
 
-  public function formatNameBlock(firstName, middleInitial, lastName) {
+  formatNameBlock(firstName, middleInitial, lastName) {
     return "${lastName}, ${firstName} ${middleInitial}.";
   }
 }

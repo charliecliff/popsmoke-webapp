@@ -1,3 +1,5 @@
+var da31Fields = require('./da31Fields');
+
 var express = require('express');
 var bodyParser = require('body-parser');
 var cors = require('cors');
@@ -42,10 +44,9 @@ app.post("/api/da31", function(req, res) {
 	var pdfTemplatePath = "../../public/DA_31.pdf"; // <-- TODO: Make this route a constant
 	
 	// <-- TODO: Build out the JSON Field Arguments
-	var formDate = { Name: "Text to put into form field" }; 
+	var formDate = { da31Fields.name: "Testing Name" }; 
 
 
-// let da31_pdf_name				= "Name"
 
 	var fillPdf = require("fill-pdf");
 	fillPdf.generatePdf(formDate, pdfTemplatePath, function(err, output) {
@@ -56,6 +57,9 @@ app.post("/api/da31", function(req, res) {
     	}
   	});
 });
+
+// 
+let da31_pdf_name	= "Name"
 
 // TODO: Extract these into their files or modules
 function handleError(res, reason, message, code) {

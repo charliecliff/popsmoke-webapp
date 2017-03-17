@@ -1,4 +1,5 @@
 var da31Pdf = require('./da31Pdf');
+
 var express = require('express');
 var bodyParser = require('body-parser');
 var cors = require('cors');
@@ -40,9 +41,10 @@ app.use(function(req, res, next) {
 });
 
 app.post("/api/da31", function(req, res) {
-	var pdfTemplatePath = "../../public/DA_31.pdf"; // <-- TODO: Make this route a constant
-	var formData = fillOutPdfForm(req.body);
-	var fillPdf = require("fill-pdf");
+	let pdfTemplatePath = "../../public/DA_31.pdf"; // <-- TODO: Make this route a constant
+	let formatter = da31Pdf.Da31PdfFormat();
+	let formData = formatter.fillOutPdfForm(req.body);
+	let fillPdf = require("fill-pdf");
 	fillPdf.generatePdf(formData, pdfTemplatePath, function(err, output) {
     	if ( !err ) {
 	  		postPDFFileToAmazonS3(res, output);

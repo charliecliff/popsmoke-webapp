@@ -1,3 +1,5 @@
+var requestParams = require('./da31PdfRequestParamaters');
+
 module.exports = Object.freeze({
   control_number: "Control Number",
   name: "Name",
@@ -21,9 +23,34 @@ module.exports = Object.freeze({
 
 class Da31PdfFormat {
 
-  formatNameBlock(firstName, middleInitial, lastName) {
+  formatNameBlock(formData) {
+    var firstName = formData[requestParams.firstName];
+    var middleInitial = formData[requestParams.middleInitial];
+    var lastName = formData[requestParams.middleInitial];
     return "${lastName}, ${firstName} ${middleInitial}.";
   }
-}
 
+  fillOutPdfForm(formData) { 
+    let formatter = da31Pdf.Da31PdfFormat();
+    var formData = {};
+    formData[da31Pdf.name] = formatNameBlock(formData);
+    formData[da31Pdf.rank] = formData[requestParams.rank];
+    formData[da31Pdf.ssn] = formData[requestParams.ssn];
+    formData[da31Pdf.date] = "Testing Name";
+    formData[da31Pdf.address] = "Testing Name";
+    formData[da31Pdf.station] = "Testing Name";
+    formData[da31Pdf.leave_ordinary] = "Testing Name";
+    formData[da31Pdf.leave_emergency] = "Testing Name";
+    formData[da31Pdf.leave_permissive] = "Testing Name";
+    formData[da31Pdf.leave_other] = "Testing Name";
+    formData[da31Pdf.leave_other_explanation] = "Testing Name";
+    formData[da31Pdf.accrued_leave] = "Testing Name";
+    formData[da31Pdf.advanced_leave] = "Testing Name";
+    formData[da31Pdf.excess_leave] = "Testing Name";
+    formData[da31Pdf.requested_leave] = "Testing Name";
+    formData[da31Pdf.date_to] = "Testing Name";
+    formData[da31Pdf.date_from] = "Testing Name";
+    return formData;
+  }
+}
 module.exports.Da31PdfFormat;

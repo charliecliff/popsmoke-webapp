@@ -43,7 +43,7 @@ app.post("/api/da31", function(req, res) {
 	var pdfTemplatePath = "../../public/DA_31.pdf"; // <-- TODO: Make this route a constant
 	
 	// <-- TODO: Build out the JSON Field Arguments
-	var formDate = { da31Fields.name: "Testing Name" }; 
+	var formDate = { da31Fields.name(): "Testing Name" }; 
 
 
 

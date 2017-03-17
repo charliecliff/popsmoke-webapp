@@ -20,3 +20,7 @@ module.exports = Object.freeze({
   date_to: "Date-To",
   date_from: "Date-From"
 });
+
+module.exports.name = function () {
+  return "Name";
+};

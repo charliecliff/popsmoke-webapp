@@ -34,9 +34,9 @@ module.exports.Da31PdfFormat = class Da31PdfFormat {
 
   fillOutPdfForm(formData) { 
     var formData = {};
-    formData[name] = this.formatNameBlock(formData);
-    formData[rank] = formData[requestParams.rank];
-    formData[ssn] = formData[requestParams.ssn];
+    // formData[name] = this.formatNameBlock(formData);
+    // formData[rank] = formData[requestParams.rank];
+    // formData[ssn] = formData[requestParams.ssn];
     formData[date] = "Testing Name";
     formData[address] = "Testing Name";
     formData[station] = "Testing Name";

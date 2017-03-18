@@ -26,9 +26,9 @@ module.exports.Da31PdfFormat = class Da31PdfFormat {
    }
 
   formatNameBlock(formData) {
-    var firstName = formData[firstName];
-    var middleInitial = formData[middleInitial];
-    var lastName = formData[middleInitial];
+    var firstName = formData["firstName"];
+    var middleInitial = formData["middleInitial"];
+    var lastName = formData["lastName"];
     return lastName + ", "+ firstName + middleInitial + ".";
   }
 

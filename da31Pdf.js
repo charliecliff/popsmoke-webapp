@@ -29,7 +29,7 @@ module.exports.Da31PdfFormat = class Da31PdfFormat {
     var firstName = formData[requestParams.firstName];
     var middleInitial = formData[requestParams.middleInitial];
     var lastName = formData[requestParams.middleInitial];
-    return "${lastName}, ${firstName} ${middleInitial}.";
+    return lastName + ", "+ firstName + middleInitial + ".";
   }
 
   fillOutPdfForm(formData) { 

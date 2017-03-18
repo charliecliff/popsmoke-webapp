@@ -44,7 +44,7 @@ export class LeaveFormPage
   }
 
   submit() {
-    // TO DO: This is CONTROLLER Level logic and should be pulled into a service
+    // TODO: This is CONTROLLER Level logic and should be pulled into a service
     this.da31Service.postDa31FormData(this.form)
                     .subscribe(data => {
                       console.log("subcribe closure");

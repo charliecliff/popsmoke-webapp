@@ -3,26 +3,24 @@ import { Http, Headers, Response, ResponseContentType, RequestOptions } from '@a
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 
+import * as Models from '../models';
+
 @Injectable()
 export class Da31Service {
 
   da31Url = "https://sleepy-scrubland-83197.herokuapp.com/api/da31";
 
-  constructor(public http: Http) {
-    console.log('Hello Da31 Provider');
-  }
+  constructor(public http: Http) {}
 
-	postDa31FormData(form: string): Observable<Blob> {
-		console.log("postDa31FormData");
-		
-    let body = JSON.stringify({description: "todo"});
+	postDa31FormData(form): Observable<Blob> {		
+    let body = JSON.stringify(form);
+    console.log("Body\n");
+    console.log(body);
     let headers = new Headers({"Content-Type": "application/json"});
     return this.http.post(this.da31Url, body, {headers: headers, responseType: ResponseContentType.Blob})
                     .map(this.extractPDFDataFromResponse)
                     .catch(this.handleError);
   }
-
-// (res:Response) => res.json()
 
   private extractPDFDataFromResponse(res: Response) {
     var pdfBlob = new Blob([res.blob()], {type: 'application/pdf'});

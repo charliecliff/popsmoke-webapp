@@ -43,6 +43,7 @@ app.use(function(req, res, next) {
 app.post("/api/da31", function(req, res) {
 	let pdfTemplatePath = "../../public/DA_31.pdf";
 	
+	console.log("Request Body");
 	console.log(req.body);
 
 	let formatter = new da31Pdf.Da31PdfFormat();

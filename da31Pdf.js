@@ -1,23 +1,23 @@
 var requestParams = require('./da31PdfRequestParamaters');
 
-let control_number: "Control Number";
-let name: "Name";
-let rank: "Rank";
-let ssn: "SSN";
-let date: "Date";
-let address: "Address";
-let station: "ORGN";
-let leave_ordinary: "Ordinary";
-let leave_emergency: "Emergency";
-let leave_permissive: "Permissive";
-let leave_other: "Other";
-let leave_other_explanation: "Other Explainations";
-let accrued_leave: "Accrued";
-let advanced_leave: "Advanced";
-let excess_leave: "Excess";
-let requested_leave: "Requested";
-let date_to: "Date-To";
-let date_from: "Date-From";
+let control_number = "Control Number";
+let name = "Name";
+let rank = "Rank";
+let ssn = "SSN";
+let date = "Date";
+let address = "Address";
+let station = "ORGN";
+let leave_ordinary = "Ordinary";
+let leave_emergency = "Emergency";
+let leave_permissive = "Permissive";
+let leave_other = "Other";
+let leave_other_explanation = "Other Explainations";
+let accrued_leave = "Accrued";
+let advanced_leave = "Advanced";
+let excess_leave = "Excess";
+let requested_leave = "Requested";
+let date_to = "Date-To";
+let date_from = "Date-From";
 
 module.exports.Da31PdfFormat = class Da31PdfFormat {
    

@@ -21,20 +21,18 @@ let date_from = "Date-From";
 
 module.exports.Da31PdfFormat = class Da31PdfFormat {
    
-   constructor() {
+   constructor() {}
 
-   }
-
-  formatNameBlock(formData) {
-    var firstName = formData["firstName"];
-    var middleInitial = formData["middleInitial"];
-    var lastName = formData["lastName"];
+  formatNameBlock(requestBody) {
+    var firstName = requestBody["firstName"];
+    var middleInitial = requestBody["middleInitial"];
+    var lastName = requestBody["lastName"];
     return lastName + ", "+ firstName + middleInitial + ".";
   }
 
-  fillOutPdfForm(formData) { 
+  fillOutPdfForm(requestBody) { 
     var formData = {};
-    formData[name] = this.formatNameBlock(formData);
+    formData[name] = this.formatNameBlock(requestBody);
     // formData[rank] = formData[requestParams.rank];
     // formData[ssn] = formData[requestParams.ssn];
     formData[date] = "Testing Name";

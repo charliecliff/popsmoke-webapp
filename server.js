@@ -65,13 +65,14 @@ app.post("/api/da31", function(req, res) {
 	var destinationPDF =  "../../public/DA_31_complete.pdf";
  
 	pdfFiller.fillForm( sourcePDF, destinationPDF, formData, function(err) {
-    	if (err) throw err;
+    	if (err){
     		console.log("In callback (we're done).");
     		res.send(err);
 		} else {
 			postPDFFileToAmazonS3(res, "../../public/DA_31_complete.pdf");
-		});
+		}
 	});
+}
 
 // TODO: Extract these into their files or modules
 function handleError(res, reason, message, code) {

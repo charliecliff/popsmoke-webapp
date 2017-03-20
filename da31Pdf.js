@@ -66,7 +66,7 @@ module.exports.Da31PdfFormat = class Da31PdfFormat {
     formData[address] = this.formatDestinationAddress(requestBody);
     formData[station] = this.formatPost(requestBody);
     
-    formData[leave_ordinary] = 1;
+    formData[leave_ordinary] = true;
     formData[leave_emergency] = "Testing Name";
     formData[leave_permissive] = "Testing Name";
     formData[leave_other] = "Testing Name";

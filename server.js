@@ -61,8 +61,8 @@ app.post("/api/da31", function(req, res) {
 
   	var pdfFiller = require('pdffiller');
 
-  	var sourcePDF = "../../public/DA_31.pdf";
-	var destinationPDF =  "../../public/DA_31_complete.pdf";
+  	var sourcePDF = "/public/DA_31.pdf";
+	var destinationPDF =  "/public/DA_31_complete.pdf";
  
 	pdfFiller.fillForm( sourcePDF, destinationPDF, formData, function(err) {
     	if (err){

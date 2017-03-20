@@ -69,7 +69,7 @@ app.post("/api/da31", function(req, res) {
     		console.log("In callback (we're done).");
     		res.send(err);
 		} else {
-			postPDFFileToAmazonS3(res, "../../public/DA_31_complete.pdf");
+			postPDFFileToAmazonS3(res, "public/DA_31_complete.pdf");
 		}
 	});
 });

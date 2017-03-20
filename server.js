@@ -80,7 +80,15 @@ function handleError(res, reason, message, code) {
 	res.status(code || 500).json({"Error": message});
 }
 
-function postPDFFileToAmazonS3(res, pdfDataBuffer) {
+function postPDFFileToAmazonS3(res, pdfFilePath) {
+    fs.readFile(pdfFilePath, (err, filledPdf) => (err, data) => {
+  		if (!err){
+  			postPDFDataToAmazonS3(res, data);
+  		}
+	});
+}
+
+function postPDFDataToAmazonS3(res, pdfDataBuffer) {
 	var AWS = require("aws-sdk");
 	// AWS.config.update({accessKeyId: "AKIAIDMIESKUD4F657BQ", 
 	//  				  secretAccessKey: "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" });

@@ -85,7 +85,8 @@ function handleError(res, reason, message, code) {
 function postPDFFileToAmazonS3(res, pdfFilePath) {
 	console.log("postPDFFileToAmazonS3");
 	let fs  = require('fs');
-    fs.readFile(pdfFilePath, (err, filledPdf) => (err, data) => {
+    fs.readFile(pdfFilePath, (err, data) => {
+  		
   		if (!err){
   			console.log("LOADING PDF");
   			console.log(data);

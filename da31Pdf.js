@@ -21,7 +21,7 @@ let date_from = "Date-From";
 
 module.exports.Da31PdfFormat = class Da31PdfFormat {
    
-   constructor() {}
+  constructor() {}
 
   formatNameBlock(requestBody) {
     var firstName = requestBody[requestParams.firstName];

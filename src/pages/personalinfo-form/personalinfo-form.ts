@@ -26,11 +26,11 @@ export class PersonalInfoFormPage {
 
   personalInfoForm: FormGroup;
   
-  constructor(
-    private formBuilder: FormBuilder, 
-    private navCtrl: NavController, 
-    private navParams: NavParams,
-    private store: Store<AppState>) {
+  constructor(private formBuilder: FormBuilder, 
+              private navCtrl: NavController, 
+              private navParams: NavParams,
+              private store: Store<AppState>) {
+    
       this.personalInfoForm = formBuilder.group({
         firstName: [''],
         middleInitial: [''],

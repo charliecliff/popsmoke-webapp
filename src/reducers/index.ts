@@ -11,6 +11,7 @@ import { Da31Form } from '../models/Da31Form.js';
 import * as da31Reducer from './da31Form.reducer';
 
 export interface AppState {
+	selectedFormURL: string;
 	da31Form: Da31Form;
 };
 
@@ -24,5 +25,6 @@ export function reducer(state: any, action: any) {
 	return productionReducer(state, action);
 }
 
+export const getSelectedFormURL = (appState: AppState) => appState.selectedFormURL;
 export const getCurrentForm = (appState: AppState) => appState.da31Form;
 

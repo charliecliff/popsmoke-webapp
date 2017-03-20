@@ -64,6 +64,8 @@ app.post("/api/da31", function(req, res) {
   	var sourcePDF = "public/DA_31.pdf";
 	var destinationPDF =  "public/DA_31_complete.pdf";
  
+ 	console.log("PDF Filler");
+
 	pdfFiller.fillForm( sourcePDF, destinationPDF, formData, function(err) {
     	if (err){
     		console.log("In callback (we're done).");
@@ -81,6 +83,7 @@ function handleError(res, reason, message, code) {
 }
 
 function postPDFFileToAmazonS3(res, pdfFilePath) {
+	console.log("postPDFFileToAmazonS3");
 	let fs  = require('fs');
     fs.readFile(pdfFilePath, (err, filledPdf) => (err, data) => {
   		if (!err){

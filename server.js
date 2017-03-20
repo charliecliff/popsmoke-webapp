@@ -49,15 +49,29 @@ app.post("/api/da31", function(req, res) {
 	let formatter = new da31Pdf.Da31PdfFormat();
 	let formData = formatter.fillOutPdfForm(req.body);
 
-	let fillPdf = require("fill-pdf");
-	fillPdf.generatePdf(formData, pdfTemplatePath, function(err, output) {
-    	if ( !err ) {
-	  		postPDFFileToAmazonS3(res, output);
-    	} else {
+	// let fillPdf = require("fill-pdf");
+	// fillPdf.generatePdf(formData, pdfTemplatePath, function(err, output) {
+ //    	if ( !err ) {
+	//   		postPDFFileToAmazonS3(res, output);
+ //    	} else {
+ //    		res.send(err);
+ //    	}
+ //  	});
+
+
+  	var pdfFiller = require('pdffiller');
+
+  	var sourcePDF = "pdfTemplatePath";
+	var destinationPDF =  "../../public/DA_31_complete.pdf";
+ 
+	pdfFiller.fillForm( sourcePDF, destinationPDF, formData, function(err) {
+    	if (err) throw err;
+    		console.log("In callback (we're done).");
     		res.send(err);
-    	}
-  	});
-});
+		} else {
+			postPDFFileToAmazonS3(res, "../../public/DA_31_complete.pdf");
+		});
+	});
 
 // TODO: Extract these into their files or modules
 function handleError(res, reason, message, code) {

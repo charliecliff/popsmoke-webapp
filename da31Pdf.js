@@ -32,7 +32,7 @@ module.exports.Da31PdfFormat = class Da31PdfFormat {
 
   formatSocialSecurityNumber(requestBody) {
     var ssn = requestBody[requestParams.ssn];
-    return "xxx-xx-" + (string)ssn;
+    return "xxx-xx-" + ssn;
   }
 
   formatDestinationAddress(requestBody) {

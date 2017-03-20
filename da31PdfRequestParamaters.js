@@ -5,4 +5,9 @@ module.exports = Object.freeze({
   ssn: "ssn",
   rank: "rank",
   phoneNumber: "phoneNumber",
+  destination: "destination",
+  street: "street",
+	city: "city",
+	state: "state",
+	zip: "zip"
 });

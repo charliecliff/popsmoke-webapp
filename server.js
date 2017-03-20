@@ -84,7 +84,7 @@ function postPDFFileToAmazonS3(res, pdfDataBuffer) {
 		if (err) {
 			res.send(err);
 		} else {
-			res.send("https://s3-us-west-2.amazonaws.com/popsmoke/myarchive.pdf");
+			res.send({"url": "https://s3-us-west-2.amazonaws.com/popsmoke/myarchive.pdf"});
 		}
 	});
 }

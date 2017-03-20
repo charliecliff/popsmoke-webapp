@@ -24,19 +24,33 @@ module.exports.Da31PdfFormat = class Da31PdfFormat {
    constructor() {}
 
   formatNameBlock(requestBody) {
-    var firstName = requestBody["firstName"];
-    var middleInitial = requestBody["middleInitial"];
-    var lastName = requestBody["lastName"];
+    var firstName = requestBody[requestParams.firstName];
+    var middleInitial = requestBody[requestParams.middleInitial];
+    var lastName = requestBody[requestParams.lastName];
     return lastName + ", "+ firstName + middleInitial + ".";
+  }
+
+  formatSocialSecurityNumber(requestBody) {
+    var ssn = requestBody[requestParams.ssn];
+    return "xxx-xx-" + (string)ssn;
+  }
+
+  formatDestinationAddress(requestBody) {
+    var destinationData = requestBody[requestParams.destination];
+    var street = requestBody[requestParams.street];
+    var city = requestBody[requestParams.city];
+    var state = requestBody[requestParams.state];
+    var zip = requestBody[requestParams.zip];
+    return street + "\n"+ city + ", " + state + " " + zip + "\n";
   }
 
   fillOutPdfForm(requestBody) { 
     var formData = {};
     formData[name] = this.formatNameBlock(requestBody);
     formData[rank] = requestBody[requestParams.rank];
-    // formData[ssn] = requestBody[requestParams.ssn];
+    formData[ssn] = this.formatSocialSecurityNumber(requestBody);
     formData[date] = "Testing Name";
-    formData[address] = "Testing Name";
+    formData[address] = this.formatDestinationAddress(requestBody);
     formData[station] = "Testing Name";
     formData[leave_ordinary] = "Testing Name";
     formData[leave_emergency] = "Testing Name";

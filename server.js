@@ -72,7 +72,7 @@ app.post("/api/da31", function(req, res) {
 			postPDFFileToAmazonS3(res, "../../public/DA_31_complete.pdf");
 		}
 	});
-}
+});
 
 // TODO: Extract these into their files or modules
 function handleError(res, reason, message, code) {

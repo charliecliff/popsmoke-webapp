@@ -5,9 +5,7 @@ import { Store } from '@ngrx/store';
 
 import { AppState } from '../../reducers';  
 import { PersonalInfo } from '../../models/PersonalInfo';
-
 import { AddressFormPage } from '../address-form/address-form';
-
 import * as da31BuilderActions from '../../actions/da31builder.actions';
 
 @Component({

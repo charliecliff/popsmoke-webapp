@@ -15,39 +15,55 @@
 
 <ion-content padding>
 
-	<ion-list>
+  <form [formGroup]="leaveInfoFormGroup">
+
+    <ion-item>
+      <ion-label>{{TYPE_OF_LEAVE}}</ion-label>
+      <ion-select formControlName="leaveType" multiple="false">
+        <ion-option value = "ORDINARY">{{ORDINARY}}</ion-option>
+        <ion-option value = "EMERGENCY">{{EMERGENCY}}</ion-option>
+        <ion-option value = "PERMISSIVE">{{PERMISSIVE}}</ion-option>
+        <ion-option value = "TDY">{{TDY}}</ion-option>
+        <ion-option value = "OTHER">{{OTHER}}</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item *ngIf="leaveInfoFormGroup.value.leaveType == 'OTHER'">
+      <ion-label floating>{{EXPLANATION_OF_TYPE_OF_LEAVE}}</ion-label>
+      <ion-input formControlName="explanationOfLeaveType" type="text"></ion-input>
+    </ion-item>
 
   	<ion-item>
     	<ion-label floating>{{ACCRUED_LEAVE}}</ion-label>
-    	<ion-input type="text"></ion-input>
+    	<ion-input formControlName="accruedLeave" type="text" value="0"></ion-input>
   	</ion-item>
 
   	<ion-item>
     	<ion-label floating>{{REQUESTED_LEAVE}}</ion-label>
-    	<ion-input type="text"></ion-input>
+    	<ion-input formControlName="requestedLeave" type="text" value="0"></ion-input>
   	</ion-item>
 
    	<ion-item>
     	<ion-label floating>{{ADVANCED_LEAVE}}</ion-label>
-    	<ion-input type="text"></ion-input>
+    	<ion-input formControlName="advancedLeave" type="text" value="0"></ion-input>
   	</ion-item>
 
    	<ion-item>
     	<ion-label floating>{{EXCESS_LEAVE}}</ion-label>
-    	<ion-input type="text"></ion-input>
+    	<ion-input formControlName="excessLeave" type="text" value="0"></ion-input>
   	</ion-item>
 
    	<ion-item>
     	<ion-label floating>{{LEAVE_DATE_FROM}}</ion-label>
-    	<ion-input type="text"></ion-input>
+      <ion-datetime formControlName="leaveDateFrom" displayFormat="YYYY/M/D" pickerFormat="YYYY M D"></ion-datetime>
   	</ion-item>
 
    	<ion-item>
     	<ion-label floating>{{LEAVE_DATE_TO}}</ion-label>
-    	<ion-input type="text"></ion-input>
+      <ion-datetime formControlName="leaveDateTo" displayFormat="YYYY/M/D" pickerFormat="YYYY M D"></ion-datetime>
   	</ion-item>
 
-  </ion-list>
+  </form>
 
 </ion-content>
 

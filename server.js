@@ -83,7 +83,12 @@ function handleError(res, reason, message, code) {
 function postPDFFileToAmazonS3(res, pdfFilePath) {
     fs.readFile(pdfFilePath, (err, filledPdf) => (err, data) => {
   		if (!err){
+  			console.log("LOADING PDF");
+  			console.log(data);
   			postPDFDataToAmazonS3(res, data);
+  		} else {
+  			console.log("FAILED TO UPLOAD PDF");
+  			console.log(err);
   		}
 	});
 }

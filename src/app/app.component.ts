@@ -5,9 +5,7 @@ import { Store } from '@ngrx/store';
 
 import * as Reducers from '../reducers';
 import * as Pages from '../pages';
-
 import { PacketPage } from '../pages/packet/packet';
-import { PersonalInfoFormPage } from '../pages/personalinfo-form/personalinfo-form';
 
 @Component({
   templateUrl: 'app.html'
@@ -19,7 +17,7 @@ export class MyApp {
   private selectedFormURL;
   private selectedFormURLSubscription;
 
-  rootPage = PersonalInfoFormPage;
+  rootPage = PacketPage;
 
   constructor(public platform: Platform,
               private store: Store<Reducers.AppState>) {

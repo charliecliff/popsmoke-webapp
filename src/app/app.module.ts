@@ -1,6 +1,8 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { StoreModule } from '@ngrx/store';
+import { AngularFireModule } from 'angularfire2';
+
 
 import { MyApp } from './app.component';
 
@@ -18,6 +20,15 @@ import { Da31Service } from '../providers/da31.service';
 // Reducers
 import { reducer } from '../reducers';
 
+// AF2 Settings
+export const firebaseConfig = {
+  apiKey: "AIzaSyDxQGpcuDF34HJUn467JNGzuKb0XYoFeVk",
+  authDomain: "popsmoke-mobileweb.firebaseapp.com",
+  databaseURL: "https://popsmoke-mobileweb.firebaseio.com",
+  storageBucket: "popsmoke-mobileweb.appspot.com",
+  messagingSenderId: "628791475392"
+}
+
 @NgModule({
   declarations: [
     MyApp,
@@ -30,7 +41,8 @@ import { reducer } from '../reducers';
   ],
   imports: [
     IonicModule.forRoot(MyApp),
-    StoreModule.provideStore( reducer )
+    StoreModule.provideStore( reducer ),
+    AngularFireModule.initializeApp(firebaseConfig)
   ],
   bootstrap: [IonicApp],
   entryComponents: [

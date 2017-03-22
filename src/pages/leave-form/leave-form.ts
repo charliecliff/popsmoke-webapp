@@ -24,7 +24,7 @@ export class LeaveFormPage
 	EXCESS_LEAVE	: string    = "EXCESS";
 	LEAVE_DATE_FROM	: string  = "FROM";
 	LEAVE_DATE_TO	: string    = "TO";
-  TYPE_OF_LEAVE  : string = "TYPE OF LEAVE";
+  TYPE_OF_LEAVE  : string   = "TYPE OF LEAVE";
   EXPLANATION_OF_TYPE_OF_LEAVE  : string = "EXPLANATION";
   ORDINARY  : string   = "ORDINARY";
   EMERGENCY  : string  = "EMERGENCY";
@@ -63,10 +63,9 @@ export class LeaveFormPage
     this.store.dispatch(new da31BuilderActions.AddPersonalInfoAction(leaveInfo));
 
     // TODO: This is CONTROLLER Level logic and should be pulled into a service
-    this.da31Service.postDa31FormData(this.form)
-                    .subscribe(data => {
-                      console.log("subcribe closure");
-                    });
+    this.da31Service.postDa31FormData(this.form).subscribe(data => {
+      console.log("subcribe closure");
+    });
     this.navCtrl.push(PdfPage);
   }
 }

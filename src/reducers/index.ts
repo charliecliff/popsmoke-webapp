@@ -4,19 +4,23 @@ import { compose } from '@ngrx/core/compose';
 import { storeFreeze } from 'ngrx-store-freeze';
 import { combineReducers } from '@ngrx/store';
 
-// Models
-import { Da31Form } from '../models/Da31Form.js';
-
-// Reducers
+import { Da31Form } from '../models/Da31Form';
+import { User } from '../models/User';
 import * as da31Reducer from './da31Form.reducer';
+import * as userReducer from './user-reducer';
+import * as errorReducer from './error-reducer';
 
 export interface AppState {
 	selectedFormURL: string;
 	da31Form: Da31Form;
+	user: User;
+	error: Error;
 };
 
 const reducers = {
-  da31Form: da31Reducer.reducer
+  da31Form: da31Reducer.reducer,
+  user: userReducer.reducer,
+  error: errorReducer.reducer
 };
 
 const productionReducer: ActionReducer<AppState> = combineReducers(reducers);

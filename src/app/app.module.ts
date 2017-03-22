@@ -1,9 +1,9 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { StoreModule } from '@ngrx/store';
-import { AngularFireModule } from 'angularfire2';
+import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
 
-
+// 
 import { MyApp } from './app.component';
 
 // Pages
@@ -14,8 +14,12 @@ import { StationFormPage } from '../pages/station-form/station-form';
 import { LeaveFormPage } from '../pages/leave-form/leave-form';
 import { PdfPage } from '../pages/pdf/pdf';
 
+import { LaunchPage } from '../pages/launch/launch';
+import { LoginPage } from '../pages/login/login';
+
 // Providers
 import { Da31Service } from '../providers/da31.service';
+import { AuthService } from '../providers/auth-service';
 
 // Reducers
 import { reducer } from '../reducers';
@@ -29,6 +33,11 @@ export const firebaseConfig = {
   messagingSenderId: "628791475392"
 }
 
+export const firebaseAuthConfig = {
+  provider: AuthProviders.Password,
+  method: AuthMethods.Password,
+};
+
 @NgModule({
   declarations: [
     MyApp,
@@ -37,12 +46,14 @@ export const firebaseConfig = {
     AddressFormPage,
     StationFormPage,
     LeaveFormPage,
-    PdfPage
+    PdfPage,
+    LaunchPage,
+    LoginPage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
     StoreModule.provideStore( reducer ),
-    AngularFireModule.initializeApp(firebaseConfig)
+    AngularFireModule.initializeApp(firebaseConfig, firebaseAuthConfig)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -52,10 +63,14 @@ export const firebaseConfig = {
     AddressFormPage,
     StationFormPage,
     LeaveFormPage,
-    PdfPage
+    PdfPage,
+    LaunchPage,
+    LoginPage
   ],
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    Da31Service]
+    Da31Service,
+    AuthService
+    ]
 })
 export class AppModule {}

@@ -5,7 +5,9 @@ import { Store } from '@ngrx/store';
 
 import * as Reducers from '../reducers';
 import * as Pages from '../pages';
+
 import { PacketPage } from '../pages/packet/packet';
+import { LaunchPage } from '../pages/launch/launch';
 
 @Component({
   templateUrl: 'app.html'
@@ -17,7 +19,7 @@ export class MyApp {
   private selectedFormURL;
   private selectedFormURLSubscription;
 
-  rootPage = PacketPage;
+  rootPage = LaunchPage;
 
   constructor(public platform: Platform,
               private store: Store<Reducers.AppState>) {
@@ -26,13 +28,5 @@ export class MyApp {
       StatusBar.styleDefault();
       Splashscreen.hide();
     });
-
-    // this.selectedFormURLSubscription = store.select('selectedFormURL')
-    //                              .subscribe(selectedFormURL => {
-    //                                 if(selectedFormURL != null) {
-    //                                   this.nav.push(Pages.PdfPage);
-    //                                 }
-    //                               });
-
   }
 }

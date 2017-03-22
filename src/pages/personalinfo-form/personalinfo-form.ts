@@ -31,14 +31,14 @@ export class PersonalInfoFormPage {
               private navParams: NavParams,
               private store: Store<AppState>) {
     
-      this.personalInfoForm = formBuilder.group({
-        firstName: [''],
-        middleInitial: [''],
-        lastName: [''],
-        ssn: [''],
-        rank: [''],
-        phone: ['']
-      });
+    this.personalInfoForm = formBuilder.group({
+      firstName: [''],
+      middleInitial: [''],
+      lastName: [''],
+      ssn: [''],
+      rank: [''],
+      phone: ['']
+    });
   }
 
   ionViewDidLoad() {

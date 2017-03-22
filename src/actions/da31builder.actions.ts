@@ -6,7 +6,6 @@ import { PersonalInfo } from '../models/PersonalInfo';
 import { Station } from '../models/Station';
 import { Address } from '../models/Address';
 
-
 export const Da31BuilderActionTypes = {
   ADD_PERSONAL_INFO_TO_DA_31:    type('ADD_PERSONAL_INFO_TO_DA_31'),
   ADD_STATION_TO_DA_31:          type('ADD_STATION_TO_DA_31'),

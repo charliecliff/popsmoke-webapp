@@ -12,11 +12,7 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class PacketPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad PacketPage');
-  }
+  constructor(public navCtrl: NavController, public navParams: NavParams) { }
 
 	tapEvent(input) {
 		console.log(input);

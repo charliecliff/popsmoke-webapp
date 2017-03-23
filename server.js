@@ -10,7 +10,7 @@ mongoClient = mongodb.MongoClient,
 ObjectID = mongodb.ObjectID, // Used in API endpoints
 db; // We'll initialize connection below
 
-app.use(express.static(__dirname + '/public'));
+app.use('/public', express.static(__dirname + '/public'));
 
 app.use(bodyParser.json());
 app.set('port', process.env.PORT || 8080);

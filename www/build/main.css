@@ -24499,7 +24499,7 @@ ion-navbar.toolbar {
 }
 
 page-login .login-content {
-  background: #56CA96;
+  background: #292929;
 }
 
 page-login .login-content .logo-row {
@@ -24508,7 +24508,7 @@ page-login .login-content .logo-row {
 }
 
 page-login .login-content .login-box {
-  background: #399F8B;
+  background: transparent;
   padding: 20px 20px 0px 20px;
   margin-top: 30px;
 }

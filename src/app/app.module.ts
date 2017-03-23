@@ -16,6 +16,7 @@ import { PdfPage } from '../pages/pdf/pdf';
 
 import { LaunchPage } from '../pages/launch/launch';
 import { LoginPage } from '../pages/login/login';
+import { HomePage } from '../pages/home/home';
 
 // Providers
 import { Da31Service } from '../providers/da31.service';
@@ -47,6 +48,7 @@ export const firebaseAuthConfig = {
     StationFormPage,
     LeaveFormPage,
     PdfPage,
+    HomePage,
     LaunchPage,
     LoginPage
   ],
@@ -64,6 +66,7 @@ export const firebaseAuthConfig = {
     StationFormPage,
     LeaveFormPage,
     PdfPage,
+    HomePage,
     LaunchPage,
     LoginPage
   ],

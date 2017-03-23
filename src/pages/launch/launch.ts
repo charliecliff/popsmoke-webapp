@@ -4,7 +4,8 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import { AngularFire } from "angularfire2";
 
-import { PacketPage } from '../packet/packet';
+import * as Reducers from '../../reducers';
+import { HomePage } from '../home/home';
 import { LoginPage } from '../login/login';
 
 @Component({
@@ -13,30 +14,36 @@ import { LoginPage } from '../login/login';
 })
 export class LaunchPage {
 
+  loginModal;
+
   constructor(public navCtrl: NavController, 
   						public modalCtrl: ModalController, 
-  						public angularFire: AngularFire) { }
+  						public angularFire: AngularFire,
+              public store: Store<Reducers.AppState>) {}
 	
 	ngOnInit() {
 
-		// Tie this to the STATE STORE
+		// Tie this to the STATE STORE and the USER STATE
     this.angularFire.auth.subscribe(data => {
-
-      console.log("data");
-      console.log(data);
       if (data) {
-      	this.setRootMainController();
+        if(this.loginModal !== undefined) { this.loginModal.dismiss(); }
+      	this.pushHomeController();
       } else {
-        this.pushLoginController();
+        this.presentLoginController();
       }
+    });
+
+    this.store.select('error').subscribe(error => {
+      
     });
 	}
  	
- 	setRootMainController() {
- 		this.navCtrl.setRoot(PacketPage);
+ 	pushHomeController() {
+ 		this.navCtrl.push(HomePage);
  	}
 
- 	pushLoginController() {
-    this.navCtrl.push(LoginPage);
+ 	presentLoginController() {
+    this.loginModal = this.modalCtrl.create(LoginPage);
+    this.loginModal.present();
   }
 }

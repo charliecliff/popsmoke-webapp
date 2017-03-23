@@ -10,7 +10,8 @@ import * as userActions from '../actions/user.actions';
 @Injectable()
 export class AuthService {
 
-  constructor(public http: Http, public angularFire: AngularFire, 
+  constructor(public http: Http, 
+              public angularFire: AngularFire, 
               public store: Store<AppState>) {
 
     this.angularFire.auth.subscribe(result => {
@@ -25,16 +26,21 @@ export class AuthService {
   }
 
   logOut() {
-    this.angularFire.auth.logout();
+    this.angularFire.auth.logout()
+                         .catch((error) => { console.log(error); });;
   }
 
   // USERNAME + PASSWORD PARADIGM 
 
-  logIn(username, password) {
-  	this.angularFire.auth.login({ email: username, password: password });
+  logIn(email, password) {
+    let creds = { email: email, password: password };
+  	this.angularFire.auth.login(creds)
+                         .catch((error) => { console.log(error); });
   }
 
-  createUser(username, password) {
-
+  createAccount(email, password) {
+    let creds = { email: email, password: password };
+    this.angularFire.auth.createUser(creds)
+                         .catch((error) => { console.log(error); });
   }
 }

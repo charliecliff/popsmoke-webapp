@@ -24499,12 +24499,17 @@ ion-navbar.toolbar {
 }
 
 page-login .login-content {
-  background: #292929;
+  background: #d83526;
 }
 
 page-login .login-content .logo-row {
   padding-top: 50px;
   padding-bottom: 20px;
+}
+
+page-login .login-content .logo-row .logo {
+  max-height: 200px;
+  max-width: 200px;
 }
 
 page-login .login-content .login-box {
@@ -24521,7 +24526,7 @@ page-login .login-content ion-row {
 }
 
 page-login .login-content ion-item {
-  border-radius: 30px !important;
+  border-radius: 0px !important;
   padding-left: 30px !important;
   font-size: 0.9em;
   margin-bottom: 10px;
@@ -24541,12 +24546,26 @@ page-login .login-content .item-inner {
 }
 
 page-login .login-content .submit-btn {
-  background: #51CFB1;
-  border-radius: 30px !important;
+  background: #292929;
+  color: #b8b8b8;
+  border-radius: 0px !important;
   border: 1px solid #ffffff;
 }
 
+page-login .login-content .submit-btn:hover {
+  background: #292929;
+  color: #b8b8b8;
+}
+
 page-login .login-content .register-btn {
-  color: #ffffff;
   font-size: 0.8em;
+  background: #292929;
+  color: #b8b8b8;
+  border-radius: 0px !important;
+  border: 1px solid #ffffff;
+}
+
+page-login .login-content .register-btn:hover {
+  background: #292929;
+  color: #b8b8b8;
 }

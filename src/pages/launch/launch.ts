@@ -19,7 +19,7 @@ export class LaunchPage {
   constructor(public navCtrl: NavController, 
   						public modalCtrl: ModalController, 
   						public angularFire: AngularFire,
-              public store: Store<Reducers.AppState>) {}
+              public store: Store<Reducers.AppState>) { }
 	
 	ngOnInit() {
 

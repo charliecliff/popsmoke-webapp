@@ -1,18 +1,37 @@
-<ion-menu [content]="content">
-  <ion-header>
-    <ion-toolbar>
-      <ion-title>Menu</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-menu enable-menu-with-back-views="false" type="overlay" persistent="true" [content]="content">
 
-  <ion-content>
-    <ion-list>
-      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-        {{p.title}}
-      </button>
+  <ion-content class="popsmoke-menu" overflow-scroll="false">
+    
+    <ion-list style="background-color: transparent;">
+      <ion-item style="background-color: transparent;">
+        <ion-icon name="leaf" item-left></ion-icon>
+        GREETING + FULL NAME
+      </ion-item>
+      <ion-item style="background-color: transparent;">
+        <ion-icon name="leaf" item-left></ion-icon>
+        POSTING
+      </ion-item>
+      <ion-item style="background-color: transparent;">
+        <ion-icon name="leaf" item-left></ion-icon>
+        DRIVER'S LICENSE
+      </ion-item>
+      <ion-item style="background-color: transparent;">
+        <ion-icon name="leaf" item-left></ion-icon>
+        AUTO INSURANCE
+      </ion-item>
+      <ion-item style="background-color: transparent;">
+        <ion-icon name="leaf" item-left></ion-icon>
+        PACKETS
+      </ion-item>
     </ion-list>
-  </ion-content>
 
+  </ion-content>
+  
+  <ion-footer  class="popsmoke-menu">
+    <ion-toolbar>
+      <button ion-button full color="primary" (click)="signout()">SIGN OUT</button>
+    </ion-toolbar>
+  </ion-footer>
 </ion-menu>
 
-<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
+<ion-nav style="background-color: red;" [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

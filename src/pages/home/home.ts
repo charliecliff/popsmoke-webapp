@@ -1,20 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { Store } from '@ngrx/store';
 
-import { AuthService } from '../../providers/auth-service';
+import { AppState } from '../../reducers';
+import { HolidayProvider } from '../../providers/holiday-provider';
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html',
-  providers: [AuthService]
+  providers: [HolidayProvider]
 })
 export class HomePage {
 
   constructor(public navCtrl: NavController, 
-  						public navParams: NavParams, 
-  						public authService: AuthService) {}
+  						public navParams: NavParams,
+  						public store: Store<AppState>,
+  						public holidayService: HolidayProvider) { }
 
-  signout() {
-  	this.authService.logOut();    
-  }
+	ngOnInit() {
+
+	}
 }

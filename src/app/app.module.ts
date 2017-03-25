@@ -21,6 +21,8 @@ import { HomePage } from '../pages/home/home';
 // Providers
 import { Da31Service } from '../providers/da31.service';
 import { AuthService } from '../providers/auth-service';
+import { HolidayProvider } from '../providers/holiday-provider';
+import { UserProvider } from '../providers/user-provider';
 
 // Reducers
 import { reducer } from '../reducers';
@@ -73,7 +75,9 @@ export const firebaseAuthConfig = {
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Da31Service,
-    AuthService
+    AuthService,
+    HolidayProvider,
+    UserProvider
     ]
 })
 export class AppModule {}

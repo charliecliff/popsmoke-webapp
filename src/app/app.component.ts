@@ -1,12 +1,10 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Platform, NavController } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 import { Store } from '@ngrx/store';
 
 import * as Reducers from '../reducers';
 import * as Pages from '../pages';
-
-import { PacketPage } from '../pages/packet/packet';
 import { LaunchPage } from '../pages/launch/launch';
 
 @Component({
@@ -22,11 +20,19 @@ export class MyApp {
   rootPage = LaunchPage;
 
   constructor(public platform: Platform,
-              private store: Store<Reducers.AppState>) {
-
+              public store: Store<Reducers.AppState>) {
     platform.ready().then(() => {
       StatusBar.styleDefault();
       Splashscreen.hide();
+    });
+  }
+
+  ngOnInit() {
+    this.store.select("user").subscribe(user => {
+
+    });
+    this.store.select("error").subscribe(error => {
+      
     });
   }
 }

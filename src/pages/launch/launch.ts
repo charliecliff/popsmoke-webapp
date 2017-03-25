@@ -14,8 +14,6 @@ import { LoginPage } from '../login/login';
 })
 export class LaunchPage {
 
-  loginModal;
-
   constructor(public navCtrl: NavController, 
   						public modalCtrl: ModalController, 
   						public angularFire: AngularFire,
@@ -25,16 +23,12 @@ export class LaunchPage {
 
 		// Tie this to the STATE STORE and the USER STATE
     this.angularFire.auth.subscribe(data => {
-      if (data) {
-        if(this.loginModal !== undefined) { this.loginModal.dismiss(); }
-      	this.pushHomeController();
+      this.navCtrl.popToRoot();
+      if (data) { 
+        this.pushHomeController();
       } else {
-        this.presentLoginController();
+        this.pushLoginController();
       }
-    });
-
-    this.store.select('error').subscribe(error => {
-      
     });
 	}
  	
@@ -42,8 +36,7 @@ export class LaunchPage {
  		this.navCtrl.push(HomePage);
  	}
 
- 	presentLoginController() {
-    this.loginModal = this.modalCtrl.create(LoginPage);
-    this.loginModal.present();
+ 	pushLoginController() {
+    this.navCtrl.push(LoginPage);
   }
 }

@@ -1,4 +1,6 @@
 var da31Pdf = require('./da31Pdf');
+var userServices = require('./server/user-services');
+var holidayServices = require('./server/holiday-services');
 
 var express = require('express');
 var bodyParser = require('body-parser');
@@ -42,35 +44,41 @@ app.use(function(req, res, next) {
   next();
 });
 
+// User Endpoints
+app.get("/user", function(req, res) {
+	userServices.getUserFromAmazonDynamo(res, req.body);
+});
+app.put("/user", function(req, res) {
+	let user = req.body["user"];
+	userServices.putUserToAmazonDynamo(res, user);
+});
+app.post("/user", function(req, res) {
+	let user = req.body["user"];
+	userServices.postUserToAmazonDynamo(res, user);
+});
+app.delete("/user", function(req, res) {
+	let userID = req.body["userID"];
+	userServices.deleteUserFromAmazonDynamo(res, userID);
+});
+
+// Holiday Endpoints
+app.get("/user/holidays", function(req, res) {
+	let userID = req.body["userID"];
+	holidayServices.getUserHolidaysFromAmazonDynamo(res, userID);
+});
+
+// DA31 Endpoints
 app.post("/api/da31", function(req, res) {
 	let pdfTemplatePath = "../../public/DA_31.pdf";
-	
-	console.log("Request Body");
-	console.log(req.body);
-
 	let formatter = new da31Pdf.Da31PdfFormat();
 	let formData = formatter.fillOutPdfForm(req.body);
 
-	// let fillPdf = require("fill-pdf");
-	// fillPdf.generatePdf(formData, pdfTemplatePath, function(err, output) {
- //    	if ( !err ) {
-	//   		postPDFFileToAmazonS3(res, output);
- //    	} else {
- //    		res.send(err);
- //    	}
- //  	});
-
-
-  	var pdfFiller = require('pdffiller');
-
-  	var sourcePDF = "public/DA_31.pdf";
-	var destinationPDF =  "public/DA_31_complete.pdf";
+  	let pdfFiller = require('pdffiller');
+  	let sourcePDF = "public/DA_31.pdf";
+	let destinationPDF =  "public/DA_31_complete.pdf";
  
- 	console.log("PDF Filler");
-
 	pdfFiller.fillForm( sourcePDF, destinationPDF, formData, function(err) {
     	if (err){
-    		console.log("In callback (we're done).");
     		res.send(err);
 		} else {
 			postPDFFileToAmazonS3(res, "public/DA_31_complete.pdf");
@@ -84,11 +92,10 @@ function handleError(res, reason, message, code) {
 	res.status(code || 500).json({"Error": message});
 }
 
+// DA31 PDF Functions
 function postPDFFileToAmazonS3(res, pdfFilePath) {
-	console.log("postPDFFileToAmazonS3");
 	let fs  = require('fs');
     fs.readFile(pdfFilePath, (err, data) => {
-  		
   		if (!err){
   			console.log("LOADING PDF");
   			console.log(data);

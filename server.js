@@ -30,7 +30,6 @@ mongoClient.connect(MONGODB_URI, function (err, database) {
 	db = database; // Our database object from mLab
 
 	console.log("Database connection ready");
-	System.err.println("Fucking Logs!");
 
 	// Initialize the app.
 	app.listen(app.get('port'), function () {
@@ -47,9 +46,7 @@ app.use(function(req, res, next) {
 
 // User Endpoints
 app.get("/user", function(req, res) {
-	console.log("/user/id");
-	System.err.println("Hello, logs!");
-
+	console.log("user");
 	// userServices.getUserFromAmazonDynamo(res, req.params.id);
 });
 app.put("/user", function(req, res) {

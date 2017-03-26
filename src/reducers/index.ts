@@ -8,24 +8,31 @@ import { Da31Form } from '../models/Da31Form';
 import { User } from '../models/User';
 import { Holiday } from '../models/Holiday';
 
-import * as da31Reducer from './da31Form.reducer';
+
 import * as userReducer from './user-reducer';
+import * as userIDReducer from './userID-reducer';
+
+import * as da31Reducer from './da31Form.reducer';
 import * as holidayReducer from './holiday-reducer';
 import * as errorReducer from './error-reducer';
 
 export interface AppState {
+	userID: string;	
+	user: User;
 	
 	holidays: Holiday[];
-	
-	user: User;
+
+
 	error: Error;
 	selectedFormURL: string;
 	da31Form: Da31Form;
 };
 
 const reducers = {
+	userID: userIDReducer.reducer,
+	user: userReducer.reducer,
+
   da31Form: da31Reducer.reducer,
-  user: userReducer.reducer,
   error: errorReducer.reducer
 };
 

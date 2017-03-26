@@ -1,11 +1,11 @@
 //
 
-class User {
+export class User {
 	firstName : string;
 	lastName : string;
 
-  constructor(firstName = "", lastName = "") {
-  	this.firstName = firstName;
-    this.lastName = lastName;
+  constructor(data = {}) {
+  	this.firstName = data["firstName"];
+    this.lastName = data["lastName"];
   }
 }

@@ -5,7 +5,7 @@ import { AngularFire } from 'angularfire2';
 import 'rxjs/add/operator/map';
 
 import { AppState } from '../reducers';  
-import * as userActions from '../actions/user.actions';
+import * as userIDReducer from '../reducers/userID-reducer';
 
 @Injectable()
 export class AuthService {
@@ -16,7 +16,7 @@ export class AuthService {
 
     this.angularFire.auth.subscribe(result => {
       if(result) {
-        let action = new userActions.SetUserAction(result.auth.providerData);
+        let action = new userIDReducer.SetUserIDAction({"userID": result.uid});
         this.store.dispatch(action);
       }
       else {

@@ -20,16 +20,17 @@ export class LaunchPage {
               public store: Store<Reducers.AppState>) { }
 	
 	ngOnInit() {
-
-		// Tie this to the STATE STORE and the USER STATE
-    this.angularFire.auth.subscribe(data => {
-      this.navCtrl.popToRoot();
-      if (data) { 
-        this.pushHomeController();
-      } else {
         this.pushLoginController();
-      }
-    });
+
+		// // Tie this to the STATE STORE and the USER STATE
+  //   this.angularFire.auth.subscribe(data => {
+  //     this.navCtrl.popToRoot();
+  //     if (data) { 
+  //       this.pushHomeController();
+  //     } else {
+  //       this.pushLoginController();
+  //     }
+  //   });
 	}
  	
  	pushHomeController() {

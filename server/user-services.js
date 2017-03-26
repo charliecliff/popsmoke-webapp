@@ -8,7 +8,7 @@ exports.parameters = {
   USER_ID: "userID"
 };
 
-exports.getUserFromAmazonDynamo = function(res, user) {
+exports.getUserFromAmazonDynamo = function(res, userID) {
   var AWS = require("aws-sdk");       
   var dynamodb = new AWS.DynamoDB({apiVersion: '2012-08-10'});
 
@@ -18,9 +18,11 @@ exports.getUserFromAmazonDynamo = function(res, user) {
   };
   dynamodb.getItem(params, function(err, data) {
       if (err) {
-        console.log(err, err.stack); 
+        console.log(err, err.stack);
+        res.send(err);
       } else {
-        console.log(data); 
+        console.log(data);
+        res.send(data); 
       }
   });
 }
@@ -37,8 +39,10 @@ exports.putUserToAmazonDynamo = function(res, user) {
   dynamodb.putItem(params, function(err, data) {
       if (err) {
         console.log(err, err.stack);
+        res.send(err);
       } else {
-          console.log(data);
+        console.log(data);
+        res.send(data);
       }
   });
 }
@@ -55,8 +59,10 @@ exports.postUserToAmazonDynamo = function(res, user) {
   dynamodb.putItem(params, function(err, data) {
       if (err) {
         console.log(err, err.stack);
+        res.send(err);
       } else {
-          console.log(data);
+        console.log(data);
+        res.send(data);
       }
   });
 }
@@ -72,8 +78,10 @@ exports.deleteUserFromAmazonDynamo = function(res, userID) {
   dynamodb.deleteItem(params, function(err, data) {
     if (err) {
       console.log(err, err.stack);
+      res.send(err);
     } else {
       console.log(data);
+      res.send(data);
     }
   });
 }

@@ -1,14 +1,25 @@
-import * as userActions from '../actions/user.actions';
+import { Action } from '@ngrx/store';
+import { type } from '../util';
 import { User } from '../models/User';
 
-const initialState: User = {
+export const UserActionTypes = {
+  SET_USER: type('SET_USER'),
+};
 
-} as User;
+export class SetUserAction implements Action {
+  type = UserActionTypes.SET_USER;
+  constructor(public payload: Object) { }
+}
 
-export function reducer(state = initialState, action: userActions.UserActions ): User {  
+export type UserActions = SetUserAction;
+
+const initialState: User = new User();
+
+export function reducer(state = initialState, action: UserActions ): User {  
     switch(action.type) {
-        case userActions.UserActionTypes.SET_USER:
-    		return Object.assign({}, state, action.payload);
+        case UserActionTypes.SET_USER:
+        	var newUser = new User(action.payload);
+    		return Object.assign({}, newUser);
 		default:
 			return state;	
     };

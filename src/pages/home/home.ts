@@ -18,6 +18,8 @@ export class HomePage {
   						public holidayService: HolidayProvider) { }
 
 	ngOnInit() {
+		this.store.select("holidays").subscribe(holidays => {
 
+	  });
 	}
 }

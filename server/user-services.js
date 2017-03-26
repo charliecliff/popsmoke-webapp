@@ -56,7 +56,7 @@ exports.postUserToAmazonDynamo = function(res, user) {
         "userID": {
             S: "Test UID"
         }
-      }
+      },
       ReturnConsumedCapacity: "TOTAL", 
       TableName: "popsmoke-users"
   };

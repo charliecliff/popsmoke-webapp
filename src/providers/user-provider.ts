@@ -1,9 +1,7 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Http,
          Headers, 
-         Response, 
-         ResponseContentType, 
-         RequestOptions } from '@angular/http';
+         Response } from '@angular/http';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
@@ -18,18 +16,19 @@ export class UserProvider {
 
   constructor(public http: Http, public store: Store<AppState>) { 
     this.store.select("userID").subscribe(userID => {
-      this.getUser(userID);
+      this.getUser(userID).subscribe(data => {
+        console.log("subcribe closure");
+      });;
     });
   }
 
 	getUser(userID): Observable<User> {
     console.log("get User");
-		// let getUserURL = this.userUrl + "/" + userID;
-    // console.log(getUserURL);
-    
+		let getUserURL = this.userUrl + "/" + userID;
+    console.log(getUserURL);
+
     let headers = new Headers({"Content-Type": "application/json"});
-    return this.http.get(this.userUrl, {headers: headers})
-                    .map(this.parseUserFromResponse)
+    return this.http.get(getUserURL, {headers: headers})
                     .catch(this.handleError);
   }
 

@@ -27,7 +27,7 @@ export class AuthService {
 
   logOut() {
     this.angularFire.auth.logout()
-                         .catch((error) => { console.log(error); });;
+                         .catch((error) => { console.log(error); });
   }
 
   // USERNAME + PASSWORD PARADIGM 

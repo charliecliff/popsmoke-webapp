@@ -45,9 +45,9 @@ app.use(function(req, res, next) {
 });
 
 // User Endpoints
-app.get("/user", function(req, res) {
+app.get("/user/:id", function(req, res) {
 	console.log("user");
-	// userServices.getUserFromAmazonDynamo(res, req.params.id);
+	userServices.getUserFromAmazonDynamo(res, req.params.id);
 });
 app.put("/user", function(req, res) {
 	let user = req.body["user"];

@@ -12,6 +12,7 @@ import { User } from '../models/User';
 @Injectable()
 export class UserProvider {
 
+  private USER_NOT_FOUND = "USER_NOT_FOUND";
   userUrl = "https://sleepy-scrubland-83197.herokuapp.com/user";
 
   constructor(public http: Http, public store: Store<AppState>) { 
@@ -19,6 +20,9 @@ export class UserProvider {
       this.getUser(userID).subscribe(data => {
         console.log("subcribe closure");
       }, err => {
+        if (err == 404) {
+          console.log("404");
+        }
         console.log(err);
       });
     });
@@ -56,14 +60,23 @@ export class UserProvider {
                     .catch(this.handleError);
   }
 
+  // private createUserForID(userID): Observable<User> {
+  //   let headers = new Headers({"Content-Type": "application/json"});
+  //   let user = new User();
+  //   user.
+  //   let body = JSON.stringify(user);
+  //   return this.http.post(this.userUrl, body, {headers: headers})
+  //                   .map(this.parseUserFromResponse)
+  //                   .catch(this.handleError);
+  // }
+
   private parseUserFromResponse(res: Response) {
     console.log("parse user");
+    console.log(res);
     return new User();
   }
 
-  private handleError(error) {
-    console.log("user error");
-    console.log(error);
-  	return Observable.throw('Server error');
+  private handleError(err) {
+  	return Observable.throw(err["status"]);
   }
 }

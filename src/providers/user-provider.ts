@@ -17,7 +17,9 @@ export class UserProvider {
 
   constructor(public http: Http, public store: Store<AppState>) { 
     this.store.select("userID").subscribe(userID => {
+
       console.log("subscribe");
+      console.log(userID);
       this.getUser(userID).subscribe(  
         function (x) { console.log('Next: %s', x); },
         function (err) { console.log('Error: %s', err); },
@@ -69,6 +71,7 @@ export class UserProvider {
 
   private parseUserFromResponse(res: Response) {
     console.log("parse user");
+    console.log(res);
     return new User();
   }
 

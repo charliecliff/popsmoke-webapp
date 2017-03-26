@@ -23,7 +23,7 @@ exports.getUserFromAmazonDynamo = function(res, userID) {
       if (err) {
         res.send(err);
       } else {
-        console.log(data);
+        res.status(500).send(data);
       }
   });
 }

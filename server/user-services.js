@@ -21,7 +21,8 @@ exports.getUserFromAmazonDynamo = function(res, userID) {
   };
   dynamodb.getItem(params, function(err, data) {
       if (err) {
-        res.send(err);
+        res.sendStatus(500);
+        // res.send(err);
       } else {
         res.sendStatus(500);
       }

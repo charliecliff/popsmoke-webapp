@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { NavController, NavParams } from 'ionic-angular';
 
-import { AuthService } from '../../providers/auth-service';
+import { UserProvider } from '../../providers/user-provider';
 
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
-  providers: [AuthService]
+  providers: [UserProvider]
 })
 export class LoginPage {
 
@@ -16,7 +16,7 @@ export class LoginPage {
 
   constructor(public formBuilder: FormBuilder, 
               public navCtrl: NavController,
-              public authService: AuthService) {
+              public userProvider: UserProvider) {
 		this.loginForm = formBuilder.group({
       email: [''],
       password: ['']
@@ -26,12 +26,12 @@ export class LoginPage {
   login() {
     let email = this.registerCredentials.email;
     let password = this.registerCredentials.password;
-    this.authService.logIn(email, password);
+    this.userProvider.login({"email": email, "password": password});
   }
 
   registerAccount() {
     let email = this.registerCredentials.email;
     let password = this.registerCredentials.password;
-    this.authService.createAccount(email, password);    
+    this.userProvider.createAccount({"email": email, "password": password});    
   }
 }

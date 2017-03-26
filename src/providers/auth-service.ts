@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Store } from '@ngrx/store';
-import { AngularFire } from 'angularfire2';
+import { AngularFire, AngularFireAuth, FirebaseAuthState } from 'angularfire2';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+import 'rxjs/Rx';
 
 import { AppState } from '../reducers';  
 import * as userIDReducer from '../reducers/userID-reducer';
@@ -12,18 +14,7 @@ export class AuthService {
 
   constructor(public http: Http, 
               public angularFire: AngularFire, 
-              public store: Store<AppState>) {
-
-    this.angularFire.auth.subscribe(result => {
-      if(result) {
-        let action = new userIDReducer.SetUserIDAction({"userID": result.uid});
-        this.store.dispatch(action);
-      }
-      else {
-
-      }
-    });
-  }
+              public store: Store<AppState>) { }
 
   logOut() {
     this.angularFire.auth.logout()
@@ -32,15 +23,17 @@ export class AuthService {
 
   // USERNAME + PASSWORD PARADIGM 
 
-  logIn(email, password) {
-    let creds = { email: email, password: password };
+  logIn(creds) {
   	this.angularFire.auth.login(creds)
                          .catch((error) => { console.log(error); });
   }
 
-  createAccount(email, password) {
-    let creds = { email: email, password: password };
-    this.angularFire.auth.createUser(creds)
-                         .catch((error) => { console.log(error); });
+  createAccount(creds): Observable<string> {
+    var self = this;
+    let promise = self.angularFire.auth.createUser(creds);;
+    return Observable.fromPromise(<Promise<FirebaseAuthState>>promise)
+                     .map(firebaseAuthState => {
+                       return firebaseAuthState.uid;
+                     });
   }
 }

@@ -5,15 +5,12 @@ import { Store } from '@ngrx/store';
 
 import * as Reducers from '../reducers';
 import * as Pages from '../pages';
-
-import { AuthService } from '../providers/auth-service';
 import { UserProvider } from '../providers/user-provider';
-
 import { LaunchPage } from '../pages/launch/launch';
 
 @Component({
   templateUrl: 'app.html',
-  providers: [ AuthService , UserProvider ]
+  providers: [ UserProvider ]
 })
 export class MyApp {
 
@@ -26,7 +23,6 @@ export class MyApp {
 
   constructor(public platform: Platform,
               public store: Store<Reducers.AppState>,
-              public authProvider: AuthService,
               public userProvider: UserProvider) {
     platform.ready().then(() => {
       StatusBar.styleDefault();
@@ -34,16 +30,7 @@ export class MyApp {
     });
   }
 
-  ngOnInit() {
-    // this.store.select("user").subscribe(user => {
-
-    // });
-    // this.store.select("error").subscribe(error => {
-      
-    // });
-  }
-
   signOut() {
-    this.authProvider.logOut();
+    this.userProvider.logout();
   }
 }

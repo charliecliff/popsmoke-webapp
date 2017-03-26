@@ -16,16 +16,15 @@ exports.getUserFromAmazonDynamo = function(res, userID) {
   var dynamodb = new AWS.DynamoDB({apiVersion: '2012-08-10'});
 
   var params = {
-      Key: { USER_ID: { S: userID } }, 
-      TableName: "popsmoke-users"
+    Key: { USER_ID: { S: userID } }, 
+    TableName: "popsmoke-users"
   };
   dynamodb.getItem(params, function(err, data) {
-      if (err) {
-        console.log(err.statusCode);
-        res.status(404).send("Problem with AWS");
-      } else {
-        res.send(data);
-      }
+    if (err) {
+      res.status(err.statusCode).send("Problem with AWS");
+    } else {
+      res.send(data);
+    }
   });
 }
 
@@ -40,8 +39,7 @@ exports.putUserToAmazonDynamo = function(res, user) {
   };
   dynamodb.putItem(params, function(err, data) {
       if (err) {
-        console.log(err, err.stack);
-        res.send(err);
+        res.status(err.statusCode).send("Problem with AWS");
       } else {
         console.log(data);
         res.send(data);
@@ -54,14 +52,17 @@ exports.postUserToAmazonDynamo = function(res, user) {
   var dynamodb = new AWS.DynamoDB({apiVersion: '2012-08-10'});
 
   var params = {
-      Item: user, 
+      Item: {
+        "userID": {
+            S: "Test UID"
+        }
+      }
       ReturnConsumedCapacity: "TOTAL", 
       TableName: "popsmoke-users"
   };
   dynamodb.putItem(params, function(err, data) {
       if (err) {
-        console.log(err, err.stack);
-        res.send(err);
+        res.status(err.statusCode).send("Problem with AWS");
       } else {
         console.log(data);
         res.send(data);
@@ -79,8 +80,7 @@ exports.deleteUserFromAmazonDynamo = function(res, userID) {
   };
   dynamodb.deleteItem(params, function(err, data) {
     if (err) {
-      console.log(err, err.stack);
-      res.send(err);
+      res.status(err.statusCode).send("Problem with AWS");
     } else {
       console.log(data);
       res.send(data);

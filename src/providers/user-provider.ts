@@ -18,7 +18,9 @@ export class UserProvider {
     this.store.select("userID").subscribe(userID => {
       this.getUser(userID).subscribe(data => {
         console.log("subcribe closure");
-      });;
+      }, err => {
+        console.log(err);
+      });
     });
   }
 
@@ -26,6 +28,7 @@ export class UserProvider {
 		let getUserURL = this.userUrl + "/" + userID;
     let headers = new Headers({"Content-Type": "application/json"});
     return this.http.get(getUserURL, {headers: headers})
+                    .map(this.parseUserFromResponse)
                     .catch(this.handleError);
   }
 
@@ -60,6 +63,7 @@ export class UserProvider {
 
   private handleError(error) {
     console.log("user error");
+    console.log(error);
   	return Observable.throw('Server error');
   }
 }

@@ -10,7 +10,9 @@ exports.parameters = {
 
 exports.getUserFromAmazonDynamo = function(res, userID) {
   var AWS = require("aws-sdk");
-  AWS.config.update({region:'us-east-1'});   
+  AWS.config.update({ accessKeyId: "AKIAIDMIESKUD4F657BQ", 
+                      secretAccessKey: "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",
+                      region:'us-east-1'});   
   var dynamodb = new AWS.DynamoDB({apiVersion: '2012-08-10'});
 
   var params = {

@@ -27,7 +27,7 @@ export class UserProvider {
 		let getUserURL = this.userUrl + "/" + userID;
     console.log(getUserURL);
     let headers = new Headers({"Content-Type": "application/json"});
-    return this.http.get(getUserURL, {headers: headers})
+    return this.http.get(this.userUrl, {headers: headers})
                     .map(this.parseUserFromResponse)
                     .catch(this.handleError);
   }

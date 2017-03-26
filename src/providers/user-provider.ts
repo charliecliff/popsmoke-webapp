@@ -23,10 +23,7 @@ export class UserProvider {
   }
 
 	getUser(userID): Observable<User> {
-    console.log("get User");
 		let getUserURL = this.userUrl + "/" + userID;
-    console.log(getUserURL);
-
     let headers = new Headers({"Content-Type": "application/json"});
     return this.http.get(getUserURL, {headers: headers})
                     .catch(this.handleError);

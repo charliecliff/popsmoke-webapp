@@ -9,7 +9,8 @@ exports.parameters = {
 };
 
 exports.getUserFromAmazonDynamo = function(res, userID) {
-  var AWS = require("aws-sdk");       
+  var AWS = require("aws-sdk");
+  AWS.config.update({region:'us-east-1'});   
   var dynamodb = new AWS.DynamoDB({apiVersion: '2012-08-10'});
 
   var params = {

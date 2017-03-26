@@ -17,13 +17,11 @@ export class UserProvider {
 
   constructor(public http: Http, public store: Store<AppState>) { 
     this.store.select("userID").subscribe(userID => {
-      this.getUser(userID).subscribe(data => {
-        console.log("subcribe closure");
-      }, err => {
-        if (err == 404) {
-          console.log("404");
-        }
-        console.log(err);
+      console.log("subscribe");
+      this.getUser(userID).subscribe(  
+        function (x) { console.log('Next: %s', x); },
+        function (err) { console.log('Error: %s', err); },
+        function () { console.log('Completed');
       });
     });
   }
@@ -32,8 +30,7 @@ export class UserProvider {
 		let getUserURL = this.userUrl + "/" + userID;
     let headers = new Headers({"Content-Type": "application/json"});
     return this.http.get(getUserURL, {headers: headers})
-                    .map(this.parseUserFromResponse)
-                    .catch(this.handleError);
+                    .map(this.parseUserFromResponse);
   }
 
   updateUser(user): Observable<User> {
@@ -72,11 +69,10 @@ export class UserProvider {
 
   private parseUserFromResponse(res: Response) {
     console.log("parse user");
-    console.log(res);
     return new User();
   }
 
   private handleError(err) {
-  	return Observable.throw(err["status"]);
+  	return Observable.throw("Server Error");
   }
 }

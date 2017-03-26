@@ -35,12 +35,12 @@ export class MyApp {
   }
 
   ngOnInit() {
-    this.store.select("user").subscribe(user => {
+    // this.store.select("user").subscribe(user => {
 
-    });
-    this.store.select("error").subscribe(error => {
+    // });
+    // this.store.select("error").subscribe(error => {
       
-    });
+    // });
   }
 
   signOut() {

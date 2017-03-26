@@ -21,7 +21,7 @@ exports.getUserFromAmazonDynamo = function(res, userID) {
   };
   dynamodb.getItem(params, function(err, data) {
       if (err) {
-        console.log(err["status"]);
+        console.log(err);
         res.status(404).send("Problem with AWS");
       } else {
         res.send(data);

@@ -4,6 +4,7 @@ var AWS = require("aws-sdk");
 var exports = module.exports = {};
 
 exports.getUserFromAmazonDynamo = function(res, userID) {
+  var self = this;
   AWS.config.update({ accessKeyId: "AKIAIDMIESKUD4F657BQ", 
                       secretAccessKey: "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",
                       region:'us-east-1'});      
@@ -19,7 +20,7 @@ exports.getUserFromAmazonDynamo = function(res, userID) {
       console.log("error\n" + err);
       res.status(err.statusCode).send("Problem with AWS");
     } else {
-      var userModel = this.buildModelFromAWSMap(data);
+      var userModel = self.buildModelFromAWSMap(data);
       res.send( {User: userModel} );
     }
   });

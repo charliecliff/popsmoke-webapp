@@ -36,7 +36,6 @@ mongoClient.connect(MONGODB_URI, function (err, database) {
 		console.log("You're a wizard, Harry. I'm a what? Yes, a wizard, on port", app.get('port'));
 	});
 });
-
 // The Key to allowing CORS
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -44,7 +43,6 @@ app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
-
 // User Endpoints
 app.get("/user/:id", function(req, res) {
 	userServices.getUserFromAmazonDynamo(res, req.params.id);
@@ -58,14 +56,12 @@ app.post("/user/:id", function(req, res) {
 app.delete("/user/:id", function(req, res) {
 	userServices.deleteUserFromAmazonDynamo(res, req.params.id);
 });
-
 // Holiday Endpoints
 app.get("/holidays", function(req, res) {
 	holidayServices.getHolidaysFromAmazonDynamo(req, res);
 });
-// app.get("/holidays/:id", function(req, res) {
-// 	holidayServices.getUserHolidaysFromAmazonDynamo(req, res);
-// });
+
+
 
 // DA31 Endpoints
 app.post("/api/da31", function(req, res) {

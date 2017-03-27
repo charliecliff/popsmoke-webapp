@@ -11,67 +11,35 @@ exports.getHolidaysFromAmazonDynamo = function(req, res) {
                       region:'us-east-1'});      
   var dynamodb = new AWS.DynamoDB({apiVersion: '2012-08-10'});
 
-
-var params = {
+  var expressionValues = self.buildAWSQueryFromHolidaysRequestBody(req.body);
+  var params = {
     TableName : "popsmoke-holidays",
     KeyConditionExpression: "governmentBranch = :branch and startDateTime between :curentDate and :nextDate",
-    ExpressionAttributeValues: {
-        ":branch": {S: "army"},
-        ":curentDate": {S: "2010-01-01"},
-        ":nextDate": {S: "2015-01-01"}
-    }
-};
+    ExpressionAttributeValues: expressionValues
+  };
 
   console.log( "params\n" + JSON.stringify(params));
 
-dynamodb.query(params, function(err, data) {
+  dynamodb.query(params, function(err, data) {
     if (err) {
         console.error("Unable to query. Error:", JSON.stringify(err, null, 2));
+        
     } else {
         console.log(JSON.stringify("data\n" + data));
-
         console.log("Query succeeded.");
-        data.Items.forEach(function(item) {
-            console.log(" -", item.year + ": " + item.title);
-        });
+
     }
-});
+  });
 }
 
+exports.buildAWSQueryFromHolidaysRequestBody = function(requestBody) {
+  var currentDateTime = new Date();
+  java.text.SimpleDateFormat df = new java.text.SimpleDateFormat("yyyy-MM-dd");
+  String startDateString = df.format(currentDateTime);
 
-
-
-
-  // var params = {
-  //     Key: { "userID": { S: userID } }, 
-  //     TableName: "popsmoke-holidays"
-  // };
-  // dynamodb.getItem(params, function(err, data) {
-  //     if (err) {
-  //       console.log(err, err.stack); 
-  //     } else {
-  //       console.log(data); 
-  //     }
-  // });
-
-
-
-// exports.getHolidayFromAmazonDynamo = function(req, res) {
-//   AWS.config.update({ accessKeyId: "AKIAIDMIESKUD4F657BQ", 
-//                       secretAccessKey: "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",
-//                       region:'us-east-1'}); 
-//   var dynamodb = new AWS.DynamoDB({apiVersion: '2012-08-10'});
-
-//   var params = {
-//       Item: user, 
-//       ReturnConsumedCapacity: "TOTAL", 
-//       TableName: "popsmoke-holidays"
-//   };
-//   dynamodb.putItem(params, function(err, data) {
-//       if (err) {
-//         console.log(err, err.stack);
-//       } else {
-//           console.log(data);
-//       }
-//   });
-// }
+  var outputMap = new Map();
+  outputMap[":branch"] = { S: requestBody["branch"] };
+  outputMap[":curentDate"] = { S: startDateString };
+  outputMap[":nextDate"] = { S: requestBody["stopDate"] };
+  return outputMap;
+}

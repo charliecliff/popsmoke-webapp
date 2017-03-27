@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http,
-         Headers, 
-         Response } from '@angular/http';
+import { Http, Headers, Response } from '@angular/http';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
@@ -70,17 +68,21 @@ export class UserProvider {
     let headers = new Headers({"Content-Type": "application/json"});
     let body = JSON.stringify({"userID": userID});
     return self.http.post(userURL, body, {headers: headers})
+                    .map((res:Response) => res.json())
                     .map(self.parseUserFromResponse)
                     .subscribe(
-                      function (user) { 
-                        console.log('User: %s', user);  
+                      function (user) {
+
+                        console.log('User: %s', user);
+
                       },
                       function (err) { 
                         console.log('Error: %s', err); 
                       });
   }
 
-  private parseUserFromResponse(res: Response) {
+  private parseUserFromResponse(responseJSON) {
+    console.log("respsonse\n" + responseJSON);
     return new User();
   }
 }

@@ -8,6 +8,9 @@ import { AppState } from '../reducers';
 import { User } from '../models/User';
 import { AuthService } from './auth-service';
 
+import * as UserActions from '../reducers/user-reducer';
+import * as UserIDActions from '../reducers/userID-reducer';
+
 @Injectable()
 export class UserProvider {
 
@@ -36,12 +39,13 @@ export class UserProvider {
                     .subscribe(this.createProfile, this.handleErrorCallback);
   }
 
-	getUser(userID): Observable<User> {
+	getUser(userID) {
 		let getUserURL = this.baseUserUrl + "/" + userID;
     let headers = new Headers({"Content-Type": "application/json"});
-    return this.http.get(getUserURL, {headers: headers})
-                    .map((res:Response) => res.json())
-                    .map(this.parseUserFromResponse)
+    this.http.get(getUserURL, {headers: headers})
+             .map((res:Response) => res.json())
+             .map(this.parseUserFromResponse)
+             .subscribe(this.updateUserStateCallback, this.handleErrorCallback);
   }
 
   updateUser(user): Observable<User> {
@@ -64,7 +68,6 @@ export class UserProvider {
     let userURL = this.baseUserUrl + "/" + userID;
     let headers = new Headers({"Content-Type": "application/json"});
     let body = JSON.stringify({"userID": userID});
-    console.log("this\n" + this);
     this.http.post(userURL, body, {headers: headers})
              .map((res:Response) => res.json())
              .map(this.parseUserFromResponse)
@@ -72,16 +75,18 @@ export class UserProvider {
   }
 
   private parseUserFromResponse(responseJSON) {
-    console.log("respsonse\n" + JSON.stringify(responseJSON));
-    return new User();
+    console.log("parseUserFromResponse\n" + JSON.stringify(responseJSON) + "\n");
+    return new User(responseJSON["User"]);
   }
 
   private handleErrorCallback = (err) => {
-    console.log("create account subscribe");
-    console.log('Error: %s', err); 
+    console.log("handleErrorCallback");
+    console.log('Error: %s', JSON.stringify(err)) ; 
   }
 
   private updateUserStateCallback = (user) => {
-     console.log('User: %s', user);
+    console.log('Update User: %s', user);
+    this.store.dispatch( new UserActions.SetUserAction(user) );
+    this.store.dispatch( new UserIDActions.SetUserIDAction(user.userID) );
   }
 }

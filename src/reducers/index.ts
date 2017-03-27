@@ -17,6 +17,7 @@ import * as holidayReducer from './holiday-reducer';
 import * as errorReducer from './error-reducer';
 
 export interface AppState {
+	
 	userID: string;	
 	user: User;
 	

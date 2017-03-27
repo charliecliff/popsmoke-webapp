@@ -13,7 +13,10 @@ exports.getUserFromAmazonDynamo = function(res, userID) {
                       region:'us-east-1'});      
   var dynamodb = new AWS.DynamoDB({apiVersion: '2012-08-10'});
   
-  var params = { Key: { USER_ID: { S: userID } }, 
+  var outputMap = new Map();
+  outputMap["userID"] = { S: userID };
+
+  var params = { Key: outputMap, 
                  TableName: "popsmoke-users"};
   dynamodb.getItem(params, function(err, data) {
     if (err) {

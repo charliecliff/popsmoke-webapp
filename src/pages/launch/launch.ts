@@ -4,6 +4,9 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import { AngularFire } from "angularfire2";
 
+
+import { User } from '../../models/User';
+
 import * as Reducers from '../../reducers';
 import { HomePage } from '../home/home';
 import { LoginPage } from '../login/login';
@@ -20,17 +23,15 @@ export class LaunchPage {
               public store: Store<Reducers.AppState>) { }
 	
 	ngOnInit() {
+    this.store.select('user').subscribe(object => {
+      let user = object as User;
+      this.navCtrl.popToRoot();
+      if ( user.userID != undefined ) {
+        this.pushHomeController();
+      } else {
         this.pushLoginController();
-
-		// // Tie this to the STATE STORE and the USER STATE
-  //   this.angularFire.auth.subscribe(data => {
-  //     this.navCtrl.popToRoot();
-  //     if (data) { 
-  //       this.pushHomeController();
-  //     } else {
-  //       this.pushLoginController();
-  //     }
-  //   });
+      }
+    });
 	}
  	
  	pushHomeController() {

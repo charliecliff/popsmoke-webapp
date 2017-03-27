@@ -4,6 +4,7 @@ var AWS = require("aws-sdk");
 var exports = module.exports = {};
 
 exports.getUserFromAmazonDynamo = function(res, userID) {
+  console.log("getUserFromAmazonDynamo");
   var self = this;
   AWS.config.update({ accessKeyId: "AKIAIDMIESKUD4F657BQ", 
                       secretAccessKey: "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",

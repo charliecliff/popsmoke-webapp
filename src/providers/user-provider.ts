@@ -25,18 +25,21 @@ export class UserProvider {
   login(loginData) {
     var self = this;
     self.authService.logIn(loginData)
-                    .subscribe(function (userID) { self.getUser(userID); }, 
+                    .subscribe(this.getUserCallback, 
                                this.handleErrorCallback);
   }
 
   logout() {
-    this.authService.logOut()
+    console.log("logout");
+    // this.authService.logOut()
+    //                 .subscribe(this.updateAnonymousStateCallback, 
+    //                            this.handleErrorCallback);
   }
 
   createAccount(newUserData) {
-    var self = this;
-    self.authService.createAccount(newUserData)
-                    .subscribe(this.createProfile, this.handleErrorCallback);
+    this.authService.createAccount(newUserData)
+                    .subscribe(this.createUserCallback, 
+                               this.handleErrorCallback);
   }
 
 	getUser(userID) {
@@ -45,7 +48,8 @@ export class UserProvider {
     this.http.get(getUserURL, {headers: headers})
              .map((res:Response) => res.json())
              .map(this.parseUserFromResponse)
-             .subscribe(this.updateUserStateCallback, this.handleErrorCallback);
+             .subscribe(this.updateUserStateCallback, 
+                        this.handleErrorCallback);
   }
 
   updateUser(user): Observable<User> {
@@ -55,28 +59,31 @@ export class UserProvider {
     return this.http.put(userURL, body, {headers: headers})
                     .map(this.parseUserFromResponse)
   }
-  
-  deleteUser(user): Observable<User> {
-    let userURL = this.baseUserUrl + "/" + user.userID;
+
+  private getUserCallback = (userID) => {
+    console.log("getUserCallback");
+    let getUserURL = this.baseUserUrl + "/" + userID;
     let headers = new Headers({"Content-Type": "application/json"});
-    return this.http.delete(userURL, {headers: headers})
-                    .map((res:Response) => res.json())
-                    .map(this.parseUserFromResponse)
+    this.http.get(getUserURL, {headers: headers})
+             .map((res:Response) => res.json())
+             .map(this.parseUserFromResponse)
+             .subscribe(this.updateUserStateCallback, 
+                        this.handleErrorCallback);
   }
 
-  private createProfile = (userID) => {
+  private createUserCallback = (userID) => {
     let userURL = this.baseUserUrl + "/" + userID;
     let headers = new Headers({"Content-Type": "application/json"});
     let body = JSON.stringify({"userID": userID});
     this.http.post(userURL, body, {headers: headers})
              .map((res:Response) => res.json())
              .map(this.parseUserFromResponse)
-             .subscribe(this.updateUserStateCallback, this.handleErrorCallback);
+             .subscribe(this.updateUserStateCallback, 
+                        this.handleErrorCallback);
   }
 
-  private parseUserFromResponse(responseJSON) {
-    console.log("parseUserFromResponse\n" + JSON.stringify(responseJSON) + "\n");
-    return new User(responseJSON["User"]);
+  private parseUserFromResponse(json) {
+    return new User(json["User"]);
   }
 
   private handleErrorCallback = (err) => {
@@ -84,8 +91,14 @@ export class UserProvider {
     console.log('Error: %s', JSON.stringify(err)) ; 
   }
 
+  private updateAnonymousStateCallback = () => {
+    console.log("updateAnonymousUserStateCallback");
+    this.store.dispatch( new UserActions.SetUserAction( new User() ) );
+    this.store.dispatch( new UserIDActions.SetUserIDAction( "" ) );
+  }
+
   private updateUserStateCallback = (user) => {
-    console.log('Update User: %s', user);
+    console.log("updateUserStateCallback\n" + JSON.stringify(user) )
     this.store.dispatch( new UserActions.SetUserAction(user) );
     this.store.dispatch( new UserIDActions.SetUserIDAction(user.userID) );
   }

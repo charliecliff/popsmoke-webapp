@@ -16,9 +16,9 @@ export class AuthService {
               public angularFire: AngularFire, 
               public store: Store<AppState>) { }
 
-  logOut() {
-    this.angularFire.auth.logout()
-                         .catch((error) => { console.log(error); });
+  logOut(): Observable<void> {
+    let promise = this.angularFire.auth.logout();
+    return Observable.fromPromise(<Promise<void>>promise);
   }
 
   // USERNAME + PASSWORD PARADIGM 

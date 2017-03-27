@@ -40,7 +40,7 @@ mongoClient.connect(MONGODB_URI, function (err, database) {
 // The Key to allowing CORS
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
-  res.header('Access-Control-Allow-Methods', 'OPTIONS,GET,PUT,POST,DELETE');
+  res.header('Access-Control-Allow-Methods', "OPTIONS,GET,PUT,POST,DELETE");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });

@@ -57,7 +57,7 @@ app.delete("/user/:id", function(req, res) {
 	userServices.deleteUserFromAmazonDynamo(res, req.params.id);
 });
 // Holiday Endpoints
-app.get("/holidays", function(req, res) {
+app.get("/holidays/:branch&:thruDate", function(req, res) {
 	holidayServices.getHolidaysFromAmazonDynamo(req, res);
 });
 

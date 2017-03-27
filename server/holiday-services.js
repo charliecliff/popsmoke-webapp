@@ -11,7 +11,7 @@ exports.getHolidaysFromAmazonDynamo = function(req, res) {
                       region:'us-east-1'});      
   var dynamodb = new AWS.DynamoDB({apiVersion: '2012-08-10'});
 
-  var expressionValues = self.buildAWSQueryFromHolidaysRequestBody(req.body);
+  var expressionValues = self.buildAWSQueryFromHolidaysRequest(req);
   var params = {
     TableName : "popsmoke-holidays",
     KeyConditionExpression: "governmentBranch = :branch and startDateTime between :curentDate and :nextDate",
@@ -22,24 +22,26 @@ exports.getHolidaysFromAmazonDynamo = function(req, res) {
 
   dynamodb.query(params, function(err, data) {
     if (err) {
-        console.error("Unable to query. Error:", JSON.stringify(err, null, 2));
-        
+      console.error("Unable to query. Error:", JSON.stringify(err));
+      res.status(err.statusCode).send("Problem with AWS");
     } else {
-        console.log(JSON.stringify("data\n" + data));
-        console.log("Query succeeded.");
-
+      console.log(JSON.stringify("data\n" + data));
+      console.log("Query succeeded.");
+      res.send( {holidays: data} );
     }
   });
 }
 
-exports.buildAWSQueryFromHolidaysRequestBody = function(requestBody) {
-  var currentDateTime = new Date();
-  java.text.SimpleDateFormat df = new java.text.SimpleDateFormat("yyyy-MM-dd");
-  String startDateString = df.format(currentDateTime);
+exports.buildAWSQueryFromHolidaysRequest = function(req) {
+  var dateFormat = require('dateformat');
+
+  var now = new Date();
+  // java.text.SimpleDateFormat df = new java.text.SimpleDateFormat("");
+  String startDateString = dateFormat(now, "yyyy-MM-dd");
 
   var outputMap = new Map();
-  outputMap[":branch"] = { S: requestBody["branch"] };
+  outputMap[":branch"] = { S: req.params.branch };
   outputMap[":curentDate"] = { S: startDateString };
-  outputMap[":nextDate"] = { S: requestBody["stopDate"] };
+  outputMap[":nextDate"] = { S: req.params.thruDate };
   return outputMap;
 }

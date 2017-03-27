@@ -60,11 +60,13 @@ app.delete("/user/:id", function(req, res) {
 });
 
 // Holiday Endpoints
-app.get("/user/holidays", function(req, res) {
-	let userID = req.body["userID"];
-	holidayServices.getUserHolidaysFromAmazonDynamo(res, userID);
+app.get("/holidays", function(req, res) {
+	holidayServices.getUserHolidaysFromAmazonDynamo(req, res);
 });
-
+app.get("/holidays/:id", function(req, res) {
+	let userID = req.body["userID"];
+	holidayServices.getUserHolidaysFromAmazonDynamo(req, res);
+});
 // DA31 Endpoints
 app.post("/api/da31", function(req, res) {
 	let pdfTemplatePath = "../../public/DA_31.pdf";

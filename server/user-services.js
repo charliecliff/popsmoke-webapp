@@ -51,7 +51,6 @@ exports.postUserToAmazonDynamo = function(req, res) {
       }
   });
 }
-
 exports.deleteUserFromAmazonDynamo = function(res, userID) {
   console.log("DELETE USER");
 
@@ -73,6 +72,30 @@ exports.deleteUserFromAmazonDynamo = function(res, userID) {
     }
   });
 }
+
+/**
+-----------------
+---- AWS MAP ----
+-----------------
+
+{"Item": 
+  {
+    "userID": {"S":"pCeFNSIARLSZARUy6jVXW5ZxOD32"},
+
+  }
+}
+*/
+
+/**
+-----------------
+-- USER OBJECT --
+-----------------
+{
+  "userID": pCeFNSIARLSZARUy6jVXW5ZxOD32",
+
+}
+
+*/
 
 exports.buildAWSMapFromUserRequestBody = function(requestBody) {
   var outputMap = new Map();
@@ -96,15 +119,10 @@ exports.buildModelFromUserRequestBody = function(requestBody) {
   return outputModel;
 }
 
-//  {"Item":{"userID":{"S":"pCeFNSIARLSZARUy6jVXW5ZxOD32"}}}
 exports.buildModelFromAWSMap = function(awsMap) {
-
-  var itemMap = awsMap.Item;
   var outputModel = new Object();
-  
+  var itemMap = awsMap.Item;
   var userID = itemMap.userID.S;
   outputModel.userID = userID;
-
-  console.log("outputModel\n" + JSON.stringify(outputModel));
   return outputModel;
 }

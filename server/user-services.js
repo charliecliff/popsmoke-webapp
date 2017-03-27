@@ -97,9 +97,9 @@ exports.deleteUserFromAmazonDynamo = function(res, userID) {
 
 exports.parseUserBody = function(data) {
   console.log("parseUserBody");
-  var output = { "Item": { "userID": { "S": data["userID"] }, 
-                           "firstName": { "S": data["firstName"] },
-                           "lastName": { "S": data["lastName"] }
+  var output = { Item: { userID: { S: data["userID"] }, 
+                         firstName: { S: data["firstName"] },
+                         lastName: { S: data["lastName"] }
   }};
   console.log(output);
   return output;

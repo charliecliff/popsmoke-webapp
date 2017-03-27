@@ -3,7 +3,8 @@ import { Http,
          Headers, 
          Response, 
          ResponseContentType, 
-         RequestOptions } from '@angular/http';
+         RequestOptions,
+         URLSearchParams } from '@angular/http';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
@@ -23,30 +24,33 @@ export class HolidayProvider {
     console.log("Holiday Provider Service");
 
     this.store.select("user").subscribe(user => {
-
       console.log("subscribing to user");
-      this.getHolidaysForUser(user).subscribe(
+      this.getHolidays("army", "2012-01-01").subscribe(
         function (x) {
-        console.log('Next: %s', x);
-      });
-
+          console.log('Next: %s', x);
+       });
     });
   }
 
-	getHolidaysForUser(user): Observable<Holiday[]> {
-    let headers = new Headers({"Content-Type": "application/json"});
-    return this.http.get(this.holidayUrl, {headers: headers})
+	getHolidays(branch, thruDate): Observable<Holiday[]> {
+
+    let options = new RequestOptions({headers: new Headers({'Content-Type': 'application/json'})});
+    let params: URLSearchParams = new URLSearchParams();
+    params.set("branch", branch);
+    params.set("thruDate", thruDate);
+    options.search = params;
+    return this.http.get(this.holidayUrl, options)
                     .map(this.parseHolidaysFromResponse)
                     .catch(this.handleError);
   }
 
   private parseHolidaysFromResponse(res: Response) {
-    console.log("parseHolidaysFromResponse\n" + res);
+    console.log("Holiday Response: " + res);
     return [];
   }
 
   private handleError(error) {
-    console.log("handleError: " + error);
+    console.log("Holiday Error: " + error);
   	return Observable.throw('Server error');
   }
 }

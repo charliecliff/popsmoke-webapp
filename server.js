@@ -49,17 +49,18 @@ app.use(function(req, res, next) {
 app.get("/user/:id", function(req, res) {
 	userServices.getUserFromAmazonDynamo(res, req.params.id);
 });
-app.put("/user", function(req, res) {
-	let user = req.body["user"];
-	userServices.putUserToAmazonDynamo(res, user);
+app.put("/user/:id", function(req, res) {
+	let userData = userServices.parseUserBody(req.Body);
+	console.log("PUT: user" + userData);
+	userServices.putUserToAmazonDynamo(res, userData);
 });
-app.post("/user", function(req, res) {
-	let user = {};
+app.post("/user/:id", function(req, res) {
+	let userData = userServices.parseUserBody(req.Body);
+	console.log("POST: user" + userData);
 	userServices.postUserToAmazonDynamo(res, user);
 });
-app.delete("/user", function(req, res) {
-	let userID = req.body["userID"];
-	userServices.deleteUserFromAmazonDynamo(res, userID);
+app.delete("/user/:id", function(req, res) {
+	userServices.deleteUserFromAmazonDynamo(res, req.params.id);
 });
 
 // Holiday Endpoints

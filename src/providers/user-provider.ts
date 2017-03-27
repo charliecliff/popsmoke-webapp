@@ -14,23 +14,12 @@ import { AuthService } from './auth-service';
 export class UserProvider {
 
   private USER_NOT_FOUND = "USER_NOT_FOUND";
-  userUrl = "https://sleepy-scrubland-83197.herokuapp.com/user";
+
+  baseUserUrl = "https://sleepy-scrubland-83197.herokuapp.com/user";
 
   constructor(public http: Http, 
               public store: Store<AppState>,
-              public authService: AuthService) {
-
-    // this.store.select("userID").subscribe(userID => {
-    //   this.getUser(userID).subscribe( 
-    //     function (user) { 
-    //       console.log('Next: %s', user); 
-    //     },
-    //     function (err) { 
-    //       console.log('Error: %s', err); 
-    //     }
-    //   );
-    // });
-  }
+              public authService: AuthService) { }
 
   login(loginData) {
     this.authService.logIn(loginData);
@@ -42,50 +31,54 @@ export class UserProvider {
 
   createAccount(newUserData) {
     var self = this;
-    self.authService.createAccount(newUserData).subscribe(
-        function (userID) { 
-          console.log("userID");
-          console.log(userID);
-          self.createProfile(userID); 
-        },
-        function (err) { 
-          console.log("create account subscribe");
-          console.log('Error: %s', err); 
-        }
-     );
+    self.authService.createAccount(newUserData)
+                    .subscribe(
+                      function (userID) { 
+                        self.createProfile(userID); 
+                      },
+                      function (err) { 
+                        console.log("create account subscribe");
+                        console.log('Error: %s', err); 
+                      });
   }
 
 	getUser(userID): Observable<User> {
-		let getUserURL = this.userUrl + "/" + userID;
+		let getUserURL = this.baseUserUrl + "/" + userID;
     let headers = new Headers({"Content-Type": "application/json"});
     return this.http.get(getUserURL, {headers: headers})
                     .map(this.parseUserFromResponse)
   }
 
   updateUser(user): Observable<User> {
+    let userURL = this.baseUserUrl + "/" + user.userID;
 		let headers = new Headers({"Content-Type": "application/json"});
     let body = JSON.stringify(user);
-    return this.http.put(this.userUrl, body, {headers: headers})
+    return this.http.put(userURL, body, {headers: headers})
                     .map(this.parseUserFromResponse)
   }
 
-  createProfile(userID) {
-    console.log("createProfile");
-    let headers = new Headers({"Content-Type": "application/json"});
-    let body = JSON.stringify({"userID": userID});
-    return this.http.post(this.userUrl, body, {headers: headers})
-                    .map(this.parseUserFromResponse)
-                    .subscribe(
-                      function (user) { console.log('User: %s', user);  },
-                      function (err) { console.log('Error: %s', err); }
-                    );
-  }
 
   deleteUser(user): Observable<User> {
-  	let deleteUserURL = this.userUrl + "/" + user["userID"];
+    let userURL = this.baseUserUrl + "/" + user.userID;
     let headers = new Headers({"Content-Type": "application/json"});
-    return this.http.delete(deleteUserURL, {headers: headers})
+    return this.http.delete(userURL, {headers: headers})
                     .map(this.parseUserFromResponse)
+  }
+
+  private createProfile(userID) {
+    var self = this;
+    let userURL = this.baseUserUrl + "/" + userID;
+    let headers = new Headers({"Content-Type": "application/json"});
+    let body = JSON.stringify({"userID": userID});
+    return self.http.post(userURL, body, {headers: headers})
+                    .map(self.parseUserFromResponse)
+                    .subscribe(
+                      function (user) { 
+                        console.log('User: %s', user);  
+                      },
+                      function (err) { 
+                        console.log('Error: %s', err); 
+                      });
   }
 
   private parseUserFromResponse(res: Response) {

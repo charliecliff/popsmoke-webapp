@@ -68,7 +68,6 @@ exports.postUserToAmazonDynamo = function(res, user) {
   };
   dynamodb.putItem(params, function(err, data) {
       if (err) {
-        console.log(err);
         res.status(err.statusCode).send("Problem with AWS");
       } else {
         console.log(data);
@@ -96,4 +95,12 @@ exports.deleteUserFromAmazonDynamo = function(res, userID) {
       res.send(data);
     }
   });
+}
+
+exports.parseUserBody = function(data) {
+  return { Item: { 
+    "userID": { S: data["userID"] },
+    "firstName": { S: data["firstName"] },
+    "lastName": { S: data["lastName"] }
+  }};
 }

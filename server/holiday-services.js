@@ -43,8 +43,8 @@ exports.buildAWSQueryFromHolidaysRequest = function(req) {
   var startDateString = dateFormat(now, "yyyy-MM-dd");
 
   var outputMap = new Map();
-  outputMap[":branch"] = { S: req.query.params.branch };
+  outputMap[":branch"] = { S: req.query.branch };
   outputMap[":curentDate"] = { S: startDateString };
-  outputMap[":nextDate"] = { S: req.query.params.thruDate };
+  outputMap[":nextDate"] = { S: req.query.thruDate };
   return outputMap;
 }

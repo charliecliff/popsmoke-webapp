@@ -56,6 +56,7 @@ exports.postUserToAmazonDynamo = function(res, userMap) {
                       region:'us-east-1'});
   var dynamodb = new AWS.DynamoDB({apiVersion: '2012-08-10'});
 
+  console.log("userMap\n" + JSON.stringify(userMap, null, 4));
   var params = { Item: userMap,
                  ReturnConsumedCapacity: "TOTAL", 
                  TableName: "popsmoke-users"

@@ -50,7 +50,7 @@ exports.buildArrayFromAWSMap = function(awsMap) {
     var holidayModel = new Object();
     holidayModel.userID = userID;
     holidayModel.branch = branch;
-    outputArray..push(holidayModel)
+    outputArray.push(holidayModel)
   }
   return outputArray;
 }

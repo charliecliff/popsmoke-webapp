@@ -108,6 +108,6 @@ exports.parseUserBody = function(data) {
   if ("lastName" in data) {
     output.set("lastName", { S: data["lastName"] });
   }
-  console.log("userMap\n" + output);
+  console.log("userMap\n" + JSON.stringify(output, null, 4) );
   return output;
 }

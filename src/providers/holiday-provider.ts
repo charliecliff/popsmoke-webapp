@@ -25,23 +25,21 @@ export class HolidayProvider {
 
     this.store.select("user").subscribe(user => {
       console.log("subscribing to user");
-      this.getHolidays("army", "2020-01-01").subscribe(
-        function (x) {
-          console.log('Next: %s', x);
-       });
+      this.getHolidays("army", "2020-01-01");
     });
   }
 
-	getHolidays(branch, thruDate): Observable<Holiday[]> {
-
+	getHolidays(branch, thruDate) {
     let options = new RequestOptions({headers: new Headers({'Content-Type': 'application/json'})});
     let params: URLSearchParams = new URLSearchParams();
     params.set("branch", branch);
     params.set("thruDate", thruDate);
     options.search = params;
-    return this.http.get(this.holidayUrl, options)
-                    .map(this.parseHolidaysFromResponse)
-                    .catch(this.handleError);
+    this.http.get(this.holidayUrl, options)
+             .map((res:Response) => res.json())
+             .map(this.parseHolidaysFromResponse)
+             .subscribe(this.updateHolidaysStateCallback,
+                        this.handleErrorCallback);
   }
 
   private parseHolidaysFromResponse(res: Response) {
@@ -49,8 +47,10 @@ export class HolidayProvider {
     return [];
   }
 
-  private handleError(error) {
-    console.log("Holiday Error: " + error);
-  	return Observable.throw('Server error');
+  private updateHolidaysStateCallback = (holidaysArray) => {
+  }
+
+  private handleErrorCallback = (err) => {
+    console.log("Holiday Error: " + JSON.stringify(err));
   }
 }

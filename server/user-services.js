@@ -99,13 +99,13 @@ exports.parseUserBody = function(data) {
   var userMap = new Map();
 
   if ("userID" in data) {
-    userMap.set(userID, { S: data["userID"] });
+    userMap.set("userID", { S: data["userID"] });
   }
   if ("firstName" in data) {
-    userMap.set(firstName, { S: data["firstName"] });
+    userMap.set("firstName", { S: data["firstName"] });
   }
   if ("lastName" in data) {
-    userMap.set(lastName, { S: data["lastName"] });
+    userMap.set("lastName", { S: data["lastName"] });
   }
   console.log(userMap);
   return userMap;

@@ -50,25 +50,13 @@ app.get("/user/:id", function(req, res) {
 	userServices.getUserFromAmazonDynamo(res, req.params.id);
 });
 app.put("/user/:id", function(req, res) {
-	console.log("PUT: user");
-	console.log(body);
-
-	var body = req.body;
-	console.log(body);
-	
-	var userData = userServices.parseUserBody(body);
-	console.log("PUT: user" + userData);
-
+	var userData = userServices.parseUserBody(req.body);
 	userServices.putUserToAmazonDynamo(res, userData);
 });
-
 app.post("/user/:id", function(req, res) {
-	var body = req.body;
 	var userMap = userServices.parseUserBody(req.body);
 	userServices.postUserToAmazonDynamo(res, userMap);
 });
-
-
 app.delete("/user/:id", function(req, res) {
 	userServices.deleteUserFromAmazonDynamo(res, req.params.id);
 });

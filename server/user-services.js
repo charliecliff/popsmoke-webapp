@@ -101,7 +101,7 @@ exports.parseUserBody = function(requestBody) {
 
   var output = new Map();
   if ( requestBody.hasOwnProperty("userID") ) {
-    output["userID"] = "fuck you";
+    output["userID"] = { S: requestBody["userID"] };
   }
   // if ( requestBody.hasOwnProperty("firstName") ) {
   //   output["firstName"] { S: requestBody["firstName"] });

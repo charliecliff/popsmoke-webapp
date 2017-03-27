@@ -62,12 +62,13 @@ exports.postUserToAmazonDynamo = function(res, userData) {
                  TableName: "popsmoke-users"
                };
 
-  console.log("param \n" + params);
+  console.log("params \n" + params);
   dynamodb.putItem(params, function(err, data) {
       if (err) {
+        console.log("error\n" + err);
         res.status(err.statusCode).send("Problem with AWS");
       } else {
-        console.log(data);
+        console.log("data\n" + data);
         res.send(data);
       }
   });

@@ -98,16 +98,17 @@ exports.parseUserBody = function(requestBody) {
   console.log("parseUserBody");
 
   var output = new Map();
-  if ( requestBody.hasOwnProperty("userID") ) {
-    output.set("userID", "fuck you");
-  }
-  if ( requestBody.hasOwnProperty("firstName") ) {
-    output.set("firstName", { S: requestBody["firstName"] });
-  }
-  if ( requestBody.hasOwnProperty("lastName") ) {
-    output.set("lastName", { S: requestBody["lastName"] });
-  }
+  // if ( requestBody.hasOwnProperty("userID") ) {
+  //   output.set("userID", "fuck you");
+  // }
+  // if ( requestBody.hasOwnProperty("firstName") ) {
+  //   output.set("firstName", { S: requestBody["firstName"] });
+  // }
+  // if ( requestBody.hasOwnProperty("lastName") ) {
+  //   output.set("lastName", { S: requestBody["lastName"] });
+  // }
   output.set("test", "fuck");
-  console.log("userMap\n" + JSON.stringify(output, null, 4) );
+  console.log("parseUserBody -- userMap\n" + JSON.stringify(output) );
+  console.log(output.values().next().value); 
   return output;
 }

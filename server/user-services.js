@@ -62,6 +62,7 @@ exports.awsDynamoDBInstance = function() {
                       region:'us-east-1'});      
   var dynamodb = new AWS.DynamoDB({apiVersion: '2012-08-10'});
   return dynamodb;
+}
 
 exports.buildAWSMapFromUserRequestBody = function(requestBody) {
   var outputMap = new Map();

@@ -107,7 +107,7 @@ exports.buildModelFromAWSMap = function(awsMap) {
   var userID = itemMap.userID;
 
   console.log("buildModelFromAWSMap\n" + itemMap);
-  console.log("userID\n" + JSON.stringify(userID)0;
+  console.log("userID\n" + JSON.stringify(userID));
 
   return itemMap;
 }

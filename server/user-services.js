@@ -96,18 +96,15 @@ exports.buildModelFromUserRequestBody = function(requestBody) {
   return outputModel;
 }
 
+//  {"Item":{"userID":{"S":"pCeFNSIARLSZARUy6jVXW5ZxOD32"}}}
 exports.buildModelFromAWSMap = function(awsMap) {
-// {"Item":{"userID":{"S":"pCeFNSIARLSZARUy6jVXW5ZxOD32"}}}
-
-  console.log("awsMap\n" + JSON.stringify(awsMap));
 
   var itemMap = awsMap.Item;
   var outputModel = new Object();
-
+  
   var userID = itemMap.userID.S;
+  outputModel.userID = userID;
 
-  console.log("buildModelFromAWSMap\n" + itemMap);
-  console.log("userID\n" + JSON.stringify(userID));
-
-  return itemMap;
+  console.log("outputModel\n" + JSON.stringify(outputModel));
+  return outputModel;
 }

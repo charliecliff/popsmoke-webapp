@@ -23,9 +23,13 @@ export class AuthService {
 
   // USERNAME + PASSWORD PARADIGM 
 
-  logIn(creds) {
-  	this.angularFire.auth.login(creds)
-                         .catch((error) => { console.log(error); });
+  logIn(creds): Observable<string> {
+    var self = this;
+    let promise = self.angularFire.auth.login(creds);
+    return Observable.fromPromise(<Promise<FirebaseAuthState>>promise)
+                     .map(firebaseAuthState => {
+                       return firebaseAuthState.uid;
+                     });
   }
 
   createAccount(creds): Observable<string> {

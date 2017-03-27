@@ -20,7 +20,10 @@ export class UserProvider {
               public authService: AuthService) { }
 
   login(loginData) {
-    this.authService.logIn(loginData);
+    var self = this;
+    self.authService.logIn(loginData)
+                    .subscribe(function (userID) { self.getUser(userID); }, 
+                               this.handleErrorCallback);
   }
 
   logout() {
@@ -30,20 +33,14 @@ export class UserProvider {
   createAccount(newUserData) {
     var self = this;
     self.authService.createAccount(newUserData)
-                    .subscribe(
-                      function (userID) { 
-                        self.createProfile(userID); 
-                      },
-                      function (err) { 
-                        console.log("create account subscribe");
-                        console.log('Error: %s', err); 
-                      });
+                    .subscribe(this.createProfile, this.handleErrorCallback);
   }
 
 	getUser(userID): Observable<User> {
 		let getUserURL = this.baseUserUrl + "/" + userID;
     let headers = new Headers({"Content-Type": "application/json"});
     return this.http.get(getUserURL, {headers: headers})
+                    .map((res:Response) => res.json())
                     .map(this.parseUserFromResponse)
   }
 
@@ -59,30 +56,32 @@ export class UserProvider {
     let userURL = this.baseUserUrl + "/" + user.userID;
     let headers = new Headers({"Content-Type": "application/json"});
     return this.http.delete(userURL, {headers: headers})
+                    .map((res:Response) => res.json())
                     .map(this.parseUserFromResponse)
   }
 
-  private createProfile(userID) {
-    var self = this;
+  private createProfile = (userID) => {
     let userURL = this.baseUserUrl + "/" + userID;
     let headers = new Headers({"Content-Type": "application/json"});
     let body = JSON.stringify({"userID": userID});
-    return self.http.post(userURL, body, {headers: headers})
-                    .map((res:Response) => res.json())
-                    .map(self.parseUserFromResponse)
-                    .subscribe(
-                      function (user) {
-
-                        console.log('User: %s', user);
-
-                      },
-                      function (err) { 
-                        console.log('Error: %s', err); 
-                      });
+    console.log("this\n" + this);
+    this.http.post(userURL, body, {headers: headers})
+             .map((res:Response) => res.json())
+             .map(this.parseUserFromResponse)
+             .subscribe(this.updateUserStateCallback, this.handleErrorCallback);
   }
 
   private parseUserFromResponse(responseJSON) {
     console.log("respsonse\n" + JSON.stringify(responseJSON));
     return new User();
+  }
+
+  private handleErrorCallback = (err) => {
+    console.log("create account subscribe");
+    console.log('Error: %s', err); 
+  }
+
+  private updateUserStateCallback = (user) => {
+     console.log('User: %s', user);
   }
 }

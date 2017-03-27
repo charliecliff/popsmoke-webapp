@@ -25,7 +25,7 @@ export class HolidayProvider {
 
     this.store.select("user").subscribe(user => {
       console.log("subscribing to user");
-      this.getHolidays("army", "2012-01-01").subscribe(
+      this.getHolidays("army", "2020-01-01").subscribe(
         function (x) {
           console.log('Next: %s', x);
        });

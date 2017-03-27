@@ -94,19 +94,20 @@ exports.deleteUserFromAmazonDynamo = function(res, userID) {
   });
 }
 
-exports.parseUserBody = function(data) {
+exports.parseUserBody = function(requestBody) {
   console.log("parseUserBody");
 
   var output = new Map();
 
-  if ("userID" in data) {
-    output.set("userID", { S: data["userID"] });
+  if ( requestBody.hasOwnProperty("userID") ) {
+    console.log("has a userID");
+    output.set("userID", { S: requestBody["userID"] });
   }
   if ("firstName" in data) {
-    output.set("firstName", { S: data["firstName"] });
+    output.set("firstName", { S: requestBody["firstName"] });
   }
   if ("lastName" in data) {
-    output.set("lastName", { S: data["lastName"] });
+    output.set("lastName", { S: requestBody["lastName"] });
   }
   console.log("userMap\n" + JSON.stringify(output, null, 4) );
   return output;

@@ -27,6 +27,7 @@
     "aws-sdk": "^2.28.0",
     "body-parser": "^1.17.1",
     "cors": "^2.8.1",
+    "dateformat": "2.0.0",
     "express": "^4.15.2",
     "firebase": "^3.0.0",
     "ionic-angular": "2.2.0",

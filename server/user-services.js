@@ -62,7 +62,7 @@ exports.postUserToAmazonDynamo = function(res, userMap) {
                  TableName: "popsmoke-users"
                };
 
-  console.log("params \n" + params);
+  console.log("params \n" + JSON.stringify(params, null, 4)));
   dynamodb.putItem(params, function(err, data) {
       if (err) {
         console.log("error\n" + err);

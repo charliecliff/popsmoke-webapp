@@ -45,7 +45,7 @@ exports.buildArrayFromAWSMap = function(awsMap) {
   var outputArray = new Array();
   var itemArray = awsMap;
 
-  console.log("itemArray" + itemArray);
+  console.log("itemArray" + JSON.stringify(itemArray));
 
   for (var i = itemArray.length - 1; i >= 0; i--) {
     var holidayMap = itemArray[i];

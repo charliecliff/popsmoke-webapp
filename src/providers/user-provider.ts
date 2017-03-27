@@ -82,7 +82,7 @@ export class UserProvider {
   }
 
   private parseUserFromResponse(responseJSON) {
-    console.log("respsonse\n" + responseJSON);
+    console.log("respsonse\n" + JSON.stringify(responseJSON));
     return new User();
   }
 }

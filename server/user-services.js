@@ -17,12 +17,14 @@ exports.getUserFromAmazonDynamo = function(res, userID) {
   });
 }
 
-exports.putUserToAmazonDynamo = function(res, userMap) {
-  this.postUserToAmazonDynamo(res, userMap);
+exports.putUserToAmazonDynamo = function(req, res) {
+  this.postUserToAmazonDynamo(req, res);
 }
 
-exports.postUserToAmazonDynamo = function(res, userMap) {
+exports.postUserToAmazonDynamo = function(req, res) {
   var dynamodb = this.awsDynamoDBInstance();
+  var userMap = this.buildAWSMapFromUserRequestBody(req);
+  var userModel = this.buildModelFromUserRequestBody(req);
   var params = { Item: userMap,
                  ReturnConsumedCapacity: "TOTAL", 
                  TableName: "popsmoke-users"
@@ -31,7 +33,7 @@ exports.postUserToAmazonDynamo = function(res, userMap) {
       if (err) {
         res.status(err.statusCode).send("Problem with AWS");
       } else {
-        res.send( JSON.stringify({User: userMap}) );
+        res.send( JSON.stringify({User: userModel}) );
       }
   });
 }
@@ -53,20 +55,6 @@ exports.deleteUserFromAmazonDynamo = function(res, userID) {
   });
 }
 
-exports.parseUserBody = function(requestBody) {
-  var output = new Map();
-  if ( requestBody.hasOwnProperty("userID") ) {
-    output["userID"] = { S: requestBody["userID"] };
-  }
-  if ( requestBody.hasOwnProperty("firstName") ) {
-    output["firstName"] = { S: requestBody["firstName"] };
-  }
-  if ( requestBody.hasOwnProperty("lastName") ) {
-    output["lastName"] = { S: requestBody["lastName"] };
-  }
-  return output;
-}
-
 exports.awsDynamoDBInstance = function() {
   var AWS = require("aws-sdk");
   AWS.config.update({ accessKeyId: "AKIAIDMIESKUD4F657BQ", 
@@ -74,4 +62,25 @@ exports.awsDynamoDBInstance = function() {
                       region:'us-east-1'});      
   var dynamodb = new AWS.DynamoDB({apiVersion: '2012-08-10'});
   return dynamodb;
+
+exports.buildAWSMapFromUserRequestBody = function(requestBody) {
+  var outputMap = new Map();
+  if ( requestBody.hasOwnProperty("userID") ) {
+    outputMap["userID"] = { S: requestBody["userID"] };
+  }
+  if ( requestBody.hasOwnProperty("firstName") ) {
+    outputMap["firstName"] = { S: requestBody["firstName"] };
+  }
+  if ( requestBody.hasOwnProperty("lastName") ) {
+    outputMap["lastName"] = { S: requestBody["lastName"] };
+  }
+  return outputMap;
+}
+
+exports.buildModelFromUserRequestBody = function(requestBody) {
+  var outputModel = new Object();
+  if ( requestBody.hasOwnProperty("userID") ) {
+    output.userID = requestBody["userID"];
+  }
+  return outputModel;
 }

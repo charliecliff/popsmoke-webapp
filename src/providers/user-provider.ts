@@ -23,26 +23,28 @@ export class UserProvider {
               public authService: AuthService) { }
 
   login(loginData) {
-    var self = this;
-    self.authService.logIn(loginData)
+    console.log("login");
+    this.authService.logIn(loginData)
                     .subscribe(this.getUserCallback, 
                                this.handleErrorCallback);
   }
 
   logout() {
     console.log("logout");
-    // this.authService.logOut()
-    //                 .subscribe(this.updateAnonymousStateCallback, 
-    //                            this.handleErrorCallback);
+    this.authService.logOut()
+                    .subscribe(this.updateAnonymousStateCallback, 
+                               this.handleErrorCallback);
   }
 
   createAccount(newUserData) {
+    console.log("createAccount");
     this.authService.createAccount(newUserData)
                     .subscribe(this.createUserCallback, 
                                this.handleErrorCallback);
   }
 
 	getUser(userID) {
+    console.log("getUser");
 		let getUserURL = this.baseUserUrl + "/" + userID;
     let headers = new Headers({"Content-Type": "application/json"});
     this.http.get(getUserURL, {headers: headers})
@@ -53,6 +55,7 @@ export class UserProvider {
   }
 
   updateUser(user): Observable<User> {
+    console.log("updateUser");
     let userURL = this.baseUserUrl + "/" + user.userID;
 		let headers = new Headers({"Content-Type": "application/json"});
     let body = JSON.stringify(user);
@@ -92,13 +95,11 @@ export class UserProvider {
   }
 
   private updateAnonymousStateCallback = () => {
-    console.log("updateAnonymousUserStateCallback");
     this.store.dispatch( new UserActions.SetUserAction( new User() ) );
     this.store.dispatch( new UserIDActions.SetUserIDAction( "" ) );
   }
 
   private updateUserStateCallback = (user) => {
-    console.log("updateUserStateCallback\n" + JSON.stringify(user) )
     this.store.dispatch( new UserActions.SetUserAction(user) );
     this.store.dispatch( new UserIDActions.SetUserIDAction(user.userID) );
   }

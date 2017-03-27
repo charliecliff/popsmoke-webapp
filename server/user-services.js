@@ -98,13 +98,16 @@ exports.buildModelFromUserRequestBody = function(requestBody) {
 
 exports.buildModelFromAWSMap = function(awsMap) {
 // {"Item":{"userID":{"S":"pCeFNSIARLSZARUy6jVXW5ZxOD32"}}}
+
+  console.log("awsMap\n" + JSON.stringify(awsMap));
+
   var itemMap = awsMapp["Item"];
   var outputModel = new Object();
 
   var userID = itemMap["userID"]["S"];
 
-  console.log("buildModelFromAWSMap\n" + itemMap)
-  console.log("userID\n" + userID)
+  console.log("buildModelFromAWSMap\n" + itemMap);
+  console.log("userID\n" + userID);
 
   return itemMap;
 }

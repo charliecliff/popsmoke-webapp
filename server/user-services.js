@@ -3,16 +3,12 @@ var AWS = require("aws-sdk");
 
 var exports = module.exports = {};
 
-exports.parameters = {
-  USER_ID: "userID"
-};
-
 exports.getUserFromAmazonDynamo = function(res, userID) {
   AWS.config.update({ accessKeyId: "AKIAIDMIESKUD4F657BQ", 
                       secretAccessKey: "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",
                       region:'us-east-1'});      
   var dynamodb = new AWS.DynamoDB({apiVersion: '2012-08-10'});
-  
+
   var outputMap = new Map();
   outputMap["userID"] = { S: userID };
 
@@ -23,7 +19,8 @@ exports.getUserFromAmazonDynamo = function(res, userID) {
       console.log("error\n" + err);
       res.status(err.statusCode).send("Problem with AWS");
     } else {
-      res.send(data);
+      var userModel = this.buildModelFromAWSMap(data);
+      res.send( {User: userModel} );
     }
   });
 }
@@ -96,4 +93,17 @@ exports.buildModelFromUserRequestBody = function(requestBody) {
     outputModel.userID = requestBody["userID"];
   }
   return outputModel;
+}
+
+exports.buildModelFromAWSMap = function(awsMap) {
+// {"Item":{"userID":{"S":"pCeFNSIARLSZARUy6jVXW5ZxOD32"}}}
+  var itemMap = awsMapp["Item"];
+  var outputModel = new Object();
+
+  var userID = itemMap["userID"]["S"];
+
+  console.log("buildModelFromAWSMap\n" + itemMap)
+  console.log("userID\n" + userID)
+
+  return itemMap;
 }

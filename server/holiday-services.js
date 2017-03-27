@@ -11,7 +11,7 @@ exports.getHolidaysFromAmazonDynamo = function(req, res) {
                       region:'us-east-1'});      
   var dynamodb = new AWS.DynamoDB({apiVersion: '2012-08-10'});
 
-  var expressionValues = self.buildAWSQueryFromHolidaysRequest(req);
+  var expressionValues = this.buildAWSQueryFromHolidaysRequest(req);
   var params = {
     TableName : "popsmoke-holidays",
     KeyConditionExpression: "governmentBranch = :branch and startDateTime between :curentDate and :nextDate",

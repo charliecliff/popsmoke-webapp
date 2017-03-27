@@ -31,6 +31,7 @@ exports.postUserToAmazonDynamo = function(req, res) {
                };
   dynamodb.putItem(params, function(err, data) {
       if (err) {
+        console.log("error\n" + err);
         res.status(err.statusCode).send("Problem with AWS");
       } else {
         res.send( JSON.stringify( {User: userModel} ));

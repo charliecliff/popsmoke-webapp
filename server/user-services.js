@@ -33,7 +33,7 @@ exports.postUserToAmazonDynamo = function(req, res) {
       if (err) {
         res.status(err.statusCode).send("Problem with AWS");
       } else {
-        res.send( JSON.stringify({User: userModel}) );
+        res.send( JSON.stringify( {User: userModel} ));
       }
   });
 }

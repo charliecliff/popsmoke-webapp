@@ -33,6 +33,10 @@ exports.getHolidaysFromAmazonDynamo = function(req, res) {
 }
 
 exports.buildAWSQueryFromHolidaysRequest = function(req) {
+
+  console.log("buildAWSQueryFromHolidaysRequest");
+  console.log(req.query);
+
   var dateFormat = require('dateformat');
 
   var now = new Date();

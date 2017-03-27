@@ -50,6 +50,9 @@ app.get("/user/:id", function(req, res) {
 	userServices.getUserFromAmazonDynamo(res, req.params.id);
 });
 app.put("/user/:id", function(req, res) {
+	console.log("PUT: user");
+	console.log(req.body);
+
 	let userData = userServices.parseUserBody(req.Body);
 	console.log("PUT: user" + userData);
 	userServices.putUserToAmazonDynamo(res, userData);

@@ -56,8 +56,7 @@ export class UserProvider {
     return this.http.put(userURL, body, {headers: headers})
                     .map(this.parseUserFromResponse)
   }
-
-
+  
   deleteUser(user): Observable<User> {
     let userURL = this.baseUserUrl + "/" + user.userID;
     let headers = new Headers({"Content-Type": "application/json"});

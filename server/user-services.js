@@ -23,8 +23,8 @@ exports.putUserToAmazonDynamo = function(req, res) {
 
 exports.postUserToAmazonDynamo = function(req, res) {
   var dynamodb = this.awsDynamoDBInstance();
-  var userMap = this.buildAWSMapFromUserRequestBody(req);
-  var userModel = this.buildModelFromUserRequestBody(req);
+  var userMap = this.buildAWSMapFromUserRequestBody(req.body);
+  var userModel = this.buildModelFromUserRequestBody(req.body);
   var params = { Item: userMap,
                  ReturnConsumedCapacity: "TOTAL", 
                  TableName: "popsmoke-users"
@@ -66,6 +66,7 @@ exports.awsDynamoDBInstance = function() {
 }
 
 exports.buildAWSMapFromUserRequestBody = function(requestBody) {
+  console.log("buildAWSMapFromUserRequestBody\n" + requestBody);
   var outputMap = new Map();
   if ( requestBody.hasOwnProperty("userID") ) {
     outputMap["userID"] = { S: requestBody["userID"] };

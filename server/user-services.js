@@ -15,10 +15,9 @@ exports.getUserFromAmazonDynamo = function(res, userID) {
                       region:'us-east-1'});   
   var dynamodb = new AWS.DynamoDB({apiVersion: '2012-08-10'});
 
-  var params = {
-    Key: { USER_ID: { S: userID } }, 
-    TableName: "popsmoke-users"
-  };
+  var params = { Key: { USER_ID: { S: userID } }, 
+                 TableName: "popsmoke-users"};
+
   dynamodb.getItem(params, function(err, data) {
     if (err) {
       res.status(err.statusCode).send("Problem with AWS");
@@ -28,18 +27,18 @@ exports.getUserFromAmazonDynamo = function(res, userID) {
   });
 }
 
-exports.putUserToAmazonDynamo = function(res, user) {
+exports.putUserToAmazonDynamo = function(res, userMap) {
   var AWS = require("aws-sdk");
   AWS.config.update({ accessKeyId: "AKIAIDMIESKUD4F657BQ", 
                       secretAccessKey: "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",
                       region:'us-east-1'});     
   var dynamodb = new AWS.DynamoDB({apiVersion: '2012-08-10'});
 
-  var params = {
-      Item: user, 
-      ReturnConsumedCapacity: "TOTAL", 
-      TableName: "popsmoke-users"
-  };
+  var params = { Item: userMap,
+                 ReturnConsumedCapacity: "TOTAL", 
+                 TableName: "popsmoke-users"
+               };
+
   dynamodb.putItem(params, function(err, data) {
       if (err) {
         res.status(err.statusCode).send("Problem with AWS");
@@ -63,12 +62,11 @@ exports.postUserToAmazonDynamo = function(res, userMap) {
                };
 
   console.log("params \n" + JSON.stringify(params, null, 4));
+
   dynamodb.putItem(params, function(err, data) {
       if (err) {
-        console.log("error\n" + err);
         res.status(err.statusCode).send("Problem with AWS");
       } else {
-        console.log("data\n" + data);
         res.send(data);
       }
   });
@@ -97,10 +95,18 @@ exports.deleteUserFromAmazonDynamo = function(res, userID) {
 
 exports.parseUserBody = function(data) {
   console.log("parseUserBody");
-  var output = { userID: { S: data["userID"] }, 
-                 firstName: { S: data["firstName"] },
-                 lastName: { S: data["lastName"] }};
-  console.log(output);
-  return output;
 
+  var userMap = new Map();
+
+  if ("userID" in data) {
+    userMap.set(userID, { S: data["userID"] });
+  }
+  if ("firstName" in data) {
+    userMap.set(firstName, { S: data["firstName"] });
+  }
+  if ("lastName" in data) {
+    userMap.set(lastName, { S: data["lastName"] });
+  }
+  console.log(userMap);
+  return userMap;
 }

@@ -107,6 +107,7 @@ exports.parseUserBody = function(requestBody) {
   if ( requestBody.hasOwnProperty("lastName") ) {
     output.set("lastName", { S: requestBody["lastName"] });
   }
+  output.set("test", "fuck");
   console.log("userMap\n" + JSON.stringify(output, null, 4) );
   return output;
 }

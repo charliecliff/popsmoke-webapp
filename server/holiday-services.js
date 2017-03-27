@@ -21,7 +21,8 @@ var params = {
     }
 };
 
-  console.log(JSON.stringify("params\n" + params));
+  console.log( JSON.stringify("params\n" + params));
+
 dynamodb.query(params, function(err, data) {
     if (err) {
         console.error("Unable to query. Error:", JSON.stringify(err, null, 2));
@@ -34,7 +35,7 @@ dynamodb.query(params, function(err, data) {
         });
     }
 });
-
+}
 
 
 
@@ -53,7 +54,6 @@ dynamodb.query(params, function(err, data) {
   // });
 
 
-}
 
 // exports.getHolidayFromAmazonDynamo = function(req, res) {
 //   AWS.config.update({ accessKeyId: "AKIAIDMIESKUD4F657BQ", 

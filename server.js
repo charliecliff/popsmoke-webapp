@@ -69,9 +69,9 @@ app.post("/user/:id", function(req, res) {
 	console.log(body);
 
 	var userData = userServices.parseUserBody(body);
-	console.log("userData" + userData);
+	console.log("userData\n" + userData);
 
-	userServices.postUserToAmazonDynamo(res, user);
+	userServices.postUserToAmazonDynamo(res, userData);
 });
 
 

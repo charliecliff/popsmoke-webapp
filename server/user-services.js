@@ -61,6 +61,8 @@ exports.postUserToAmazonDynamo = function(res, userData) {
                  ReturnConsumedCapacity: "TOTAL", 
                  TableName: "popsmoke-users"
                };
+
+  console.log("param \n" + params);
   dynamodb.putItem(params, function(err, data) {
       if (err) {
         res.status(err.statusCode).send("Problem with AWS");
@@ -94,10 +96,9 @@ exports.deleteUserFromAmazonDynamo = function(res, userID) {
 
 exports.parseUserBody = function(data) {
   console.log("parseUserBody");
-  console.log(data);
   var output = { "Item": { "userID": { "S": data["userID"] }, 
-                         "firstName": { "S": data["firstName"] },
-                         "lastName": { "S": data["lastName"] }
+                           "firstName": { "S": data["firstName"] },
+                           "lastName": { "S": data["lastName"] }
   }};
   console.log(output);
   return output;

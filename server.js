@@ -63,14 +63,8 @@ app.put("/user/:id", function(req, res) {
 });
 
 app.post("/user/:id", function(req, res) {
-	console.log("POST: user");
-
 	var body = req.body;
-	console.log(body);
-
-	var userMap = userServices.parseUserBody(body);
-	console.log("userMap \n" + JSON.stringify(userMap, null, 4) );
-
+	var userMap = userServices.parseUserBody(req.body);
 	userServices.postUserToAmazonDynamo(res, userMap);
 });
 

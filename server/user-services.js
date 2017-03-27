@@ -85,7 +85,7 @@ exports.buildAWSMapFromUserRequestBody = function(requestBody) {
 exports.buildModelFromUserRequestBody = function(requestBody) {
   var outputModel = new Object();
   if ( requestBody.hasOwnProperty("userID") ) {
-    output.userID = requestBody["userID"];
+    outputModel.userID = requestBody["userID"];
   }
   return outputModel;
 }

@@ -101,7 +101,7 @@ exports.buildModelFromAWSMap = function(awsMap) {
 
   console.log("awsMap\n" + JSON.stringify(awsMap));
 
-  var itemMap = awsMapp["Item"];
+  var itemMap = awsMap=["Item"];
   var outputModel = new Object();
 
   var userID = itemMap["userID"]["S"];

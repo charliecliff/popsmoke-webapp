@@ -58,6 +58,9 @@ app.put("/user/:id", function(req, res) {
 	userServices.putUserToAmazonDynamo(res, userData);
 });
 app.post("/user/:id", function(req, res) {
+	console.log("POST: user");
+	console.log(req.body);
+
 	let userData = userServices.parseUserBody(req.Body);
 	console.log("POST: user" + userData);
 	userServices.postUserToAmazonDynamo(res, user);

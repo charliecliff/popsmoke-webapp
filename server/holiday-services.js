@@ -16,12 +16,12 @@ var params = {
     TableName : "popsmoke-holidays",
     KeyConditionExpression: "dateTimestamp between :curentDate and :nextDate",
     ExpressionAttributeValues: {
-        ":curentDate":1,
-        ":nextDate":200000
+        ":curentDate":{N: 1},
+        ":nextDate":{N: 200000}
     }
 };
 
-  console.log( JSON.stringify("params\n" + params));
+  console.log( "params\n" + JSON.stringify(params));
 
 dynamodb.query(params, function(err, data) {
     if (err) {

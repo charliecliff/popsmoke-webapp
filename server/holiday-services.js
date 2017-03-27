@@ -36,8 +36,7 @@ exports.buildAWSQueryFromHolidaysRequest = function(req) {
   var dateFormat = require('dateformat');
 
   var now = new Date();
-  // java.text.SimpleDateFormat df = new java.text.SimpleDateFormat("");
-  String startDateString = dateFormat(now, "yyyy-MM-dd");
+  var startDateString = dateFormat(now, "yyyy-MM-dd");
 
   var outputMap = new Map();
   outputMap[":branch"] = { S: req.params.branch };

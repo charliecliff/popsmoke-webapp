@@ -5,7 +5,8 @@ var dateFormat = require('dateformat');
 var exports = module.exports = {};
 
 exports.getHolidaysFromAmazonDynamo = function(req, res) {
-
+  console.log("getHolidaysFromAmazonDynamo");
+  var self = this;
   AWS.config.update({ accessKeyId: "AKIAIDMIESKUD4F657BQ", 
                       secretAccessKey: "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",
                       region:'us-east-1'});      
@@ -21,7 +22,7 @@ exports.getHolidaysFromAmazonDynamo = function(req, res) {
       console.error("Get Holidays Error:", JSON.stringify(err));
       res.status(err.statusCode).send("Problem with AWS");
     } else {
-      var holidays = this.buildArrayFromAWSMap(data);
+      var holidays = self.buildArrayFromAWSMap(data);
       console.log(JSON.stringify("holidays\n" + holidays));
       console.log("Query succeeded.");
       res.send( {holidays: holidays} );

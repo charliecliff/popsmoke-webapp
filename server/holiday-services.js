@@ -42,7 +42,7 @@ exports.buildAWSQueryFromHolidaysRequest = function(req) {
 
 exports.buildArrayFromAWSMap = function(awsMap) {
   var outputArray = new Array();
-  var itemArray = awsMap.holidays.Items;
+  var itemArray = awsMap.holidays.Item;
   for (var i = itemArray.length - 1; i >= 0; i--) {
     var holidayMap = itemArray[i];
     var userID = holidayMap.startDateTime.S;
@@ -50,7 +50,7 @@ exports.buildArrayFromAWSMap = function(awsMap) {
     var holidayModel = new Object();
     holidayModel.userID = userID;
     holidayModel.branch = branch;
-    outputArray.push(holidayModel)
+    outputArray.push(holidayModel);
   }
   return outputArray;
 }

@@ -66,8 +66,10 @@ exports.postUserToAmazonDynamo = function(res, userMap) {
 
   dynamodb.putItem(params, function(err, data) {
       if (err) {
+        console.log("error with AWS\n" + err);
         res.status(err.statusCode).send("Problem with AWS");
       } else {
+        console.log("sucess!\n" + data);
         res.send(data);
       }
   });
@@ -98,15 +100,15 @@ exports.parseUserBody = function(requestBody) {
   console.log("parseUserBody");
 
   var output = new Map();
-  // if ( requestBody.hasOwnProperty("userID") ) {
-  //   output.set("userID", "fuck you");
-  // }
-  // if ( requestBody.hasOwnProperty("firstName") ) {
-  //   output.set("firstName", { S: requestBody["firstName"] });
-  // }
-  // if ( requestBody.hasOwnProperty("lastName") ) {
-  //   output.set("lastName", { S: requestBody["lastName"] });
-  // }
+  if ( requestBody.hasOwnProperty("userID") ) {
+    output.set("userID", "fuck you");
+  }
+  if ( requestBody.hasOwnProperty("firstName") ) {
+    output.set("firstName", { S: requestBody["firstName"] });
+  }
+  if ( requestBody.hasOwnProperty("lastName") ) {
+    output.set("lastName", { S: requestBody["lastName"] });
+  }
   output.set("test", "fuck");
   console.log("parseUserBody -- userMap\n" + JSON.stringify(output) );
   console.log(output.values().next().value); 

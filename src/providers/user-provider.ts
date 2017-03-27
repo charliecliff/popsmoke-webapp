@@ -6,7 +6,7 @@ import 'rxjs/Rx';
 
 import { AppState } from '../reducers';
 import { User } from '../models/User';
-import { AuthService } from './auth-service';
+import { AuthProvider } from './auth-provider';
 
 import * as UserActions from '../reducers/user-reducer';
 import * as UserIDActions from '../reducers/userID-reducer';
@@ -20,27 +20,27 @@ export class UserProvider {
 
   constructor(public http: Http, 
               public store: Store<AppState>,
-              public authService: AuthService) { }
+              public authProvider: AuthProvider) { }
 
   login(loginData) {
     console.log("login");
-    this.authService.logIn(loginData)
-                    .subscribe(this.getUserCallback, 
-                               this.handleErrorCallback);
+    this.authProvider.logIn(loginData)
+                     .subscribe(this.getUserCallback, 
+                                this.handleErrorCallback);
   }
 
   logout() {
     console.log("logout");
-    this.authService.logOut()
-                    .subscribe(this.updateAnonymousStateCallback, 
-                               this.handleErrorCallback);
+    this.authProvider.logOut()
+                     .subscribe(this.updateAnonymousStateCallback, 
+                                this.handleErrorCallback);
   }
 
   createAccount(newUserData) {
     console.log("createAccount");
-    this.authService.createAccount(newUserData)
-                    .subscribe(this.createUserCallback, 
-                               this.handleErrorCallback);
+    this.authProvider.createAccount(newUserData)
+                     .subscribe(this.createUserCallback, 
+                                this.handleErrorCallback);
   }
 
 	getUser(userID) {

@@ -10,7 +10,7 @@ import { AppState } from '../reducers';
 import * as userIDReducer from '../reducers/userID-reducer';
 
 @Injectable()
-export class AuthService {
+export class AuthProvider {
 
   constructor(public http: Http, 
               public angularFire: AngularFire, 

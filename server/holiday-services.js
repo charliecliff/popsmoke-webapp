@@ -14,10 +14,10 @@ exports.getHolidaysFromAmazonDynamo = function(req, res) {
 
 var params = {
     TableName : "popsmoke-holidays",
-    KeyConditionExpression: "startDate between :curentDate and :nextDate",
+    KeyConditionExpression: "startTimeStamp between :curentDate and :nextDate",
     ExpressionAttributeValues: {
-        ":curentDate":{S: "2010-01-01"},
-        ":nextDate":{S: "2015-01-01"}
+        ":curentDate":{N: "1"},
+        ":nextDate":{N: "2015"}
     }
 };
 

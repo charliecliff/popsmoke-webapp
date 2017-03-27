@@ -42,7 +42,10 @@ exports.buildAWSQueryFromHolidaysRequest = function(req) {
 
 exports.buildArrayFromAWSMap = function(awsMap) {
   var outputArray = new Array();
-  var itemArray = awsMap.holidays.Item;
+  var itemArray = awsMap.holidays;
+
+  console.log("itemArray" + itemArray);
+
   for (var i = itemArray.length - 1; i >= 0; i--) {
     var holidayMap = itemArray[i];
     var userID = holidayMap.startDateTime.S;

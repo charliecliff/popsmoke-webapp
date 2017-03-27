@@ -50,22 +50,17 @@ exports.putUserToAmazonDynamo = function(res, user) {
   });
 }
 
-exports.postUserToAmazonDynamo = function(res, user) {
+exports.postUserToAmazonDynamo = function(res, userData) {
   var AWS = require("aws-sdk");
   AWS.config.update({ accessKeyId: "AKIAIDMIESKUD4F657BQ", 
                       secretAccessKey: "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",
                       region:'us-east-1'});
   var dynamodb = new AWS.DynamoDB({apiVersion: '2012-08-10'});
 
-  var params = {
-      Item: {
-        "userID": {
-            S: "Test UID"
-        }
-      },
-      ReturnConsumedCapacity: "TOTAL", 
-      TableName: "popsmoke-users"
-  };
+  var params = { userData,
+                 ReturnConsumedCapacity: "TOTAL", 
+                 TableName: "popsmoke-users"
+               };
   dynamodb.putItem(params, function(err, data) {
       if (err) {
         res.status(err.statusCode).send("Problem with AWS");

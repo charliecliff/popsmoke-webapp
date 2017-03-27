@@ -16,8 +16,8 @@ var params = {
     TableName : "popsmoke-holidays",
     KeyConditionExpression: "dateTimestamp between :curentDate and :nextDate",
     ExpressionAttributeValues: {
-        ":curentDate":{N: 1},
-        ":nextDate":{N: 200000}
+        ":curentDate":{N: "1"},
+        ":nextDate":{N: "200000"}
     }
 };
 

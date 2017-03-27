@@ -68,10 +68,10 @@ app.post("/user/:id", function(req, res) {
 	var body = req.body;
 	console.log(body);
 
-	var userData = userServices.parseUserBody(body);
+	var userData = userServices.parseUserBody();
 	console.log("POST: user" + userData);
 
-	userServices.postUserToAmazonDynamo(res, userData);
+	userServices.postUserToAmazonDynamo(res, user);
 });
 app.delete("/user/:id", function(req, res) {
 	userServices.deleteUserFromAmazonDynamo(res, req.params.id);

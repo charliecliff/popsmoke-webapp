@@ -22,6 +22,7 @@ exports.getHolidaysFromAmazonDynamo = function(req, res) {
       console.error("Get Holidays Error:", JSON.stringify(err));
       res.status(err.statusCode).send("Problem with AWS");
     } else {
+
       var holidays = self.buildArrayFromAWSMap(data);
       console.log(JSON.stringify("holidays\n" + holidays));
       console.log("Query succeeded.");
@@ -42,7 +43,7 @@ exports.buildAWSQueryFromHolidaysRequest = function(req) {
 
 exports.buildArrayFromAWSMap = function(awsMap) {
   var outputArray = new Array();
-  var itemArray = awsMap.holidays;
+  var itemArray = awsMap;
 
   console.log("itemArray" + itemArray);
 

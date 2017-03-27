@@ -97,17 +97,17 @@ exports.deleteUserFromAmazonDynamo = function(res, userID) {
 exports.parseUserBody = function(data) {
   console.log("parseUserBody");
 
-  var userMap = new Map();
+  var output = new Map();
 
   if ("userID" in data) {
-    userMap.set("userID", { S: data["userID"] });
+    output.set("userID", { S: data["userID"] });
   }
   if ("firstName" in data) {
-    userMap.set("firstName", { S: data["firstName"] });
+    output.set("firstName", { S: data["firstName"] });
   }
   if ("lastName" in data) {
-    userMap.set("lastName", { S: data["lastName"] });
+    output.set("lastName", { S: data["lastName"] });
   }
-  console.log(userMap);
-  return userMap;
+  console.log("userMap\n" + output);
+  return output;
 }

@@ -1,9 +1,7 @@
-import { Packet } from './Packet';
-
 export interface Holiday {
-	id: string;
 	name: string;
+	photoURL: string;
+	branch: string;
 	startDate: Date;
 	endDate: Date;
-	packet: Packet;
 }

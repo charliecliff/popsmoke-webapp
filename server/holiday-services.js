@@ -21,9 +21,10 @@ exports.getHolidaysFromAmazonDynamo = function(req, res) {
       console.error("Get Holidays Error:", JSON.stringify(err));
       res.status(err.statusCode).send("Problem with AWS");
     } else {
-      console.log(JSON.stringify("data\n" + data));
+      var holidays = this.buildArrayFromAWSMap(data);
+      console.log(JSON.stringify("holidays\n" + holidays));
       console.log("Query succeeded.");
-      res.send( {holidays: data} );
+      res.send( {holidays: holidays} );
     }
   });
 }
@@ -36,4 +37,19 @@ exports.buildAWSQueryFromHolidaysRequest = function(req) {
   outputMap[":curentDate"] = { S: startDateString };
   outputMap[":nextDate"] = { S: req.query.thruDate };
   return outputMap;
+}
+
+exports.buildArrayFromAWSMap = function(awsMap) {
+  var outputArray = new Array();
+  var itemArray = awsMap.holidays.Items;
+  for (var i = itemArray.length - 1; i >= 0; i--) {
+    var holidayMap = itemArray[i];
+    var userID = holidayMap.startDateTime.S;
+    var branch = holidayMap.governmentBranch.S;
+    var holidayModel = new Object();
+    holidayModel.userID = userID;
+    holidayModel.branch = branch;
+    outputArray..push(holidayModel)
+  }
+  return outputArray;
 }

@@ -20,7 +20,6 @@ export interface AppState {
 	
 	userID: string;	
 	user: User;
-	
 	holidays: Holiday[];
 
 

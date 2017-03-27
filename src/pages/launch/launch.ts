@@ -23,13 +23,16 @@ export class LaunchPage {
               public store: Store<Reducers.AppState>) { }
 	
 	ngOnInit() {
+
+    this.pushLoginController();
+
     this.store.select('user').subscribe(object => {
       let user = object as User;
-      this.navCtrl.popToRoot();
+      // this.navCtrl.popToRoot();
       if ( user.userID != undefined ) {
-        this.pushHomeController();
+        // this.pushHomeController();
       } else {
-        this.pushLoginController();
+        // this.pushLoginController();
       }
     });
 	}

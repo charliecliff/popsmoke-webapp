@@ -43,11 +43,12 @@ export class HolidayProvider {
   }
 
   private parseHolidaysFromResponse(res: Response) {
-    console.log("Holiday Response: " + res);
+    console.log("Holiday Response: " + JSON.stringify(res));
     return [];
   }
 
   private updateHolidaysStateCallback = (holidaysArray) => {
+
   }
 
   private handleErrorCallback = (err) => {

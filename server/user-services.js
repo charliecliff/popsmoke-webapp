@@ -1,7 +1,5 @@
 var express = require('express');
 
-
-
 var exports = module.exports = {};
 
 exports.parameters = {
@@ -9,7 +7,12 @@ exports.parameters = {
 };
 
 exports.getUserFromAmazonDynamo = function(res, userID) {
-  var dynamodb = this.awsDynamoDBInstance();
+  var AWS = require("aws-sdk");
+  AWS.config.update({ accessKeyId: "AKIAIDMIESKUD4F657BQ", 
+                      secretAccessKey: "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",
+                      region:'us-east-1'});      
+  var dynamodb = new AWS.DynamoDB({apiVersion: '2012-08-10'});
+  
   var params = { Key: { USER_ID: { S: userID } }, 
                  TableName: "popsmoke-users"};
   dynamodb.getItem(params, function(err, data) {
@@ -50,7 +53,13 @@ exports.postUserToAmazonDynamo = function(req, res) {
 
 exports.deleteUserFromAmazonDynamo = function(res, userID) {
   console.log("DELETE USER");
-  var dynamodb = this.awsDynamoDBInstance();
+
+  var AWS = require("aws-sdk");
+  AWS.config.update({ accessKeyId: "AKIAIDMIESKUD4F657BQ", 
+                      secretAccessKey: "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",
+                      region:'us-east-1'});      
+  var dynamodb = new AWS.DynamoDB({apiVersion: '2012-08-10'});
+
   var params = { Key: { USER_ID: { S: userID } }, 
                  TableName: "popsmoke-users"
                };
@@ -63,15 +72,6 @@ exports.deleteUserFromAmazonDynamo = function(res, userID) {
       res.send(data);
     }
   });
-}
-
-exports.awsDynamoDBInstance = function() {
-  var AWS = require("aws-sdk");
-  AWS.config.update({ accessKeyId: "AKIAIDMIESKUD4F657BQ", 
-                      secretAccessKey: "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",
-                      region:'us-east-1'});      
-  var dynamodb = new AWS.DynamoDB({apiVersion: '2012-08-10'});
-  return dynamodb;
 }
 
 exports.buildAWSMapFromUserRequestBody = function(requestBody) {

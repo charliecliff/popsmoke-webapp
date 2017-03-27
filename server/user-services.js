@@ -1,5 +1,10 @@
 var express = require('express');
-
+  var AWS = require("aws-sdk");
+  AWS.config.update({ accessKeyId: "AKIAIDMIESKUD4F657BQ", 
+                      secretAccessKey: "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",
+                      region:'us-east-1'});      
+  var dynamodb = new AWS.DynamoDB({apiVersion: '2012-08-10'});
+  
 var exports = module.exports = {};
 
 exports.parameters = {
@@ -24,8 +29,13 @@ exports.putUserToAmazonDynamo = function(req, res) {
 }
 
 exports.postUserToAmazonDynamo = function(req, res) {
-  var dynamodb = this.awsDynamoDBInstance();
-  var userMap = this.buildAWSMapFromUserRequestBody(req.body);
+  // var AWS = require("aws-sdk");
+  // AWS.config.update({ accessKeyId: "AKIAIDMIESKUD4F657BQ", 
+  //                     secretAccessKey: "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",
+  //                     region:'us-east-1'});      
+  // var dynamodb = new AWS.DynamoDB({apiVersion: '2012-08-10'});
+
+    var userMap = this.buildAWSMapFromUserRequestBody(req.body);
   var userModel = this.buildModelFromUserRequestBody(req.body);
   var params = { Item: userMap,
                  ReturnConsumedCapacity: "TOTAL", 

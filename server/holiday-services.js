@@ -51,6 +51,7 @@ exports.buildArrayFromAWSMap = function(awsMap) {
     var photoURL = holidayMap.photoURL.S;
     
     var holidayModel = new Object();
+    holidayModel.name = name;
     holidayModel.branch = branch;
     holidayModel.startDate = startDateString;
     holidayModel.endDate = endDateString;

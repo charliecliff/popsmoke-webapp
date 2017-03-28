@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController } from 'ionic-angular';
 import { Store } from '@ngrx/store';
 
 import { AppState } from '../../reducers';
@@ -12,15 +12,16 @@ import { HolidayProvider } from '../../providers/holiday-provider';
 })
 export class HomePage {
 
+  public holidays: any;
+
   constructor(public navCtrl: NavController, 
-  						public navParams: NavParams,
   						public store: Store<AppState>,
   						public holidayService: HolidayProvider) { }
 
 	ngOnInit() {
 		this.store.select("holidays").subscribe(holidays => {
-      console.log("Subscrive to Holidays");
-      console.log( JSON.stringify(holidays));
-	  });
+      console.log("holidays: " + JSON.stringify(holidays));
+      this.holidays = holidays;
+    });
 	}
 }

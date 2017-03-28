@@ -24,9 +24,20 @@ export type HolidayActions = SetHolidaysAction |
 export function reducer(state = [], action: HolidayActions ): Holiday[] {  
 	switch(action.type) {
 		case HolidayActionTypes.SET_HOLIDAYS:
-			var holidays = (action as SetHolidaysAction).payload as Holiday[];
-			return Object.assign([], holidays);					
+			var holidays = createHolidayArray( (action as SetHolidaysAction).payload);
+			return holidays;					
 		default:
 			return state;	
    };
+}
+
+
+export function createHolidayArray(payloadArray){
+ var outputArray = new Array();
+	for (var i = payloadArray.length - 1; i >= 0; i--) {
+		let map = payloadArray[i];
+		let holiday = new Holiday(map);
+		outputArray.push(holiday);
+	}
+	return outputArray;
 }

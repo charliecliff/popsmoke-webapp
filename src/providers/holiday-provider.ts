@@ -41,6 +41,7 @@ export class HolidayProvider {
   }
 
   private updateHolidaysStateCallback = (holidaysArray) => {
+    console.log("holidaysArray: " + JSON.stringify(holidaysArray));
     this.store.dispatch( new HolidayActions.SetHolidaysAction(holidaysArray));
   }
 

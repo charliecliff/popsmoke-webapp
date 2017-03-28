@@ -17,8 +17,13 @@
 
 <ion-content padding>
 
-  <ion-list>
-    <ion-item *ngFor="let holiday of holidays">{{holiday}}</ion-item>
+  <ion-list class="card-background-page">
+      
+      <ion-card class="holiday-card" *ngFor="let holiday of holidays">
+        <img src="{{holiday.photoURL}}"/>
+        <div class="card-title">{{holiday.name}}</div>
+      </ion-card>
+
   </ion-list>
 
 </ion-content>

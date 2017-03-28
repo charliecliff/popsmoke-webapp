@@ -31,7 +31,6 @@ export function reducer(state = [], action: HolidayActions ): Holiday[] {
    };
 }
 
-
 export function createHolidayArray(payloadArray){
  var outputArray = new Array();
 	for (var i = payloadArray.length - 1; i >= 0; i--) {

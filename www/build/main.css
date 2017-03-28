@@ -24510,6 +24510,11 @@ ion-navbar.toolbar {
   background-color: red;
 }
 
+page-home body {
+  background-color: blue;
+  /* for the tint */
+}
+
 .card-background-page ion-card {
   position: relative;
   text-align: center;

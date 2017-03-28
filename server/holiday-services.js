@@ -39,14 +39,23 @@ exports.buildAWSQueryFromHolidaysRequest = function(req) {
 
 exports.buildArrayFromAWSMap = function(awsMap) {
   var outputArray = new Array();
+  
   var itemArray = awsMap["Items"];
   for (var i = itemArray.length - 1; i >= 0; i--) {
+    
     var holidayMap = itemArray[i];
-    var userID = holidayMap.startDateTime.S;
     var branch = holidayMap.governmentBranch.S;
+    var startDateString = holidayMap.startDateTime.S;
+    var endDateString = holidayMap.endDateTime.S;
+    var name = holidayMap.name.S;
+    var photoURL = holidayMap.photoURL.S;
+    
     var holidayModel = new Object();
-    holidayModel.userID = userID;
     holidayModel.branch = branch;
+    holidayModel.startDate = startDateString;
+    holidayModel.endDate = endDateString;
+    holidayModel.photoURL = photoURL;
+
     outputArray.push(holidayModel);
   }
   return outputArray;

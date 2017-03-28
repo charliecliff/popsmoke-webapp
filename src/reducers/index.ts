@@ -13,7 +13,7 @@ import * as userReducer from './user-reducer';
 import * as userIDReducer from './userID-reducer';
 
 import * as da31Reducer from './da31Form.reducer';
-import * as holidayReducer from './holiday-reducer';
+import * as holidaysReducer from './holidays-reducer';
 import * as errorReducer from './error-reducer';
 
 export interface AppState {
@@ -31,9 +31,10 @@ export interface AppState {
 const reducers = {
 	userID: userIDReducer.reducer,
 	user: userReducer.reducer,
+	holidays: holidaysReducer.reducer,
 
-  da31Form: da31Reducer.reducer,
-  error: errorReducer.reducer
+  // da31Form: da31Reducer.reducer,
+  // error: errorReducer.reducer
 };
 
 const productionReducer: ActionReducer<AppState> = combineReducers(reducers);

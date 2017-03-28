@@ -25,7 +25,7 @@ export function reducer(state = [], action: HolidayActions ): Holiday[] {
 	switch(action.type) {
 		case HolidayActionTypes.SET_HOLIDAYS:
 			var holidays = (action as SetHolidaysAction).payload as Holiday[];
-			return Object.assign({}, holidays);					
+			return Object.assign([], holidays);					
 		default:
 			return state;	
    };

@@ -4,10 +4,9 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 
+import { AuthProvider } from './auth-provider';
 import { AppState } from '../reducers';
 import { User } from '../models/User';
-import { AuthProvider } from './auth-provider';
-
 import * as UserActions from '../reducers/user-reducer';
 import * as UserIDActions from '../reducers/userID-reducer';
 

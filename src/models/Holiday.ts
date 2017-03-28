@@ -1,7 +1,8 @@
 export interface Holiday {
-	name: string;
-	photoURL: string;
 	branch: string;
 	startDate: Date;
+
+	name: string;
+	photoURL: string;
 	endDate: Date;
 }

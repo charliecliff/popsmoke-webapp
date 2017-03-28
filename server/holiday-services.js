@@ -19,13 +19,9 @@ exports.getHolidaysFromAmazonDynamo = function(req, res) {
   };
   dynamodb.query(params, function(err, data) {
     if (err) {
-      console.error("Get Holidays Error:", JSON.stringify(err));
       res.status(err.statusCode).send("Problem with AWS");
     } else {
-
       var holidays = self.buildArrayFromAWSMap(data);
-      console.log(JSON.stringify("holidays\n" + holidays));
-      console.log("Query succeeded.");
       res.send( {holidays: holidays} );
     }
   });
@@ -44,9 +40,6 @@ exports.buildAWSQueryFromHolidaysRequest = function(req) {
 exports.buildArrayFromAWSMap = function(awsMap) {
   var outputArray = new Array();
   var itemArray = awsMap["Items"];
-
-  console.log("itemArray: " + JSON.stringify(itemArray));
-
   for (var i = itemArray.length - 1; i >= 0; i--) {
     var holidayMap = itemArray[i];
     var userID = holidayMap.startDateTime.S;

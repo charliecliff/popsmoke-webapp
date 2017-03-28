@@ -43,9 +43,9 @@ exports.buildAWSQueryFromHolidaysRequest = function(req) {
 
 exports.buildArrayFromAWSMap = function(awsMap) {
   var outputArray = new Array();
-  var itemArray = awsMap;
+  var itemArray = awsMap["Items"];
 
-  console.log("itemArray" + JSON.stringify(itemArray));
+  console.log("itemArray: " + JSON.stringify(itemArray));
 
   for (var i = itemArray.length - 1; i >= 0; i--) {
     var holidayMap = itemArray[i];

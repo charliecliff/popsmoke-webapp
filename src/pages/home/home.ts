@@ -22,8 +22,11 @@ export class HomePage {
 
 	ngOnInit() {
 		this.store.select("holidays").subscribe(holidays => {
-      console.log("holidays: " + JSON.stringify(holidays));
       this.holidays = holidays;
     });
 	}
+
+  holidaySelected(holiday) {
+    console.log("Holiday Selected: " + JSON.stringify(holiday));
+  }
 }

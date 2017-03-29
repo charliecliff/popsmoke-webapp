@@ -6,11 +6,14 @@ import { Store } from '@ngrx/store';
 import * as Config from '../config';
 import * as Reducers from '../reducers';
 import * as Pages from '../pages';
+
 import { UserProvider } from '../providers/user-provider';
 import { HolidayProvider } from '../providers/holiday-provider';
 import { LaunchPage } from '../pages/launch/launch';
 import { HomePage } from '../pages/home/home';
-import { PersonalInfoFormPage } from '../pages/personalinfo-form/personalinfo-form';
+
+import { PersonalInfoProfilePage } from '../ux_user/personal-info-profile/personal-info-profile';
+import { StationProfilePage } from '../ux_user/station-profile/station-profile';
 
 @Component({
   templateUrl: 'app.html',
@@ -32,7 +35,6 @@ export class MyApp {
               public store: Store<Reducers.AppState>,
               public userProvider: UserProvider,
               public holidayProvider: HolidayProvider) {
-
     platform.ready().then(() => {
       StatusBar.styleDefault();
       Splashscreen.hide();
@@ -46,15 +48,10 @@ export class MyApp {
 
   menuOptionSelected(option) {
     console.log("menuOptionSelected");
-
     if(option == Config.PROFILE_OPTION) {
-      
-      this.nav.push(PersonalInfoFormPage);
-
-      
-      console.log("SELECTED PROFILE_OPTION");
+      this.nav.push(PersonalInfoProfilePage);      
     } else if(option == Config.POST_OPTION) {
-      console.log("SELECTED POST_OPTION");
+      this.nav.push(StationProfilePage);
     }
   }
 }

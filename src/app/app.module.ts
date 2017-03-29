@@ -18,6 +18,9 @@ import { LaunchPage } from '../pages/launch/launch';
 import { LoginPage } from '../pages/login/login';
 import { HomePage } from '../pages/home/home';
 
+import { PersonalInfoProfilePage } from '../ux_user/personal-info-profile/personal-info-profile';
+import { StationProfilePage } from '../ux_user/station-profile/station-profile';
+
 // Providers
 import { Da31Service } from '../providers/da31.service';
 import { AuthProvider } from '../providers/auth-provider';
@@ -52,7 +55,9 @@ export const firebaseAuthConfig = {
     PdfPage,
     HomePage,
     LaunchPage,
-    LoginPage
+    LoginPage,
+    PersonalInfoProfilePage,
+    StationProfilePage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -70,7 +75,9 @@ export const firebaseAuthConfig = {
     PdfPage,
     HomePage,
     LaunchPage,
-    LoginPage
+    LoginPage,
+    PersonalInfoProfilePage,
+    StationProfilePage
   ],
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler},

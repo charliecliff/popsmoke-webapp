@@ -26,6 +26,7 @@ export class LaunchPage {
 
     this.store.select('user').subscribe(object => {
       let user = object as User;
+      console.log("USER");
       this.navCtrl.popToRoot();
       if ( user.userID != undefined ) {
         this.pushHomeController();

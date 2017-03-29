@@ -16,7 +16,9 @@ export class HomePage {
 
   constructor(public navCtrl: NavController, 
   						public store: Store<AppState>,
-  						public holidayService: HolidayProvider) { }
+  						public holidayProvider: HolidayProvider) { 
+    this.holidayProvider.getHolidays("army", "2020-01-01");
+  }
 
 	ngOnInit() {
 		this.store.select("holidays").subscribe(holidays => {

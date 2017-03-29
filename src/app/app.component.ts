@@ -6,13 +6,14 @@ import { Store } from '@ngrx/store';
 import * as Reducers from '../reducers';
 import * as Pages from '../pages';
 import { UserProvider } from '../providers/user-provider';
-import { LaunchPage } from '../pages/launch/launch';
-
 import { HolidayProvider } from '../providers/holiday-provider';
+import { LaunchPage } from '../pages/launch/launch';
+import { HomePage } from '../pages/home/home';
+
 
 @Component({
   templateUrl: 'app.html',
-  providers: [ UserProvider ]
+  providers: [ UserProvider, HolidayProvider ]
 })
 export class MyApp {
 
@@ -34,6 +35,7 @@ export class MyApp {
   }
 
   signOut() {
+    console.log("Sign Out");
     this.userProvider.logout();
   }
 }

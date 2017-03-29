@@ -15,14 +15,47 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
-.scroll-content {
-   overflow-y: auto !important;
-}
-
 .popsmoke-menu {
-	background-color: gray !important;
+
+	background: linear-gradient(90deg, black, rgba(33, 33, 33, 0.8));
+	
+	.ion-list{
+		background-color: transparent;
+	}
+
+	.option {
+		background-color: transparent;
+		text-align: right;
+		color: white;
+		height: 54px;
+	}
+
+	.footer-option {
+		background-color: transparent;
+		text-align: right;
+		color: white;
+		height: 80 px;
+	}
+
+	.header {
+		height: 120px;
+	}
+
+	.spacer {
+		height: calc(100% - (120px + 1*80px + 4*54px));
+	}
 }
 
 .ion-toolbar.popsmoke-menu {
 	background-color: red;
+}
+
+/* PopSmoke Over-Write Styling */
+
+.scroll-content {
+	overflow-y: auto !important;
+}
+
+.md .menu-inner {
+	background: transparent; 
 }

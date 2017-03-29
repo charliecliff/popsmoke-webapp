@@ -24498,21 +24498,95 @@ ion-navbar.toolbar {
   }
 }
 
-.scroll-content {
-  overflow-y: auto !important;
+.popsmoke-menu {
+  background: linear-gradient(90deg, black, rgba(33, 33, 33, 0.8));
 }
 
-.popsmoke-menu {
-  background-color: gray !important;
+.popsmoke-menu .ion-list {
+  background-color: transparent;
+}
+
+.popsmoke-menu .option {
+  background-color: transparent;
+  text-align: right;
+  color: white;
+  height: 54px;
+}
+
+.popsmoke-menu .footer-option {
+  background-color: transparent;
+  text-align: right;
+  color: white;
+  height: 80 px;
+}
+
+.popsmoke-menu .header {
+  height: 120px;
+}
+
+.popsmoke-menu .spacer {
+  height: calc(100% - (120px + 1*80px + 4*54px));
 }
 
 .ion-toolbar.popsmoke-menu {
   background-color: red;
 }
 
-page-home body {
-  background-color: blue;
-  /* for the tint */
+/* PopSmoke Over-Write Styling */
+.scroll-content {
+  overflow-y: auto !important;
+}
+
+.md .menu-inner {
+  background: transparent;
+}
+
+page-home .home {
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+  background-color: #f2f2f2;
+}
+
+page-home .home-header {
+  border: 0px !important;
+  border-bottom: none !important;
+  border-bottom-color: transparent !important;
+  background-image: none !important;
+  background-color: #fff !important;
+}
+
+/* PopSmoke Over-Write Styling */
+/*
+.scroll-content {
+  padding: 0px !important;
+}
+*/
+.toolbar-background {
+  background-color: transparent;
+}
+
+.toolbar-title-md {
+  text-align: center;
+  color: #FF1744;
+}
+
+.bar-button-default-md, .bar-button-clear-md-default, .bar-button-md-default {
+  color: #FF1744;
+}
+
+/* PopSmoke Specific Styling */
+.holiday-card {
+  width: 100%;
+  height: calc(width * .7);
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+  margin-top: 16px !important;
+  margin-bottom: 16px !important;
+  background-color: black;
+}
+
+.card-background-page {
+  background: transparent;
 }
 
 .card-background-page ion-card {
@@ -24522,23 +24596,24 @@ page-home body {
 
 .card-background-page .card-title {
   position: absolute;
-  top: 36%;
-  font-size: 2.0em;
   width: 100%;
+  top: 36%;
+  font-size: 44px;
   font-weight: bold;
   color: #fff;
 }
 
 .card-background-page .card-subtitle {
-  font-size: 1.0em;
   position: absolute;
-  top: 52%;
   width: 100%;
+  top: 52%;
+  font-size: 1.0em;
   color: #fff;
 }
 
-.holiday-card {
-  height: 180px;
+/* Hide the Scroll Bar in Chrome Browser*/
+::-webkit-scrollbar {
+  display: none;
 }
 
 page-login .login-content {

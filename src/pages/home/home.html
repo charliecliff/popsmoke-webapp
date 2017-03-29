@@ -5,22 +5,33 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  <ion-navbar primary>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>
-      PopSmoke
-    </ion-title>
+
+  <ion-navbar primary class="home-header">
+
+    <ion-buttons left>
+      <button ion-button menuToggle style="width: 44px">
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    
+    <ion-title>PopSmoke</ion-title>
+  
+    <ion-buttons end>
+      <button ion-button style="width: 44px; color: white;">
+        <ion-icon name="settings"></ion-icon>
+      </button>
+    </ion-buttons>
+
   </ion-navbar>
+
 </ion-header>
 
-<ion-content padding>
+<ion-content class="home" padding>
 
   <ion-list class="card-background-page">
       
       <ion-card class="holiday-card" *ngFor="let holiday of holidays">
-        <img src="{{holiday.photoURL}}"/>
+        <img style="opacity: 0.4"src="{{holiday.photoURL}}"/>
         <div class="card-title">{{holiday.name}}</div>
       </ion-card>
 

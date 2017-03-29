@@ -14,9 +14,6 @@ export class HolidayProvider {
   holidayUrl = "https://sleepy-scrubland-83197.herokuapp.com/holidays";
 
   constructor(public http: Http, public store: Store<AppState>,) { 
-
-    console.log("Holiday Provider Service");
-
     this.store.select("user").subscribe(user => {
       this.getHolidays("army", "2020-01-01");
     });
@@ -41,7 +38,6 @@ export class HolidayProvider {
   }
 
   private updateHolidaysStateCallback = (holidaysArray) => {
-    console.log("holidaysArray: " + JSON.stringify(holidaysArray));
     this.store.dispatch( new HolidayActions.SetHolidaysAction(holidaysArray));
   }
 

@@ -24,11 +24,18 @@
 		background-color: transparent;
 	}
 
-	.option {
+	.menu-button {
 		background-color: transparent;
-		text-align: right;
+		height: 64px;
+		padding-left: 16px;
+		padding-right: 16px;
+	}
+
+	.menu-option {
+		background-color: transparent;
 		color: white;
-		height: 54px;
+		height: 100%;
+		text-align: right;
 	}
 
 	.footer-option {

@@ -7,23 +7,16 @@
     </div>
 
     <ion-list scroll="false">
-      <ion-item class="option" no-lines>
-        POSTING
-      </ion-item>
-      <ion-item class="option" no-lines>
-        DRIVER'S LICENSE
-      </ion-item>
-      <ion-item class="option" no-lines>
-        AUTO INSURANCE
-      </ion-item>
-      <ion-item class="option" no-lines>
-        PACKETS
-      </ion-item>
+      <button menuClose class="menu-button" ion-item no-lines *ngFor="let option of menuOption" (click)="menuOptionSelected(option)" >
+        <ion-item class="menu-option">{{option}}</ion-item>
+      </button>
     </ion-list>
 
- <!--    <div class="spacer">
+ <!--    
+    <div class="spacer">
       
-    </div> -->
+    </div>
+-->
 
     <ion-list>
       <ion-item class="footer-option"  no-lines>
@@ -37,4 +30,4 @@
 
 </ion-menu>
 
-<ion-nav style="background-color: red;" [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
+<ion-nav #myNav style="background-color: red;" [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

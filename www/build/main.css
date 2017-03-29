@@ -24499,6 +24499,8 @@ ion-navbar.toolbar {
 }
 
 .popsmoke-menu {
+  background: #212121;
+  /* The Fallback */
   background: linear-gradient(90deg, black, rgba(33, 33, 33, 0.8));
 }
 
@@ -24532,6 +24534,11 @@ ion-navbar.toolbar {
   background-color: red;
 }
 
+.ion-header {
+  height: 120px;
+  background-color: white;
+}
+
 /* PopSmoke Over-Write Styling */
 .scroll-content {
   overflow-y: auto !important;
@@ -24541,6 +24548,10 @@ ion-navbar.toolbar {
   background: transparent;
 }
 
+page-home ion-title {
+  height: 100%;
+}
+
 page-home .home {
   padding-left: 0px !important;
   padding-right: 0px !important;
@@ -24548,6 +24559,7 @@ page-home .home {
 }
 
 page-home .home-header {
+  height: 100%;
   border: 0px !important;
   border-bottom: none !important;
   border-bottom-color: transparent !important;
@@ -24565,7 +24577,12 @@ page-home .home-header {
   background-color: transparent;
 }
 
+.toolbar-content-md {
+  height: 100%;
+}
+
 .toolbar-title-md {
+  height: 100%;
   text-align: center;
   color: #FF1744;
 }

@@ -1,5 +1,9 @@
 page-home {
 
+ion-title {
+  height: 100%;
+}
+
   .home {
     padding-left: 0px !important;
     padding-right: 0px !important;
@@ -7,6 +11,7 @@ page-home {
   }
 
   .home-header {
+    height: 100%;
     border: 0px !important;
     border-bottom: none !important;
     border-bottom-color: transparent !important;
@@ -27,7 +32,12 @@ page-home {
   background-color: transparent;
 }
 
+.toolbar-content-md {
+  height: 100%;
+}
+
 .toolbar-title-md {
+  height: 100%;
   text-align: center;
   color: #FF1744;
 }

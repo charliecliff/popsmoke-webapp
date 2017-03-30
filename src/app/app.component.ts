@@ -3,7 +3,7 @@ import { Platform, NavController } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 import { Store } from '@ngrx/store';
 
-import * as Config from '../config';
+import * as Constants from '../config/menuConstants';
 import * as Reducers from '../reducers';
 import * as Pages from '../pages';
 
@@ -26,8 +26,7 @@ export class MyApp {
   private selectedFormURL;
   private selectedFormURLSubscription;
 
-  public menuOption = [Config.PROFILE_OPTION,
-                       Config.POST_OPTION];
+  public menu = Constants.MENU;
 
   rootPage = HomePage;
 
@@ -46,12 +45,20 @@ export class MyApp {
     this.userProvider.logout();
   }
 
-  menuOptionSelected(option) {
-    console.log("menuOptionSelected");
-    if(option == Config.PROFILE_OPTION) {
-      this.nav.push(PersonalInfoProfilePage);      
-    } else if(option == Config.POST_OPTION) {
+  selectMenuOption(option) {
+    console.log("toggleMenuOption: " + JSON.stringify(option));
+    if(option.name == Constants.PERSONAL_INFO_OPTION) {
+      this.nav.push(PersonalInfoProfilePage);
+      this.menu = Constants.MENU;     
+    } else if(option.name == Constants.STATION_OPTION) {
       this.nav.push(StationProfilePage);
+      this.menu = Constants.MENU;     
+    } else {
+      option.showingSubMenus = !option.showingSubMenus;
     }
+  }
+
+  isMenuOptionShown(option) {
+  	return option.showingSubMenus;
   }
 }

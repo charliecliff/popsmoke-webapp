@@ -15,42 +15,66 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
-.popsmoke-menu {
+.ps-menu {
 
-   	background: rgb(33, 33, 33); /* The Fallback */
-	background: linear-gradient(90deg, black, rgba(33, 33, 33, 0.8));
+	background-color: rgb(255, 255, 255);
 	
 	.ion-list{
 		background-color: transparent;
 	}
 
-	.menu-button {
-		background-color: transparent;
-		height: 64px;
+	.ps-menu-button {
+		background-color: transparent !important;
+		height: 100% !important;
+		padding: 0px !important;
+		width: 100% !important;
+	}
+
+	.ps-menu-icon {
+		color: #607D8B;
+	    font-size: 30px;
+		height: 40px;
+		line-height: 40px;
+		margin-left: 0px;
 		padding-left: 16px;
 		padding-right: 16px;
+		width: 72px;
+		text-align: center;
+		vertical-align: middle;
 	}
 
-	.menu-option {
+	.ps-menu-option {
 		background-color: transparent;
-		color: white;
-		height: 100%;
-		text-align: right;
+		color: #607D8B;
+		height: 64px;
+		margin-left: 0px;
+		padding-left: 0px;
+		text-align: left;
 	}
 
-	.footer-option {
-		background-color: transparent;
-		text-align: right;
-		color: white;
-		height: 80 px;
+	.ps-submenu-option {
+		background-color: #E0E0E0;
+		color: #607D8B;
+		height: 64px;
 	}
 
-	.header {
-		height: 120px;
+	.ps-menu-header {
+		background-image: url(../assets/images/header.png);
+		background-size: contain;
+		height: 80px !important;
+	}
+
+	.ps-menu-footer-button {
+		background-color: #2196F3;
+		border-radius: 0px;
+		height: 44px;
+		margin: 0px;
+		padding: 0px;
+		width: 100%;
 	}
 
 	.spacer {
-		height: calc(100% - (120px + 1*80px + 4*54px));
+		height: calc(100% - (80px + 44px + 2*64px) - 12px);
 	}
 }
 

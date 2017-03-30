@@ -1,40 +1,62 @@
-<ion-menu enable-menu-with-back-views="false" type="overlay" persistent="true" [content]="content" style="background-color: transparent;">
+<ion-menu enable-menu-with-back-views="false" 
+          type="overlay" 
+          persistent="true" 
+          style="background-color: transparent;"
+          [content]="content">
 
-  <ion-content class="popsmoke-menu" scroll="false">
-
-    <div class="header">
-      
-    </div>
+  <ion-content class="ps-menu" scroll="false">
 
     <ion-list scroll="false">
-      <ion-item class="option" no-lines>
-        POSTING
-      </ion-item>
-      <ion-item class="option" no-lines>
-        DRIVER'S LICENSE
-      </ion-item>
-      <ion-item class="option" no-lines>
-        AUTO INSURANCE
-      </ion-item>
-      <ion-item class="option" no-lines>
-        PACKETS
-      </ion-item>
-    </ion-list>
-
- <!--    <div class="spacer">
       
-    </div> -->
+      <div class="ps-menu-header" no-lines></div>
 
-    <ion-list>
-      <ion-item class="footer-option"  no-lines>
-        <button ion-button menuClose full color="primary" (click)="signOut()">
-          SIGN OUT
-        </button>
-      </ion-item>
+      <div *ngFor="let option of menu">
+        <ion-item class="ps-menu-option"
+                  no-lines
+                  (click)="selectMenuOption(option)"
+                  ng-class="{active: isMenuOptionShown(option)}">
+            <ion-icon class="ps-menu-icon" name="heart"></ion-icon>
+            <i class="icon" 
+               ng-class="isMenuOptionShown(option) ? 'ion-minus' : 'ion-plus'">
+            </i>
+            {{option.name}}
+        </ion-item>
+        
+        <template [ngIf]="option.showingSubMenus">
+          <button menuClose 
+                  no-lines
+                  class="ps-menu-button"
+                  ng-show="isMenuOptionShown(option)"
+                  *ngFor="let item of option.items">
+            <ion-item class="ps-submenu-option"
+                    no-lines
+                    (click)="selectMenuOption(item)">
+              {{item.name}}
+            </ion-item>
+          </button>
+        </template>
+      </div>
+
     </ion-list>
+
+    <div class="spacer"></div>
+
+    <ion-footer align-title="left" class="bar-assertive">
+      <button class="ps-menu-footer-button" 
+              ion-button 
+              menuClose
+              (click)="signOut()">
+        SIGN OUT
+      </button>
+    </ion-footer>
 
   </ion-content>
 
 </ion-menu>
 
-<ion-nav style="background-color: red;" [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
+<ion-nav swipeBackEnabled="false"
+         style="background-color: red;"
+         #myNav 
+         #content 
+         [root]="rootPage">          
+</ion-nav>

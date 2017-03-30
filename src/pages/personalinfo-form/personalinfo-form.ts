@@ -2,8 +2,10 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavController, NavParams } from 'ionic-angular';
 import { Store } from '@ngrx/store';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
-import { AppState } from '../../reducers';  
+import { AppState } from '../../reducers';
+import { User } from '../../models/User';
 import { PersonalInfo } from '../../models/PersonalInfo';
 import { AddressFormPage } from '../address-form/address-form';
 import * as da31BuilderActions from '../../actions/da31builder.actions';
@@ -24,6 +26,7 @@ export class PersonalInfoFormPage {
 	rank: string						= "RANK";
 	phone	: string					= "PHONE";
 
+  intitialPersonalInfo: PersonalInfo;
   personalInfoForm: FormGroup;
   
   constructor(private formBuilder: FormBuilder, 
@@ -31,18 +34,8 @@ export class PersonalInfoFormPage {
               private navParams: NavParams,
               private store: Store<AppState>) {
     
-    this.personalInfoForm = formBuilder.group({
-      firstName: [''],
-      middleInitial: [''],
-      lastName: [''],
-      ssn: [''],
-      rank: [''],
-      phone: ['']
-    });
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad PersonalInfoFormPage');
+    this.store.select("user").take(1)
+                             .subscribe(this.initialUserCallback);
   }
 
   dismiss() {
@@ -61,5 +54,17 @@ export class PersonalInfoFormPage {
 
     this.store.dispatch(new da31BuilderActions.AddPersonalInfoAction(personalInfo));
     this.navCtrl.push(AddressFormPage);
+  }
+
+  private initialUserCallback = (user) => {
+    var personalInfo = user.personalInfo;
+    this.personalInfoForm = this.formBuilder.group({
+      firstName: [personalInfo.firstName],
+      middleInitial: [personalInfo.middleInitial],
+      lastName: [personalInfo.lastName],
+      ssn: [personalInfo.ssn],
+      rank: [personalInfo.rank],
+      phone: [personalInfo.phone]
+    });
   }
 }

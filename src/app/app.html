@@ -1,12 +1,12 @@
 <ion-menu enable-menu-with-back-views="false" 
           type="shrink" 
           persistent="true" 
-          style="background-color: blue;"
+          style="background-color: red;"
           [content]="content">
  
-  <ion-content class="ps-menu" scroll="false">
+  <ion-content class="ps-menu" scroll="false" style="background-color: red;">
 
-    <ion-list scroll="false">
+    <ion-list scroll="false" style="background-color: red;">
        
       <div class="ps-menu-header" no-lines>
       </div>
@@ -31,18 +31,7 @@
       <div class="spacer"></div>
     
     </ion-list>
-<!-- 
-    <ion-footer align-title="left" class="bar-assertive">
-      <button class="ps-menu-footer-button" 
-              ion-button 
-              menuClose
-              (click)="signOut()">
-        SIGN OUT
-      </button>
-    </ion-footer>
- -->
   </ion-content>
-
 </ion-menu>
 
 <ion-nav swipeBackEnabled="false"

@@ -24509,11 +24509,11 @@ ion-navbar.toolbar {
 
 .ps-menu {
   background: rgba(255, 255, 255, 0.5) !important;
+  opacity: 0;
 }
 
 .ps-menu .ion-list {
   background-color: rgba(255, 255, 255, 0) !important;
-  opacity: 0;
 }
 
 .ps-menu .ps-menu-button {

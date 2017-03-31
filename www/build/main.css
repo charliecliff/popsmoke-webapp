@@ -24508,7 +24508,7 @@ ion-navbar.toolbar {
 }
 
 .ps-menu {
-  background-color: rgba(255, 255, 255, 0) !important;
+  background-color: red !important;
 }
 
 .ps-menu .ion-list {

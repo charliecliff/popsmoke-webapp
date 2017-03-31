@@ -24507,9 +24507,16 @@ ion-navbar.toolbar {
   }
 }
 
+.ios .menu-inner {
+  background: transparent !important;
+}
+
+.md .menu-inner {
+  background: transparent !important;
+}
+
 .ps-menu {
   background: rgba(255, 255, 255, 0.5) !important;
-  opacity: 0;
 }
 
 .ps-menu .ion-list {
@@ -24589,10 +24596,6 @@ ion-navbar.toolbar {
 
 .scroll-content {
   overflow-y: auto !important;
-}
-
-.md .menu-inner {
-  background: rgba(255, 255, 255, 0) !important;
 }
 
 page-home ion-title {

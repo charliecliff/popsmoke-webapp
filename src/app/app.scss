@@ -15,9 +15,20 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
+.ios {
+	.menu-inner {
+		background: transparent !important; 
+	}
+}
+
+.md {
+	.menu-inner {
+		background: transparent !important; 
+	}
+}
+
 .ps-menu {
 	background: rgba(255,255,255,0.5) !important;
-	opacity: 0;
 
 	.ion-list{
 		background-color: rgba(255,255,255,0) !important;
@@ -97,8 +108,4 @@
 
 .scroll-content {
 	overflow-y: auto !important;
-}
-
-.md .menu-inner {
-	background: rgba(255,255,255,0) !important; 
 }

@@ -17,7 +17,7 @@
 
 .ps-menu {
 
-	background-color: rgba(255,255,255,0);
+	background-color: red;
 	
 	.ion-list{
 		background-color: rgba(255,255,255,0);
@@ -78,9 +78,9 @@
 	}
 }
 
-	.spacer {
-		height: calc(100% - (7*64px) - 8px);
-	}
+.spacer {
+	height: calc(100% - (7*64px) - 8px);
+}
 	
 .ion-header {
   height: 120px;

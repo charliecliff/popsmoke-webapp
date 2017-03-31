@@ -7,45 +7,30 @@
   <ion-content class="ps-menu" scroll="false">
 
     <ion-list scroll="false">
-      
-      <div class="ps-menu-header" no-lines></div>
+       
+      <div class="ps-menu-header" no-lines>
+      </div>
 
-      <div *ngFor="let option of menu">
+      <div class="spacer"></div>
+
+      <div class="menu-section" 
+           *ngFor="let option of menu.options">
         <button class="ps-menu-button"
-                menuClose 
+                menuClose
                 no-lines>
           <ion-item class="ps-menu-option"
-                  no-lines
-                  (click)="selectMenuOption(option)">
-            <ion-icon class="ps-menu-icon" name="heart"></ion-icon>
-            <i class="icon" 
-               ng-class="isMenuOptionShown(option) ? 'ion-minus' : 'ion-plus'">
-            </i>
+                    menuClose
+                    no-lines
+                    (click)="selectMenuOption(option)"
+                    [style.opacity]="option.selected ? 1 : 0.38">
             {{option.name}}
           </ion-item>
         </button>
-
-        <template [ngIf]="option.showingSubMenus">
-          <button menuClose 
-                  no-lines
-                  class="ps-menu-button"
-                  ng-show="isMenuOptionShown(option)"
-                  *ngFor="let item of option.items">
-            <ion-item class="ps-submenu-option"
-                    no-lines
-                    (click)="selectMenuOption(item)">
-              {{item.name}}
-            </ion-item>
-          </button>
-        </template>
-
       </div>
 
+      <div class="spacer"></div>
+    
     </ion-list>
-
-    <div class="spacer">
-      
-    </div>
 <!-- 
     <ion-footer align-title="left" class="bar-assertive">
       <button class="ps-menu-footer-button" 

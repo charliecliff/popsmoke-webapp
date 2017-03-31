@@ -24538,6 +24538,7 @@ ion-navbar.toolbar {
 .ps-menu .ps-menu-option {
   background-color: transparent;
   color: white;
+  font-size: 22px;
   height: 64px;
   margin-left: 0px;
   padding-left: 0px;
@@ -24548,6 +24549,10 @@ ion-navbar.toolbar {
   background-color: #E0E0E0;
   color: #607D8B;
   height: 64px;
+}
+
+.ps-menu .menu-section {
+  margin-left: 16px;
 }
 
 .ps-menu .ps-menu-header {
@@ -24564,8 +24569,8 @@ ion-navbar.toolbar {
   width: 100%;
 }
 
-.ps-menu .spacer {
-  height: calc(100% - (80px + 44px + 2*64px) - 12px);
+.spacer {
+  height: calc(100% - (7*64px) - 8px);
 }
 
 .ion-header {

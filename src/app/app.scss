@@ -46,6 +46,7 @@
 	.ps-menu-option {
 		background-color: transparent;
 		color: white;
+		font-size: 22px;
 		height: 64px;
 		margin-left: 0px;
 		padding-left: 0px;
@@ -58,6 +59,10 @@
 		height: 64px;
 	}
 
+	.menu-section {
+		margin-left: 16px;
+	}
+	
 	.ps-menu-header {
 		background-color: transparent !important;
 		height: 80px !important;
@@ -71,12 +76,12 @@
 		padding: 0px;
 		width: 100%;
 	}
-
-	.spacer {
-		height: calc(100% - (80px + 44px + 2*64px) - 12px);
-	}
 }
 
+	.spacer {
+		height: calc(100% - (7*64px) - 8px);
+	}
+	
 .ion-header {
   height: 120px;
   background-color: white;

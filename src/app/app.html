@@ -1,9 +1,9 @@
 <ion-menu enable-menu-with-back-views="false" 
-          type="overlay" 
+          type="shrink" 
           persistent="true" 
           style="background-color: transparent;"
           [content]="content">
-
+ 
   <ion-content class="ps-menu" scroll="false">
 
     <ion-list scroll="false">
@@ -11,17 +11,20 @@
       <div class="ps-menu-header" no-lines></div>
 
       <div *ngFor="let option of menu">
-        <ion-item class="ps-menu-option"
+        <button class="ps-menu-button"
+                menuClose 
+                no-lines>
+          <ion-item class="ps-menu-option"
                   no-lines
-                  (click)="selectMenuOption(option)"
-                  ng-class="{active: isMenuOptionShown(option)}">
+                  (click)="selectMenuOption(option)">
             <ion-icon class="ps-menu-icon" name="heart"></ion-icon>
             <i class="icon" 
                ng-class="isMenuOptionShown(option) ? 'ion-minus' : 'ion-plus'">
             </i>
             {{option.name}}
-        </ion-item>
-        
+          </ion-item>
+        </button>
+
         <template [ngIf]="option.showingSubMenus">
           <button menuClose 
                   no-lines
@@ -35,12 +38,15 @@
             </ion-item>
           </button>
         </template>
+
       </div>
 
     </ion-list>
 
-    <div class="spacer"></div>
-
+    <div class="spacer">
+      
+    </div>
+<!-- 
     <ion-footer align-title="left" class="bar-assertive">
       <button class="ps-menu-footer-button" 
               ion-button 
@@ -49,13 +55,13 @@
         SIGN OUT
       </button>
     </ion-footer>
-
+ -->
   </ion-content>
 
 </ion-menu>
 
 <ion-nav swipeBackEnabled="false"
-         style="background-color: red;"
+         style="background-color: transparent;"
          #myNav 
          #content 
          [root]="rootPage">          

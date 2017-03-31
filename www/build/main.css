@@ -14699,6 +14699,15 @@ ion-menu[type=overlay] .show-backdrop {
   display: block;
 }
 
+ion-menu[type=shrink] {
+  z-index: 0;
+}
+
+ion-menu[type=shrink].show-menu .menu-inner {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+
 .ios .menu-inner {
   background: #fff;
 }
@@ -24499,7 +24508,7 @@ ion-navbar.toolbar {
 }
 
 .ps-menu {
-  background-color: white;
+  background-color: transparent;
 }
 
 .ps-menu .ion-list {
@@ -24514,7 +24523,7 @@ ion-navbar.toolbar {
 }
 
 .ps-menu .ps-menu-icon {
-  color: #607D8B;
+  color: white;
   font-size: 30px;
   height: 40px;
   line-height: 40px;
@@ -24528,7 +24537,7 @@ ion-navbar.toolbar {
 
 .ps-menu .ps-menu-option {
   background-color: transparent;
-  color: #607D8B;
+  color: white;
   height: 64px;
   margin-left: 0px;
   padding-left: 0px;
@@ -24542,8 +24551,7 @@ ion-navbar.toolbar {
 }
 
 .ps-menu .ps-menu-header {
-  background-image: url(../assets/images/header.png);
-  background-size: contain;
+  background-color: transparent !important;
   height: 80px !important;
 }
 
@@ -24558,10 +24566,6 @@ ion-navbar.toolbar {
 
 .ps-menu .spacer {
   height: calc(100% - (80px + 44px + 2*64px) - 12px);
-}
-
-.ion-toolbar.popsmoke-menu {
-  background-color: red;
 }
 
 .ion-header {

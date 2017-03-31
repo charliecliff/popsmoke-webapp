@@ -47,14 +47,14 @@ export class MyApp {
 
   selectMenuOption(option) {
     console.log("toggleMenuOption: " + JSON.stringify(option));
-    if(option.name == Constants.PERSONAL_INFO_OPTION) {
+    if(option.name == Constants.BIO_OPTION) {
       this.nav.push(PersonalInfoProfilePage);
-      this.menu = Constants.MENU;     
     } else if(option.name == Constants.STATION_OPTION) {
       this.nav.push(StationProfilePage);
-      this.menu = Constants.MENU;     
-    } else {
-      option.showingSubMenus = !option.showingSubMenus;
+    } else if(option.name == Constants.DOCUMENTS_OPTION) {
+    } else if(option.name == Constants.PACKETS_OPTION) {
+    } else if(option.name == Constants.REMINDERS_OPTION) {
+    } else if(option.name == Constants.INBOX_OPTION) {
     }
   }
 

@@ -24507,86 +24507,91 @@ ion-navbar.toolbar {
   }
 }
 
+/*
+.ios {
+	.ps-menu {
+		background-color: red !important;
+	}
+}
+
 .ps-menu {
-  background-color: rgba(255, 255, 255, 0);
-}
+	background-color: rgba(255,255,255,0) !important;
+	
+	.ion-list{
+		background-color: red !important;
+	}
 
-.ps-menu .ion-list {
-  background-color: rgba(255, 255, 255, 0);
-}
+	.ps-menu-button {
+		background-color: rgba(255,255,255,0) !important;
+		height: 100% !important;
+		padding: 0px !important;
+		width: 100% !important;
+	}
 
-.ps-menu .ps-menu-button {
-  background-color: rgba(255, 255, 255, 0) !important;
-  height: 100% !important;
-  padding: 0px !important;
-  width: 100% !important;
-}
+	.ps-menu-icon {
+		color: white;
+	    font-size: 30px;
+		height: 40px;
+		line-height: 40px;
+		margin-left: 0px;
+		padding-left: 16px;
+		padding-right: 16px;
+		width: 72px;
+		text-align: center;
+		vertical-align: middle;
+	}
 
-.ps-menu .ps-menu-icon {
-  color: white;
-  font-size: 30px;
-  height: 40px;
-  line-height: 40px;
-  margin-left: 0px;
-  padding-left: 16px;
-  padding-right: 16px;
-  width: 72px;
-  text-align: center;
-  vertical-align: middle;
-}
+	.ps-menu-option {
+		background-color: rgba(255,255,255,0);
+		color: white;
+		font-size: 22px;
+		height: 64px;
+		margin-left: 0px;
+		padding-left: 0px;
+		text-align: left;
+	}
 
-.ps-menu .ps-menu-option {
-  background-color: rgba(255, 255, 255, 0);
-  color: white;
-  font-size: 22px;
-  height: 64px;
-  margin-left: 0px;
-  padding-left: 0px;
-  text-align: left;
-}
+	.ps-submenu-option {
+		background-color: #E0E0E0;
+		color: #607D8B;
+		height: 64px;
+	}
 
-.ps-menu .ps-submenu-option {
-  background-color: #E0E0E0;
-  color: #607D8B;
-  height: 64px;
-}
+	.menu-section {
+		margin-left: 16px;
+	}
+	
+	.ps-menu-header {
+		background-color: rgba(255,255,255,0) !important;
+		height: 80px !important;
+	}
 
-.ps-menu .menu-section {
-  margin-left: 16px;
-}
-
-.ps-menu .ps-menu-header {
-  background-color: rgba(255, 255, 255, 0) !important;
-  height: 80px !important;
-}
-
-.ps-menu .ps-menu-footer-button {
-  background-color: #2196F3;
-  border-radius: 0px;
-  height: 44px;
-  margin: 0px;
-  padding: 0px;
-  width: 100%;
+	.ps-menu-footer-button {
+		background-color: #2196F3;
+		border-radius: 0px;
+		height: 44px;
+		margin: 0px;
+		padding: 0px;
+		width: 100%;
+	}
 }
 
 .spacer {
-  height: calc(100% - (7*64px) - 8px);
+	height: calc(100% - (7*64px) - 8px);
 }
-
+	
 .ion-header {
   height: 120px;
-  background-color: white;
+  background-color: red;
 }
 
-/* PopSmoke Over-Write Styling */
 .scroll-content {
-  overflow-y: auto !important;
+	overflow-y: auto !important;
 }
 
 .md .menu-inner {
-  background: rgba(255, 255, 255, 0);
-}
-
+	background: red !important; 
+}*/
 page-home ion-title {
   height: 100%;
 }

@@ -24508,15 +24508,15 @@ ion-navbar.toolbar {
 }
 
 .ps-menu {
-  background-color: transparent;
+  background-color: rgba(255, 255, 255, 0);
 }
 
 .ps-menu .ion-list {
-  background-color: transparent;
+  background-color: rgba(255, 255, 255, 0);
 }
 
 .ps-menu .ps-menu-button {
-  background-color: transparent !important;
+  background-color: rgba(255, 255, 255, 0) !important;
   height: 100% !important;
   padding: 0px !important;
   width: 100% !important;
@@ -24536,7 +24536,7 @@ ion-navbar.toolbar {
 }
 
 .ps-menu .ps-menu-option {
-  background-color: transparent;
+  background-color: rgba(255, 255, 255, 0);
   color: white;
   font-size: 22px;
   height: 64px;
@@ -24556,7 +24556,7 @@ ion-navbar.toolbar {
 }
 
 .ps-menu .ps-menu-header {
-  background-color: transparent !important;
+  background-color: rgba(255, 255, 255, 0) !important;
   height: 80px !important;
 }
 
@@ -24584,7 +24584,7 @@ ion-navbar.toolbar {
 }
 
 .md .menu-inner {
-  background: transparent;
+  background: rgba(255, 255, 255, 0);
 }
 
 page-home ion-title {

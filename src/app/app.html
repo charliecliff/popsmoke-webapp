@@ -1,12 +1,11 @@
 <ion-menu enable-menu-with-back-views="false" 
           type="shrink" 
           persistent="true" 
-          style="background-color: red;"
           [content]="content">
  
-  <ion-content class="ps-menu" scroll="false" style="background-color: red;">
+  <ion-content class="ps-menu" scroll="false">
 
-    <ion-list scroll="false" style="background-color: red;">
+    <ion-list scroll="false">
        
       <div class="ps-menu-header" no-lines>
       </div>
@@ -21,7 +20,6 @@
           <ion-item class="ps-menu-option"
                     menuClose
                     no-lines
-                    style="color: red;"
                     (click)="selectMenuOption(option)"
                     [style.opacity]="option.selected ? 1 : 0.38">
             {{option.name}}
@@ -36,7 +34,6 @@
 </ion-menu>
 
 <ion-nav swipeBackEnabled="false"
-         style="background-color: rgba(255,255,255,0);"
          #myNav 
          #content 
          [root]="rootPage">          

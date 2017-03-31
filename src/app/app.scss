@@ -14,7 +14,7 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
-
+/*
 .ios {
 	.ps-menu {
 		background-color: red !important;
@@ -22,9 +22,6 @@
 }
 
 .ps-menu {
-
-
-
 	background-color: rgba(255,255,255,0) !important;
 	
 	.ion-list{
@@ -92,10 +89,8 @@
 	
 .ion-header {
   height: 120px;
-  background-color: white;
+  background-color: red;
 }
-
-/* PopSmoke Over-Write Styling */
 
 .scroll-content {
 	overflow-y: auto !important;
@@ -103,4 +98,4 @@
 
 .md .menu-inner {
 	background: red !important; 
-}
+}*/

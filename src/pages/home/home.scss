@@ -20,18 +20,20 @@ page-home {
   }
 
   item-inner {
-    margin: 0px;
-    padding: 0px;
+    margin: 0px !important;
+    padding: 0px !important;
   }
-  .item-ios {
-    margin: 0px;
-    padding: 0px;
+  .item-ios .item-block {
+    margin: 0px !important;
+    padding: 0px !important;
   }
   label {
-    margin: 0px;
+    margin: 0px !important;
+    padding: 0px !important;
   }
   .label-ios {
-    margin: 0px;
+    margin: 0px !important;
+    padding: 0px !important;
   }
 }
 

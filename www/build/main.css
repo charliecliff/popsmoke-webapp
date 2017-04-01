@@ -24609,12 +24609,17 @@ page-home .home-header {
 }
 
 page-home item-inner {
-  margin: 0px !important;
-  padding: 0px !important;
+  margin: 0px;
+  padding: 0px;
+}
+
+page-home .item-ios {
+  margin: 0px;
+  padding: 0px;
 }
 
 page-home label {
-  margin: 0px !important;
+  margin: 0px;
 }
 
 page-home .label-ios {

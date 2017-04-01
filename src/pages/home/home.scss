@@ -20,14 +20,16 @@ page-home {
   }
 
   item-inner {
-    margin: 0px !important;
-    padding: 0px !important;
+    margin: 0px;
+    padding: 0px;
   }
-
+  .item-ios {
+    margin: 0px;
+    padding: 0px;
+  }
   label {
-    margin: 0px !important;
+    margin: 0px;
   }
-
   .label-ios {
     margin: 0px;
   }

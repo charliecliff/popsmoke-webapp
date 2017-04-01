@@ -26,14 +26,35 @@
 
 </ion-header>
 
+
 <ion-content class="home" padding>
 
-  <ion-list class="card-background-page">
+  <ion-list class="holiday-list">
 
-    <button class="holiday-button" ion-item no-lines *ngFor="let holiday of holidays" (click)="holidaySelected(holiday)">
-      <ion-card class="holiday-card">
-        <img style="opacity: 0.4; height: 100%;" src="{{holiday.photoURL}}"/>
-        <div class="card-title">{{holiday.name}}</div>
+    <button class="holiday-button" 
+    		ion-item 
+    		no-lines 
+    		*ngFor="let holiday of holidays" 
+    		(click)="holidaySelected(holiday)">
+      <ion-card>
+        <img src="{{holiday.photoURL}}"/>
+ 		<div class="title-container">
+            <h1 class="title">{{holiday.name}}</h1>
+ 		</div>
+        <div class="clock">
+            <div class="clock-box">
+                <span class="clock-time">{{holiday.weeks}}</span>
+                <div class="clock-text">WEEKS</div>
+            </div>
+            <div class="clock-box">
+                <span class="clock-time">{{holiday.days}}</span>
+                <div class="clock-text">DAYS</div>
+            </div>
+            <div class="clock-box">
+                <span class="clock-time">{{holiday.hours}}</span>
+                <div class="clock-text">HOURS</div>
+            </div>
+        </div>
       </ion-card>
     </button>
   

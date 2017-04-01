@@ -29,4 +29,5 @@ export class HomePage {
   holidaySelected(holiday) {
     console.log("Holiday Selected: " + JSON.stringify(holiday));
   }
+
 }

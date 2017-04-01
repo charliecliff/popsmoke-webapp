@@ -25,10 +25,10 @@ export class LaunchPage {
 
   private pushController(user) {
     this.navCtrl.popToRoot();
-    if ( user.userID == undefined ) {
-      this.navCtrl.push(LoginPage);
-    } else {
+    // if ( user.userID == undefined ) {
+    //   this.navCtrl.push(LoginPage);
+    // } else {
       this.navCtrl.push(MainTabPage);
-    }
+    // }
   }
 }

@@ -24512,12 +24512,12 @@ ion-navbar.toolbar {
 }
 
 .menu-inner {
-  background: transparent !important;
+  background-color: transparent !important;
 }
 
 .ion-header {
-  height: 120px;
   background-color: transparent !important;
+  height: 120px;
 }
 
 .ion-list {
@@ -24534,7 +24534,7 @@ ion-navbar.toolbar {
 
 /* POPSMOKE STYLINGS */
 .ps-menu {
-  background: transparent !important;
+  background-color: transparent !important;
 }
 
 .ps-menu .ps-menu-button {
@@ -24558,19 +24558,13 @@ ion-navbar.toolbar {
 }
 
 .ps-menu .ps-menu-option {
-  background-color: rgba(255, 255, 255, 0);
+  background-color: transparent !important;
   color: white;
   font-size: 22px;
   height: 64px;
   margin-left: 0px;
   padding-left: 0px;
   text-align: left;
-}
-
-.ps-menu .ps-submenu-option {
-  background-color: #E0E0E0;
-  color: #607D8B;
-  height: 64px;
 }
 
 .ps-menu .menu-section {
@@ -24763,4 +24757,13 @@ page-login .login-content .register-btn {
 page-login .login-content .register-btn:hover {
   background: #292929;
   color: #b8b8b8;
+}
+
+page-main-tab .tabbar {
+  visibility: hidden;
+  height: 0px !important;
+}
+
+page-main-tab .tab-button {
+  height: 0px !important;
 }

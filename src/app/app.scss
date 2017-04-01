@@ -19,11 +19,11 @@
 	background-color: transparent !important;
 }
 .menu-inner {
-	background: transparent !important; 
+	background-color: transparent !important;
 }
 .ion-header {
-  	height: 120px;
-  	background-color: transparent !important;
+	background-color: transparent !important;
+	height: 120px;
 }
 .ion-list{
 	background-color: transparent !important;
@@ -32,7 +32,6 @@
 	background-color: transparent !important;
 }
 
-
 .scroll-content {
 	overflow-y: auto !important;
 }
@@ -40,7 +39,7 @@
 /* POPSMOKE STYLINGS */
 
 .ps-menu {
-	background: transparent !important;
+	background-color: transparent !important;
 
 	.ps-menu-button {
 		background-color: transparent !important;
@@ -63,19 +62,13 @@
 	}
 
 	.ps-menu-option {
-		background-color: rgba(255,255,255,0);
+		background-color: transparent !important;
 		color: white;
 		font-size: 22px;
 		height: 64px;
 		margin-left: 0px;
 		padding-left: 0px;
 		text-align: left;
-	}
-
-	.ps-submenu-option {
-		background-color: #E0E0E0;
-		color: #607D8B;
-		height: 64px;
 	}
 
 	.menu-section {

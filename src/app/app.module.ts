@@ -16,6 +16,8 @@ import { PdfPage } from '../pages/pdf/pdf';
 
 import { LaunchPage } from '../pages/launch/launch';
 import { LoginPage } from '../pages/login/login';
+import { MainTabPage } from '../pages/main-tab/main-tab';
+
 import { HomePage } from '../pages/home/home';
 
 import { PersonalInfoProfilePage } from '../ux_user/personal-info-profile/personal-info-profile';
@@ -56,6 +58,7 @@ export const firebaseAuthConfig = {
     HomePage,
     LaunchPage,
     LoginPage,
+    MainTabPage,
     PersonalInfoProfilePage,
     StationProfilePage
   ],
@@ -76,6 +79,7 @@ export const firebaseAuthConfig = {
     HomePage,
     LaunchPage,
     LoginPage,
+    MainTabPage,
     PersonalInfoProfilePage,
     StationProfilePage
   ],

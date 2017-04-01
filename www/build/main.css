@@ -24608,6 +24608,15 @@ page-home .home-header {
   background-color: #fff !important;
 }
 
+page-home item-inner {
+  margin: 0px !important;
+  padding: 0px !important;
+}
+
+page-home label {
+  margin: 0px !important;
+}
+
 /* PopSmoke Over-Write Styling */
 .toolbar-background {
   background-color: transparent;

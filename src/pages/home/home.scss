@@ -54,17 +54,17 @@ page-home {
 }
 .holiday-list button {
   background-color: black;
-  margin-left: 0px;
-  margin-right: 0px;
-  margin-top: 16px;
-  margin-bottom: 16px ;
-  padding: 0px;
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+  margin-top: 16px !important;
+  margin-bottom: 16px !important;
+  padding: 0px !important;
 }
 .holiday-list ion-card {   
   background-color: transparent;
   height: 60vw;
-  margin: 0px;
-  padding: 0px;
+  margin: 0px !important;
+  padding: 0px !important;
   width: 100%;
 }
 .holiday-list ion-card img {

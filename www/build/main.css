@@ -24688,7 +24688,7 @@ page-home .home-header {
 }
 
 page-login .login-content {
-  background: #d83526;
+  background: transparent;
 }
 
 page-login .login-content .logo-row {

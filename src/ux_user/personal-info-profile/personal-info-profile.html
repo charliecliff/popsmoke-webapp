@@ -5,69 +5,66 @@
   Ionic pages and navigation.
 -->
 <ion-header style="height: 80px">
-
   <ion-navbar primary class="home-header">
-
     <ion-buttons left>
       <button ion-button menuToggle style="width: 44px">
         <ion-icon name="menu"></ion-icon>
       </button>
     </ion-buttons>
-    
     <ion-title style="line-height: 80px !important">PopSmoke</ion-title>
-  
     <ion-buttons end>
       <button ion-button style="width: 44px; color: white;">
         <ion-icon name="settings"></ion-icon>
       </button>
     </ion-buttons>
-
   </ion-navbar>
-
 </ion-header>
+
 
 <ion-content padding>
 
-	<form [formGroup]="personalInfoForm">
+	<ion-list>
+    <button [@slideInOut]="menuState"
+            style="background-color: red; width: 100%" 
+            (click)="selectProfileField()">
+      <ion-item>
+        <ion-label >{{first_name}}</ion-label>
+      </ion-item>
+    </button>
 
   	<ion-item>
-    	<ion-label floating>{{first_name}}</ion-label>
-    	<ion-input formControlName="firstName" type="text"></ion-input>
-  	</ion-item>
-
-  	<ion-item>
-    	<ion-label floating>{{middle_initial}}</ion-label>
-    	<ion-input formControlName="middleInitial" type="text"></ion-input>
+    	<ion-label>{{middle_initial}}</ion-label>
+    	<!-- <ion-input type="text"></ion-input> -->
   	</ion-item>
 
    	<ion-item>
-    	<ion-label floating>{{last_name}}</ion-label>
-    	<ion-input formControlName="lastName" type="text"></ion-input>
+    	<ion-label>{{last_name}}</ion-label>
+    	<!-- <ion-input type="text"></ion-input> -->
   	</ion-item>
 
    	<ion-item>
-    	<ion-label floating>{{ssn}}</ion-label>
-    	<ion-input formControlName="ssn" type="number"></ion-input>
+    	<ion-label>{{ssn}}</ion-label>
+    	<!-- <ion-input type="number"></ion-input> -->
   	</ion-item>
 
   	<ion-item>
-    	<ion-label floating>{{rank}}</ion-label>
-    	<ion-input formControlName="rank" type="text"></ion-input>
+    	<ion-label>{{rank}}</ion-label>
+    	<!-- <ion-input type="text"></ion-input> -->
   	</ion-item>
 
   	<ion-item>
-    	<ion-label floating>{{phone}}</ion-label>
-    	<ion-input formControlName="phone" type="tel"></ion-input>
+    	<ion-label>{{phone}}</ion-label>
+    	<!-- <ion-input type="tel"></ion-input> -->
   	</ion-item>
 
-	</form>
+	</ion-list>
 
 </ion-content>
 
-<ion-footer>
+<!-- <ion-footer>
   
   <ion-toolbar>
     <button ion-button full color="primary" (click)="submit()">{{updateButtonCopy}}</button>
   </ion-toolbar>
 
-</ion-footer>
+</ion-footer> -->

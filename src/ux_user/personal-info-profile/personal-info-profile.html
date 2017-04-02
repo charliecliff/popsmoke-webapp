@@ -4,14 +4,14 @@
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header style="height: 80px">
+<ion-header>
   <ion-navbar primary class="home-header">
     <ion-buttons left>
       <button ion-button menuToggle style="width: 44px">
         <ion-icon name="menu"></ion-icon>
       </button>
     </ion-buttons>
-    <ion-title style="line-height: 80px !important">PopSmoke</ion-title>
+    <ion-title>PopSmoke</ion-title>
     <ion-buttons end>
       <button ion-button style="width: 44px; color: white;">
         <ion-icon name="settings"></ion-icon>
@@ -23,48 +23,49 @@
 
 <ion-content padding>
 
-	<ion-list>
-    <button [@slideInOut]="menuState"
-            style="background-color: red; width: 100%" 
-            (click)="selectProfileField()">
+	<ion-list [@listState]="listState" (@listState.done)="animationDone()">
+    <button class="ps-field-button"  
+            (click)="selectProfileField()"
+            [@slideInOut]="menuState">
       <ion-item>
-        <ion-label >{{first_name}}</ion-label>
+        <ion-label>{{first_name}}</ion-label>
       </ion-item>
     </button>
-
-  	<ion-item>
-    	<ion-label>{{middle_initial}}</ion-label>
-    	<!-- <ion-input type="text"></ion-input> -->
-  	</ion-item>
-
-   	<ion-item>
-    	<ion-label>{{last_name}}</ion-label>
-    	<!-- <ion-input type="text"></ion-input> -->
-  	</ion-item>
-
-   	<ion-item>
-    	<ion-label>{{ssn}}</ion-label>
-    	<!-- <ion-input type="number"></ion-input> -->
-  	</ion-item>
-
-  	<ion-item>
-    	<ion-label>{{rank}}</ion-label>
-    	<!-- <ion-input type="text"></ion-input> -->
-  	</ion-item>
-
-  	<ion-item>
-    	<ion-label>{{phone}}</ion-label>
-    	<!-- <ion-input type="tel"></ion-input> -->
-  	</ion-item>
-
+    <button class="ps-field-button"  
+            (click)="selectProfileField()"
+            [@slideInOut]="menuState">
+      <ion-item>
+        <ion-label>{{middle_initial}}</ion-label>
+      </ion-item>
+    </button>
+    <button class="ps-field-button"  
+            (click)="selectProfileField()"
+            [@slideInOut]="menuState">
+      <ion-item>
+        <ion-label>{{last_name}}</ion-label>
+      </ion-item>
+    </button>
+    <button class="ps-field-button"  
+            (click)="selectProfileField()"
+            [@slideInOut]="menuState">
+      <ion-item>
+        <ion-label>{{ssn}}</ion-label>
+      </ion-item>
+    </button>
+    <button class="ps-field-button"  
+            (click)="selectProfileField()"
+            [@slideInOut]="menuState">
+      <ion-item>
+        <ion-label>{{rank}}</ion-label>
+      </ion-item>
+    </button>
+    <button class="ps-field-button"  
+            (click)="selectProfileField()"
+            [@slideInOut]="menuState">
+      <ion-item>
+        <ion-label>{{phone}}</ion-label>
+      </ion-item>
+    </button>
 	</ion-list>
 
 </ion-content>
-
-<!-- <ion-footer>
-  
-  <ion-toolbar>
-    <button ion-button full color="primary" (click)="submit()">{{updateButtonCopy}}</button>
-  </ion-toolbar>
-
-</ion-footer> -->

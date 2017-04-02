@@ -24520,6 +24520,11 @@ ion-navbar.toolbar {
   height: 120px;
 }
 
+.toolbar-title .toolbar-title-md .ion-title {
+  line-height: 80px;
+}
+
+toolbar-title toolbar-title-md
 .ion-list {
   background-color: transparent !important;
 }
@@ -24532,7 +24537,7 @@ ion-navbar.toolbar {
   overflow-y: auto !important;
 }
 
-/* POPSMOKE STYLINGS */
+/* POPSMOKE MENU */
 .ps-menu {
   background-color: transparent !important;
 }
@@ -24585,6 +24590,14 @@ ion-navbar.toolbar {
   width: 100%;
 }
 
+/* POPSMOKE FIELD */
+.ps-field-button {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+}
+
+/* POPSMOKE FIELD */
 .spacer {
   height: calc(100% - (7*64px) - 8px);
 }

@@ -1,7 +1,7 @@
 import {Component, trigger, state, style, transition, animate} from '@angular/core';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NavController, ModalController } from 'ionic-angular';
+import { NavController } from 'ionic-angular';
 import { Store } from '@ngrx/store';
 
 import * as Constants from '../constants';
@@ -12,6 +12,7 @@ import { PersonalInfo } from '../../models/PersonalInfo';
 
 
 import { StationProfilePage } from '../station-profile/station-profile';
+import { EditFieldPage } from '../../pages/edit-field/edit-field';
 
 @Component({
   selector: 'page-personal-info-profile',
@@ -19,21 +20,28 @@ import { StationProfilePage } from '../station-profile/station-profile';
   animations: [
     trigger('slideInOut', [
       state('in', style({
-        transform: 'translate3d(0, 0, 0)'
+        transform: 'scaleY( 20 )'
       })),
       state('out', style({
-        transform: 'translate3d(100%, 0, 0)'
+        transform: 'scaleY( 1 )'
       })),
       transition('in => out', animate('400ms ease-in-out')),
       transition('out => in', animate('400ms ease-in-out'))
     ]),
+    trigger('listState', [
+      state('visible', style({ opacity: 1 })),
+      state('hidden', style({ opacity: 0 })),
+      transition('visible => hidden', animate('400ms ease-in-out')),
+      transition('hidden => visible', animate('400ms ease-in-out'))
+    ])
   ]
 })
 export class PersonalInfoProfilePage {
 
 
 
-menuState:string = 'out';
+  menuState:string = 'out';
+  listState:string = 'visible';
 
 
 
@@ -50,38 +58,28 @@ menuState:string = 'out';
 
   // personalInfoForm: FormGroup;
   
-  constructor(private formBuilder: FormBuilder, 
-              private navCtrl: NavController, 
-              private store: Store<AppState>,
-              public modalCtrl: ModalController) {
+  constructor(private navCtrl: NavController, 
+              private store: Store<AppState>) {
     this.store.select("user").take(1)
                              .subscribe(this.initialUserCallback);
+  }
+
+  ionViewWillEnter() { // THERE IT IS!!!
+    this.listState = 'visible';
   }
 
   dismiss() {
     this.navCtrl.popToRoot();
   }
 
-  submit() { 
-    // let personalInfo = {} as PersonalInfo;
-    // personalInfo.firstName = this.personalInfoForm.value.firstName;
-    // personalInfo.lastName = this.personalInfoForm.value.lastName;
-    // personalInfo.middleInitial = this.personalInfoForm.value.middleInitial;
-    // personalInfo.ssn = this.personalInfoForm.value.ssn;
-    // personalInfo.rank = this.personalInfoForm.value.rank;
-    // personalInfo.phoneNumber = this.personalInfoForm.value.phoneNumber;
-    // this.navCtrl.popToRoot();
+  selectProfileField()  {
+    this.listState = this.listState === 'visible' ? 'hidden' : 'visible';
   }
 
-  selectProfileField()  {
-    console.log("selectProfileField");
-    this.menuState = this.menuState === 'out' ? 'in' : 'out';
-
-     // let profileModal = this.modalCtrl.create(StationProfilePage);
-     // profileModal.onDidDismiss(data => {
-     //   console.log(data);
-     // });
-     // profileModal.present();
+  private animationDone(){
+    if(this.listState == 'hidden') {
+      this.navCtrl.push(EditFieldPage, { }, { animate: false });
+    }
   }
 
   private initialUserCallback = (user) => {

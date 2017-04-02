@@ -22,6 +22,8 @@ import { HomePage } from '../pages/home/home';
 
 import { PersonalInfoProfilePage } from '../ux_user/personal-info-profile/personal-info-profile';
 import { StationProfilePage } from '../ux_user/station-profile/station-profile';
+import { EditFieldPage } from '../pages/edit-field/edit-field';
+
 
 // Providers
 import { Da31Service } from '../providers/da31.service';
@@ -60,7 +62,8 @@ export const firebaseAuthConfig = {
     LoginPage,
     MainTabPage,
     PersonalInfoProfilePage,
-    StationProfilePage
+    StationProfilePage,
+    EditFieldPage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -81,7 +84,8 @@ export const firebaseAuthConfig = {
     LoginPage,
     MainTabPage,
     PersonalInfoProfilePage,
-    StationProfilePage
+    StationProfilePage,
+    EditFieldPage
   ],
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler},

@@ -24,6 +24,7 @@
 <ion-content padding>
 
 	<ion-list [@listState]="listState" (@listState.done)="animationDone()">
+
     <button class="ps-field-button"  
             (click)="selectProfileField()"
             [@slideInOut]="menuState">

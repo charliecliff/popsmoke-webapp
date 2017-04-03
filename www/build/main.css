@@ -24507,6 +24507,22 @@ ion-navbar.toolbar {
   }
 }
 
+/* APP GLOBAL CONSTANTS */
+ion-header {
+  background-color: #e0e0e0;
+  min-height: 80px;
+  padding-top: 24px;
+  /* ( 80px - 56 px ) */
+}
+
+ion-navbar {
+  height: 100%;
+}
+
+.content {
+  background-color: rgba(245, 245, 245, 0.7);
+}
+
 .ion-menu {
   background-color: transparent !important;
 }
@@ -24522,6 +24538,11 @@ ion-navbar.toolbar {
 
 .toolbar-title .toolbar-title-md .ion-title {
   line-height: 80px;
+}
+
+.item-md {
+  padding-left: 16px !important;
+  padding-right: 16px !important;
 }
 
 toolbar-title toolbar-title-md
@@ -24600,6 +24621,48 @@ toolbar-title toolbar-title-md
 /* POPSMOKE FIELD */
 .spacer {
   height: calc(100% - (7*64px) - 8px);
+}
+
+page-edit-field button {
+  background-color: transparent;
+}
+
+page-edit-field ion-item {
+  background-color: transparent;
+  height: 100%;
+}
+
+page-edit-field ion-label {
+  background-color: transparent;
+  font-size: 30px;
+}
+
+page-edit-field ion-input {
+  background-color: transparent;
+  font-size: 30px;
+  height: 30px;
+}
+
+page-edit-field .item-md {
+  background-color: transparent;
+}
+
+page-edit-field .item-inner {
+  background-color: transparent;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+page-edit-field .input-wrapper {
+  background-color: transparent;
+}
+
+page-edit-field .ps-field {
+  background-color: transparent !important;
+  height: 30% !important;
+  width: calc(100vw - 32px) !important;
+  position: absolute !important;
+  top: 15% !important;
 }
 
 page-home ion-title {
@@ -24854,4 +24917,28 @@ page-main-tab .tabbar {
 
 page-main-tab .tab-button {
   height: 0px !important;
+}
+
+page-personal-info-profile button {
+  background-color: transparent;
+}
+
+page-personal-info-profile ion-item {
+  background-color: transparent;
+}
+
+page-personal-info-profile ion-label {
+  background-color: transparent;
+}
+
+page-personal-info-profile .item-md {
+  background-color: transparent;
+}
+
+page-personal-info-profile .item-inner {
+  background-color: transparent;
+}
+
+page-personal-info-profile .input-wrapper {
+  background-color: transparent;
 }

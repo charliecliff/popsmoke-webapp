@@ -6,17 +6,24 @@
 -->
 <ion-header>
   <ion-navbar primary class="home-header">
-    <ion-buttons left>
-      <button ion-button menuToggle style="width: 44px">
-        <ion-icon name="menu"></ion-icon>
-      </button>
+    
+    <ion-buttons left menuToggle>
+      <div id="nav-icon3" [class.open]="showsCloseIcon">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div> 
     </ion-buttons>
+    
     <ion-title>PopSmoke</ion-title>
+
     <ion-buttons end>
-      <button ion-button style="width: 44px; color: white;">
+      <button ion-button style="width: 44px; color: transparent;">
         <ion-icon name="settings"></ion-icon>
       </button>
     </ion-buttons>
+
   </ion-navbar>
 </ion-header>
 
@@ -26,43 +33,37 @@
 	<ion-list [@listState]="listState" (@listState.done)="animationDone()">
 
     <button class="ps-field-button"  
-            (click)="selectProfileField()"
-            [@slideInOut]="menuState">
+            (click)="selectProfileField()">
       <ion-item>
         <ion-label>{{first_name}}</ion-label>
       </ion-item>
     </button>
     <button class="ps-field-button"  
-            (click)="selectProfileField()"
-            [@slideInOut]="menuState">
+            (click)="selectProfileField()">
       <ion-item>
         <ion-label>{{middle_initial}}</ion-label>
       </ion-item>
     </button>
     <button class="ps-field-button"  
-            (click)="selectProfileField()"
-            [@slideInOut]="menuState">
+            (click)="selectProfileField()">
       <ion-item>
         <ion-label>{{last_name}}</ion-label>
       </ion-item>
     </button>
     <button class="ps-field-button"  
-            (click)="selectProfileField()"
-            [@slideInOut]="menuState">
+            (click)="selectProfileField()">
       <ion-item>
         <ion-label>{{ssn}}</ion-label>
       </ion-item>
     </button>
     <button class="ps-field-button"  
-            (click)="selectProfileField()"
-            [@slideInOut]="menuState">
+            (click)="selectProfileField()">
       <ion-item>
         <ion-label>{{rank}}</ion-label>
       </ion-item>
     </button>
     <button class="ps-field-button"  
-            (click)="selectProfileField()"
-            [@slideInOut]="menuState">
+            (click)="selectProfileField()">
       <ion-item>
         <ion-label>{{phone}}</ion-label>
       </ion-item>

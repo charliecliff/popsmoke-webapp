@@ -1,6 +1,4 @@
 import {Component, trigger, state, style, transition, animate} from '@angular/core';
-
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavController } from 'ionic-angular';
 import { Store } from '@ngrx/store';
 
@@ -18,16 +16,6 @@ import { EditFieldPage } from '../../pages/edit-field/edit-field';
   selector: 'page-personal-info-profile',
   templateUrl: 'personal-info-profile.html',
   animations: [
-    trigger('slideInOut', [
-      state('in', style({
-        transform: 'scaleY( 20 )'
-      })),
-      state('out', style({
-        transform: 'scaleY( 1 )'
-      })),
-      transition('in => out', animate('400ms ease-in-out')),
-      transition('out => in', animate('400ms ease-in-out'))
-    ]),
     trigger('listState', [
       state('visible', style({ opacity: 1 })),
       state('hidden', style({ opacity: 0 })),
@@ -38,12 +26,8 @@ import { EditFieldPage } from '../../pages/edit-field/edit-field';
 })
 export class PersonalInfoProfilePage {
 
-
-
-  menuState:string = 'out';
   listState:string = 'visible';
-
-
+  showsCloseIcon:boolean = false;
 
   public updateButtonCopy = Constants.UPDATE_BUTTON;
 
@@ -66,6 +50,7 @@ export class PersonalInfoProfilePage {
 
   ionViewWillEnter() { // THERE IT IS!!!
     this.listState = 'visible';
+    this.showsCloseIcon = false;
   }
 
   dismiss() {
@@ -74,6 +59,7 @@ export class PersonalInfoProfilePage {
 
   selectProfileField()  {
     this.listState = this.listState === 'visible' ? 'hidden' : 'visible';
+    this.showsCloseIcon = true;
   }
 
   private animationDone(){
@@ -83,14 +69,6 @@ export class PersonalInfoProfilePage {
   }
 
   private initialUserCallback = (user) => {
-    // var personalInfo = user.personalInfo;
-    // this.personalInfoForm = this.formBuilder.group({
-    //   firstName: [personalInfo.firstName],
-    //   middleInitial: [personalInfo.middleInitial],
-    //   lastName: [personalInfo.lastName],
-    //   ssn: [personalInfo.ssn],
-    //   rank: [personalInfo.rank],
-    //   phone: [personalInfo.phone]
-    // });
+
   }
 }

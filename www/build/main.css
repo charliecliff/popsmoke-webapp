@@ -24508,21 +24508,12 @@ ion-navbar.toolbar {
 }
 
 /* APP GLOBAL CONSTANTS */
-ion-navbar {
-  height: 100%;
-}
-
 .ion-menu {
   background-color: transparent !important;
 }
 
 .menu-inner {
   background-color: transparent !important;
-}
-
-.ion-header {
-  background-color: transparent !important;
-  height: 120px;
 }
 
 .toolbar-title .toolbar-title-md .ion-title {
@@ -24556,6 +24547,10 @@ ion-header .toolbar-title {
 
 ion-header .bar-buttons {
   color: #304ffe;
+}
+
+ion-navbar {
+  height: 100%;
 }
 
 ion-content .content {
@@ -24602,14 +24597,14 @@ toolbar-title toolbar-title-md
   background-color: transparent !important;
 }
 
-.ps-menu .ps-menu-button {
+.ps-menu-button {
   background-color: transparent !important;
   height: 100% !important;
   padding: 0px !important;
   width: 100% !important;
 }
 
-.ps-menu .ps-menu-icon {
+.ps-menu-icon {
   color: white;
   font-size: 30px;
   height: 40px;
@@ -24622,7 +24617,7 @@ toolbar-title toolbar-title-md
   vertical-align: middle;
 }
 
-.ps-menu .ps-menu-option {
+.ps-menu-option {
   background-color: transparent !important;
   color: white;
   font-size: 22px;
@@ -24632,16 +24627,16 @@ toolbar-title toolbar-title-md
   text-align: left;
 }
 
-.ps-menu .menu-section {
+.menu-section {
   margin-left: 16px;
 }
 
-.ps-menu .ps-menu-header {
+.ps-menu-header {
   background-color: transparent !important;
   height: 80px !important;
 }
 
-.ps-menu .ps-menu-footer-button {
+.ps-menu-footer-button {
   background-color: #2196F3;
   border-radius: 0px;
   height: 44px;
@@ -24657,7 +24652,6 @@ toolbar-title toolbar-title-md
   background-color: transparent;
 }
 
-/* POPSMOKE FIELD */
 .spacer {
   height: calc(100% - (7*64px) - 8px);
 }
@@ -24980,4 +24974,70 @@ page-personal-info-profile .item-inner {
 
 page-personal-info-profile .input-wrapper {
   background-color: transparent;
+}
+
+/* Icon 1 */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#nav-icon3 {
+  margin-left: 16px;
+  width: 60px;
+  height: 44px;
+  position: relative;
+  margin: 4px auto;
+  -webkit-transform: rotate(0deg);
+  transform: rotate(0deg);
+  transition: .5s ease-in-out;
+  cursor: pointer;
+}
+
+#nav-icon3 span {
+  display: block;
+  position: absolute;
+  height: 6px;
+  width: 100%;
+  background: #304ffe;
+  border-radius: 6px;
+  opacity: 1;
+  left: 0;
+  -webkit-transform: rotate(0deg);
+  transform: rotate(0deg);
+  transition: .25s ease-in-out;
+}
+
+#nav-icon3 span:nth-child(1) {
+  top: 0px;
+}
+
+#nav-icon3 span:nth-child(2), #nav-icon3 span:nth-child(3) {
+  top: 18px;
+}
+
+#nav-icon3 span:nth-child(4) {
+  top: 36px;
+}
+
+#nav-icon3.open span:nth-child(1) {
+  top: 18px;
+  width: 0%;
+  left: 50%;
+}
+
+#nav-icon3.open span:nth-child(2) {
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+#nav-icon3.open span:nth-child(3) {
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+#nav-icon3.open span:nth-child(4) {
+  top: 18px;
+  width: 0%;
+  left: 50%;
 }

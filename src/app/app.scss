@@ -17,19 +17,11 @@
 
 /* APP GLOBAL CONSTANTS */
 
-ion-navbar {
-	height: 100%;
-}
-
 .ion-menu {
 	background-color: transparent !important;
 }
 .menu-inner {
 	background-color: transparent !important;
-}
-.ion-header {
-	background-color: transparent !important;
-	height: 120px;
 }
 .toolbar-title .toolbar-title-md .ion-title {
 	line-height: 80px;
@@ -38,6 +30,7 @@ ion-navbar {
 	padding-left: 16px !important;
 	padding-right: 16px !important;
 }
+
 
 /* DEFAULT */
 ion-header {
@@ -57,9 +50,13 @@ ion-header .toolbar-title {
 ion-header .bar-buttons {
 	color: map-get($colors, primary);
 }
+ion-navbar {
+	height: 100%;
+}
 ion-content .content {
 	background-color: map-get($backgrounds, light);
 }
+
 /* iOS */
 ion-header .toolbar-background-ios {
 	border: none !important;
@@ -77,6 +74,8 @@ ion-content .content-ios {
 	background-color: map-get($backgrounds, light);
 }
 
+
+
 /* Um... Some other Stuff? */
 
 toolbar-title toolbar-title-md
@@ -92,68 +91,59 @@ toolbar-title toolbar-title-md
 }
 
 /* POPSMOKE MENU */
-
 .ps-menu {
 	background-color: transparent !important;
-
-	.ps-menu-button {
-		background-color: transparent !important;
-		height: 100% !important;
-		padding: 0px !important;
-		width: 100% !important;
-	}
-
-	.ps-menu-icon {
-		color: white;
-	    font-size: 30px;
-		height: 40px;
-		line-height: 40px;
-		margin-left: 0px;
-		padding-left: 16px;
-		padding-right: 16px;
-		width: 72px;
-		text-align: center;
-		vertical-align: middle;
-	}
-
-	.ps-menu-option {
-		background-color: transparent !important;
-		color: white;
-		font-size: 22px;
-		height: 64px;
-		margin-left: 0px;
-		padding-left: 0px;
-		text-align: left;
-	}
-
-	.menu-section {
-		margin-left: 16px;
-	}
-	
-	.ps-menu-header {
-		background-color: transparent !important;
-		height: 80px !important;
-	}
-
-	.ps-menu-footer-button {
-		background-color: #2196F3;
-		border-radius: 0px;
-		height: 44px;
-		margin: 0px;
-		padding: 0px;
-		width: 100%;
-	}
 }
-
+.ps-menu-button {
+	background-color: transparent !important;
+	height: 100% !important;
+	padding: 0px !important;
+	width: 100% !important;
+}
+.ps-menu-icon {
+	color: white;
+    font-size: 30px;
+	height: 40px;
+	line-height: 40px;
+	margin-left: 0px;
+	padding-left: 16px;
+	padding-right: 16px;
+	width: 72px;
+	text-align: center;
+	vertical-align: middle;
+}
+.ps-menu-option {
+	background-color: transparent !important;
+	color: white;
+	font-size: 22px;
+	height: 64px;
+	margin-left: 0px;
+	padding-left: 0px;
+	text-align: left;
+}
+.menu-section {
+	margin-left: 16px;
+}
+.ps-menu-header {
+	background-color: transparent !important;
+	height: 80px !important;
+}
+.ps-menu-footer-button {
+	background-color: #2196F3;
+	border-radius: 0px;
+	height: 44px;
+	margin: 0px;
+	padding: 0px;
+	width: 100%;
+}
 /* POPSMOKE FIELD */
-
 .ps-field-button {
 	width: 100%; 
 	height: 100%;
 	background-color: transparent;
 }
 
-/* POPSMOKE FIELD */
+
 
 .spacer {
 	height: calc(100% - (7*64px) - 8px);

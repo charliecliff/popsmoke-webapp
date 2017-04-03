@@ -46,16 +46,29 @@ ion-navbar {
 }
 
 /* iOS */
+.toolbar-background {
+	border: none !important;
+}
+.item {
+	background-color: transparent !important;
+}
+.title {
+	color: rgb(48, 79, 254) !important;
+}
+.bar-buttons {
+	color: rgb(48, 79, 254) !important;
+}
+
 .toolbar-background-ios {
 	border: none !important;
 }
 .item-ios {
 	background-color: transparent !important;
 }
-ion-title .title .title-ios {
+.title-ios {
 	color: rgb(48, 79, 254) !important;
 }
-ion-buttons.bar-buttons.bar-buttons-ios {
+.bar-buttons-ios {
 	color: rgb(48, 79, 254) !important;
 }
 

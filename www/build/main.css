@@ -24546,6 +24546,22 @@ ion-navbar {
 }
 
 /* iOS */
+.toolbar-background {
+  border: none !important;
+}
+
+.item {
+  background-color: transparent !important;
+}
+
+.title {
+  color: #304ffe !important;
+}
+
+.bar-buttons {
+  color: #304ffe !important;
+}
+
 .toolbar-background-ios {
   border: none !important;
 }
@@ -24554,11 +24570,11 @@ ion-navbar {
   background-color: transparent !important;
 }
 
-ion-title .title .title-ios {
+.title-ios {
   color: #304ffe !important;
 }
 
-ion-buttons.bar-buttons.bar-buttons-ios {
+.bar-buttons-ios {
   color: #304ffe !important;
 }
 

@@ -4,23 +4,24 @@
   </ion-navbar>
 </ion-header>
 
+<ion-content padding
+             style="background-color: white">
 
-<ion-content padding>
-
-  <div style="background-color: blue; 
-              height: 35%;
+  <div style="height: 30%;
               width: calc(100vw - 32px);
               position: absolute;
-              top: 15%">
-    
-     <ion-item>
-
-      <ion-label floating>Password</ion-label>
-      <ion-input type="text"></ion-input>
-
+              top: 20%">
+    <ion-item style="background-color: transparent;">
+      <ion-label floating
+                 style="background-color: transparent; font-size: 30px">
+        Password
+      </ion-label>
+      <ion-input autofocus
+                 clearInput
+                 type="text"
+                 style="background-color: transparent; font-size: 30px">
+      </ion-input>
     </ion-item>
-
-
   </div>
 
 </ion-content>

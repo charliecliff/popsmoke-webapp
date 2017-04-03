@@ -38,15 +38,23 @@ ion-header {
 	min-height: 80px;
 	padding-top: 24px; /* ( 80px - 56 px ) */
 }
-ion-header .toolbar-background {
+.toolbar {
+	background-color: transparent !important;
+}
+.toolbar-background {
 	border: none !important;
+}
+.toolbar-title {
+	color: map-get($colors, primary);
+	text-align: center;
+}
+.content {
+	background-color: map-get($backgrounds, light);
 }
 ion-header .item {
 	background-color: transparent !important;
 }
-ion-header .toolbar-title {
-	color: map-get($colors, primary);
-}
+
 ion-header .bar-buttons {
 	color: map-get($colors, primary);
 }
@@ -55,9 +63,7 @@ ion-navbar {
 	padding-left: 8px;
 	padding-right: 8px;
 }
-.content {
-	background-color: map-get($backgrounds, light);
-}
+
 .ion-nav {
 	padding-left: 8px;
 	padding-right: 8px;
@@ -65,26 +71,44 @@ ion-navbar {
 }
 
 /* Material Design */
+.toolbar-md {
+	background-color: transparent !important;
+}
+.toolbar-background-md {
+	background-color: transparent !important;
+}
+.toolbar-title-md {
+	color: map-get($colors, primary);
+	text-align: center;
+}
 .content-md {
 	background-color: map-get($backgrounds, light);
 }
 
 /* iOS */
-ion-header .toolbar-background-ios {
-	border: none !important;
-}
-ion-header .item-ios {
+
+.toolbar-ios {
 	background-color: transparent !important;
 }
-ion-header .toolbar-title-ios {
-	color: map-get($colors, primary);
+.toolbar-background-ios {
+	border: none !important;
 }
-ion-header .bar-buttons-ios {
+.toolbar-title-ios {
 	color: map-get($colors, primary);
+	text-align: center;
 }
 .content-ios {
 	background-color: map-get($backgrounds, light);
 }
+
+ion-header .item-ios {
+	background-color: transparent !important;
+}
+
+ion-header .bar-buttons-ios {
+	color: map-get($colors, primary);
+}
+
 .ion-nav-ios {
 	padding-left: 8px;
 	padding-right: 8px;
@@ -200,7 +224,7 @@ toolbar-title toolbar-title-md
   height: 4px;
   width: 100%;
   background: map-get($colors, primary);
-  border-radius: 4px;
+  border-radius: 0px;
   opacity: 1;
   left: 0;
   -webkit-transform: rotate(0deg);

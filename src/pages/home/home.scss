@@ -4,21 +4,6 @@ page-home {
     height: 100%;
   }
 
-  .home {
-    padding-left: 0px !important;
-    padding-right: 0px !important;
-    background-color: rgb(242,242,242);
-  }
-
-  .home-header {
-    height: 100%;
-    border: 0px !important;
-    border-bottom: none !important;
-    border-bottom-color: transparent !important;
-    background-image: none !important;
-    background-color: #fff !important;
-  }
-
   .item-inner {
     margin: 0px !important;
     padding: 0px !important;
@@ -39,28 +24,7 @@ page-home {
 
 /* PopSmoke Over-Write Styling */
 
-.toolbar-background {
-  background-color: transparent;
-}
-.toolbar-content-md {
-  height: 100%;
-}
-.toolbar-title-md {
-  height: 100%;
-  text-align: center;
-  color: #FF1744;
-}
-.bar-button-default-md, 
-.bar-button-clear-md-default, 
-.bar-button-md-default {
-  color: #FF1744;
-}
-.item-md.item-block .item-inner {
-  padding: 0px;  
-}
-.item-inner {
-  padding: 0px;
-}
+
 .label-md{
   margin: 0px;
 }

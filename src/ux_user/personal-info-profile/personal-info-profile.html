@@ -20,7 +20,6 @@
 
     <ion-buttons end>
       <button ion-button style="width: 44px; color: transparent;">
-        <ion-icon name="settings"></ion-icon>
       </button>
     </ion-buttons>
 
@@ -32,42 +31,83 @@
 
 	<ion-list [@listState]="listState" (@listState.done)="animationDone()">
 
-    <button class="ps-field-button"  
-            (click)="selectProfileField()">
-      <ion-item>
+    <ion-item no-lines>
+      <ion-label class="header">PROFILE</ion-label>
+    </ion-item>
+    <button ion-button class="ps-field-button" (click)="selectProfileField()">
+      <ion-item no-lines>
         <ion-label>{{first_name}}</ion-label>
       </ion-item>
     </button>
-    <button class="ps-field-button"  
-            (click)="selectProfileField()">
-      <ion-item>
+    <button ion-button class="ps-field-button" (click)="selectProfileField()">
+      <ion-item no-lines>
         <ion-label>{{middle_initial}}</ion-label>
       </ion-item>
     </button>
-    <button class="ps-field-button"  
-            (click)="selectProfileField()">
-      <ion-item>
+    <button ion-button class="ps-field-button" (click)="selectProfileField()">
+      <ion-item no-lines>
         <ion-label>{{last_name}}</ion-label>
       </ion-item>
     </button>
-    <button class="ps-field-button"  
-            (click)="selectProfileField()">
-      <ion-item>
+    <button ion-button class="ps-field-button" (click)="selectProfileField()">
+      <ion-item no-lines>
         <ion-label>{{ssn}}</ion-label>
       </ion-item>
     </button>
-    <button class="ps-field-button"  
-            (click)="selectProfileField()">
-      <ion-item>
+    <button ion-button class="ps-field-button" (click)="selectProfileField()">
+      <ion-item no-lines>
         <ion-label>{{rank}}</ion-label>
       </ion-item>
     </button>
-    <button class="ps-field-button"  
-            (click)="selectProfileField()">
-      <ion-item>
+    <button ion-button class="ps-field-button" (click)="selectProfileField()">
+      <ion-item no-lines>
         <ion-label>{{phone}}</ion-label>
       </ion-item>
     </button>
-	</ion-list>
 
+    <ion-item no-lines>
+      <ion-label class="header">STATION</ion-label>
+    </ion-item>
+    <button ion-button class="ps-field-button" (click)="selectProfileField()">
+      <ion-item no-lines>
+        <ion-label>{{PLATOON}}</ion-label>
+      </ion-item>
+    </button>
+    <button ion-button class="ps-field-button" (click)="selectProfileField()">
+      <ion-item no-lines>
+        <ion-label>{{COMPANY}}</ion-label>
+      </ion-item>
+    </button>
+    <button ion-button class="ps-field-button" (click)="selectProfileField()">
+      <ion-item no-lines>
+        <ion-label>{{BATTALION}}</ion-label>
+      </ion-item>
+    </button>
+    <button ion-button class="ps-field-button" (click)="selectProfileField()">
+      <ion-item no-lines>
+        <ion-label>{{BRIGADE}}</ion-label>
+      </ion-item>
+    </button>
+    <button ion-button class="ps-field-button" (click)="selectProfileField()">
+      <ion-item no-lines>
+        <ion-label>{{DIVISION}}</ion-label>
+      </ion-item>
+    </button>
+    <button ion-button class="ps-field-button" (click)="selectProfileField()">
+      <ion-item no-lines>
+        <ion-label>{{POST}}</ion-label>
+      </ion-item>
+    </button>
+    <button ion-button class="ps-field-button" (click)="selectProfileField()">
+      <ion-item no-lines>
+        <ion-label>{{ZIP}}</ion-label>
+      </ion-item>
+    </button>
+    <button ion-button class="ps-field-button" (click)="selectProfileField()">
+      <ion-item no-lines>
+        <ion-label>{{PHONE}}</ion-label>
+      </ion-item>
+    </button>
+
+	</ion-list>
 </ion-content>

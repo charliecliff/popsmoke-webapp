@@ -12,10 +12,6 @@ export let INITIAL_MENU = { "options": [{
                               "icon": "logo-apple",
                               "selected": false
                             }, {
-                              "name": STATION_OPTION,
-                              "icon": "logo-apple",
-                              "selected": false
-                            }, {
                               "name": DOCUMENTS_OPTION,
                               "icon": "logo-apple",
                               "selected": false

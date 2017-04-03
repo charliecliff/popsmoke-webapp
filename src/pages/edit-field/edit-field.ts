@@ -13,4 +13,7 @@ export class EditFieldPage {
     console.log('ionViewDidLoad EditFieldPage');
   }
 
+  pop() {
+    this.navCtrl.pop();
+  }
 }

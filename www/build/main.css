@@ -24556,7 +24556,7 @@ ion-navbar {
 }
 
 .content {
-  background-color: #303030;
+  background-color: rgba(48, 48, 48, 0.8);
 }
 
 .ion-nav {
@@ -24567,7 +24567,7 @@ ion-navbar {
 
 /* Material Design */
 .content-md {
-  background-color: #303030;
+  background-color: rgba(48, 48, 48, 0.8);
 }
 
 /* iOS */
@@ -24588,7 +24588,7 @@ ion-header .bar-buttons-ios {
 }
 
 .content-ios {
-  background-color: #303030;
+  background-color: rgba(48, 48, 48, 0.8);
 }
 
 .ion-nav-ios {

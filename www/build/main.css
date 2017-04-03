@@ -24545,6 +24545,24 @@ ion-navbar {
   padding-right: 16px !important;
 }
 
+/* iOS */
+.toolbar-background-ios {
+  border: none;
+}
+
+.item-ios {
+  background-color: transparent;
+}
+
+ion-title .title .title-ios {
+  color: #304ffe;
+}
+
+ion-buttons.bar-buttons.bar-buttons-ios {
+  color: #304ffe;
+}
+
+/* Um... Some other Stuff? */
 toolbar-title toolbar-title-md
 .ion-list {
   background-color: transparent !important;

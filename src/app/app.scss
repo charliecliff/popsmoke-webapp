@@ -45,7 +45,20 @@ ion-navbar {
 	padding-right: 16px !important;
 }
 
-
+/* iOS */
+.toolbar-background-ios {
+	border: none;
+}
+.item-ios {
+	background-color: transparent;
+}
+ion-title .title .title-ios {
+	color: rgb(48, 79, 254);
+}
+ion-buttons.bar-buttons.bar-buttons-ios {
+	color: rgb(48, 79, 254);
+}
+/* Um... Some other Stuff? */
 
 toolbar-title toolbar-title-md
 .ion-list{

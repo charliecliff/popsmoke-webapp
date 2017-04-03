@@ -47,17 +47,19 @@ ion-navbar {
 
 /* iOS */
 .toolbar-background-ios {
-	border: none;
+	border: none !important;
 }
 .item-ios {
-	background-color: transparent;
+	background-color: transparent !important;
 }
 ion-title .title .title-ios {
-	color: rgb(48, 79, 254);
+	color: rgb(48, 79, 254) !important;
 }
 ion-buttons.bar-buttons.bar-buttons-ios {
-	color: rgb(48, 79, 254);
+	color: rgb(48, 79, 254) !important;
 }
+
+
 /* Um... Some other Stuff? */
 
 toolbar-title toolbar-title-md

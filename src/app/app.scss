@@ -16,17 +16,11 @@
 // automatically applied to the <body> element in the app.
 
 /* APP GLOBAL CONSTANTS */
-ion-header {
-	background-color: rgba(224,224,224,1);
-	min-height: 80px;
-	padding-top: 24px; /* ( 80px - 56 px ) */
-}
+
 ion-navbar {
 	height: 100%;
 }
-.content {
-	background-color: rgba(245,245,245,0.7);
-}
+
 .ion-menu {
 	background-color: transparent !important;
 }
@@ -45,33 +39,43 @@ ion-navbar {
 	padding-right: 16px !important;
 }
 
+/* DEFAULT */
+ion-header {
+	background-color: map-get($backgrounds, dark);
+	min-height: 80px;
+	padding-top: 24px; /* ( 80px - 56 px ) */
+}
+ion-header .toolbar-background {
+	border: none !important;
+}
+ion-header .item {
+	background-color: transparent !important;
+}
+ion-header .toolbar-title {
+	color: map-get($colors, primary);
+}
+ion-header .bar-buttons {
+	color: map-get($colors, primary);
+}
+ion-content .content {
+	background-color: map-get($backgrounds, light);
+}
 /* iOS */
-.toolbar-background {
+ion-header .toolbar-background-ios {
 	border: none !important;
 }
-.item {
+ion-header .item-ios {
 	background-color: transparent !important;
 }
-.title {
-	color: rgb(48, 79, 254) !important;
+ion-header .toolbar-title-ios {
+	color: map-get($colors, primary);
 }
-.bar-buttons {
-	color: rgb(48, 79, 254) !important;
+ion-header .bar-buttons-ios {
+	color: map-get($colors, primary);
 }
-
-.toolbar-background-ios {
-	border: none !important;
+ion-content .content-ios {
+	background-color: map-get($backgrounds, light);
 }
-.item-ios {
-	background-color: transparent !important;
-}
-.title-ios {
-	color: rgb(48, 79, 254) !important;
-}
-.bar-buttons-ios {
-	color: rgb(48, 79, 254) !important;
-}
-
 
 /* Um... Some other Stuff? */
 

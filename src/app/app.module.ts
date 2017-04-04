@@ -18,10 +18,14 @@ import { LaunchPage } from '../pages/launch/launch';
 import { LoginPage } from '../pages/login/login';
 import { MainTabPage } from '../pages/main-tab/main-tab';
 
-import { HomePage } from '../pages/home/home';
 
 import { PersonalInfoProfilePage } from '../ux_user/personal-info-profile/personal-info-profile';
-import { StationProfilePage } from '../ux_user/station-profile/station-profile';
+import { DocumentsPage } from '../pages/documents/documents';
+import { HomePage } from '../pages/home/home';
+import { PacketHistoryPage } from '../pages/packet-history/packet-history';
+import { InboxPage } from '../pages/inbox/inbox';
+
+
 import { EditFieldPage } from '../pages/edit-field/edit-field';
 
 
@@ -62,7 +66,9 @@ export const firebaseAuthConfig = {
     LoginPage,
     MainTabPage,
     PersonalInfoProfilePage,
-    StationProfilePage,
+    DocumentsPage,
+    PacketHistoryPage,
+    InboxPage,
     EditFieldPage
   ],
   imports: [
@@ -84,7 +90,9 @@ export const firebaseAuthConfig = {
     LoginPage,
     MainTabPage,
     PersonalInfoProfilePage,
-    StationProfilePage,
+    DocumentsPage,
+    PacketHistoryPage,
+    InboxPage,
     EditFieldPage
   ],
   providers: [

@@ -19,7 +19,6 @@ import { HolidayProvider } from '../providers/holiday-provider';
 import { LaunchPage } from '../pages/launch/launch';
 
 import { PersonalInfoProfilePage } from '../ux_user/personal-info-profile/personal-info-profile';
-import { StationProfilePage } from '../ux_user/station-profile/station-profile';
 
 
 

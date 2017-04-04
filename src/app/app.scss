@@ -26,10 +26,6 @@
 .toolbar-title .toolbar-title-md .ion-title {
 	line-height: 80px;
 }
-.item-md {
-	padding-left: 16px !important;
-	padding-right: 16px !important;
-}
 
 
 /* DEFAULT */
@@ -51,7 +47,7 @@ ion-header {
 .content {
 	background-color: map-get($backgrounds, light);
 }
-ion-header .item {
+.item {
 	background-color: transparent !important;
 }
 
@@ -84,7 +80,10 @@ ion-navbar {
 .content-md {
 	background-color: map-get($backgrounds, light);
 }
-
+.item-md {
+	padding-left: 16px !important;
+	padding-right: 16px !important;
+}
 /* iOS */
 
 .toolbar-ios {
@@ -100,8 +99,7 @@ ion-navbar {
 .content-ios {
 	background-color: map-get($backgrounds, light);
 }
-
-ion-header .item-ios {
+.item-ios {
 	background-color: transparent !important;
 }
 
@@ -115,18 +113,6 @@ ion-header .bar-buttons-ios {
 	background-color: transparent !important;
 }
 
-
-/* Um... Some other Stuff? */
-
-toolbar-title toolbar-title-md
-.ion-list{
-	background-color: transparent !important;
-}
-
-
-.scroll-content {
-	overflow-y: auto !important;
-}
 
 /* POPSMOKE MENU */
 .ps-menu {

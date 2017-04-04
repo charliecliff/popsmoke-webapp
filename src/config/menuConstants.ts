@@ -24,10 +24,6 @@ export let INITIAL_MENU = { "options": [{
                               "icon": "logo-apple",
                               "selected": false
                             }, {
-                              "name": REMINDERS_OPTION,
-                              "icon": "logo-apple",
-                              "selected": false
-                            }, {
                               "name": INBOX_OPTION,
                               "icon": "logo-apple",
                               "selected": false

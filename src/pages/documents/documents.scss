@@ -1,0 +1,27 @@
+
+page-documents ion-card {
+    position: relative;
+    text-align: center;
+ }
+
+page-documents ion-card .card-title {
+    position: absolute;
+    top: 36%;
+    font-size: 2.0em;
+    width: 100%;
+    font-weight: bold;
+    color: #fff;
+}
+
+page-documents ion-card .card-subtitle {
+    font-size: 1.0em;
+    position: absolute;
+    top: 52%;
+    width: 100%;
+    color: #fff;
+}
+
+page-documents ion-card .document-image {
+	width: 100%;
+	filter: blur(2px);
+}

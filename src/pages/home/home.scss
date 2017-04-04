@@ -24,16 +24,14 @@ page-home {
 
 /* PopSmoke Over-Write Styling */
 
-
-.label-md{
+page-home .label-md{
   margin: 0px;
 }
 
-/* PopSmoke Specific Styling */
-.holiday-list {
+page-home .holiday-list {
   background : transparent;  
 }
-.holiday-list button {
+page-home .holiday-list button {
   background-color: black;
   margin-left: 0px !important;
   margin-right: 0px !important;
@@ -41,18 +39,18 @@ page-home {
   margin-bottom: 16px !important;
   padding: 0px !important;
 }
-.holiday-list ion-card {   
+page-home .holiday-list ion-card {   
   background-color: transparent;
   height: 60vw;
   margin: 0px !important;
   padding: 0px !important;
   width: 100%;
 }
-.holiday-list ion-card img {
+page-home .holiday-list ion-card img {
   height: 100%;
-  opacity: 0.7; 
+  filter: contrast(110%) blur(1px) brightness(105%); 
 }
-.holiday-list ion-card .title-container {
+page-home .holiday-list ion-card .title-container {
   background-color: transparent;
   height: 50%;
   position: absolute;
@@ -60,8 +58,8 @@ page-home {
   transform: translate(-50%, -50%);
   width: 100%;
 }
-.holiday-list ion-card .title-container .title {
-  color: #fff;
+page-home .holiday-list ion-card .title-container .title {
+  color: black;
   font-size: 44px;
   font-weight: bold;
   position: absolute;
@@ -70,7 +68,7 @@ page-home {
   transform: translate(-50%, -50%);
   width: 100%;
 }
-.holiday-list ion-card .clock {
+page-home .holiday-list ion-card .clock {
   color: #fff;
   display: inline-block;
   font-family: sans-serif;
@@ -82,19 +80,19 @@ page-home {
   top: 75%;
   transform: translate(-50%, -50%);
 }
-.holiday-list ion-card .clock-box {
+page-home .holiday-list ion-card .clock-box {
   border-radius: 9px;
   display: inline-block;
   height: 100%;
   padding: 10px;
 }
-.holiday-list ion-card .clock-time {
+page-home .holiday-list ion-card .clock-time {
   background: rgba(0,0,0,0.7);
   border-radius: 3px;
   display: inline-block;
   padding: 10px;
 }
-.holiday-list ion-card .clock-text {
+page-home .holiday-list ion-card .clock-text {
   font-size: 16px;
   padding-top: 5px;
   text-align: center;

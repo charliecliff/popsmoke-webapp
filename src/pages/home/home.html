@@ -6,26 +6,28 @@
 -->
 <ion-header>
   <ion-navbar primary class="home-header">
-  
-    <ion-buttons left>
-      <button ion-button menuToggle>
-        <ion-icon name="menu"></ion-icon>
-      </button>
-    </ion-buttons>
-  
-    <ion-title>PopSmoke</ion-title>
     
+    <ion-buttons left menuToggle>
+      <div id="nav-icon3" [class.open]="showsCloseIcon">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div> 
+    </ion-buttons>
+    
+    <ion-title>PopSmoke</ion-title>
+
     <ion-buttons end>
       <button ion-button style="width: 44px; color: transparent;">
-        <ion-icon name="settings"></ion-icon>
       </button>
     </ion-buttons>
-  
+
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
 
+<ion-content padding>
   <ion-list class="holiday-list">
 
     <button class="holiday-button" 
@@ -34,7 +36,7 @@
             detail-none
     		    *ngFor="let holiday of holidays" 
     		    (click)="holidaySelected(holiday)">
-       <ion-card detail-none>
+      <ion-card detail-none>
         <img src="{{holiday.photoURL}}"/>
         <div class="title-container">
             <h1 class="title">{{holiday.name}}</h1>
@@ -48,14 +50,9 @@
                 <span class="clock-time">{{holiday.days}}</span>
                 <div class="clock-text">DAYS</div>
             </div>
-            <div class="clock-box">
-                <span class="clock-time">{{holiday.hours}}</span>
-                <div class="clock-text">HOURS</div>
-            </div>
         </div>
       </ion-card>
     </button>
   
   </ion-list>
-
 </ion-content>

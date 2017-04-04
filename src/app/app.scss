@@ -38,6 +38,7 @@ ion-header {
 	background-color: transparent !important;
 }
 .toolbar-background {
+	background-color: transparent !important;
 	border: none !important;
 }
 .toolbar-title {
@@ -72,6 +73,7 @@ ion-navbar {
 }
 .toolbar-background-md {
 	background-color: transparent !important;
+	border: none !important;
 }
 .toolbar-title-md {
 	color: map-get($colors, primary);
@@ -90,6 +92,7 @@ ion-navbar {
 	background-color: transparent !important;
 }
 .toolbar-background-ios {
+	background-color: transparent !important;
 	border: none !important;
 }
 .toolbar-title-ios {

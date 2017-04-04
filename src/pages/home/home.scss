@@ -48,7 +48,7 @@ page-home .holiday-list ion-card {
 }
 page-home .holiday-list ion-card img {
   height: 100%;
-  filter: contrast(110%) blur(1px) brightness(105%); 
+  filter: contrast(120%) brightness(50%) saturate(150%); 
 }
 page-home .holiday-list ion-card .title-container {
   background-color: transparent;
@@ -59,7 +59,7 @@ page-home .holiday-list ion-card .title-container {
   width: 100%;
 }
 page-home .holiday-list ion-card .title-container .title {
-  color: black;
+  color: white;
   font-size: 44px;
   font-weight: bold;
   position: absolute;

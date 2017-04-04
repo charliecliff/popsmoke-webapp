@@ -24533,6 +24533,7 @@ ion-header {
 }
 
 .toolbar-background {
+  background-color: transparent !important;
   border: none !important;
 }
 
@@ -24572,6 +24573,7 @@ ion-navbar {
 
 .toolbar-background-md {
   background-color: transparent !important;
+  border: none !important;
 }
 
 .toolbar-title-md {
@@ -24594,6 +24596,7 @@ ion-navbar {
 }
 
 .toolbar-background-ios {
+  background-color: transparent !important;
   border: none !important;
 }
 
@@ -24873,8 +24876,8 @@ page-home .holiday-list ion-card {
 
 page-home .holiday-list ion-card img {
   height: 100%;
-  -webkit-filter: contrast(110%) blur(1px) brightness(105%);
-  filter: contrast(110%) blur(1px) brightness(105%);
+  -webkit-filter: contrast(120%) brightness(50%) saturate(150%);
+  filter: contrast(120%) brightness(50%) saturate(150%);
 }
 
 page-home .holiday-list ion-card .title-container {
@@ -24891,7 +24894,7 @@ page-home .holiday-list ion-card .title-container {
 }
 
 page-home .holiday-list ion-card .title-container .title {
-  color: black;
+  color: white;
   font-size: 44px;
   font-weight: bold;
   position: absolute;

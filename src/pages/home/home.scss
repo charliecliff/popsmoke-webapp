@@ -1,33 +1,26 @@
-page-home {
 
-  ion-title {
-    height: 100%;
-  }
-
-  .item-inner {
-    margin: 0px !important;
-    padding: 0px !important;
-  }
-  .item-ios.item-block .item-inner {
-    margin: 0px !important;
-    padding: 0px !important;
-  }
-  .label {
-    margin: 0px !important;
-    padding: 0px !important;
-  }
-  .label-ios {
-    margin: 0px !important;
-    padding: 0px !important;
-  }
+/* DEFAULT*/
+page-home ion-card {
+  background-color: transparent;
+  height: 60vw;
+  margin: 0px !important;
+  padding: 0px !important;
+  width: 100%;
+  position: relative;
+  text-align: center;
 }
-
-/* PopSmoke Over-Write Styling */
-
-page-home .label-md{
-  margin: 0px;
+page-home ion-card img {
+  height: 100%;
+  filter: contrast(120%) brightness(50%) saturate(150%); 
 }
-
+page-home .label {
+  margin: 0px !important;
+  padding: 0px !important;
+}
+page-home .item-inner {
+  margin: 0px !important;
+  padding: 0px !important;
+}
 page-home .holiday-list {
   background : transparent;  
 }
@@ -39,67 +32,33 @@ page-home .holiday-list button {
   margin-bottom: 16px !important;
   padding: 0px !important;
 }
-page-home .holiday-list ion-card {   
-  background-color: transparent;
-  height: 60vw;
+page-home .card {
   margin: 0px !important;
   padding: 0px !important;
   width: 100%;
 }
-page-home .holiday-list ion-card img {
-  height: 100%;
-  filter: contrast(120%) brightness(50%) saturate(150%); 
-}
-page-home .holiday-list ion-card .title-container {
-  background-color: transparent;
-  height: 50%;
-  position: absolute;
-  top:25%; left:50%; bottom:0; right:0;
-  transform: translate(-50%, -50%);
-  width: 100%;
-}
-page-home .holiday-list ion-card .title-container .title {
-  color: white;
-  font-size: 44px;
+page-home .card-title {
+  color: #fff;
+  font-size: 3.0em;
   font-weight: bold;
   position: absolute;
-  text-align: center;
-  top:50%; left:50%; bottom:0; right:0;
-  transform: translate(-50%, -50%);
+  top: 36%;
   width: 100%;
 }
-page-home .holiday-list ion-card .clock {
+page-home .card-subtitle {
   color: #fff;
-  display: inline-block;
-  font-family: sans-serif;
-  font-size: 30px;
-  font-weight: 100;
-  height: 50%;
-  left: 50%;
+  font-size: 2.0em;
   position: absolute;
-  top: 75%;
-  transform: translate(-50%, -50%);
+  top: 62%;
+  width: 100%;
 }
-page-home .holiday-list ion-card .clock-box {
-  border-radius: 9px;
-  display: inline-block;
-  height: 100%;
-  padding: 10px;
+page-home h1 {
+  color: #396;
+  font-weight: 100;
+  font-size: 40px;
+  margin: 40px 0px 20px;
 }
-page-home .holiday-list ion-card .clock-time {
-  background: rgba(0,0,0,0.7);
-  border-radius: 3px;
-  display: inline-block;
-  padding: 10px;
-}
-page-home .holiday-list ion-card .clock-text {
-  font-size: 16px;
-  padding-top: 5px;
-  text-align: center;
-}
-
-
-h1 {
+page-home h2 {
   color: #396;
   font-weight: 100;
   font-size: 40px;
@@ -109,4 +68,24 @@ h1 {
 /* Hide the Scroll Bar in Chrome Browser*/
 ::-webkit-scrollbar {
   display: none;
+}
+
+/* Material Design */
+page-home .label-md {
+  margin: 0px;
+}
+page-home .card-md {
+  margin: 0px !important;
+  padding: 0px !important;
+  width: 100%;
+}
+/* iOS */
+page-home .label-ios {
+  margin: 0px !important;
+  padding: 0px !important;
+}
+page-home .card-ios {
+  margin: 0px !important;
+  padding: 0px !important;
+  width: 100%;
 }

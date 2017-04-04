@@ -14,7 +14,6 @@ export class Holiday {
 
   public weeks: string;
   public days: string;
-  public hours: string;
 
   constructor(data = {}) {
     this.name = data["name"];
@@ -32,12 +31,9 @@ export class Holiday {
 
   private getTimeRemaining() {
     let t = this.startDate.getTime() - (new Date()).getTime();
-    let hourNumber = Math.floor( (t / (1000*60*60)  ) % 24 );
-    this.hours = ('0' + hourNumber).slice(-2);
     let dayNumber  = Math.floor( (t / (1000*60*60*24))% 7 );
-    this.days = ('0' + dayNumber).slice(-2);
+    this.days = dayNumber.toString();
     let weekNumber = Math.floor( (t / (1000*60*60*24*7)) );
-    this.weeks = ('0' + weekNumber).slice(-2);
+    this.weeks = weekNumber.toString();
   }
-
 }

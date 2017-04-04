@@ -38,19 +38,8 @@
     		    (click)="holidaySelected(holiday)">
       <ion-card detail-none>
         <img src="{{holiday.photoURL}}"/>
-        <div class="title-container">
-            <h1 class="title">{{holiday.name}}</h1>
-        </div>
-        <div class="clock">
-            <div class="clock-box">
-                <span class="clock-time">{{holiday.weeks}}</span>
-                <div class="clock-text">WEEKS</div>
-            </div>
-            <div class="clock-box">
-                <span class="clock-time">{{holiday.days}}</span>
-                <div class="clock-text">DAYS</div>
-            </div>
-        </div>
+        <h1 class="card-title">{{holiday.name}}</h1>
+        <h2 class="card-subtitle">{{holiday.weeks}} WEEKS AND {{holiday.days}} DAYS</h2>
       </ion-card>
     </button>
   

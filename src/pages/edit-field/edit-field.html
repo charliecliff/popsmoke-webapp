@@ -26,7 +26,12 @@
   <ion-card class="ps-field">
     <ion-item>
       <ion-label floating>Test</ion-label>
-      <ion-input autofocus clearInput type="text" style="color: white"></ion-input>
+      <ion-input autofocus 
+                 clearInput 
+                 type="text" 
+                 style="color: white" 
+                 [(ngModel)]="currentValue">
+      </ion-input>
     </ion-item>
   </ion-card>
 

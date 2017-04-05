@@ -29657,6 +29657,7 @@ page-edit-field ion-label {
 
 page-edit-field ion-input {
   background-color: transparent;
+  color: #1DE9B6;
   font-size: 30px;
   height: 30px;
 }

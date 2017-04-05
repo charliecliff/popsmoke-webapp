@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 
 @Component({
   selector: 'page-edit-field',
@@ -7,7 +7,16 @@ import { NavController } from 'ionic-angular';
 })
 export class EditFieldPage {
 
-  constructor(public navCtrl: NavController) { }
+  explanation: string;
+  currentValue: string;
+
+
+  constructor(public navCtrl: NavController, 
+              public params: NavParams) { 
+    // this.currentValue = params.get('current');
+        this.currentValue = "temp";
+
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad EditFieldPage');

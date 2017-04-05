@@ -27,7 +27,10 @@ page-edit-field .input-wrapper {
 	background-color: transparent;			
 }
 page-edit-field .ps-field {
-	background-color: transparent !important;
+	background-color: map-get($backgrounds, modal);
+	border-color: map-get($colors, accent) !important;
+	border-width: 1px !important;
+	border-style: solid;;
 	height: 30% !important;
 	width: calc(100vw - 32px) !important;
 	position: absolute !important;

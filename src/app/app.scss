@@ -35,14 +35,14 @@ ion-header {
 	padding-top: 24px; /* ( 80px - 56 px ) */
 }
 .toolbar {
-	background-color: transparent !important;
+	background-color: map-get($backgrounds, toolbar);
 }
 .toolbar-background {
 	background-color: transparent !important;
 	border: none !important;
 }
 .toolbar-title {
-	color: map-get($colors, primary);
+	color: map-get($colors, accentLight);
 	text-align: center;
 }
 .content {
@@ -51,9 +51,13 @@ ion-header {
 .item {
 	background-color: transparent !important;
 }
+.item-inner {
+	margin: 0px !important;
+	padding: 0px !important;
+}
 
 ion-header .bar-buttons {
-	color: map-get($colors, primary);
+	color: map-get($colors, accentLight);
 }
 ion-navbar {
 	height: 100%;
@@ -70,13 +74,15 @@ ion-navbar {
 /* Material Design */
 .toolbar-md {
 	background-color: transparent !important;
+	padding-left: 16px;
+	padding-right: 16px;
 }
 .toolbar-background-md {
 	background-color: transparent !important;
 	border: none !important;
 }
 .toolbar-title-md {
-	color: map-get($colors, primary);
+	color: map-get($colors, accentLight);
 	text-align: center;
 }
 .content-md {
@@ -90,13 +96,15 @@ ion-navbar {
 
 .toolbar-ios {
 	background-color: transparent !important;
+	padding-left: 16px;
+	padding-right: 16px;
 }
 .toolbar-background-ios {
 	background-color: transparent !important;
 	border: none !important;
 }
 .toolbar-title-ios {
-	color: map-get($colors, primary);
+	color: map-get($colors, accentLight);
 	text-align: center;
 }
 .content-ios {
@@ -107,7 +115,7 @@ ion-navbar {
 }
 
 ion-header .bar-buttons-ios {
-	color: map-get($colors, primary);
+	color: map-get($colors, accentLight);
 }
 
 .ion-nav-ios {

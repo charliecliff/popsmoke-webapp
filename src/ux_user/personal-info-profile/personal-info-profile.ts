@@ -1,5 +1,5 @@
 import {Component, trigger, state, style, transition, animate} from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, AlertController } from 'ionic-angular';
 import { Store } from '@ngrx/store';
 
 import * as Constants from '../constants';
@@ -42,7 +42,8 @@ export class PersonalInfoProfilePage {
 
   // personalInfoForm: FormGroup;
   
-  constructor(private navCtrl: NavController, 
+  constructor(private navCtrl: NavController,
+              private alertCtrl: AlertController, 
               private store: Store<AppState>) {
     this.store.select("user").take(1)
                              .subscribe(this.initialUserCallback);
@@ -58,8 +59,9 @@ export class PersonalInfoProfilePage {
   }
 
   selectProfileField()  {
-    this.listState = this.listState === 'visible' ? 'hidden' : 'visible';
-    this.showsCloseIcon = true;
+    this.presentPrompt();
+    // this.listState = this.listState === 'visible' ? 'hidden' : 'visible';
+    // this.showsCloseIcon = true;
   }
 
   private animationDone(){
@@ -71,4 +73,40 @@ export class PersonalInfoProfilePage {
   private initialUserCallback = (user) => {
 
   }
+
+  
+presentPrompt() {
+  let alert = this.alertCtrl.create({
+    title: 'Login',
+    inputs: [
+      {
+        name: 'username',
+        placeholder: 'Username'
+      },
+      {
+        name: 'password',
+        placeholder: 'Password',
+        type: 'password'
+      }
+    ],
+    buttons: [
+      {
+        text: 'Cancel',
+        role: 'cancel',
+        handler: data => {
+          console.log('Cancel clicked');
+        }
+      },
+      {
+        text: 'Login',
+        handler: data => {
+          
+        }
+      }
+    ]
+  });
+  alert.present();
+}
+
+
 }

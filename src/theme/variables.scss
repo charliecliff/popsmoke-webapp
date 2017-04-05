@@ -40,6 +40,12 @@ $backgrounds: (
   modal:      #424242,
 );
 
+$alertController: (
+  background:           #424242,
+  overlay:              #424242,
+  overlayGradientStop:  #1B5E20,
+);
+
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here

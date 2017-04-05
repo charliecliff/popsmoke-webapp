@@ -11,15 +11,15 @@ import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { NavController, NavParams } from 'ionic-angular';
 import { Store } from '@ngrx/store';
-import { Da31BuilderActions } from '../../actions/da31builder.actions';
 import { AddressFormPage } from '../address-form/address-form';
+import * as da31BuilderActions from '../../actions/da31builder.actions';
 var PersonalInfoFormPage = (function () {
-    function PersonalInfoFormPage(formBuilder, navCtrl, navParams, store, builderActions) {
+    function PersonalInfoFormPage(formBuilder, navCtrl, navParams, store) {
+        var _this = this;
         this.formBuilder = formBuilder;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.store = store;
-        this.builderActions = builderActions;
         this.PAGE_TITLE = "PERSONAL INFORMATION";
         this.SUBMIT_BUTTON_TITLE = "SUBMIT";
         this.first_name = "FIRST NAME";
@@ -28,18 +28,20 @@ var PersonalInfoFormPage = (function () {
         this.ssn = "SSN";
         this.rank = "RANK";
         this.phone = "PHONE";
-        this.personalInfoForm = formBuilder.group({
-            firstName: [''],
-            middleInitial: [''],
-            lastName: [''],
-            ssn: [''],
-            rank: [''],
-            phone: ['']
-        });
+        this.initialUserCallback = function (user) {
+            var personalInfo = user.personalInfo;
+            _this.personalInfoForm = _this.formBuilder.group({
+                firstName: [personalInfo.firstName],
+                middleInitial: [personalInfo.middleInitial],
+                lastName: [personalInfo.lastName],
+                ssn: [personalInfo.ssn],
+                rank: [personalInfo.rank],
+                phone: [personalInfo.phone]
+            });
+        };
+        this.store.select("user").take(1)
+            .subscribe(this.initialUserCallback);
     }
-    PersonalInfoFormPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad PersonalInfoFormPage');
-    };
     PersonalInfoFormPage.prototype.dismiss = function () {
         this.navCtrl.popToRoot();
     };
@@ -51,7 +53,7 @@ var PersonalInfoFormPage = (function () {
         personalInfo.ssn = this.personalInfoForm.value.ssn;
         personalInfo.rank = this.personalInfoForm.value.rank;
         personalInfo.phoneNumber = this.personalInfoForm.value.phoneNumber;
-        this.store.dispatch(this.builderActions.addPersonalInfo(personalInfo));
+        this.store.dispatch(new da31BuilderActions.AddPersonalInfoAction(personalInfo));
         this.navCtrl.push(AddressFormPage);
     };
     return PersonalInfoFormPage;
@@ -59,13 +61,12 @@ var PersonalInfoFormPage = (function () {
 PersonalInfoFormPage = __decorate([
     Component({
         selector: 'page-personalinfo-form',
-        templateUrl: 'personalinfo-form.html'
+        templateUrl: 'personalinfo-form.html',
     }),
     __metadata("design:paramtypes", [FormBuilder,
         NavController,
         NavParams,
-        Store,
-        Da31BuilderActions])
+        Store])
 ], PersonalInfoFormPage);
 export { PersonalInfoFormPage };
 //# sourceMappingURL=personalinfo-form.js.map

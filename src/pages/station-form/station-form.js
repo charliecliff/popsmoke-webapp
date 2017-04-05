@@ -11,15 +11,14 @@ import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { NavController, NavParams } from 'ionic-angular';
 import { Store } from '@ngrx/store';
-import { Da31BuilderActions } from '../../actions/da31builder.actions';
 import { LeaveFormPage } from '../leave-form/leave-form';
+import * as da31BuilderActions from '../../actions/da31builder.actions';
 var StationFormPage = (function () {
-    function StationFormPage(formBuilder, navCtrl, navParams, store, builderActions) {
+    function StationFormPage(formBuilder, navCtrl, navParams, store) {
         this.formBuilder = formBuilder;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.store = store;
-        this.builderActions = builderActions;
         this.PAGE_TITLE = "STATION";
         this.SUBMIT_BUTTON_TITLE = "SUBMIT";
         this.PLATOON = "PLATOON";
@@ -56,7 +55,7 @@ var StationFormPage = (function () {
         stationInfo.division = this.stationForm.value.division;
         stationInfo.post = this.stationForm.value.post;
         stationInfo.division = this.stationForm.value.division;
-        this.store.dispatch(this.builderActions.addStation(stationInfo));
+        this.store.dispatch(new da31BuilderActions.AddStationAction(stationInfo));
         this.navCtrl.push(LeaveFormPage);
     };
     return StationFormPage;
@@ -69,8 +68,7 @@ StationFormPage = __decorate([
     __metadata("design:paramtypes", [FormBuilder,
         NavController,
         NavParams,
-        Store,
-        Da31BuilderActions])
+        Store])
 ], StationFormPage);
 export { StationFormPage };
 //# sourceMappingURL=station-form.js.map

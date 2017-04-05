@@ -29371,13 +29371,6 @@ ion-navbar.toolbar {
 }
 
 /* DEFAULT */
-ion-header {
-  background-color: #212121;
-  min-height: 80px;
-  padding-top: 24px;
-  /* ( 80px - 56 px ) */
-}
-
 .toolbar {
   background-color: #000000;
 }
@@ -29396,6 +29389,12 @@ ion-header {
   background-color: rgba(48, 48, 48, 0.6);
 }
 
+.ion-nav {
+  padding-left: 8px;
+  padding-right: 8px;
+  background-color: transparent !important;
+}
+
 .item {
   background-color: transparent !important;
 }
@@ -29403,6 +29402,13 @@ ion-header {
 .item-inner {
   margin: 0px !important;
   padding: 0px !important;
+}
+
+ion-header {
+  background-color: #212121;
+  min-height: 80px;
+  padding-top: 24px;
+  /* ( 80px - 56 px ) */
 }
 
 ion-header .bar-buttons {
@@ -29415,10 +29421,8 @@ ion-navbar {
   padding-right: 8px;
 }
 
-.ion-nav {
-  padding-left: 8px;
-  padding-right: 8px;
-  background-color: transparent !important;
+ion-alert {
+  background: radial-gradient(transparent 35%, #1B5E20 98%);
 }
 
 /* Material Design */
@@ -29447,6 +29451,10 @@ ion-navbar {
   padding-right: 16px !important;
 }
 
+.alert-md .alert-wrapper {
+  background-color: #424242;
+}
+
 /* iOS */
 .toolbar-ios {
   background-color: transparent !important;
@@ -29470,6 +29478,10 @@ ion-navbar {
 
 .item-ios {
   background-color: transparent !important;
+}
+
+.alert-ios .alert-wrapper {
+  background-color: #424242;
 }
 
 ion-header .bar-buttons-ios {

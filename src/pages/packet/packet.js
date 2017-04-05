@@ -20,9 +20,6 @@ var PacketPage = (function () {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
     }
-    PacketPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad PacketPage');
-    };
     PacketPage.prototype.tapEvent = function (input) {
         console.log(input);
         console.log('tap');

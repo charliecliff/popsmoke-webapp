@@ -7,27 +7,53 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { Platform, NavController } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
-import { PersonalInfoFormPage } from '../pages/personalinfo-form/personalinfo-form';
+import { Store } from '@ngrx/store';
+import * as menuReducer from '../reducers/menu-reducer';
+import { UserProvider } from '../providers/user-provider';
+import { HolidayProvider } from '../providers/holiday-provider';
+import { LaunchPage } from '../pages/launch/launch';
 var MyApp = (function () {
-    function MyApp(platform) {
-        this.rootPage = PersonalInfoFormPage;
+    function MyApp(platform, store, userProvider, holidayProvider) {
+        this.platform = platform;
+        this.store = store;
+        this.userProvider = userProvider;
+        this.holidayProvider = holidayProvider;
+        this.rootPage = LaunchPage;
         platform.ready().then(function () {
-            // Okay, so the platform is ready and our plugins are available.
-            // Here you can do any higher level native things you might need.
             StatusBar.styleDefault();
             Splashscreen.hide();
         });
     }
+    MyApp.prototype.ngOnInit = function () {
+        var _this = this;
+        this.store.select("menu").subscribe(function (menu) {
+            _this.menu = menu;
+        });
+    };
+    MyApp.prototype.signOut = function () {
+        this.userProvider.logout();
+    };
+    MyApp.prototype.selectMenuOption = function (option) {
+        this.store.dispatch(new menuReducer.SelectMenuOptionAction(option.name));
+    };
     return MyApp;
 }());
+__decorate([
+    ViewChild('myNav'),
+    __metadata("design:type", NavController)
+], MyApp.prototype, "nav", void 0);
 MyApp = __decorate([
     Component({
-        templateUrl: 'app.html'
+        templateUrl: 'app.html',
+        providers: [UserProvider, HolidayProvider]
     }),
-    __metadata("design:paramtypes", [Platform])
+    __metadata("design:paramtypes", [Platform,
+        Store,
+        UserProvider,
+        HolidayProvider])
 ], MyApp);
 export { MyApp };
 //# sourceMappingURL=app.component.js.map

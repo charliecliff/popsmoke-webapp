@@ -11,15 +11,14 @@ import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { NavController, NavParams } from 'ionic-angular';
 import { Store } from '@ngrx/store';
-import { Da31BuilderActions } from '../../actions/da31builder.actions';
 import { StationFormPage } from '../station-form/station-form';
+import * as da31BuilderActions from '../../actions/da31builder.actions';
 var AddressFormPage = (function () {
-    function AddressFormPage(formBuilder, navCtrl, navParams, store, builderActions) {
+    function AddressFormPage(formBuilder, navCtrl, navParams, store) {
         this.formBuilder = formBuilder;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.store = store;
-        this.builderActions = builderActions;
         this.PAGE_TITLE = "ADDRESS";
         this.SUBMIT_BUTTON_TITLE = "SUBMIT";
         this.STREET = "STREET";
@@ -45,7 +44,7 @@ var AddressFormPage = (function () {
         address.city = this.addressForm.value.city;
         address.state = this.addressForm.value.state;
         address.zip = this.addressForm.value.zip;
-        this.store.dispatch(this.builderActions.addDestination(address));
+        this.store.dispatch(new da31BuilderActions.AddDestinationAction(address));
         this.navCtrl.push(StationFormPage);
     };
     return AddressFormPage;
@@ -58,8 +57,7 @@ AddressFormPage = __decorate([
     __metadata("design:paramtypes", [FormBuilder,
         NavController,
         NavParams,
-        Store,
-        Da31BuilderActions])
+        Store])
 ], AddressFormPage);
 export { AddressFormPage };
 //# sourceMappingURL=address-form.js.map

@@ -7,7 +7,7 @@
 <ion-header>
   <ion-navbar primary class="home-header">
     
-    <ion-buttons left menuToggle>
+    <ion-buttons left ng-click="onMenuIconClick()">
       <div id="nav-icon3" [class.open]="showsCloseIcon">
         <span></span>
         <span></span>
@@ -16,7 +16,7 @@
       </div> 
     </ion-buttons>
     
-    <ion-title>PopSmoke</ion-title>
+    <ion-title>USER PROFILE</ion-title>
 
     <ion-buttons end>
       <button ion-button style="width: 44px; color: transparent;">
@@ -29,87 +29,139 @@
 
 <ion-content padding>
 
-	<ion-list [@listState]="listState" (@listState.done)="animationDone()">
+  <ion-list>
+  <form [formGroup]="userForm">
 
     <!-- PROFILE INFORMATION -->
     <ion-item no-lines>
-      <ion-label class="header">PROFILE</ion-label>
+      <ion-label class="header">BIO</ion-label>
     </ion-item>
-    <button ion-button class="ps-field-button" (click)="selectProfileField()">
-      <ion-item no-lines>
-        <ion-label>{{first_name}}</ion-label>
-      </ion-item>
-    </button>
-    <button ion-button class="ps-field-button" (click)="selectProfileField()">
-      <ion-item no-lines>
-        <ion-label>{{middle_initial}}</ion-label>
-      </ion-item>
-    </button>
-    <button ion-button class="ps-field-button" (click)="selectProfileField()">
-      <ion-item no-lines>
-        <ion-label>{{last_name}}</ion-label>
-      </ion-item>
-    </button>
-    <button ion-button class="ps-field-button" (click)="selectProfileField()">
-      <ion-item no-lines>
-        <ion-label>{{ssn}}</ion-label>
-      </ion-item>
-    </button>
-    <button ion-button class="ps-field-button" (click)="selectProfileField()">
-      <ion-item no-lines>
-        <ion-label>{{rank}}</ion-label>
-      </ion-item>
-    </button>
-    <button ion-button class="ps-field-button" (click)="selectProfileField()">
-      <ion-item no-lines>
-        <ion-label>{{phone}}</ion-label>
-      </ion-item>
-    </button>
     
+    <ion-item no-lines>
+      <ion-input formControlName="firstNameInput"
+                 placeholder="First Name" 
+                 type="text"
+                 clearInput=true
+                 [(ngModel)]="firstName"></ion-input>
+    </ion-item>
+    
+    <ion-item no-lines>
+      <ion-input formControlName="middleInitialInput"
+                 placeholder="Middle Initial" 
+                 type="text"
+                 clearInput=true
+                 [(ngModel)]="middleInitial"></ion-input>
+    </ion-item>
+
+    <ion-item no-lines>
+      <ion-input formControlName="lastNameInput"
+                 placeholder="Last Name" 
+                 type="text"
+                 clearInput=true
+                 [(ngModel)]="lastName"></ion-input>
+    </ion-item>
+
+    <ion-item no-lines>
+      <ion-input formControlName="ssnInput"
+                 placeholder="Last 4 of Soc. Sec." 
+                 type="text"
+                 clearInput=true
+                 [(ngModel)]="ssn"></ion-input>
+    </ion-item>
+
+    <ion-item no-lines>
+      <ion-input formControlName="rankInput"
+                 placeholder="Rank" 
+                 type="text"
+                 clearInput=true
+                 [(ngModel)]="rank"></ion-input>
+    </ion-item>
+
+    <ion-item no-lines>
+      <ion-input formControlName="phoneInput"
+                 placeholder="Phone Number" 
+                 type="phone"
+                 clearInput=true
+                 [(ngModel)]="phone"></ion-input>
+    </ion-item>
+
     <!-- STATION INFORMATION -->
     <ion-item no-lines>
       <ion-label class="header">STATION</ion-label>
     </ion-item>
-    <button ion-button class="ps-field-button" (click)="selectProfileField()">
-      <ion-item no-lines>
-        <ion-label>{{PLATOON}}</ion-label>
-      </ion-item>
-    </button>
-    <button ion-button class="ps-field-button" (click)="selectProfileField()">
-      <ion-item no-lines>
-        <ion-label>{{COMPANY}}</ion-label>
-      </ion-item>
-    </button>
-    <button ion-button class="ps-field-button" (click)="selectProfileField()">
-      <ion-item no-lines>
-        <ion-label>{{BATTALION}}</ion-label>
-      </ion-item>
-    </button>
-    <button ion-button class="ps-field-button" (click)="selectProfileField()">
-      <ion-item no-lines>
-        <ion-label>{{BRIGADE}}</ion-label>
-      </ion-item>
-    </button>
-    <button ion-button class="ps-field-button" (click)="selectProfileField()">
-      <ion-item no-lines>
-        <ion-label>{{DIVISION}}</ion-label>
-      </ion-item>
-    </button>
-    <button ion-button class="ps-field-button" (click)="selectProfileField()">
-      <ion-item no-lines>
-        <ion-label>{{POST}}</ion-label>
-      </ion-item>
-    </button>
-    <button ion-button class="ps-field-button" (click)="selectProfileField()">
-      <ion-item no-lines>
-        <ion-label>{{ZIP}}</ion-label>
-      </ion-item>
-    </button>
-    <button ion-button class="ps-field-button" (click)="selectProfileField()">
-      <ion-item no-lines>
-        <ion-label>{{PHONE}}</ion-label>
-      </ion-item>
-    </button>
 
+    <ion-item no-lines>
+      <ion-input formControlName="stationPlatoonInput"
+                 placeholder="Platoon" 
+                 type="text"
+                 clearInput=true
+                 [(ngModel)]="stationPlatoon"></ion-input>
+    </ion-item>
+
+    <ion-item no-lines>
+      <ion-input formControlName="stationCompanyInput"
+                 placeholder="Company" 
+                 type="text"
+                 clearInput=true
+                 [(ngModel)]="stationCompany"></ion-input>
+    </ion-item>
+
+    <ion-item no-lines>
+      <ion-input formControlName="stationBattalionInput"
+                 placeholder="Battalion" 
+                 type="text"
+                 clearInput=true
+                 [(ngModel)]="stationBattalion"></ion-input>
+    </ion-item>
+
+    <ion-item no-lines>
+      <ion-input formControlName="stationBrigadeInput"
+                 placeholder="Brigade" 
+                 type="text"
+                 clearInput=true
+                 [(ngModel)]="stationBrigade"></ion-input>
+    </ion-item>
+
+    <ion-item no-lines>
+      <ion-input formControlName="stationDivisionInput"
+                 placeholder="Division" 
+                 type="text"
+                 clearInput=true
+                 [(ngModel)]="stationDivision"></ion-input>
+    </ion-item>
+
+    <ion-item no-lines>
+      <ion-input formControlName="stationPostInput"
+                 placeholder="Post" 
+                 type="text"
+                 clearInput=true
+                 [(ngModel)]="stationPost"></ion-input>
+    </ion-item>
+
+    <ion-item no-lines>
+      <ion-input formControlName="stationZipInput"
+                 placeholder="Zip Code" 
+                 type="text"
+                 clearInput=true
+                 [(ngModel)]="stationZip"></ion-input>
+    </ion-item>
+
+    <ion-item no-lines>
+      <ion-input formControlName="stationPhoneInput"
+                 placeholder="Phone Number" 
+                 type="phone"
+                 clearInput=true
+                 [(ngModel)]="stationPhone"></ion-input>
+    </ion-item>
+
+    <!-- Footer -->
+    <ion-item no-lines></ion-item>
+  </form>
 	</ion-list>
+
 </ion-content>
+
+
+<ion-footer>
+
+</ion-footer>

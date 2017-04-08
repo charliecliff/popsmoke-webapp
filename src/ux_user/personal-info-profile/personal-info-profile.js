@@ -8,31 +8,40 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Component, trigger, state, style, transition, animate } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { NavController, AlertController } from 'ionic-angular';
 import { Store } from '@ngrx/store';
-import * as Constants from '../constants';
-import { User } from '../../models/User';
 import { EditFieldPage } from '../../pages/edit-field/edit-field';
 var PersonalInfoProfilePage = (function () {
-    // personalInfoForm: FormGroup;
-    function PersonalInfoProfilePage(navCtrl, alertCtrl, store) {
+    function PersonalInfoProfilePage(navCtrl, alertCtrl, formBuilder, store) {
+        var _this = this;
         this.navCtrl = navCtrl;
         this.alertCtrl = alertCtrl;
+        this.formBuilder = formBuilder;
         this.store = store;
         this.listState = 'visible';
         this.showsCloseIcon = false;
-        this.updateButtonCopy = Constants.UPDATE_BUTTON;
-        this.PAGE_TITLE = "PERSONAL INFORMATION";
-        this.first_name = "FIRST NAME";
-        this.last_name = "LAST NAME";
-        this.middle_initial = "MIDDLE INITIAL";
-        this.ssn = "SSN";
-        this.rank = "RANK";
-        this.phone = "PHONE";
-        this.initialUserCallback = function (user) {
+        this.userCallback = function (user) {
+            _this.firstName = user.personalInfo.firstName;
+            _this.lastName = user.personalInfo.lastName;
+            _this.middleInitial = user.personalInfo.middleInitial;
+            _this.ssn = user.personalInfo.ssn;
+            _this.rank = user.personalInfo.rank;
+            _this.phone = user.personalInfo.phoneNumber;
+            _this.stationPlatoon = user.station.platoon;
+            _this.stationCompany = user.station.company;
+            _this.stationBattalion = user.station.battalion;
+            _this.stationBrigade = user.station.brigade;
+            _this.stationDivision = user.station.division;
+            _this.stationPost = user.station.post;
+            _this.stationZip = user.station.zip;
+            _this.stationPhone = user.station.phoneNumber;
         };
         this.store.select("user").take(1)
-            .subscribe(this.initialUserCallback);
+            .subscribe(this.userCallback);
+        this.userForm = formBuilder.group({
+            firstNameInput: ["", this.firstNameValidators()]
+        });
     }
     PersonalInfoProfilePage.prototype.ionViewWillEnter = function () {
         this.listState = 'visible';
@@ -42,7 +51,7 @@ var PersonalInfoProfilePage = (function () {
         this.navCtrl.popToRoot();
     };
     PersonalInfoProfilePage.prototype.selectProfileField = function () {
-        this.presentPrompt();
+        // this.presentPrompt();
         // this.listState = this.listState === 'visible' ? 'hidden' : 'visible';
         // this.showsCloseIcon = true;
     };
@@ -51,42 +60,9 @@ var PersonalInfoProfilePage = (function () {
             this.navCtrl.push(EditFieldPage, {}, { animate: false });
         }
     };
-    PersonalInfoProfilePage.prototype.presentPrompt = function () {
-        var alert = this.alertCtrl.create({
-            title: 'Login',
-            inputs: [
-                {
-                    name: 'username',
-                    placeholder: 'Username'
-                },
-                {
-                    name: 'password',
-                    placeholder: 'Password',
-                    type: 'password'
-                }
-            ],
-            buttons: [
-                {
-                    text: 'Cancel',
-                    role: 'cancel',
-                    handler: function (data) {
-                        console.log('Cancel clicked');
-                    }
-                },
-                {
-                    text: 'Login',
-                    handler: function (data) {
-                        if (User.isValid(data.username, data.password)) {
-                        }
-                        else {
-                            // invalid login
-                            return false;
-                        }
-                    }
-                }
-            ]
-        });
-        alert.present();
+    PersonalInfoProfilePage.prototype.firstNameValidators = function () {
+        return Validators.compose([Validators.pattern('[a-zA-Z ]*'),
+            Validators.required]);
     };
     return PersonalInfoProfilePage;
 }());
@@ -105,6 +81,7 @@ PersonalInfoProfilePage = __decorate([
     }),
     __metadata("design:paramtypes", [NavController,
         AlertController,
+        FormBuilder,
         Store])
 ], PersonalInfoProfilePage);
 export { PersonalInfoProfilePage };

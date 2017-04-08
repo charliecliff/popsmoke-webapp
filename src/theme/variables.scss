@@ -41,10 +41,15 @@ $backgrounds: (
 );
 
 $alertController: (
-  background:           #424242,
-  overlay:              #424242,
-  overlayGradientStop:  #1B5E20,
+  background:   #424242,
+  overlayTint:  #424242,
 );
+
+$accentColors: (
+  valid:   #00bfa5,
+  invalid:  #424242,
+);
+
 
 // App iOS Variables
 // --------------------------------------------------

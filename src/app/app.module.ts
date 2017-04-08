@@ -35,6 +35,7 @@ import { AuthProvider } from '../providers/auth-provider';
 import { HolidayProvider } from '../providers/holiday-provider';
 import { UserProvider } from '../providers/user-provider';
 
+
 // Reducers
 import { reducer } from '../reducers';
 

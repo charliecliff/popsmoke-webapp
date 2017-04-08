@@ -47,7 +47,8 @@
 	background-color: transparent !important;
 }
 .item {
-	background-color: transparent !important;
+	background-color: transparent;
+
 }
 .item-inner {
 	margin: 0px !important;
@@ -67,7 +68,7 @@ ion-navbar {
 	padding-right: 8px;
 }
 ion-alert {
-	background: radial-gradient(transparent 35%, #1B5E20 98%);
+	background-color: map-get($alertController, overlayTint);
 }
 /* Material Design */
 .toolbar-md {

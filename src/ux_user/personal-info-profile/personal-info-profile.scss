@@ -9,15 +9,74 @@ page-personal-info-profile ion-label {
 	background-color: transparent;
   color: white;	
 }
-page-personal-info-profile .item-md {
-	background-color: transparent;		
-}
+
+/*.item-md.item-input.ng-valid.input-has-value:not(.input-has-focus) .item-inner*/
 page-personal-info-profile .item-inner {
 	background-color: transparent;		
+}
+page-personal-info-profile .header {
+	color: map-get($colors, primary);			
 }
 page-personal-info-profile .input-wrapper {
 	background-color: transparent;			
 }
-page-personal-info-profile .header {
-	color: map-get($colors, primary);			
+
+
+/* MATERIAL DESIGN */
+page-personal-info-profile .item item-block item-md {
+	/*background-color: green !important;*/
+}
+page-personal-info-profile .item-md.item-input.ng-valid.input-has-value:not(.input-has-focus) .item-inner {
+	/*border: none;*/
+	/*box-shadow: none;*/
+}
+page-personal-info-profile .item-md.item-input.input-has-focus .item-inner {
+	/*border: none;*/
+	/*box-shadow: none*/
+}
+/* iOS DESIGN*/
+page-personal-info-profile .item-ios.item-input.ng-valid.input-has-value:not(.input-has-focus) .item-inner {
+	border: none;
+	box-shadow: none
+}
+
+
+
+
+
+page-personal-info-profile ion-item.item.item-block.item-md {
+	height: 60px;
+}
+page-personal-info-profile ion-item.item.item-block.item-md.item-input {
+	background-color: transparent;
+	border-radius: 2px;
+	color: white;
+	margin-bottom: 4px;
+	margin-left: 2px;
+	margin-right: 2px;
+	margin-top: 4px;
+}
+
+/* Underline */
+/* Form Cell has Focus*/
+page-personal-info-profile .item-md.item-input.input-has-focus .item-inner {
+  box-shadow: none;
+}
+/*Form Cell is VALID*/
+page-personal-info-profile .item-md.item-input.ng-valid.input-has-value:not(.input-has-focus) .item-inner {
+  border-bottom-color: map-get($accentColors, valid);
+  box-shadow: inset 0 -1px 0 0 map-get($accentColors, valid);
+}
+/*Form Cell is INVLAID*/
+page-personal-info-profile .item-md.item-input.ng-invalid.input-has-value:not(.input-has-focus) .item-inner {
+  border-bottom-color: map-get($accentColors, invalid);
+  box-shadow: inset 0 -1px 0 0 map-get($accentColors, invalid);
+}
+page-personal-info-profile ion-item.item.item-block.item-md.item-input.input-has-focus {
+	background-color: map-get($backgrounds, modal);
+	border-radius: 2px;
+	margin-bottom: 4px;
+	margin-left: 2px;
+	margin-right: 2px;
+	margin-top: 4px;
 }

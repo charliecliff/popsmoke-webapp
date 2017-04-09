@@ -3,6 +3,15 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { StoreModule } from '@ngrx/store';
 import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
 
+
+//  Because FUCK YOU! That's WHY!
+import { CustomFormsModule } from 'ng2-validation'
+
+
+
+
+
+
 // 
 import { MyApp } from './app.component';
 
@@ -68,6 +77,7 @@ export const firebaseAuthConfig = {
     EditFieldPage
   ],
   imports: [
+    CustomFormsModule,
     IonicModule.forRoot(MyApp),
     StoreModule.provideStore( reducer ),
     AngularFireModule.initializeApp(firebaseConfig, firebaseAuthConfig)
@@ -98,4 +108,4 @@ export const firebaseAuthConfig = {
     ValidationProvider
     ]
 })
-export class AppModule {}
+export class AppModule { }

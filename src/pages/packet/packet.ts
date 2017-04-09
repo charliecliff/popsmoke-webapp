@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { NavController, NavParams, Slides } from 'ionic-angular';
+
 import * as PSModels from '../../models';
 import * as PSState from '../../reducers';
 import * as PSActions from '../../reducers/packets-reducer';
@@ -80,6 +81,7 @@ export class PacketPage {
     });
 
   }
+
 
   private stationFormConstructor() {
     let platoonValue = (this.currentPacket == undefined) ? 

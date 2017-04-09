@@ -1,7 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavController, NavParams, Slides } from 'ionic-angular';
-
 import * as PSModels from '../../models';
 import * as PSState from '../../reducers';
 import * as PSActions from '../../reducers/packets-reducer';
@@ -30,14 +29,14 @@ export class PacketPage {
   
   // State
   submitAttempt: boolean = false;
-  currentPacketID: string = "1";
+  packetID: string = "1";
   currentForm: packetForm = packetForm.kBioForm;
 
   constructor(private navCtrl: NavController, 
               private navParams: NavParams,
               private formBuilder: FormBuilder,
               private store: PSState.Store<PSState.AppState>) {
-    this.currentPacketID = "new";
+    this.packetID = "new";
     this.store.select("packets").subscribe(this.packetsCallback);
     this.bioFormConstructor();
     this.stationFormConstructor();
@@ -58,41 +57,66 @@ export class PacketPage {
   }
 
   private bioFormConstructor() {
+    let firstNameValue = (this.currentPacket == undefined) ? 
+      "" : this.currentPacket.bio.firstName;
+    let midInitialValue = (this.currentPacket == undefined) ? 
+      "" : this.currentPacket.bio.middleInitial;
+    let lastNameValue = (this.currentPacket == undefined) ? 
+      "" : this.currentPacket.bio.lastName;
+    let ssnValue = (this.currentPacket == undefined) ? 
+      "" : this.currentPacket.bio.ssn;
+    let rankValue = (this.currentPacket == undefined) ? 
+      "" : this.currentPacket.bio.rank;
+    let phoneValue = (this.currentPacket == undefined) ? 
+      "" : this.currentPacket.bio.phoneNumber;
+
     this.bioForm = this.formBuilder.group({
-      firstName: [this.currentPacket.bio.firstName, 
-                  PSValidators.firstNameValidators()],
-      middleInitial: [this.currentPacket.bio.middleInitial,
-                      PSValidators.middleInitialValidators()],
-      lastName: [this.currentPacket.bio.lastName, 
-                 PSValidators.lastNameValidators()],
-      ssn: [this.currentPacket.bio.ssn,
-            PSValidators.ssnValidators()],
-      rank: [this.currentPacket.bio.rank,
-             PSValidators.rankValidators()],
-      phone: [this.currentPacket.bio.phoneNumber,
-              PSValidators.phoneNumberValidators()],
+      firstName: [firstNameValue, PSValidators.firstNameValidators()],
+      middleInitial: [midInitialValue, PSValidators.middleInitialValidators()],
+      lastName: [lastNameValue, PSValidators.lastNameValidators()],
+      ssn: [ssnValue, PSValidators.ssnValidators()],
+      rank: [rankValue, PSValidators.rankValidators()],
+      phone: [phoneValue, PSValidators.phoneNumberValidators()],
     });
+
   }
 
   private stationFormConstructor() {
+    let platoonValue = (this.currentPacket == undefined) ? 
+      "" : this.currentPacket.station.platoon;
+    let companyValue = (this.currentPacket == undefined) ? 
+      "" : this.currentPacket.station.company;
+    let battalionValue = (this.currentPacket == undefined) ? 
+      "" : this.currentPacket.station.battalion;
+    let brigadeValue = (this.currentPacket == undefined) ? 
+      "" : this.currentPacket.station.brigade;
+    let divisionValue = (this.currentPacket == undefined) ? 
+      "" : this.currentPacket.station.division;
+    let postValue = (this.currentPacket == undefined) ? 
+      "" : this.currentPacket.station.post;
+    let stationZipValue = (this.currentPacket == undefined) ? 
+      "" : this.currentPacket.station.zip;
+    let stationPhoneValue = (this.currentPacket == undefined) ? 
+      "" : this.currentPacket.station.phoneNumber;
+
     this.stationForm = this.formBuilder.group({
-      stationPlatoonInput: ["", PSValidators.firstNameValidators()],
-      stationCompanyInput: ["", PSValidators.firstNameValidators()],
-      stationBattalionInput: ["", PSValidators.firstNameValidators()],
-      stationBrigadeInput: ["", PSValidators.firstNameValidators()],
-      stationDivisionInput: ["", PSValidators.firstNameValidators()],
-      stationPostInput: ["", PSValidators.firstNameValidators()],
-      stationZipInput: ["", PSValidators.firstNameValidators()],
-      stationPhoneInput: ["", PSValidators.firstNameValidators()],
+      platoon: [platoonValue, PSValidators.stringValidators()],
+      company: [companyValue, PSValidators.stringValidators()],
+      battalion: [battalionValue, PSValidators.stringValidators()],
+      brigade: [brigadeValue, PSValidators.stringValidators()],
+      division: [divisionValue, PSValidators.stringValidators()],
+      post: [postValue, PSValidators.stringValidators()],
+      stationZip: [stationZipValue, PSValidators.firstNameValidators()],
+      stationPhone: [stationPhoneValue, PSValidators.phoneNumberValidators()],
     });
   }
 
   private destinationFormConstructor() {
     this.destinationForm = this.formBuilder.group({
-      streetInput: [''],
-      cityInput: [''],
-      stateInput: [''],
-      zipInput: ['']
+      street: ["", PSValidators.streetValidators()],
+      city: ["", PSValidators.cityValidators()],
+      state: ["", PSValidators.stateValidators()],
+      zip: ["", PSValidators.zipCodeValidators()]
     });
   }
 
@@ -110,10 +134,9 @@ export class PacketPage {
   }
 
   private packetsCallback = (packets) => {
-    let packet = PSModels.getPacketForID(packets, this.currentPacketID);
-    this.currentPacket = Object.assign({}, packet);
+    this.currentPacket = PSModels.getCopyOfPacketForID(packets, this.packetID);
     console.log("packetsCallback");
-    console.log(packet);
+    console.log(this.currentPacket);
   }
 
   private scollToBackPrevious() {
@@ -176,50 +199,50 @@ export class PacketPage {
   }
 
   private updatePacketBio() {
-    let action = new PSActions.SetBioAction(this.currentPacketID, 
-                                            this.bioForm.value);
+    let value = this.bioForm.value;
+    let action = new PSActions.SetBioAction(this.packetID, value);
     this.store.dispatch( action );
   }
 
   private updatePacketStation() {
-    let action = new PSActions.SetStationsAction(this.currentPacketID, 
-                                                 this.stationForm.value);
+    let value = this.stationForm.value;
+    let action = new PSActions.SetStationsAction(this.packetID, value);
     this.store.dispatch( action );
   }
 
   private updatePacketDestination() {
-    let action = new PSActions.SetDestinationAction(this.currentPacketID, 
-                                                    this.destinationForm.value);
+    let value = this.destinationForm.value;
+    let action = new PSActions.SetDestinationAction(this.packetID, value);
     this.store.dispatch( action );
   }
 
   private updateAccruedLeave() {
-    let action = new PSActions.SetAccruedLeaveAction(this.currentPacketID, 
-                                                     this.leaveForm.value.accruedLeave);
+    let value = this.leaveForm.value.accruedLeave;
+    let action = new PSActions.SetAccruedLeaveAction(this.packetID, value);
     this.store.dispatch( action );
   }
 
   private updateAdvancedLeave() {
-    let action = new PSActions.SetAdvancedLeaveAction(this.currentPacketID, 
-                                                      this.leaveForm.value.advancedLeave);
+    let value = this.leaveForm.value.advancedLeave;
+    let action = new PSActions.SetAdvancedLeaveAction(this.packetID, value);
     this.store.dispatch( action );
   }
 
   private updateExcessLeave() {
-    let action = new PSActions.SetExcessLeaveAction(this.currentPacketID, 
-                                                    this.leaveForm.value.excessLeave);
+    let value = this.leaveForm.value.excessLeave;
+    let action = new PSActions.SetExcessLeaveAction(this.packetID, value);
     this.store.dispatch( action );
   }
 
   private updateDepartureDate() {
-    let action = new PSActions.SetDepartureDateAction(this.currentPacketID, 
-                                                      this.leaveForm.value.departureDate);
+    let value = this.leaveForm.value.departureDate;
+    let action = new PSActions.SetDepartureDateAction(this.packetID, value);
     this.store.dispatch( action );
   }
 
   private updateReturnDate() {
-    let action = new PSActions.SetReturnDateAction(this.currentPacketID, 
-                                                   this.leaveForm.value.returnDate);
+    let value = this.leaveForm.value.returnDate;
+    let action = new PSActions.SetReturnDateAction(this.packetID, value);
     this.store.dispatch( action );
   }
 }

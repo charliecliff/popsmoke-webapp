@@ -1,17 +1,21 @@
 import { Packet } from './Packet';
-import { getPacketForID } from './Packet';
+import { getCopyOfPacketForID } from './Packet';
 import { Holiday } from './Holiday';
 import { PersonalInfo } from './PersonalInfo';
 import { Station } from './Station';
 import { Address } from './Address';
 import { User } from './User';
 import { Menu } from './Menu';
+import { packet } from './packet-builder';
+import { packetWithID } from './packet-builder';
 
 export { Packet } from './Packet';
-export { getPacketForID } from './Packet';
+export { getCopyOfPacketForID } from './Packet';
 export { Holiday } from './Holiday';
 export { PersonalInfo } from './PersonalInfo';
 export { Station } from './Station';
 export { Address } from './Address';
 export { User } from './User';
 export { Menu } from './Menu';
+export { packet } from './packet-builder';
+export { packetWithID } from './packet-builder';

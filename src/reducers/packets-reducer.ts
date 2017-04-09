@@ -1,6 +1,5 @@
 import { Action } from '@ngrx/store';
 import { type } from '../util';
-
 import * as PSModels from '../models';
 
 export const PacketActionTypes = {
@@ -22,21 +21,21 @@ export class PSAction {
 export class SetBioAction extends PSAction implements Action {
   type = PacketActionTypes.SET_BIO;
   constructor(public id: string, public value: PSModels.PersonalInfo) {
-    super({"packetID": id, "value": value});
+    super({"packetID": id, "value": {"bio": value}});
  }
 }
 
 export class SetStationsAction extends PSAction implements Action {
   type = PacketActionTypes.SET_STATION;
   constructor(public id: string, public value: PSModels.Station) {
-    super({"packetID": id, "value": value});
+    super({"packetID": id, "value": {"station": value}});
   }
 }
 
 export class SetDestinationAction extends PSAction implements Action {
   type = PacketActionTypes.SET_DESTINATION;
   constructor(public id: string, public value: PSModels.Address) {
-    super({"packetID": id, "value": value});
+    super({"packetID": id, "value": {"destination": value}});
   }
 }
 
@@ -61,6 +60,13 @@ export class SetExcessLeaveAction extends PSAction implements Action {
   }
 }
 
+export class SetRequestedLeaveAction extends PSAction implements Action {
+  type = PacketActionTypes.SET_REQUESTED_LEAVE;
+  constructor(public id: string, public value: Number) {
+    super({"packetID": id, "value": value});
+  }
+}
+
 export class SetDepartureDateAction extends PSAction implements Action {
   type = PacketActionTypes.SET_DEPARTURE_DATE;
   constructor(public id: string, public value: Date) {
@@ -78,18 +84,54 @@ export class SetReturnDateAction extends PSAction implements Action {
 export type PacketActions = SetBioAction | SetStationsAction | 
                             SetDestinationAction | SetAccruedLeaveAction | 
                             SetAdvancedLeaveAction | SetExcessLeaveAction | 
-                            SetDepartureDateAction | SetReturnDateAction;
+                            SetRequestedLeaveAction | SetDepartureDateAction | 
+                            SetReturnDateAction;
 
 export function reducer(state = [], action: PacketActions ): PSModels.Packet[] {
   if( action == undefined || action.payload == undefined ) {
     return state;
   }
-	let oldPacket = PSModels.getPacketForID(state, action.payload.packetID);
-  switch(action.type) {
+  switch (action.type) {
     case PacketActionTypes.SET_BIO:
-      var newPacket = Object.assign({}, oldPacket, action.payload.value)
-      state.push(newPacket);
-		default:
-			return state;	
-   };
+      return buildPacketArray(state, action);
+    case PacketActionTypes.SET_STATION:
+      return buildPacketArray(state, action);
+    case PacketActionTypes.SET_DESTINATION:
+      return buildPacketArray(state, action);
+    // case PacketActionTypes.SET_ACCRUED_LEAVE:
+    //   return buildPacketArray(state, action);
+    // case PacketActionTypes.SET_REQUESTED_LEAVE:
+    //   return buildPacketArray(state, action);
+    // case PacketActionTypes.SET_ADVANCED_LEAVE:
+    //   return buildPacketArray(state, action);
+    // case PacketActionTypes.SET_EXCESS_LEAVE:
+    //   return buildPacketArray(state, action);
+    // case PacketActionTypes.SET_DEPARTURE_DATE:
+    //   return buildPacketArray(state, action);
+    // case PacketActionTypes.SET_RETURN_DATE:
+    //   return buildPacketArray(state, action);
+    default:
+      return state;
+  }
+}
+
+export function buildPacketArray(packets: PSModels.Packet[], 
+                                 action: PacketActions) {
+  let id = action.payload.packetID;
+  let value = action.payload.value;
+  let newPacketHasBeenCopied = false;
+  var outputArray = new Array();
+  for (var i = packets.length - 1; i >= 0; i--) {
+    let packet = packets[i];
+    if(packet.id == id) {
+      packet = Object.assign({}, packet, value);
+      newPacketHasBeenCopied = true;
+    }
+    outputArray.push(packet);
+  }
+  if(!newPacketHasBeenCopied) {
+    let packet = Object.assign({}, PSModels.packetWithID(id), value);
+    outputArray.push(packet);
+  }
+  return outputArray;
 }

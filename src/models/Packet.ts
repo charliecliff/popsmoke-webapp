@@ -11,32 +11,22 @@ export class Packet {
   public destination: Address;
 
   constructor() {
-    this.id = this.create_UUID();
+    this.id = "-1";
     this.holiday = new Holiday();
     this.bio = new PersonalInfo();
     this.station = new Station();
   }
-
-  private create_UUID() {  
-    var dt = new Date().getTime();  
-    var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {  
-        var r = (dt + Math.random()*16)%16 | 0;  
-        dt = Math.floor(dt/16);  
-        return (c=='x' ? r :(r&0x3|0x8)).toString(16);  
-    });  
-    return uuid;  
-  }  
 }
 
-export function getPacketForID(state: Array<Packet>, id: string) {
+export function getCopyOfPacketForID(state: Packet[], id: string) {
   if (state && state.length) {
     for (var i = state.length - 1; i >= 0; i--) {
       let packet = state[i];
       if(packet.id == id) {
         state.splice(i, 1);
-        return packet;
+        return Object.assign({}, packet);
       }
     }
   }
-  return new Packet();
+  return undefined;
 }

@@ -29,3 +29,8 @@ export function phoneNumberValidators() {
     return Validators.compose([Validators.pattern('[a-zA-Z ]*'), 
                                Validators.required]);
 }
+
+export function stringValidators() {
+    return Validators.compose([Validators.pattern('[a-zA-Z ]*'), 
+                               Validators.required]);
+}

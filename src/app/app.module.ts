@@ -8,9 +8,7 @@ import { MyApp } from './app.component';
 
 // Pages
 import { PacketPage } from '../pages/packet/packet';
-import { PersonalInfoFormPage } from '../pages/personalinfo-form/personalinfo-form';
 import { AddressFormPage } from '../pages/address-form/address-form';
-import { StationFormPage } from '../pages/station-form/station-form';
 import { LeaveFormPage } from '../pages/leave-form/leave-form';
 import { PdfPage } from '../pages/pdf/pdf';
 
@@ -19,7 +17,6 @@ import { LoginPage } from '../pages/login/login';
 import { MainTabPage } from '../pages/main-tab/main-tab';
 
 
-import { PersonalInfoProfilePage } from '../ux_user/personal-info-profile/personal-info-profile';
 import { DocumentsPage } from '../pages/documents/documents';
 import { HomePage } from '../pages/home/home';
 import { PacketHistoryPage } from '../pages/packet-history/packet-history';
@@ -34,7 +31,8 @@ import { Da31Service } from '../providers/da31.service';
 import { AuthProvider } from '../providers/auth-provider';
 import { HolidayProvider } from '../providers/holiday-provider';
 import { UserProvider } from '../providers/user-provider';
-
+import { UserValidationProvider } from '../providers/user-validation-provider';
+import { ValidationProvider } from '../providers/validation-provider';
 
 // Reducers
 import { reducer } from '../reducers';
@@ -57,16 +55,13 @@ export const firebaseAuthConfig = {
   declarations: [
     MyApp,
     PacketPage,
-    PersonalInfoFormPage,
     AddressFormPage,
-    StationFormPage,
     LeaveFormPage,
     PdfPage,
     HomePage,
     LaunchPage,
     LoginPage,
     MainTabPage,
-    PersonalInfoProfilePage,
     DocumentsPage,
     PacketHistoryPage,
     InboxPage,
@@ -81,16 +76,13 @@ export const firebaseAuthConfig = {
   entryComponents: [
     MyApp,
     PacketPage,
-    PersonalInfoFormPage,
     AddressFormPage,
-    StationFormPage,
     LeaveFormPage,
     PdfPage,
     HomePage,
     LaunchPage,
     LoginPage,
     MainTabPage,
-    PersonalInfoProfilePage,
     DocumentsPage,
     PacketHistoryPage,
     InboxPage,
@@ -101,7 +93,9 @@ export const firebaseAuthConfig = {
     Da31Service,
     AuthProvider,
     HolidayProvider,
-    UserProvider
+    UserProvider,
+    UserValidationProvider,
+    ValidationProvider
     ]
 })
 export class AppModule {}

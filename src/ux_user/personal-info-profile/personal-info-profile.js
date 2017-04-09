@@ -7,19 +7,19 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Component, trigger, state, style, transition, animate } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
-import { NavController, AlertController } from 'ionic-angular';
+import { Component } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { NavController, MenuController } from 'ionic-angular';
 import { Store } from '@ngrx/store';
-import { EditFieldPage } from '../../pages/edit-field/edit-field';
+import { UserValidationProvider } from '../../providers/user-validation-provider';
 var PersonalInfoProfilePage = (function () {
-    function PersonalInfoProfilePage(navCtrl, alertCtrl, formBuilder, store) {
+    function PersonalInfoProfilePage(navCtrl, menuCtrl, formBuilder, store, validations) {
         var _this = this;
         this.navCtrl = navCtrl;
-        this.alertCtrl = alertCtrl;
+        this.menuCtrl = menuCtrl;
         this.formBuilder = formBuilder;
         this.store = store;
-        this.listState = 'visible';
+        this.validations = validations;
         this.showsCloseIcon = false;
         this.userCallback = function (user) {
             _this.firstName = user.personalInfo.firstName;
@@ -37,52 +37,53 @@ var PersonalInfoProfilePage = (function () {
             _this.stationZip = user.station.zip;
             _this.stationPhone = user.station.phoneNumber;
         };
-        this.store.select("user").take(1)
-            .subscribe(this.userCallback);
+        this.store.select("user").take(1).subscribe(this.userCallback);
         this.userForm = formBuilder.group({
-            firstNameInput: ["", this.firstNameValidators()]
+            firstNameInput: ["", this.validations.firstNameValidators()],
+            middleInitialInput: ["", this.validations.firstNameValidators()],
+            lastNameInput: ["", this.validations.firstNameValidators()],
+            ssnInput: ["", this.validations.firstNameValidators()],
+            rankInput: ["", this.validations.firstNameValidators()],
+            phoneInput: ["", this.validations.firstNameValidators()],
+            stationPlatoonInput: ["", this.validations.firstNameValidators()],
+            stationCompanyInput: ["", this.validations.firstNameValidators()],
+            stationBattalionInput: ["", this.validations.firstNameValidators()],
+            stationBrigadeInput: ["", this.validations.firstNameValidators()],
+            stationDivisionInput: ["", this.validations.firstNameValidators()],
+            stationPostInput: ["", this.validations.firstNameValidators()],
+            stationZipInput: ["", this.validations.firstNameValidators()],
+            stationPhoneInput: ["", this.validations.firstNameValidators()],
         });
     }
     PersonalInfoProfilePage.prototype.ionViewWillEnter = function () {
-        this.listState = 'visible';
+        for (var i in this.userForm.controls) {
+            this.userForm.controls[i].markAsTouched();
+        }
         this.showsCloseIcon = false;
     };
-    PersonalInfoProfilePage.prototype.dismiss = function () {
-        this.navCtrl.popToRoot();
-    };
-    PersonalInfoProfilePage.prototype.selectProfileField = function () {
-        // this.presentPrompt();
-        // this.listState = this.listState === 'visible' ? 'hidden' : 'visible';
-        // this.showsCloseIcon = true;
-    };
-    PersonalInfoProfilePage.prototype.animationDone = function () {
-        if (this.listState == 'hidden') {
-            this.navCtrl.push(EditFieldPage, {}, { animate: false });
+    PersonalInfoProfilePage.prototype.onMenuIconClick = function () {
+        if (!this.userForm.valid) {
+        }
+        else {
+            this.menuCtrl.toggle();
         }
     };
-    PersonalInfoProfilePage.prototype.firstNameValidators = function () {
-        return Validators.compose([Validators.pattern('[a-zA-Z ]*'),
-            Validators.required]);
+    PersonalInfoProfilePage.prototype.sendProfileUpdates = function () {
+    };
+    PersonalInfoProfilePage.prototype.presentValidationErrorAlert = function () {
     };
     return PersonalInfoProfilePage;
 }());
 PersonalInfoProfilePage = __decorate([
     Component({
         selector: 'page-personal-info-profile',
-        templateUrl: 'personal-info-profile.html',
-        animations: [
-            trigger('listState', [
-                state('visible', style({ opacity: 1 })),
-                state('hidden', style({ opacity: 0 })),
-                transition('visible => hidden', animate('400ms ease-in-out')),
-                transition('hidden => visible', animate('400ms ease-in-out'))
-            ])
-        ]
+        templateUrl: 'personal-info-profile.html'
     }),
     __metadata("design:paramtypes", [NavController,
-        AlertController,
+        MenuController,
         FormBuilder,
-        Store])
+        Store,
+        UserValidationProvider])
 ], PersonalInfoProfilePage);
 export { PersonalInfoProfilePage };
 //# sourceMappingURL=personal-info-profile.js.map

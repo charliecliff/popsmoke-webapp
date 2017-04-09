@@ -1,5 +1,13 @@
+.ios, .md {
+ 
+    page-personal-info-profile {
+    	ion-slide.swiper-slide.swiper-slide-active {
+    		height: 0px !important;
+    	}
+    }
+}
 
-page-personal-info-profile button {
+ button {
 	background-color: transparent;
 }
 page-personal-info-profile ion-item {

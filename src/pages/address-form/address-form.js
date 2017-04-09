@@ -11,7 +11,6 @@ import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { NavController, NavParams } from 'ionic-angular';
 import { Store } from '@ngrx/store';
-import { StationFormPage } from '../station-form/station-form';
 import * as da31BuilderActions from '../../actions/da31builder.actions';
 var AddressFormPage = (function () {
     function AddressFormPage(formBuilder, navCtrl, navParams, store) {
@@ -45,7 +44,6 @@ var AddressFormPage = (function () {
         address.state = this.addressForm.value.state;
         address.zip = this.addressForm.value.zip;
         this.store.dispatch(new da31BuilderActions.AddDestinationAction(address));
-        this.navCtrl.push(StationFormPage);
     };
     return AddressFormPage;
 }());

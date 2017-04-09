@@ -1,46 +1,30 @@
-import { ActionReducer } from '@ngrx/store';
+import { Store, ActionReducer } from '@ngrx/store';
 import { compose } from '@ngrx/core/compose';
 import { storeFreeze } from 'ngrx-store-freeze';
 import { combineReducers } from '@ngrx/store';
-import * as fromRouter from '@ngrx/router-store';
 
-import { Da31Form } from '../models/Da31Form';
-
-import { User } from '../models/User';
-import { Holiday } from '../models/Holiday';
-import { Menu } from '../models/Menu';
-
+import * as Models from "../models";
 
 import * as userReducer from './user-reducer';
 import * as holidaysReducer from './holidays-reducer';
 import * as menuReducer from './menu-reducer';
+import * as packetsReducer from './packets-reducer';
 
-import * as userIDReducer from './userID-reducer';
-import * as da31Reducer from './da31Form.reducer';
-import * as errorReducer from './error-reducer';
+export { Store } from '@ngrx/store';
 
 export interface AppState {
-	user: User;
-	holidays: Holiday[];
-	menu: Menu;
-
-	userID: string;
-	error: Error;
-	selectedFormURL: string;
-	da31Form: Da31Form;
+	user: Models.User;
+	holidays: Models.Holiday[];
+	menu: Models.Menu;
+	packets: Models.Packet[];
 };
 
 const reducers = {
 	user: userReducer.reducer,
 	holidays: holidaysReducer.reducer,
 	menu: menuReducer.reducer,
-
-	userID: userIDReducer.reducer,
-
-  // da31Form: da31Reducer.reducer,
-  // error: errorReducer.reducer
+	packets: packetsReducer.reducer,
 };
-
 const productionReducer: ActionReducer<AppState> = combineReducers(reducers);
 
 export function reducer(state: any, action: any) {

@@ -19,16 +19,16 @@ export class ClearHolidayAction implements Action {
 }
 
 export type HolidayActions = SetHolidaysAction | 
-														 ClearHolidayAction;
+                             ClearHolidayAction;
 
 export function reducer(state = [], action: HolidayActions ): Holiday[] {  
-	switch(action.type) {
-		case HolidayActionTypes.SET_HOLIDAYS:
-			var holidays = createHolidayArray( (action as SetHolidaysAction).payload);
-			return holidays;					
-		default:
-			return state;	
-   };
+  switch(action.type) {
+    case HolidayActionTypes.SET_HOLIDAYS:
+      var holidays = createHolidayArray( (action as SetHolidaysAction).payload);
+          return holidays;					
+    default:
+      return state;	
+  };
 }
 
 export function createHolidayArray(payloadArray){

@@ -17,9 +17,7 @@ import { UserProvider } from '../providers/user-provider';
 import { HolidayProvider } from '../providers/holiday-provider';
 
 import { LaunchPage } from '../pages/launch/launch';
-
-import { PersonalInfoProfilePage } from '../ux_user/personal-info-profile/personal-info-profile';
-
+import { PacketPage } from '../pages/packet/packet';
 
 
 @Component({
@@ -32,7 +30,7 @@ export class MyApp {
 
   public menu: Menu;
 
-  rootPage = LaunchPage;
+  rootPage = PacketPage;
 
   constructor(public platform: Platform,
               public store: Store<Reducers.AppState>,

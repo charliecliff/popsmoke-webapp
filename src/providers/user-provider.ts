@@ -8,7 +8,6 @@ import { AuthProvider } from './auth-provider';
 import { AppState } from '../reducers';
 import { User } from '../models/User';
 import * as UserActions from '../reducers/user-reducer';
-import * as UserIDActions from '../reducers/userID-reducer';
 
 @Injectable()
 export class UserProvider {
@@ -53,14 +52,15 @@ export class UserProvider {
                         this.handleErrorCallback);
   }
 
-  updateUser(user): Observable<User> {
-    console.log("updateUser");
-    let userURL = this.baseUserUrl + "/" + user.userID;
-		let headers = new Headers({"Content-Type": "application/json"});
-    let body = JSON.stringify(user);
-    return this.http.put(userURL, body, {headers: headers})
-                    .map(this.parseUserFromResponse)
-  }
+  // TODO:
+  // updateUser(user): Observable<User> {
+  //   console.log("updateUser");
+  //   let userURL = this.baseUserUrl + "/" + user.userID;
+		// let headers = new Headers({"Content-Type": "application/json"});
+  //   let body = JSON.stringify(user);
+  //   return this.http.put(userURL, body, {headers: headers})
+  //                   .map(this.parseUserFromResponse)
+  // }
 
   private getUserCallback = (userID) => {
     console.log("getUserCallback");
@@ -95,11 +95,9 @@ export class UserProvider {
 
   private updateAnonymousStateCallback = () => {
     this.store.dispatch( new UserActions.SetUserAction( new User() ) );
-    this.store.dispatch( new UserIDActions.SetUserIDAction( "" ) );
   }
 
   private updateUserStateCallback = (user) => {
     this.store.dispatch( new UserActions.SetUserAction(user) );
-    this.store.dispatch( new UserIDActions.SetUserIDAction(user.userID) );
   }
 }

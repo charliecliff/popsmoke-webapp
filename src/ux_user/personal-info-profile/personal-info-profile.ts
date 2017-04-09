@@ -6,6 +6,8 @@ import { Store } from '@ngrx/store';
 import * as Constants from '../constants';
 import { AppState } from '../../reducers';
 import { User } from '../../models/User';
+import { UserProvider } from '../../providers/user-provider';
+import { UserValidationProvider } from '../../providers/user-validation-provider';
 
 @Component({
   selector: 'page-personal-info-profile',
@@ -36,29 +38,33 @@ export class PersonalInfoProfilePage {
   constructor(private navCtrl: NavController,
               private menuCtrl: MenuController,
               private formBuilder: FormBuilder,
-              private store: Store<AppState>) {
+              private store: Store<AppState>,
+              private validations: UserValidationProvider) {
     
     this.store.select("user").take(1).subscribe(this.userCallback);
 
     this.userForm = formBuilder.group({
-        firstNameInput: ["", this.firstNameValidators()],
-        middleInitialInput: ["", this.firstNameValidators()],
-        lastNameInput: ["", this.firstNameValidators()],
-        ssnInput: ["", this.firstNameValidators()],
-        rankInput: ["", this.firstNameValidators()],
-        phoneInput: ["", this.firstNameValidators()],
-        stationPlatoonInput: ["", this.firstNameValidators()],
-        stationCompanyInput: ["", this.firstNameValidators()],
-        stationBattalionInput: ["", this.firstNameValidators()],
-        stationBrigadeInput: ["", this.firstNameValidators()],
-        stationDivisionInput: ["", this.firstNameValidators()],
-        stationPostInput: ["", this.firstNameValidators()],
-        stationZipInput: ["", this.firstNameValidators()],
-        stationPhoneInput: ["", this.firstNameValidators()],
+        firstNameInput: ["", this.validations.firstNameValidators()],
+        middleInitialInput: ["", this.validations.firstNameValidators()],
+        lastNameInput: ["", this.validations.firstNameValidators()],
+        ssnInput: ["", this.validations.firstNameValidators()],
+        rankInput: ["", this.validations.firstNameValidators()],
+        phoneInput: ["", this.validations.firstNameValidators()],
+        stationPlatoonInput: ["", this.validations.firstNameValidators()],
+        stationCompanyInput: ["", this.validations.firstNameValidators()],
+        stationBattalionInput: ["", this.validations.firstNameValidators()],
+        stationBrigadeInput: ["", this.validations.firstNameValidators()],
+        stationDivisionInput: ["", this.validations.firstNameValidators()],
+        stationPostInput: ["", this.validations.firstNameValidators()],
+        stationZipInput: ["", this.validations.firstNameValidators()],
+        stationPhoneInput: ["", this.validations.firstNameValidators()],
     });
   }
 
   ionViewWillEnter() {
+    for (var i in this.userForm.controls) {
+      this.userForm.controls[i].markAsTouched();
+    }
     this.showsCloseIcon = false;
   }
 
@@ -88,10 +94,11 @@ export class PersonalInfoProfilePage {
     this.stationPhone = user.station.phoneNumber;
   }
 
-  // Field Validators
+  private sendProfileUpdates() {
+
+  }
   
-  private firstNameValidators() {
-    return Validators.compose([Validators.pattern('[a-zA-Z ]*'), 
-                               Validators.required]);
+  private presentValidationErrorAlert() {
+
   }
 }

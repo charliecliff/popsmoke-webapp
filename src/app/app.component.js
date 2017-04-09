@@ -14,14 +14,14 @@ import { Store } from '@ngrx/store';
 import * as menuReducer from '../reducers/menu-reducer';
 import { UserProvider } from '../providers/user-provider';
 import { HolidayProvider } from '../providers/holiday-provider';
-import { LaunchPage } from '../pages/launch/launch';
+import { PacketPage } from '../pages/packet/packet';
 var MyApp = (function () {
     function MyApp(platform, store, userProvider, holidayProvider) {
         this.platform = platform;
         this.store = store;
         this.userProvider = userProvider;
         this.holidayProvider = holidayProvider;
-        this.rootPage = LaunchPage;
+        this.rootPage = PacketPage;
         platform.ready().then(function () {
             StatusBar.styleDefault();
             Splashscreen.hide();

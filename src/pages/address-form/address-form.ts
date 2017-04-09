@@ -5,7 +5,6 @@ import { Store } from '@ngrx/store';
 
 import { AppState } from '../../reducers';
 import { Address } from '../../models/Address';
-import { StationFormPage } from '../station-form/station-form';
 
 import * as da31BuilderActions from '../../actions/da31builder.actions';
 
@@ -55,6 +54,5 @@ export class AddressFormPage {
     address.zip = this.addressForm.value.zip;
 
     this.store.dispatch(new da31BuilderActions.AddDestinationAction(address));
-    this.navCtrl.push(StationFormPage);
   }
 }

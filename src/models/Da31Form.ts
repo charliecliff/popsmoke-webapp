@@ -2,8 +2,9 @@ import { PersonalInfo } from './PersonalInfo';
 import { Station } from './Station';
 import { Address } from './Address';
 
-export interface Da31Form extends PersonalInfo, Station {
-    destination: {};
+export class Da31Form {
+    destination: Address;
+    
     accruedLeave: Number;
     requestedLeave: Number;
     advancedLeave: Number;

@@ -1,75 +1,278 @@
-<!--
-  Generated template for the Packet page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<ion-header>
+<ion-header class="ps-header packet-header">
   <ion-navbar primary>
-
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    
-    <ion-title>
-      PopSmoke
-    </ion-title>
-
+    <ion-buttons left menuToggle>
+      <div id="nav-icon3" [class.open]="showsCloseIcon">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div> 
+    </ion-buttons>
+    <ion-title>PACKET NAME</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-center style="">
+        <ion-icon name="chatbubbles"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
 
-	<ion-grid>
-		<ion-row>
-			<ion-col width-50>
-				<ion-card class="packet-card" id="da-31-form" (tap)="tapEvent('da-31-form')">
-					<ion-card-content>
-						<div>
-							<!-- <img height="70" width="70" align="middle" src="./public/images/form_icon.png">					 -->
-						</div>
-						<h3>DA-31</h3>
-					</ion-card-content>
-				</ion-card>
-			</ion-col>
-			<ion-col width-50>
-				<ion-card class="packet-card" id="trips-form" (tap)="tapEvent('trips-form')">
-					<ion-card-content>
-						<!-- <img height="70" width="70" align="middle" src="./public/images/form_icon.png"> -->
-						<h3>TRIPS</h3>
-					</ion-card-content>
-				</ion-card>
-			</ion-col>
-		</ion-row>
+<ion-content padding class="packet-content">
+  <ion-slides pager paginationType="progress" style="height: auto">
 
-		<ion-row>
-			<ion-col width-50>
-				<ion-card class="packet-card" id="drivers-license-document" (tap)="tapEvent('drivers-license-document')">
-					<ion-card-content>
-						<!-- <img height="70" width="70" align="middle" src="./public/images/form_icon.png"> -->
-						<h3>DRIVER's LICENSE</h3>
-					</ion-card-content>
-				</ion-card>
-			</ion-col>
-			<ion-col width-50>
-				<ion-card class="packet-card" id="insurance-document" (tap)="tapEvent('insurance-document')">
-					<ion-card-content>
-						<!-- <img height="70" width="70" align="middle" src="./public/images/form_icon.png"> -->
-						<h3>INSURANCE</h3>
-					</ion-card-content>
-				</ion-card>
-			</ion-col>
-		</ion-row>
-		
-	</ion-grid>
+    <!-- BIO SLIDE -->
+    <ion-slide>
+      <form [formGroup]="bioForm">
+        
+        <ion-item>
+          <ion-label floating>FIRST NAME</ion-label>
+          <ion-input formControlName="firstName"
+                     type="text"
+                     clearInput=true
+                     [class.invalid]="!bioForm.controls.firstName.valid && 
+                     (submitAttempt)">
+          </ion-input>
+        </ion-item>
+        <ion-item no-lines 
+                  class="warning"
+                  *ngIf="!bioForm.controls.firstName.valid  && (submitAttempt)">
+          <p>Please enter a valid name</p>
+        </ion-item>
 
+        <ion-item>
+          <ion-label floating>MIDDLE INITIAL</ion-label>
+          <ion-input formControlName="middleInitial"
+                     type="text"
+                     clearInput=true></ion-input>
+        </ion-item>
+        <ion-item no-lines 
+                  class="warning"
+                  *ngIf="!bioForm.controls.middleInitial.valid  && 
+                  (submitAttempt)">
+          <p>Please enter a valid initial</p>
+        </ion-item>
+        
+        <ion-item>
+          <ion-label floating>LAST NAME</ion-label>
+          <ion-input formControlName="lastName"
+                     type="text"
+                     clearInput=true></ion-input>
+        </ion-item>
+        <ion-item no-lines 
+                  class="warning"
+                  *ngIf="!bioForm.controls.lastName.valid  && (submitAttempt)">
+          <p>Please enter a valid name</p>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Last 4 Digits of Soc. Sec.</ion-label>
+          <ion-input formControlName="ssn"
+                     type="text"
+                     clearInput=true></ion-input>
+        </ion-item>
+        <ion-item no-lines 
+                  class="warning"
+                  *ngIf="!bioForm.controls.ssn.valid  && (submitAttempt)">
+          <p>Please enter the last 4 digits of your Soc. Sec.</p>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Rank</ion-label>
+          <ion-input formControlName="rank"
+                     type="text"
+                     clearInput=true></ion-input>
+        </ion-item>
+        <ion-item no-lines 
+                  class="warning"
+                  *ngIf="!bioForm.controls.rank.valid  && (submitAttempt)">
+          <p>Please select a valid Rank</p>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Phone Number</ion-label>
+          <ion-input formControlName="phone"
+                     type="text"
+                     clearInput=true></ion-input>
+        </ion-item>
+        <ion-item no-lines 
+                  class="warning"
+                  *ngIf="!bioForm.controls.phone.valid  && (submitAttempt)">
+          <p>Please enter a valid Phoen Number</p>
+        </ion-item>
+
+      </form>
+    </ion-slide>
+
+    <!-- STATION SLIDE -->
+    <ion-slide>
+      <form [formGroup]="stationForm">
+        <ion-item>
+          <ion-label floating>Platoon</ion-label>
+          <ion-input formControlName="stationPlatoonInput"
+                     type="text"
+                     clearInput=true></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Company</ion-label>
+          <ion-input formControlName="stationCompanyInput"
+                     type="text"
+                     clearInput=true></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Battalion</ion-label>
+          <ion-input formControlName="stationBattalionInput"
+                     type="text"
+                     clearInput=true></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Brigade</ion-label>
+          <ion-input formControlName="stationBrigadeInput"
+                     type="text"
+                     clearInput=true></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Division</ion-label>
+          <ion-input formControlName="stationDivisionInput"
+                     type="text"
+                     clearInput=true></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Post</ion-label>
+          <ion-input formControlName="stationPostInput"
+                     type="text"
+                     clearInput=true></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Zip Code</ion-label>
+          <ion-input formControlName="stationZipInput"
+                     type="text"
+                     clearInput=true></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Contact Phone Number</ion-label>
+          <ion-input formControlName="stationPhoneInput"
+                     type="text"
+                     clearInput=true></ion-input>
+        </ion-item>
+      </form>
+    </ion-slide>
+
+    <!-- DESTINATION SLIDE -->
+    <ion-slide>
+      <form [formGroup]="destinationForm">
+
+        <ion-item>
+          <ion-label floating>STREET</ion-label>
+          <ion-input type="text"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>CITY</ion-label>
+          <ion-input type="text"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>STATE</ion-label>
+          <ion-input type="text"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>ZIP</ion-label>
+          <ion-input type="number"></ion-input>
+        </ion-item>
+
+      </form>
+    </ion-slide>
+
+    <!-- LEAVE SLIDE -->
+    <ion-slide>
+      <form [formGroup]="leaveForm">
+
+        <ion-item>
+          <ion-label>TYPE OF LEAVE</ion-label>
+           <ion-select formControlName="leaveType" multiple="false">
+<!--             <ion-option value = "ORDINARY">ORDINARY</ion-option>
+            <ion-option value = "EMERGENCY">EMERGENCY</ion-option>
+            <ion-option value = "PERMISSIVE">PERMISSIVE</ion-option>
+            <ion-option value = "TDY">TDY</ion-option>
+            <ion-option value = "OTHER">OTHER</ion-option> -->
+          </ion-select>
+        </ion-item>
+
+<!--          <ion-item *ngIf="leaveInfoFormGroup.value.leaveType == 'OTHER'">
+          <ion-label floating>EXPLANATION_OF_TYPE_OF_LEAVE</ion-label>
+          <ion-input formControlName="explanationOfLeaveType" type="text"></ion-input>
+        </ion-item> -->
+
+        <ion-item>
+          <ion-label floating>ACCRUED LEAVE</ion-label>
+          <ion-input formControlName="accruedLeave" 
+                     type="text" 
+                     value="0"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>REQUESTED LEAVE</ion-label>
+          <ion-input formControlName="requestedLeave" 
+                     type="text" 
+                     value="0"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>ADVANCED LEAVE</ion-label>
+           <ion-input formControlName="advancedLeave" 
+                      type="text" 
+                      value="0"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>EXCESS LEAVE</ion-label>
+           <ion-input formControlName="excessLeave" 
+                      type="text" 
+                      value="0"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>LEAVE DATE FROM</ion-label>
+           <ion-datetime formControlName="leaveDateFrom" 
+                        displayFormat="YYYY/M/D" 
+                        pickerFormat="YYYY M D"></ion-datetime>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>LEAVE DATE TO</ion-label> 
+          <ion-datetime formControlName="leaveDateTo" 
+                        displayFormat="YYYY/M/D" 
+                        pickerFormat="YYYY M D"></ion-datetime>
+        </ion-item>
+
+      </form>
+    </ion-slide>
+
+    <!-- DRIVERS LICENSE SLIDE -->
+    <ion-slide>
+    </ion-slide>
+
+    <!-- INSURANCE SLIDE -->
+    <ion-slide>
+    </ion-slide>
+
+  </ion-slides>
 </ion-content>
 
 
-<ion-footer>
-  
-  <ion-toolbar>
-    <button ion-button full color="primary" (click)="signout()">SIGN OUT</button>
-  </ion-toolbar>
+<ion-footer class="ps-footer packet-footer">
+
+  <ion-grid>
+    <ion-row>
+      <ion-col col-6>
+        <button ion-button full color="primary" style="font-size: 20px" (click)="back()">BACK</button>
+      </ion-col>
+      <ion-col col-6>
+        <button ion-button full color="primary" style="font-size: 20px" (click)="next()">NEXT</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
 </ion-footer>

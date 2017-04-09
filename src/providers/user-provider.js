@@ -23,6 +23,15 @@ var UserProvider = (function () {
         this.authProvider = authProvider;
         this.USER_NOT_FOUND = "USER_NOT_FOUND";
         this.baseUserUrl = "https://sleepy-scrubland-83197.herokuapp.com/user";
+        // TODO:
+        // updateUser(user): Observable<User> {
+        //   console.log("updateUser");
+        //   let userURL = this.baseUserUrl + "/" + user.userID;
+        // let headers = new Headers({"Content-Type": "application/json"});
+        //   let body = JSON.stringify(user);
+        //   return this.http.put(userURL, body, {headers: headers})
+        //                   .map(this.parseUserFromResponse)
+        // }
         this.getUserCallback = function (userID) {
             console.log("getUserCallback");
             var getUserURL = _this.baseUserUrl + "/" + userID;
@@ -77,14 +86,6 @@ var UserProvider = (function () {
             .map(function (res) { return res.json(); })
             .map(this.parseUserFromResponse)
             .subscribe(this.updateUserStateCallback, this.handleErrorCallback);
-    };
-    UserProvider.prototype.updateUser = function (user) {
-        console.log("updateUser");
-        var userURL = this.baseUserUrl + "/" + user.userID;
-        var headers = new Headers({ "Content-Type": "application/json" });
-        var body = JSON.stringify(user);
-        return this.http.put(userURL, body, { headers: headers })
-            .map(this.parseUserFromResponse);
     };
     UserProvider.prototype.parseUserFromResponse = function (json) {
         return new User(json["User"]);

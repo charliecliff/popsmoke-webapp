@@ -1,3 +1,50 @@
-page-packet {
-
+ion-content.packet-content {
+	ion-slide {
+		background-color: trasnparent;
+	}
+}
+ion-footer.packet-footer {
+	.grid {
+		height: 100%;
+		padding: 0px;
+	}
+	[col-6] {
+		padding: 0px;
+	}
+	button {
+		margin: 0px;
+		box-shadow: none;
+	}
+}
+.swiper-pagination-progress .swiper-pagination-progressbar {
+	background-color: map-get($colors, accent);
+}
+.ios, .md {
+	ion-content.packet-content {
+		form input {
+			color: white;
+		}
+		ion-app [padding], ion-app [padding] .scroll-content {
+  			padding: 0px;
+  		}
+		ion-item.warning.item.item-block .item-inner {
+			border: none;
+			box-shadow: none;
+		}
+		ion-item.warning.item p {
+			color: map-get($colors, error);
+		}
+		ion-item.item.item-block .item-inner {
+			border-bottom-color: white;
+			box-shadow: inset 0 -1px 0 0 white;
+		}
+		ion-item.item.item-input.ng-invalid.ng-touched:not(.input-has-focus) .item-inner {
+			border-bottom-color: white;
+			box-shadow: inset 0 -1px 0 0 white;
+		}
+		ion-item.item.item-input.ng-valid.ng-touched:not(.input-has-focus) .item-inner {
+			border-bottom-color: white;
+			box-shadow: inset 0 -1px 0 0 white;
+		}
+	}
 }

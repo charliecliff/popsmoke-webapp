@@ -48,13 +48,11 @@
         <ion-item no-lines class="warning" *ngIf="totalLeaveDays > 0">
           <p>Please enter some leave days</p>
         </ion-item>
-
         <ion-item *ngIf="!leaveForm.controls.leaveType.value == 'OTHER'">
           <ion-label floating>What will you be doing while on leave?</ion-label>
           <ion-input formControlName="explanationOfLeaveType" 
                      type="text"></ion-input>
         </ion-item>
-
         <ion-item>
           <ion-label floating>DAYS OF ACCRUED LEAVE</ion-label>
           <ion-input formControlName="accruedLeave" type="number"></ion-input>
@@ -63,7 +61,6 @@
                   submitAttempt">
           <p>Please use some leave days of some kind</p>
         </ion-item>
-
         <ion-item>
           <ion-label floating>REQUESTED LEAVE</ion-label>
           <ion-input formControlName="requestedLeave" type="number"></ion-input>
@@ -72,7 +69,6 @@
                   submitAttempt">
           <p>Please use some leave days of some kind</p>
         </ion-item>
-
         <ion-item>
           <ion-label floating>ADVANCED LEAVE</ion-label>
            <ion-input formControlName="advancedLeave" type="number"></ion-input>
@@ -81,7 +77,6 @@
                   submitAttempt">
           <p>Please use some leave days of some kind</p>
         </ion-item>
-
         <ion-item>
           <ion-label floating>EXCESS LEAVE</ion-label>
            <ion-input formControlName="excessLeave" type="number"></ion-input>
@@ -90,25 +85,35 @@
                   submitAttempt">
           <p>Please use some leave days of some kind</p>
         </ion-item>
-
         <ion-item>
-          <ion-label floating>LEAVE DATE FROM</ion-label>
+          <ion-label floating>LEAVE START DATE</ion-label>
            <ion-datetime formControlName="leaveDateFrom" 
                         displayFormat="YYYY/M/D" 
                         pickerFormat="YYYY M D"></ion-datetime>
         </ion-item>
-
-
+        <ion-item no-lines class="warning"
+                  *ngIf="!leaveForm.controls.leaveDateFrom.valid  && 
+                  submitAttempt">
+          <p>Please enter valid Start Date</p>
+        </ion-item>
         <ion-item>
-          <ion-label floating>LEAVE DATE TO</ion-label> 
+          <ion-label floating>LEAVE END DATE</ion-label> 
           <ion-datetime formControlName="leaveDateTo" 
                         displayFormat="YYYY/M/D" 
                         pickerFormat="YYYY M D"></ion-datetime>
         </ion-item>
-
+        <ion-item no-lines class="warning"
+                  *ngIf="!leaveForm.controls.leaveDateTo.valid  && 
+                  submitAttempt">
+          <p>Please enter a valid End Date</p>
+        </ion-item>
 
       </form>
     </ion-slide>
+
+
+
+
 
 
 

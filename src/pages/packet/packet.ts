@@ -26,11 +26,13 @@ export class PacketPage {
   bioForm: FormGroup;
   stationForm: FormGroup;
   destinationForm: FormGroup;
+  
+  // Leave Form and Dependant Validations
   leaveStartDate: Number = 0;
   hasMinLeaveDays: boolean = false;
   leaveForm: FormGroup;
   
-  // State
+  // UX State
   submitAttempt: boolean = false;
   packetID: string = "1";
   currentForm: packetForm = packetForm.kLeaveForm;
@@ -128,10 +130,10 @@ export class PacketPage {
     this.leaveForm = this.formBuilder.group({
       leaveType: ["", PSValidators.leaveTypeValidators()],
       explanationOfLeaveType: [""],
-      accruedLeave: ["", PSValidators.leaveValidators()],
-      requestedLeave: ["", PSValidators.leaveValidators()],
-      advancedLeave: ["", PSValidators.leaveValidators()],
-      excessLeave: ["", PSValidators.leaveValidators()],
+      accruedLeave: [""],
+      requestedLeave: [""],
+      advancedLeave: [""],
+      excessLeave: [""],
       leaveDateFrom: ["", PSValidators.dateValidators()],
       leaveDateTo: ["", PSValidators.dateValidators()]
     });
@@ -161,8 +163,11 @@ export class PacketPage {
   }
 
   private scrollToNextSlide() {
+    console.log("scrollToNextSlide");
     this.submitAttempt = true;
     let currentFromGroup = this.getCurrentFormGroup();
+    console.log(currentFromGroup);
+
     if (currentFromGroup.valid) {
       this.updatePackWithCurrentFormGroup();
       this.slides.lockSwipes(false);
@@ -190,6 +195,7 @@ export class PacketPage {
   }
 
   private updatePackWithCurrentFormGroup() {
+    console.log("updatePackWithCurrentFormGroup");
     switch (this.currentForm) {
       case packetForm.kBioForm:
         this.updatePacketBio();
@@ -201,11 +207,7 @@ export class PacketPage {
         this.updatePacketDestination();
         break;
       case packetForm.kLeaveForm:
-        this.updateAdvancedLeave();
-        this.updateAccruedLeave();
-        this.updateExcessLeave();
-        this.updateDepartureDate();
-        this.updateReturnDate();
+        this.updateDA31Leave();
         break;
       default:
         break;
@@ -230,33 +232,10 @@ export class PacketPage {
     this.store.dispatch( action );
   }
 
-  private updateAccruedLeave() {
-    let value = this.leaveForm.value.accruedLeave;
-    let action = new PSActions.SetAccruedLeaveAction(this.packetID, value);
-    this.store.dispatch( action );
-  }
-
-  private updateAdvancedLeave() {
-    let value = this.leaveForm.value.advancedLeave;
-    let action = new PSActions.SetAdvancedLeaveAction(this.packetID, value);
-    this.store.dispatch( action );
-  }
-
-  private updateExcessLeave() {
-    let value = this.leaveForm.value.excessLeave;
-    let action = new PSActions.SetExcessLeaveAction(this.packetID, value);
-    this.store.dispatch( action );
-  }
-
-  private updateDepartureDate() {
-    let value = this.leaveForm.value.departureDate;
-    let action = new PSActions.SetDepartureDateAction(this.packetID, value);
-    this.store.dispatch( action );
-  }
-
-  private updateReturnDate() {
-    let value = this.leaveForm.value.returnDate;
-    let action = new PSActions.SetReturnDateAction(this.packetID, value);
+  private updateDA31Leave() {
+    console.log("updateDa31Leave");
+    let value = this.leaveForm.value;
+    let action = new PSActions.SetDA31LeaveAction(this.packetID, value);
     this.store.dispatch( action );
   }
 }

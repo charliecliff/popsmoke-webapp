@@ -2,6 +2,7 @@ import { Holiday } from './Holiday';
 import { PersonalInfo } from './PersonalInfo';
 import { Station } from './Station';
 import { Address } from './Address';
+import { DA31Leave } from './DA31Leave';
 
 export class Packet {
   public id: string;
@@ -9,12 +10,14 @@ export class Packet {
   public bio: PersonalInfo;
   public station: Station;
   public destination: Address;
+  public leave: DA31Leave;
 
   constructor() {
     this.id = "-1";
     this.holiday = new Holiday();
     this.bio = new PersonalInfo();
     this.station = new Station();
+    this.leave = new DA31Leave();
   }
 }
 

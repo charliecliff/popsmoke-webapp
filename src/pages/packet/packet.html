@@ -21,6 +21,102 @@
 <ion-content padding class="packet-content">
   <ion-slides pager paginationType="progress" style="height: auto">
 
+
+
+
+
+
+
+    <!-- LEAVE SLIDE -->
+    <ion-slide>
+      <form [formGroup]="leaveForm">
+
+        <ion-item>
+          <ion-label>TYPE OF LEAVE</ion-label>
+           <ion-select formControlName="leaveType" multiple="false">
+            <ion-option value = "ORDINARY">ORDINARY</ion-option>
+            <ion-option value = "EMERGENCY">EMERGENCY</ion-option>
+            <ion-option value = "PERMISSIVE">PERMISSIVE</ion-option>
+            <ion-option value = "TDY">TDY</ion-option>
+            <ion-option value = "OTHER">OTHER</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item no-lines class="warning"
+                  *ngIf="!leaveForm.controls.leaveType.valid  && submitAttempt">
+          <p>Please select the Type of Leave that you are taking</p>
+        </ion-item>
+        <ion-item no-lines class="warning" *ngIf="totalLeaveDays > 0">
+          <p>Please enter some leave days</p>
+        </ion-item>
+
+        <ion-item *ngIf="!leaveForm.controls.leaveType.value == 'OTHER'">
+          <ion-label floating>What will you be doing while on leave?</ion-label>
+          <ion-input formControlName="explanationOfLeaveType" 
+                     type="text"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>DAYS OF ACCRUED LEAVE</ion-label>
+          <ion-input formControlName="accruedLeave" type="number"></ion-input>
+        </ion-item>
+        <ion-item no-lines class="warning" *ngIf="!hasMinLeaveDays && 
+                  submitAttempt">
+          <p>Please use some leave days of some kind</p>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>REQUESTED LEAVE</ion-label>
+          <ion-input formControlName="requestedLeave" type="number"></ion-input>
+        </ion-item>
+        <ion-item no-lines class="warning" *ngIf="!hasMinLeaveDays && 
+                  submitAttempt">
+          <p>Please use some leave days of some kind</p>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>ADVANCED LEAVE</ion-label>
+           <ion-input formControlName="advancedLeave" type="number"></ion-input>
+        </ion-item>
+        <ion-item no-lines class="warning" *ngIf="!hasMinLeaveDays && 
+                  submitAttempt">
+          <p>Please use some leave days of some kind</p>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>EXCESS LEAVE</ion-label>
+           <ion-input formControlName="excessLeave" type="number"></ion-input>
+        </ion-item>
+        <ion-item no-lines class="warning" *ngIf="!hasMinLeaveDays && 
+                  submitAttempt">
+          <p>Please use some leave days of some kind</p>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>LEAVE DATE FROM</ion-label>
+           <ion-datetime formControlName="leaveDateFrom" 
+                        displayFormat="YYYY/M/D" 
+                        pickerFormat="YYYY M D"></ion-datetime>
+        </ion-item>
+
+
+        <ion-item>
+          <ion-label floating>LEAVE DATE TO</ion-label> 
+          <ion-datetime formControlName="leaveDateTo" 
+                        displayFormat="YYYY/M/D" 
+                        pickerFormat="YYYY M D"></ion-datetime>
+        </ion-item>
+
+
+      </form>
+    </ion-slide>
+
+
+
+
+
+
+
+
     <!-- BIO SLIDE -->
     <ion-slide>
       <form [formGroup]="bioForm">
@@ -28,14 +124,13 @@
         <ion-item>
           <ion-label floating>FIRST NAME</ion-label>
           <ion-input formControlName="firstName"
-                     type="number"
+                     type="text"
                      clearInput=true
                      [class.invalid]="!bioForm.controls.firstName.valid && 
                      submitAttempt">
           </ion-input>
         </ion-item>
-        <ion-item no-lines 
-                  class="warning"
+        <ion-item no-lines class="warning"
                   *ngIf="!bioForm.controls.firstName.valid  && submitAttempt">
           <p>Please enter a valid name</p>
         </ion-item>
@@ -48,8 +143,7 @@
                      [class.invalid]="!bioForm.controls.middleInitial.valid && 
                      submitAttempt"></ion-input>
         </ion-item>
-        <ion-item no-lines 
-                  class="warning"
+        <ion-item no-lines class="warning"
                   *ngIf="!bioForm.controls.middleInitial.valid  && 
                   submitAttempt">
           <p>Please enter a valid initial</p>
@@ -63,8 +157,7 @@
                      [class.invalid]="!bioForm.controls.lastName.valid && 
                      submitAttempt"></ion-input>
         </ion-item>
-        <ion-item no-lines 
-                  class="warning"
+        <ion-item no-lines class="warning"
                   *ngIf="!bioForm.controls.lastName.valid  && submitAttempt">
           <p>Please enter a valid name</p>
         </ion-item>
@@ -77,8 +170,7 @@
                      [class.invalid]="!bioForm.controls.ssn.valid && 
                      submitAttempt"></ion-input>
         </ion-item>
-        <ion-item no-lines 
-                  class="warning"
+        <ion-item no-lines class="warning"
                   *ngIf="!bioForm.controls.ssn.valid  && submitAttempt">
           <p>Please enter the last 4 digits of your Soc. Sec.</p>
         </ion-item>
@@ -91,8 +183,7 @@
                      [class.invalid]="!bioForm.controls.rank.valid && 
                      submitAttempt"></ion-input>
         </ion-item>
-        <ion-item no-lines 
-                  class="warning"
+        <ion-item no-lines class="warning"
                   *ngIf="!bioForm.controls.rank.valid  && submitAttempt">
           <p>Please select a valid Rank</p>
         </ion-item>
@@ -105,8 +196,7 @@
                      [class.invalid]="!bioForm.controls.phone.valid && 
                      submitAttempt"></ion-input>
         </ion-item>
-        <ion-item no-lines 
-                  class="warning"
+        <ion-item no-lines class="warning"
                   *ngIf="!bioForm.controls.phone.valid  && submitAttempt">
           <p>Please enter a valid Phoen Number</p>
         </ion-item>
@@ -125,8 +215,7 @@
                      [class.invalid]="!stationForm.controls.platoon.valid && 
                      submitAttempt"></ion-input>
         </ion-item>
-        <ion-item no-lines 
-                  class="warning"
+        <ion-item no-lines class="warning"
                   *ngIf="!stationForm.controls.platoon.valid  && submitAttempt">
           <p>Please enter valid text</p>
         </ion-item>
@@ -138,8 +227,7 @@
                      [class.invalid]="!stationForm.controls.company.valid && 
                      submitAttempt"></ion-input>
         </ion-item>
-        <ion-item no-lines 
-                  class="warning"
+        <ion-item no-lines class="warning"
                   *ngIf="!stationForm.controls.company.valid  && submitAttempt">
           <p>Please enter valid text</p>
         </ion-item>
@@ -151,8 +239,7 @@
                      [class.invalid]="!stationForm.controls.battalion.valid && 
                      submitAttempt"></ion-input>
         </ion-item>
-        <ion-item no-lines 
-                  class="warning"
+        <ion-item no-lines class="warning"
                   *ngIf="!stationForm.controls.battalion.valid  && submitAttempt">
           <p>Please enter valid text</p>
         </ion-item>
@@ -164,8 +251,7 @@
                      [class.invalid]="!stationForm.controls.brigade.valid && 
                      submitAttempt"></ion-input>
         </ion-item>
-        <ion-item no-lines 
-                  class="warning"
+        <ion-item no-lines class="warning"
                   *ngIf="!stationForm.controls.brigade.valid  && submitAttempt">
           <p>Please enter valid text</p>
         </ion-item>
@@ -177,8 +263,7 @@
                      [class.invalid]="!stationForm.controls.division.valid && 
                      submitAttempt"></ion-input>
         </ion-item>
-        <ion-item no-lines 
-                  class="warning"
+        <ion-item no-lines class="warning"
                   *ngIf="!stationForm.controls.division.valid  && 
                   submitAttempt">
           <p>Please enter valid text</p>
@@ -191,8 +276,7 @@
                      [class.invalid]="!stationForm.controls.post.valid && 
                      submitAttempt"></ion-input>
         </ion-item>
-        <ion-item no-lines 
-                  class="warning"
+        <ion-item no-lines class="warning"
                   *ngIf="!stationForm.controls.post.valid  && submitAttempt">
           <p>Please enter valid text</p>
         </ion-item>
@@ -204,8 +288,7 @@
                      [class.invalid]="!stationForm.controls.stationZip.valid && 
                      submitAttempt"></ion-input>
         </ion-item>
-        <ion-item no-lines 
-                  class="warning"
+        <ion-item no-lines class="warning"
                   *ngIf="!stationForm.controls.stationZip.valid  && 
                   submitAttempt">
           <p>Please enter a valid Zip Code</p>
@@ -218,8 +301,7 @@
                      [class.invalid]="!stationForm.controls.stationPhone.valid 
                      && submitAttempt"></ion-input>
         </ion-item>
-        <ion-item no-lines 
-                  class="warning"
+        <ion-item no-lines class="warning"
                   *ngIf="!stationForm.controls.stationPhone.valid  && 
                   submitAttempt">
           <p>Please enter a valid Phone Number</p>
@@ -238,8 +320,7 @@
                      [class.invalid]="!destinationForm.controls.street.valid 
                      && submitAttempt"></ion-input>
         </ion-item>
-        <ion-item no-lines 
-                  class="warning"
+        <ion-item no-lines class="warning"
                   *ngIf="!destinationForm.controls.street.valid  && 
                   submitAttempt">
           <p>Please enter a valid Street Number and Street Name</p>
@@ -266,8 +347,7 @@
                      [class.invalid]="!destinationForm.controls.state.valid 
                      && submitAttempt"></ion-input>
         </ion-item>
-        <ion-item no-lines 
-                  class="warning"
+        <ion-item no-lines class="warning"
                   *ngIf="!destinationForm.controls.state.valid  && 
                   submitAttempt">
           <p>Please select a State</p>
@@ -280,8 +360,7 @@
                      [class.invalid]="!destinationForm.controls.zip.valid 
                      && submitAttempt"></ion-input>
         </ion-item>
-        <ion-item no-lines 
-                  class="warning"
+        <ion-item no-lines class="warning"
                   *ngIf="!destinationForm.controls.zip.valid  && 
                   submitAttempt">
           <p>Please select a Postal Code</p>
@@ -289,70 +368,11 @@
       </form>
     </ion-slide>
 
-    <!-- LEAVE SLIDE -->
-    <ion-slide>
-      <form [formGroup]="leaveForm">
 
-        <ion-item>
-          <ion-label>TYPE OF LEAVE</ion-label>
-           <ion-select formControlName="leaveType" multiple="false">
-<!--             <ion-option value = "ORDINARY">ORDINARY</ion-option>
-            <ion-option value = "EMERGENCY">EMERGENCY</ion-option>
-            <ion-option value = "PERMISSIVE">PERMISSIVE</ion-option>
-            <ion-option value = "TDY">TDY</ion-option>
-            <ion-option value = "OTHER">OTHER</ion-option> -->
-          </ion-select>
-        </ion-item>
 
-<!--          <ion-item *ngIf="leaveInfoFormGroup.value.leaveType == 'OTHER'">
-          <ion-label floating>EXPLANATION_OF_TYPE_OF_LEAVE</ion-label>
-          <ion-input formControlName="explanationOfLeaveType" type="text"></ion-input>
-        </ion-item> -->
 
-        <ion-item>
-          <ion-label floating>ACCRUED LEAVE</ion-label>
-          <ion-input formControlName="accruedLeave" 
-                     type="text" 
-                     value="0"></ion-input>
-        </ion-item>
 
-        <ion-item>
-          <ion-label floating>REQUESTED LEAVE</ion-label>
-          <ion-input formControlName="requestedLeave" 
-                     type="text" 
-                     value="0"></ion-input>
-        </ion-item>
 
-        <ion-item>
-          <ion-label floating>ADVANCED LEAVE</ion-label>
-           <ion-input formControlName="advancedLeave" 
-                      type="text" 
-                      value="0"></ion-input>
-        </ion-item>
-
-        <ion-item>
-          <ion-label floating>EXCESS LEAVE</ion-label>
-           <ion-input formControlName="excessLeave" 
-                      type="text" 
-                      value="0"></ion-input>
-        </ion-item>
-
-        <ion-item>
-          <ion-label floating>LEAVE DATE FROM</ion-label>
-           <ion-datetime formControlName="leaveDateFrom" 
-                        displayFormat="YYYY/M/D" 
-                        pickerFormat="YYYY M D"></ion-datetime>
-        </ion-item>
-
-        <ion-item>
-          <ion-label floating>LEAVE DATE TO</ion-label> 
-          <ion-datetime formControlName="leaveDateTo" 
-                        displayFormat="YYYY/M/D" 
-                        pickerFormat="YYYY M D"></ion-datetime>
-        </ion-item>
-
-      </form>
-    </ion-slide>
 
     <!-- DRIVERS LICENSE SLIDE -->
     <ion-slide>

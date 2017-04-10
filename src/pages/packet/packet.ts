@@ -26,12 +26,14 @@ export class PacketPage {
   bioForm: FormGroup;
   stationForm: FormGroup;
   destinationForm: FormGroup;
+  leaveStartDate: Number = 0;
+  hasMinLeaveDays: boolean = false;
   leaveForm: FormGroup;
   
   // State
   submitAttempt: boolean = false;
   packetID: string = "1";
-  currentForm: packetForm = packetForm.kBioForm;
+  currentForm: packetForm = packetForm.kLeaveForm;
 
   constructor(private navCtrl: NavController, 
               private navParams: NavParams,
@@ -43,6 +45,7 @@ export class PacketPage {
     this.stationFormConstructor();
     this.destinationFormConstructor();
     this.leaveFormConstructor();
+    this.observeLeaveForm();
   }
   
   ionViewWillEnter() {
@@ -81,7 +84,6 @@ export class PacketPage {
     });
 
   }
-
 
   private stationFormConstructor() {
     let platoonValue = (this.currentPacket == undefined) ? 
@@ -124,14 +126,24 @@ export class PacketPage {
 
   private leaveFormConstructor() {
     this.leaveForm = this.formBuilder.group({
-      leaveType: [""],
+      leaveType: ["", PSValidators.leaveTypeValidators()],
       explanationOfLeaveType: [""],
-      accruedLeave: [""],
-      requestedLeave: [""],
-      advancedLeave: [""],
-      excessLeave: [""],
-      leaveDateFrom: [""],
-      leaveDateTo: [""]
+      accruedLeave: ["", PSValidators.leaveValidators()],
+      requestedLeave: ["", PSValidators.leaveValidators()],
+      advancedLeave: ["", PSValidators.leaveValidators()],
+      excessLeave: ["", PSValidators.leaveValidators()],
+      leaveDateFrom: ["", PSValidators.dateValidators()],
+      leaveDateTo: ["", PSValidators.dateValidators()]
+    });
+  }
+
+  private observeLeaveForm() {
+    this.leaveForm.valueChanges.subscribe(data => {
+      let sum = this.leaveForm.controls["accruedLeave"].value +
+      this.leaveForm.controls["requestedLeave"].value +
+      this.leaveForm.controls["advancedLeave"].value +
+      this.leaveForm.controls["excessLeave"].value;
+      this.hasMinLeaveDays = (sum > 0);
     });
   }
 

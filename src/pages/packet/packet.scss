@@ -22,7 +22,7 @@ ion-footer.packet-footer {
 .ios, .md {
 	ion-content.packet-content {
 		form input {
-			color: white;
+			color: map-get($colors, text);
 		}
 		ion-app [padding], ion-app [padding] .scroll-content {
   			padding: 0px;
@@ -35,16 +35,22 @@ ion-footer.packet-footer {
 			color: map-get($colors, error);
 		}
 		ion-item.item.item-block .item-inner {
-			border-bottom-color: white;
-			box-shadow: inset 0 -1px 0 0 white;
+			border-bottom-color: map-get($colors, text);
+			box-shadow: inset 0 -1px 0 0 map-get($colors, text);
 		}
-		ion-item.item.item-input.ng-invalid.ng-touched:not(.input-has-focus) .item-inner {
-			border-bottom-color: white;
-			box-shadow: inset 0 -1px 0 0 white;
+		ion-item.item.item-input.ng-invalid:not(.input-has-focus) .item-inner {
+			border-bottom-color: map-get($colors, text);
+			box-shadow: inset 0 -1px 0 0 map-get($colors, text);
 		}
-		ion-item.item.item-input.ng-valid.ng-touched:not(.input-has-focus) .item-inner {
-			border-bottom-color: white;
-			box-shadow: inset 0 -1px 0 0 white;
+		ion-item.item.item-input.ng-valid:not(.input-has-focus) .item-inner {
+			border-bottom-color: map-get($colors, text);
+			box-shadow: inset 0 -1px 0 0 map-get($colors, text);			
 		}
+		ion-select .select-text {
+  			color: map-get($colors, text);
+  		}
+  		ion-datetime .datetime-text {
+  			color: map-get($colors, text);			
+  		}
 	}
 }

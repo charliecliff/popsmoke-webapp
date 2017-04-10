@@ -1,12 +1,12 @@
 import { Validators } from '@angular/forms';
 import { CustomValidators } from 'ng2-validation';
+export { CustomValidators } from 'ng2-validation';
 
 export function leaveTypeValidators() {
-    return Validators.compose([Validators.pattern('[a-zA-Z ]*'), 
-                               Validators.required]);
+    return Validators.required;
 }
 
-export function leaveValidatorsForCurrentSum(sum) {
-    return Validators.compose([CustomValidators.min(sum), 
+export function leaveValidators() {
+    return Validators.compose([CustomValidators.min(0), 
                                Validators.required]);
 }

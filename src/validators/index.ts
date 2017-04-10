@@ -11,6 +11,7 @@ import { stateValidators } from './us-address-validator';
 import { zipCodeValidators } from './us-address-validator';
 import { leaveValidators } from './leave-validator';
 import { leaveTypeValidators } from './leave-validator';
+import { dateValidators } from './date-validator';
 import { startDateValidators } from './date-validator';
 import { endDateValidators } from './date-validator';
 
@@ -27,5 +28,6 @@ export { stateValidators } from './us-address-validator';
 export { zipCodeValidators } from './us-address-validator';
 export { leaveValidators } from './leave-validator';
 export { leaveTypeValidators } from './leave-validator';
+export { dateValidators } from './date-validator';
 export { startDateValidators } from './date-validator';
 export { endDateValidators } from './date-validator';

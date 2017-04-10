@@ -1,21 +1,19 @@
 import { Validators } from '@angular/forms';
+import { CustomValidators } from 'ng2-validation';
+export { CustomValidators } from 'ng2-validation';
 
 export function streetValidators() {
-    return Validators.compose([Validators.pattern('[a-zA-Z ]*'), 
-                               Validators.required]);
+    return Validators.required
 }
 
 export function cityValidators() {
-    return Validators.compose([Validators.pattern('[a-zA-Z ]*'), 
-                               Validators.required]);
+    return Validators.required;
 }
 
 export function stateValidators() {
-    return Validators.compose([Validators.pattern('[a-zA-Z ]*'), 
-                               Validators.required]);
+    return Validators.required;
 }
 
 export function zipCodeValidators() {
-    return Validators.compose([Validators.pattern('[a-zA-Z ]*'), 
-                               Validators.required]);
+    return Validators.required;
 }

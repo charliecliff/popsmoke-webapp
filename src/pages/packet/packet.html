@@ -20,108 +20,7 @@
 
 <ion-content padding class="packet-content">
   <ion-slides pager paginationType="progress" style="height: auto">
-
-
-
-
-
-
-
-    <!-- LEAVE SLIDE -->
-    <ion-slide>
-      <form [formGroup]="leaveForm">
-
-        <ion-item>
-          <ion-label>TYPE OF LEAVE</ion-label>
-           <ion-select formControlName="leaveType" multiple="false">
-            <ion-option value = "ORDINARY">ORDINARY</ion-option>
-            <ion-option value = "EMERGENCY">EMERGENCY</ion-option>
-            <ion-option value = "PERMISSIVE">PERMISSIVE</ion-option>
-            <ion-option value = "TDY">TDY</ion-option>
-            <ion-option value = "OTHER">OTHER</ion-option>
-          </ion-select>
-        </ion-item>
-        <ion-item no-lines class="warning"
-                  *ngIf="!leaveForm.controls.leaveType.valid  && submitAttempt">
-          <p>Please select the Type of Leave that you are taking</p>
-        </ion-item>
-        <ion-item no-lines class="warning" *ngIf="totalLeaveDays > 0">
-          <p>Please enter some leave days</p>
-        </ion-item>
-        <ion-item *ngIf="!leaveForm.controls.leaveType.value == 'OTHER'">
-          <ion-label floating>What will you be doing while on leave?</ion-label>
-          <ion-input formControlName="explanationOfLeaveType" 
-                     type="text"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label floating>DAYS OF ACCRUED LEAVE</ion-label>
-          <ion-input formControlName="accruedLeave" type="number"></ion-input>
-        </ion-item>
-        <ion-item no-lines class="warning" *ngIf="!hasMinLeaveDays && 
-                  submitAttempt">
-          <p>Please use some leave days of some kind</p>
-        </ion-item>
-        <ion-item>
-          <ion-label floating>REQUESTED LEAVE</ion-label>
-          <ion-input formControlName="requestedLeave" type="number"></ion-input>
-        </ion-item>
-        <ion-item no-lines class="warning" *ngIf="!hasMinLeaveDays && 
-                  submitAttempt">
-          <p>Please use some leave days of some kind</p>
-        </ion-item>
-        <ion-item>
-          <ion-label floating>ADVANCED LEAVE</ion-label>
-           <ion-input formControlName="advancedLeave" type="number"></ion-input>
-        </ion-item>
-        <ion-item no-lines class="warning" *ngIf="!hasMinLeaveDays && 
-                  submitAttempt">
-          <p>Please use some leave days of some kind</p>
-        </ion-item>
-        <ion-item>
-          <ion-label floating>EXCESS LEAVE</ion-label>
-           <ion-input formControlName="excessLeave" type="number"></ion-input>
-        </ion-item>
-        <ion-item no-lines class="warning" *ngIf="!hasMinLeaveDays && 
-                  submitAttempt">
-          <p>Please use some leave days of some kind</p>
-        </ion-item>
-        <ion-item>
-          <ion-label floating>LEAVE START DATE</ion-label>
-           <ion-datetime formControlName="leaveDateFrom" 
-                        displayFormat="YYYY/M/D" 
-                        pickerFormat="YYYY M D"></ion-datetime>
-        </ion-item>
-        <ion-item no-lines class="warning"
-                  *ngIf="!leaveForm.controls.leaveDateFrom.valid  && 
-                  submitAttempt">
-          <p>Please enter valid Start Date</p>
-        </ion-item>
-        <ion-item>
-          <ion-label floating>LEAVE END DATE</ion-label> 
-          <ion-datetime formControlName="leaveDateTo" 
-                        displayFormat="YYYY/M/D" 
-                        pickerFormat="YYYY M D"></ion-datetime>
-        </ion-item>
-        <ion-item no-lines class="warning"
-                  *ngIf="!leaveForm.controls.leaveDateTo.valid  && 
-                  submitAttempt">
-          <p>Please enter a valid End Date</p>
-        </ion-item>
-
-      </form>
-    </ion-slide>
-
-
-
-
-
-
-
-
-
-
-
-
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
     <!-- BIO SLIDE -->
     <ion-slide>
       <form [formGroup]="bioForm">
@@ -208,7 +107,7 @@
 
       </form>
     </ion-slide>
-
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
     <!-- STATION SLIDE -->
     <ion-slide>
       <form [formGroup]="stationForm">
@@ -313,7 +212,7 @@
         </ion-item>
       </form>
     </ion-slide>
-
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
     <!-- DESTINATION SLIDE -->
     <ion-slide>
       <form [formGroup]="destinationForm">
@@ -346,7 +245,7 @@
         </ion-item>
         <ion-item>
           <ion-label floating>STATE</ion-label>
-          <ion-input formControlName="city"
+          <ion-input formControlName="state"
                      type="text"
                      clearInput=true
                      [class.invalid]="!destinationForm.controls.state.valid 
@@ -359,8 +258,8 @@
         </ion-item>
         <ion-item>
           <ion-label floating>ZIP</ion-label>
-          <ion-input formControlName="city"
-                     type="text"
+          <ion-input formControlName="zip"
+                     type="number"
                      clearInput=true
                      [class.invalid]="!destinationForm.controls.zip.valid 
                      && submitAttempt"></ion-input>
@@ -372,21 +271,101 @@
         </ion-item>
       </form>
     </ion-slide>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <!-- LEAVE SLIDE -->
+    <ion-slide>
+      <form [formGroup]="leaveForm">
 
+        <ion-item>
+          <ion-label>TYPE OF LEAVE</ion-label>
+           <ion-select formControlName="leaveType" multiple="false">
+            <ion-option value = "ORDINARY">ORDINARY</ion-option>
+            <ion-option value = "EMERGENCY">EMERGENCY</ion-option>
+            <ion-option value = "PERMISSIVE">PERMISSIVE</ion-option>
+            <ion-option value = "TDY">TDY</ion-option>
+            <ion-option value = "OTHER">OTHER</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item no-lines class="warning"
+                  *ngIf="!leaveForm.controls.leaveType.valid  && submitAttempt">
+          <p>Please select the Type of Leave that you are taking</p>
+        </ion-item>
+        <ion-item no-lines class="warning" *ngIf="totalLeaveDays > 0">
+          <p>Please enter some leave days</p>
+        </ion-item>
+        <ion-item *ngIf="!leaveForm.controls.leaveType.value == 'OTHER'">
+          <ion-label floating>What will you be doing while on leave?</ion-label>
+          <ion-input formControlName="explanationOfLeaveType" 
+                     type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>DAYS OF ACCRUED LEAVE</ion-label>
+          <ion-input formControlName="accruedLeave" type="number"></ion-input>
+        </ion-item>
+        <ion-item no-lines class="warning" *ngIf="!hasMinLeaveDays && 
+                  submitAttempt">
+          <p>Please use some leave days of some kind</p>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>REQUESTED LEAVE</ion-label>
+          <ion-input formControlName="requestedLeave" type="number"></ion-input>
+        </ion-item>
+        <ion-item no-lines class="warning" *ngIf="!hasMinLeaveDays && 
+                  submitAttempt">
+          <p>Please use some leave days of some kind</p>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>ADVANCED LEAVE</ion-label>
+           <ion-input formControlName="advancedLeave" type="number"></ion-input>
+        </ion-item>
+        <ion-item no-lines class="warning" *ngIf="!hasMinLeaveDays && 
+                  submitAttempt">
+          <p>Please use some leave days of some kind</p>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>EXCESS LEAVE</ion-label>
+           <ion-input formControlName="excessLeave" type="number"></ion-input>
+        </ion-item>
+        <ion-item no-lines class="warning" *ngIf="!hasMinLeaveDays && 
+                  submitAttempt">
+          <p>Please use some leave days of some kind</p>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>LEAVE START DATE</ion-label>
+           <ion-datetime formControlName="leaveDateFrom" 
+                        displayFormat="YYYY/M/D" 
+                        pickerFormat="YYYY M D"></ion-datetime>
+        </ion-item>
+        <ion-item no-lines class="warning"
+                  *ngIf="!leaveForm.controls.leaveDateFrom.valid  && 
+                  submitAttempt">
+          <p>Please enter valid Start Date</p>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>LEAVE END DATE</ion-label> 
+          <ion-datetime formControlName="leaveDateTo" 
+                        displayFormat="YYYY/M/D" 
+                        pickerFormat="YYYY M D"></ion-datetime>
+        </ion-item>
+        <ion-item no-lines class="warning"
+                  *ngIf="!leaveForm.controls.leaveDateTo.valid  && 
+                  submitAttempt">
+          <p>Please enter a valid End Date</p>
+        </ion-item>
 
-
-
-
-
-
+      </form>
+    </ion-slide>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
     <!-- DRIVERS LICENSE SLIDE -->
     <ion-slide>
-    </ion-slide>
 
+    </ion-slide>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
     <!-- INSURANCE SLIDE -->
     <ion-slide>
-    </ion-slide>
 
+    </ion-slide>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
   </ion-slides>
 </ion-content>
 

@@ -36,7 +36,7 @@ export class SetDestinationAction extends PSAction implements Action {
 
 export class SetDA31LeaveAction extends PSAction implements Action {
   type = PacketActionTypes.SET_DA31_LEAVE;
-  constructor(public id: string, public value: PSModels.Address) {
+  constructor(public id: string, public value: PSModels.DA31Leave) {
     super({"packetID": id, "value": {"leave": value}});
   }
 }
@@ -44,7 +44,7 @@ export class SetDA31LeaveAction extends PSAction implements Action {
 export type PacketActions = SetBioAction | SetStationsAction | 
                             SetDestinationAction | SetDA31LeaveAction;
 
-export function reducer(state = [], action: PacketActions ): PSModels.Packet[] {
+export function reducer(state = {}, action: PacketActions ): {} {
   if( action == undefined || action.payload == undefined ) {
     return state;
   }
@@ -62,23 +62,22 @@ export function reducer(state = [], action: PacketActions ): PSModels.Packet[] {
   }
 }
 
-export function buildPacketArray(packets: PSModels.Packet[], 
-                                 action: PacketActions) {
-  let id = action.payload.packetID;
-  let value = action.payload.value;
-  let newPacketHasBeenCopied = false;
-  var outputArray = new Array();
-  for (var i = packets.length - 1; i >= 0; i--) {
-    let packet = packets[i];
-    if(packet.id == id) {
-      packet = Object.assign({}, packet, value);
-      newPacketHasBeenCopied = true;
-    }
-    outputArray.push(packet);
+export function buildPacketArray(packetsDictionary: {}, action: PacketActions) {
+  var output = Object.assign({}, packetsDictionary);
+  var payloadPacketID = action.payload.packetID;
+  var payloadValue = action.payload.value;
+   
+  var currentPacket = undefined;
+  if (payloadPacketID in output) {
+    currentPacket = output[payloadPacketID] as PSModels.Packet;
+  } else{
+    currentPacket = PSModels.buildPacketWithID(payloadPacketID);
   }
-  if(!newPacketHasBeenCopied) {
-    let packet = Object.assign({}, PSModels.packetWithID(id), value);
-    outputArray.push(packet);
-  }
-  return outputArray;
+  let updatedPacket = Object.assign({}, currentPacket, payloadValue);
+  output[updatedPacket.packetID] = updatedPacket;
+
+  console.log("Output Object");
+  console.log( JSON.stringify(output) );
+
+  return output;
 }

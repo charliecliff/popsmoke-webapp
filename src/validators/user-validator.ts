@@ -13,12 +13,12 @@ export function lastNameValidators() {
 }
 
 export function middleInitialValidators() {
-    return Validators.compose([CustomValidators.rangeLength([0, 1]), 
+    return Validators.compose([CustomValidators.rangeLength([1, 1]), 
                                Validators.required]);
 }
 
 export function ssnValidators() {
-    return Validators.compose([CustomValidators.rangeLength([3, 5]), 
+    return Validators.compose([CustomValidators.rangeLength([4,4]), 
                                Validators.required]);
 }
 

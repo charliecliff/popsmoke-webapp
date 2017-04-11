@@ -1,3 +1,4 @@
+// 
 export class DA31Leave {    
   leaveType: string;
   leaveExplanation: string = "N/A";

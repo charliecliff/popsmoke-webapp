@@ -16,7 +16,7 @@ export interface AppState {
 	user: Models.User;
 	holidays: Models.Holiday[];
 	menu: Models.Menu;
-	packets: Models.Packet[];
+	packets: {};
 };
 
 const reducers = {

@@ -15,5 +15,6 @@ export function stateValidators() {
 }
 
 export function zipCodeValidators() {
-    return Validators.required;
+	return Validators.compose([CustomValidators.rangeLength([5, 5]), 
+                               Validators.required]);
 }

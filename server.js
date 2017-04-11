@@ -60,7 +60,22 @@ app.delete("/user/:id", function(req, res) {
 app.get("/holidays", function(req, res) {
 	holidayServices.getHolidaysFromAmazonDynamo(req, res);
 });
+// Packet Endpoints
+// GET packet/:packetid
+// POST packet/:packetid
+// PUT packet/:packetid
 
+// GET packet/:packetid/da31 -> ? Does this format work?
+// POST packet/da31/:packetid
+// PUT packet/da31/:packetid
+// GET packet/da31/completed-pdf/:packetid -> the file url from which the pdf can be downloaded
+
+// GET DL Image /user/driverslicense/:id
+// POST DL Image /user/driverslicense/:id
+// DELETE DL Image /user/driverslicense/:id
+// GET Insurance Image /user/proofofinsurance/:id
+// POST Insurance Image /user/proofofinsurance/:id
+// DELETE Insurance Image /user/proofofinsurance/:id
 
 
 // DA31 Endpoints

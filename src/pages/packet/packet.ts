@@ -1,7 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { NavController, NavParams, Slides } from 'ionic-angular';
-
 import * as PSModels from '../../models';
 import * as PSState from '../../reducers';
 import * as PSActions from '../../reducers/packets-reducer';
@@ -35,7 +34,7 @@ export class PacketPage {
   // UX State
   submitAttempt: boolean = false;
   packetID: string = "1";
-  currentForm: packetForm = packetForm.kLeaveForm;
+  currentForm: packetForm = packetForm.kBioForm;
 
   constructor(private navCtrl: NavController, 
               private navParams: NavParams,
@@ -84,7 +83,6 @@ export class PacketPage {
       rank: [rankValue, PSValidators.rankValidators()],
       phone: [phoneValue, PSValidators.phoneNumberValidators()],
     });
-
   }
 
   private stationFormConstructor() {
@@ -112,7 +110,7 @@ export class PacketPage {
       brigade: [brigadeValue, PSValidators.stringValidators()],
       division: [divisionValue, PSValidators.stringValidators()],
       post: [postValue, PSValidators.stringValidators()],
-      stationZip: [stationZipValue, PSValidators.firstNameValidators()],
+      stationZip: [stationZipValue, PSValidators.stringValidators()],
       stationPhone: [stationPhoneValue, PSValidators.phoneNumberValidators()],
     });
   }
@@ -129,28 +127,27 @@ export class PacketPage {
   private leaveFormConstructor() {
     this.leaveForm = this.formBuilder.group({
       leaveType: ["", PSValidators.leaveTypeValidators()],
-      explanationOfLeaveType: [""],
-      accruedLeave: [""],
-      requestedLeave: [""],
-      advancedLeave: [""],
-      excessLeave: [""],
+      explanationOfLeaveType: [""], accruedLeave: [""], requestedLeave: [""], 
+      advancedLeave: [""], excessLeave: [""],
       leaveDateFrom: ["", PSValidators.dateValidators()],
       leaveDateTo: ["", PSValidators.dateValidators()]
     });
   }
 
   private observeLeaveForm() {
-    this.leaveForm.valueChanges.subscribe(data => {
+    this.leaveForm.valueChanges.subscribe(this.leaveFormCallback);
+  }
+
+  private leaveFormCallback = (packets) => {
       let sum = this.leaveForm.controls["accruedLeave"].value +
       this.leaveForm.controls["requestedLeave"].value +
       this.leaveForm.controls["advancedLeave"].value +
       this.leaveForm.controls["excessLeave"].value;
       this.hasMinLeaveDays = (sum > 0);
-    });
   }
 
   private packetsCallback = (packets) => {
-    this.currentPacket = PSModels.getCopyOfPacketForID(packets, this.packetID);
+    this.currentPacket = packets[this.packetID];
     console.log("packetsCallback");
     console.log(this.currentPacket);
   }
@@ -163,12 +160,9 @@ export class PacketPage {
   }
 
   private scrollToNextSlide() {
-    console.log("scrollToNextSlide");
     this.submitAttempt = true;
     let currentFromGroup = this.getCurrentFormGroup();
-    console.log(currentFromGroup);
-
-    if (currentFromGroup.valid) {
+    if (currentFromGroup.valid) { // TODO: Encapsulate Validation fo entire form in order to handle the cross-dependant validators
       this.updatePackWithCurrentFormGroup();
       this.slides.lockSwipes(false);
       this.slides.slideNext();
@@ -195,7 +189,6 @@ export class PacketPage {
   }
 
   private updatePackWithCurrentFormGroup() {
-    console.log("updatePackWithCurrentFormGroup");
     switch (this.currentForm) {
       case packetForm.kBioForm:
         this.updatePacketBio();
@@ -233,7 +226,6 @@ export class PacketPage {
   }
 
   private updateDA31Leave() {
-    console.log("updateDa31Leave");
     let value = this.leaveForm.value;
     let action = new PSActions.SetDA31LeaveAction(this.packetID, value);
     this.store.dispatch( action );

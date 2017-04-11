@@ -1,5 +1,4 @@
 import { Packet } from './Packet';
-import { getCopyOfPacketForID } from './Packet';
 import { Holiday } from './Holiday';
 import { PersonalInfo } from './PersonalInfo';
 import { Station } from './Station';
@@ -7,11 +6,10 @@ import { Address } from './Address';
 import { DA31Leave } from './DA31Leave';
 import { User } from './User';
 import { Menu } from './Menu';
-import { packet } from './packet-builder';
-import { packetWithID } from './packet-builder';
+import { buildPacket } from './packet-builder';
+import { buildPacketWithID } from './packet-builder';
 
 export { Packet } from './Packet';
-export { getCopyOfPacketForID } from './Packet';
 export { Holiday } from './Holiday';
 export { PersonalInfo } from './PersonalInfo';
 export { Station } from './Station';
@@ -19,5 +17,5 @@ export { Address } from './Address';
 export { DA31Leave } from './DA31Leave';
 export { User } from './User';
 export { Menu } from './Menu';
-export { packet } from './packet-builder';
-export { packetWithID } from './packet-builder';
+export { buildPacket } from './packet-builder';
+export { buildPacketWithID } from './packet-builder';

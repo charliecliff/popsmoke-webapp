@@ -4,15 +4,15 @@ import { PersonalInfo } from './PersonalInfo';
 import { Station } from './Station';
 import { Address } from './Address';
 
-export function packet() {
+export function buildPacket() {
   var packet = new Packet();
-  packet.id = create_UUID();
+  packet.packetID = create_UUID();
   return packet;
 }
 
-export function packetWithID(id: string) {
+export function buildPacketWithID(packetID: string) {
   var packet = new Packet();
-  packet.id = id;
+  packet.packetID = String(packetID).valueOf();
   return packet;
 }
 

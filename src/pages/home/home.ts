@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Store } from '@ngrx/store';
 
+import { PacketPage } from '../packet/packet';
 import { AppState } from '../../reducers';
 import { HolidayProvider } from '../../providers/holiday-provider';
 
@@ -27,7 +28,7 @@ export class HomePage {
 	}
 
   holidaySelected(holiday) {
-    console.log("Holiday Selected: " + JSON.stringify(holiday));
+    this.navCtrl.push(PacketPage, {"packet": {}});
   }
 
 }

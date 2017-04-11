@@ -66,7 +66,6 @@ export function buildPacketArray(packetsDictionary: {}, action: PacketActions) {
   var output = Object.assign({}, packetsDictionary);
   var payloadPacketID = action.payload.packetID;
   var payloadValue = action.payload.value;
-   
   var currentPacket = undefined;
   if (payloadPacketID in output) {
     currentPacket = output[payloadPacketID] as PSModels.Packet;
@@ -75,9 +74,5 @@ export function buildPacketArray(packetsDictionary: {}, action: PacketActions) {
   }
   let updatedPacket = Object.assign({}, currentPacket, payloadValue);
   output[updatedPacket.packetID] = updatedPacket;
-
-  console.log("Output Object");
-  console.log( JSON.stringify(output) );
-
   return output;
 }

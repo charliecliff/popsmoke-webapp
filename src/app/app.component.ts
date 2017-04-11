@@ -30,7 +30,7 @@ export class MyApp {
 
   public menu: Menu;
 
-  rootPage = PacketPage;
+  rootPage = LaunchPage;
 
   constructor(public platform: Platform,
               public store: Store<Reducers.AppState>,

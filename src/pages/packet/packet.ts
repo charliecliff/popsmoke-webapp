@@ -32,7 +32,7 @@ export class PacketPage {
   leaveForm: FormGroup;
   
   // UX State
-  submitAttempt: boolean = false;
+  submitTried: boolean = false;
   packetID: string = "1";
   currentForm: packetForm = packetForm.kBioForm;
 
@@ -40,6 +40,9 @@ export class PacketPage {
               private navParams: NavParams,
               private formBuilder: FormBuilder,
               private store: PSState.Store<PSState.AppState>) {
+
+    console.log("Holiday Selected: " + JSON.stringify(navParams["packet"]) );
+
     this.packetID = "new";
     this.store.select("packets").subscribe(this.packetsCallback);
     this.bioFormConstructor();
@@ -60,7 +63,7 @@ export class PacketPage {
   next() {
     this.scrollToNextSlide();
   }
-
+  
   private bioFormConstructor() {
     let firstNameValue = (this.currentPacket == undefined) ? 
       "" : this.currentPacket.bio.firstName;
@@ -83,6 +86,12 @@ export class PacketPage {
       rank: [rankValue, PSValidators.rankValidators()],
       phone: [phoneValue, PSValidators.phoneNumberValidators()],
     });
+  }
+  
+  private updatePacketBio() {
+    let value = this.bioForm.value;
+    let action = new PSActions.SetBioAction(this.packetID, value);
+    this.store.dispatch( action );
   }
 
   private stationFormConstructor() {
@@ -115,6 +124,12 @@ export class PacketPage {
     });
   }
 
+  private updatePacketStation() {
+    let value = this.stationForm.value;
+    let action = new PSActions.SetStationsAction(this.packetID, value);
+    this.store.dispatch( action );
+  }
+
   private destinationFormConstructor() {
     this.destinationForm = this.formBuilder.group({
       street: ["", PSValidators.streetValidators()],
@@ -122,6 +137,12 @@ export class PacketPage {
       state: ["", PSValidators.stateValidators()],
       zip: ["", PSValidators.zipCodeValidators()]
     });
+  }
+
+  private updatePacketDestination() {
+    let value = this.destinationForm.value;
+    let action = new PSActions.SetDestinationAction(this.packetID, value);
+    this.store.dispatch( action );
   }
 
   private leaveFormConstructor() {
@@ -134,6 +155,12 @@ export class PacketPage {
     });
   }
 
+  private updateDA31Leave() {
+    let value = this.leaveForm.value;
+    let action = new PSActions.SetDA31LeaveAction(this.packetID, value);
+    this.store.dispatch( action );
+  }
+
   private observeLeaveForm() {
     this.leaveForm.valueChanges.subscribe(this.leaveFormCallback);
   }
@@ -144,32 +171,6 @@ export class PacketPage {
       this.leaveForm.controls["advancedLeave"].value +
       this.leaveForm.controls["excessLeave"].value;
       this.hasMinLeaveDays = (sum > 0);
-  }
-
-  private packetsCallback = (packets) => {
-    this.currentPacket = packets[this.packetID];
-    console.log("packetsCallback");
-    console.log(this.currentPacket);
-  }
-
-  private scollToBackPrevious() {
-    this.slides.lockSwipes(false);
-    this.slides.slidePrev();
-    this.slides.lockSwipes(true);
-    this.currentForm = Math.max(0, this.currentForm - 1);
-  }
-
-  private scrollToNextSlide() {
-    this.submitAttempt = true;
-    let currentFromGroup = this.getCurrentFormGroup();
-    if (currentFromGroup.valid) { // TODO: Encapsulate Validation fo entire form in order to handle the cross-dependant validators
-      this.updatePackWithCurrentFormGroup();
-      this.slides.lockSwipes(false);
-      this.slides.slideNext();
-      this.submitAttempt = false;
-      this.currentForm = this.currentForm + 1;
-      this.slides.lockSwipes(true);
-    }
   }
 
   private getCurrentFormGroup() {
@@ -206,28 +207,28 @@ export class PacketPage {
         break;
     }
   }
-
-  private updatePacketBio() {
-    let value = this.bioForm.value;
-    let action = new PSActions.SetBioAction(this.packetID, value);
-    this.store.dispatch( action );
+  
+  private packetsCallback = (packets) => {
+    this.currentPacket = packets[this.packetID];
   }
 
-  private updatePacketStation() {
-    let value = this.stationForm.value;
-    let action = new PSActions.SetStationsAction(this.packetID, value);
-    this.store.dispatch( action );
+  private scollToBackPrevious() {
+    this.slides.lockSwipes(false);
+    this.slides.slidePrev();
+    this.slides.lockSwipes(true);
+    this.currentForm = Math.max(0, this.currentForm - 1);
   }
 
-  private updatePacketDestination() {
-    let value = this.destinationForm.value;
-    let action = new PSActions.SetDestinationAction(this.packetID, value);
-    this.store.dispatch( action );
-  }
-
-  private updateDA31Leave() {
-    let value = this.leaveForm.value;
-    let action = new PSActions.SetDA31LeaveAction(this.packetID, value);
-    this.store.dispatch( action );
+  private scrollToNextSlide() {
+    this.submitTried = true;
+    let currentFromGroup = this.getCurrentFormGroup();
+    if (currentFromGroup.valid) { // TODO: Encapsulate Validation fo entire form in order to handle the cross-dependant validators
+      this.updatePackWithCurrentFormGroup();
+      this.slides.lockSwipes(false);
+      this.slides.slideNext();
+      this.submitTried = false;
+      this.currentForm = this.currentForm + 1;
+      this.slides.lockSwipes(true);
+    }
   }
 }

@@ -1,7 +1,7 @@
 <ion-header class="ps-header packet-header">
-  <ion-navbar primary>
-    <ion-buttons left menuToggle>
-      <div id="nav-icon3" [class.open]="showsCloseIcon">
+  <ion-navbar primary hideBackButton="true">
+    <ion-buttons left>
+      <div id="nav-icon3" class="open" (click)="pop()">
         <span></span>
         <span></span>
         <span></span>
@@ -10,7 +10,7 @@
     </ion-buttons>
     <ion-title>PACKET NAME</ion-title>
     <ion-buttons end>
-      <button ion-button icon-center style="">
+      <button ion-button icon-center>
         <ion-icon name="chatbubbles"></ion-icon>
       </button>
     </ion-buttons>
@@ -19,7 +19,7 @@
 
 
 <ion-content padding class="packet-content">
-  <ion-slides pager paginationType="progress" style="height: auto">
+  <ion-slides style="height: auto">
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
     <!-- BIO SLIDE -->
     <ion-slide>

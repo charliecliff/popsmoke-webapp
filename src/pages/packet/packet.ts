@@ -56,6 +56,11 @@ export class PacketPage {
     this.slides.lockSwipes(true);
   }
 
+  pop() {
+    console.log("pop");
+    this.navCtrl.pop({animate: false});
+  }
+
   back() {
     this.scollToBackPrevious();
   }

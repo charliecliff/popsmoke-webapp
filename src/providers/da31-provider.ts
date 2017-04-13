@@ -53,13 +53,13 @@ export class DA31Provider {
     body[DA31Constants.TYPE_OF_LEAVE]     = packet.leave.leaveType;
     body[DA31Constants.LEAVE_EXPLANATION] = packet.leave.leaveExplanation;
 
-    body[DA31Constants.ACCRUED_LEAVE] = packet.leave.accruedLeave === "" 
+    body[DA31Constants.ACCRUED_LEAVE] = packet.leave.accruedLeave == "" 
       ? "0" : packet.leave.accruedLeave;
-    body[DA31Constants.REQUESTED_LEAVE] = packet.leave.requestedLeave === "" 
+    body[DA31Constants.REQUESTED_LEAVE] = packet.leave.requestedLeave == "" 
       ? "0" : packet.leave.requestedLeave;
-    body[DA31Constants.ADVANCED_LEAVE] = packet.leave.advancedLeave === "" 
+    body[DA31Constants.ADVANCED_LEAVE] = packet.leave.advancedLeave == "" 
       ? "0" : packet.leave.advancedLeave;
-    body[DA31Constants.EXCESS_LEAVE] = packet.leave.excessLeave === "" 
+    body[DA31Constants.EXCESS_LEAVE] = packet.leave.excessLeave == "" 
       ? "0" : packet.leave.excessLeave;
 
     // body[DA31Constants.LEAVE_START_DATE] = packet.leave.startDate;

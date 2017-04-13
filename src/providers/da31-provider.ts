@@ -25,6 +25,11 @@ export class DA31Provider {
   }
 
   private buildRequestBodyFromPacket(packet: Models.Packet) {
+    console.log("buildRequestBodyFromPacket");
+    console.log("Packet");
+    console.log( Object.assign({}, packet) );
+
+
     let body = {};
     body[DA31Constants.FIRST_NAME]        = packet.bio.firstName;
     body[DA31Constants.LAST_NAME]         = packet.bio.lastName;
@@ -56,7 +61,7 @@ export class DA31Provider {
       ? "0" : packet.leave.advancedLeave;
     body[DA31Constants.EXCESS_LEAVE] = packet.leave.excessLeave == undefined 
       ? "0" : packet.leave.excessLeave;
-      
+
     // body[DA31Constants.LEAVE_START_DATE] = packet.leave.startDate;
 
     // body[DA31Constants.LEAVE_END_DATE]   = packet.leave.endDate;

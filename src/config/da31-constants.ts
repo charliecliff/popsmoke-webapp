@@ -30,8 +30,14 @@ export let EXCESS_LEAVE       = "EXCESS_LEAVE";
 export let LEAVE_START_DATE   = "START_DATE";
 export let LEAVE_END_DATE     = "END_DATE";
 
-// export let ORDINARY                     = "ORDINARY";
-// export let EMERGENCY                    = "EMERGENCY";
-// export let PERMISSIVE                   = "PERMISSIVE";
-// export let TDY                          = "TDY";
-// export let OTHER                        = "OTHER";
+export let FORM_VALUE_ORDINARY   = "ORDINARY";
+export let FORM_VALUE_EMERGENCY  = "EMERGENCY";
+export let FORM_VALUE_PERMISSIVE = "PERMISSIVE";
+export let FORM_VALUE_TDY        = "TDY";
+export let FORM_VALUE_OTHER      = "OTHER";
+
+export let REQ_ORDINARY   = "ORDINARY";
+export let REQ_EMERGENCY  = "EMERGENCY";
+export let REQ_PERMISSIVE = "PERMISSIVE";
+export let REQ_TDY        = "TDY";
+export let REQ_OTHER      = "OTHER";

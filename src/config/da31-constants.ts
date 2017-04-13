@@ -1,7 +1,7 @@
   
-export let FIRST_NAME                   = "FIRST NAME";
-export let LAST_NAME                    = "LAST NAME";
-export let MIDDLE_INITIAL               = "MIDDLE INITIAL";
+export let FIRST_NAME                   = "FIRST_NAME";
+export let LAST_NAME                    = "LAST_NAME";
+export let MIDDLE_INITIAL               = "MIDDLE_INITIAL";
 export let SSN                          = "SSN";
 export let RANK                         = "RANK";
 export let PHONE                        = "PHONE";
@@ -12,8 +12,8 @@ export let BATTALION                    = "BATTALION";
 export let BRIGADE                      = "BRIGADE";
 export let DIVISION                     = "DIVISION";
 export let POST                         = "POST";
-export let STATION_ZIP                  = "POSTING ZIP";
-export let STATION_PHONE              	= "PHONE NO."; 
+export let STATION_ZIP                  = "STATION_ZIP";
+export let STATION_PHONE              	= "STATION_PHONE"; 
 
 export let STREET                       = "STREET"
 export let CITY                         = "CITY"
@@ -26,7 +26,7 @@ export let ADVANCED_LEAVE               = "ADVANCED";
 export let EXCESS_LEAVE                 = "EXCESS";
 export let LEAVE_DATE_FROM              = "FROM";
 export let LEAVE_DATE_TO   = "TO";
-export let TYPE_OF_LEAVE	 = "TYPE OF LEAVE";
+export let TYPE_OF_LEAVE	 = "TYPE_OF_LEAVE";
 export let LEAVE_EXPLANATION = "EXPLANATION";
 
 // export let ORDINARY                     = "ORDINARY";

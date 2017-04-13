@@ -1,4 +1,4 @@
-var requestParams = require('./da31PdfRequestParamaters');
+var REQ_PARAMS = require('./da31PdfRequestParamaters');
 
 let control_number = "Control Number";
 let name = "Name";
@@ -24,75 +24,74 @@ module.exports.Da31PdfFormat = class Da31PdfFormat {
   constructor() {}
 
   formatNameBlock(requestBody) {
-    var firstName = requestBody[requestParams.firstName];
-    var middleInitial = requestBody[requestParams.middleInitial];
-    var lastName = requestBody[requestParams.lastName];
+    var firstName = requestBody[REQ_PARAMS.FIRST_NAME];
+    var middleInitial = requestBody[REQ_PARAMS.MIDDLE_INITIAL];
+    var lastName = requestBody[REQ_PARAMS.LAST_NAME];
     return lastName + ", "+ firstName + middleInitial + ".";
   }
 
   formatSocialSecurityNumber(requestBody) {
-    var ssn = requestBody[requestParams.ssn];
+    var ssn = requestBody[REQ_PARAMS.SSN];
     return "xxx-xx-" + ssn;
   }
 
   formatDestinationAddress(requestBody) {
-    var destinationData = requestBody[requestParams.destination];
-    var street = requestBody[requestParams.street];
-    var city = requestBody[requestParams.city];
-    var state = requestBody[requestParams.state];
-    var zip = requestBody[requestParams.zip];
+    var street = requestBody[REQ_PARAMS.STREET];
+    var city = requestBody[REQ_PARAMS.CITY];
+    var state = requestBody[REQ_PARAMS.STATE];
+    var zip = requestBody[REQ_PARAMS.ZIP];
     return street + "\n"+ city + ", " + state + " " + zip + "\n";
   }
 
   formatPost(requestBody) {
-    var platoon = requestBody[requestParams.platoon]
-    var company = requestBody[requestParams.company]
-    var battalion = requestBody[requestParams.battalion]
-    var brigade = requestBody[requestParams.brigade]
-    var division = requestBody[requestParams.division]
-    var post = requestBody[requestParams.post]
-    var zip = requestBody[requestParams.zip]
-    var phone = requestBody[requestParams.phone]
+    var platoon = requestBody[REQ_PARAMS.PLATOON]
+    var company = requestBody[REQ_PARAMS.COMPANY]
+    var battalion = requestBody[REQ_PARAMS.BATTALION]
+    var brigade = requestBody[REQ_PARAMS.BRIGADE]
+    var division = requestBody[REQ_PARAMS.DIVISION]
+    var post = requestBody[REQ_PARAMS.POST]
+    var zip = requestBody[REQ_PARAMS.STATION_ZIP]
+    var phone = requestBody[REQ_PARAMS.STATION_PHONE]
     return platoon + ", " + company + ", " + battalion + "\n" + brigade + ", " + 
       division + "\n" + post + " " + zip + ", " + phone;
   }
 
   appendLeaveTypeSelection(requestBody, formData) {
-    let leaveType = requestBody[requestParams.leaveType]
-    if (leaveType == requestParams.LEAVE_ORDINARY) {
+    let leaveType = requestBody[REQ_PARAMS.leaveType]
+    if (leaveType == REQ_PARAMS.LEAVE_ORDINARY) {
       formData[leave_ordinary] = "Yes";
     }
-    else if (leaveType == requestParams.LEAVE_EMERGENCY) {
+    else if (leaveType == REQ_PARAMS.LEAVE_EMERGENCY) {
       formData[leave_emergency] = "Yes";
     }
-    else if (leaveType == requestParams.LEAVE_PERMISSIVE) {
+    else if (leaveType == REQ_PARAMS.LEAVE_PERMISSIVE) {
       formData[leave_permissive] = "Yes";
     }
-    else if (leaveType == requestParams.LEAVE_TDY) {
+    else if (leaveType == REQ_PARAMS.LEAVE_TDY) {
     }
-    else if (leaveType == requestParams.LEAVE_OTHER) {
+    else if (leaveType == REQ_PARAMS.LEAVE_OTHER) {
       formData[leave_other] = "Yes";
     }
-    formData[leave_other_explanation] = requestBody[requestParams.leaveTypeExplanation];
+    formData[leave_other_explanation] = requestBody[REQ_PARAMS.leaveTypeExplanation];
   }
 
   fillOutPdfForm(requestBody) { 
     var formData = {};
     formData[name] = this.formatNameBlock(requestBody);
-    formData[rank] = requestBody[requestParams.rank];
+    formData[rank] = requestBody[REQ_PARAMS.rank];
     formData[ssn] = this.formatSocialSecurityNumber(requestBody);
     formData[address] = this.formatDestinationAddress(requestBody);
     formData[station] = this.formatPost(requestBody);
-    formData[accrued_leave] = requestBody[requestParams.accruedLeave];
-    formData[advanced_leave] = requestBody[requestParams.advancedLeave];
-    formData[excess_leave] = requestBody[requestParams.excessLeave];
-    formData[requested_leave] = requestBody[requestParams.requestedLeave];
+    formData[accrued_leave] = requestBody[REQ_PARAMS.accruedLeave];
+    formData[advanced_leave] = requestBody[REQ_PARAMS.advancedLeave];
+    formData[excess_leave] = requestBody[REQ_PARAMS.excessLeave];
+    formData[requested_leave] = requestBody[REQ_PARAMS.requestedLeave];
     
-    formData[date] = "Testing Name";
-    formData[date_to] = "Testing Name";
-    formData[date_from] = "Testing Name";
+    // formData[date] = "Testing Name";
+    // formData[date_to] = "Testing Name";
+    // formData[date_from] = "Testing Name";
     
-    this.appendLeaveTypeSelection(requestBody, formData);
+    // this.appendLeaveTypeSelection(requestBody, formData);
 
     return formData;
   }

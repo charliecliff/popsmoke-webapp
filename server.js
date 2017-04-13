@@ -79,9 +79,6 @@ app.post("/packet/:id/da31/create", function(req, res) {
 // POST Insurance Image /user/proofofinsurance/:id
 // DELETE Insurance Image /user/proofofinsurance/:id
 
-
-
-
 // TODO: Extract these into their files or modules
 function handleError(res, reason, message, code) {
 	console.log("API Error: " + reason);

@@ -1,35 +1,36 @@
 module.exports = Object.freeze({
-	// PERSONAL INFO
-  firstName: "firstName",  
-  lastName: "lastName",
-  middleInitial: "middleInitial",
-  ssn: "ssn",
-  rank: "rank",
-  phoneNumber: "phoneNumber",
+
+  // Personal Information
+  FIRST_NAME: "FIRST_NAME",  
+  LAST_NAME: "LAST_NAME",
+  MIDDLE_INITIAL: "MIDDLE_INITIAL",
+  SSN: "SSN",
+  RANK: "RANK",
+  PHONE: "PHONE",
+
+  // POSTING
+  PLATOON: "PLATOON",
+  COMPANY: "COMPANY",
+  BATTALION: "BATTALION",
+  BRIGADE: "BRIGADE",
+  DIVISION: "DIVISION",
+  POST: "POST",
+  STATION_ZIP: "STATION_ZIP",
+  STATION_PHONE: "STATION_PHONE", 
 
   // DESTINATION
-  destination: "destination",
-  street: "street",
-	city: "city",
-	state: "state",
-	zip: "zip",
-
-	// POSTING
-	platoon: "platoon",
-	company: "company",
-	battalion: "battalion",
-	brigade: "brigade",
-	division: "division",
-	post: "post",
-	zip: "zip",
+  STREET: "STREET",
+	CITY: "CITY",
+	STATE: "STATE",
+	ZIP: "ZIP",
 
 	// LEAVE
-	leaveType: "leaveType",
-	leaveTypeExplanation: "leaveType",
-	accruedLeave: "accruedLeave",
-	requestedLeave: "requestedLeave",
-	advancedLeave: "advancedLeave",
-	excessLeave: "excessLeave",
+	TYPE_OF_LEAVE: "TYPE_OF_LEAVE",
+	LEAVE_EXPLANATION: "LEAVE_EXPLANATION",
+	ACCRUED_LEAVE: "ACCRUED_LEAVE",
+	REQUESTED_LEAVE: "REQUESTED_LEAVE",
+	ADVANCED_LEAVE: "ADVANCED_LEAVE",
+	EXCESS_LEAVE: "EXCESS_LEAVE",
 
 	// LEAVE TYPES
   LEAVE_ORDINARY: "ORDINARY",

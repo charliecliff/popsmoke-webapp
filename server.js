@@ -1,6 +1,7 @@
 var da31Pdf = require('./da31Pdf');
 var userServices = require('./server/user-services');
 var holidayServices = require('./server/holiday-services');
+var da31Services = require('./server/da31-services');
 
 var express = require('express');
 var bodyParser = require('body-parser');
@@ -65,10 +66,12 @@ app.get("/holidays", function(req, res) {
 // POST packet/:packetid
 // PUT packet/:packetid
 
+// DA31 Endpoints
 // GET packet/:packetid/da31 -> ? Does this format work?
-// POST packet/da31/:packetid
-// PUT packet/da31/:packetid
-// GET packet/da31/completed-pdf/:packetid -> the file url from which the pdf can be downloaded
+// GET packet/:id/da31/:file
+app.post("/packet/:id/da31/create", function(req, res) {
+	da31Services.postDA31FileToAmazonS3(req, res);
+});
 
 // GET DL Image /user/driverslicense/:id
 // POST DL Image /user/driverslicense/:id
@@ -78,66 +81,10 @@ app.get("/holidays", function(req, res) {
 // DELETE Insurance Image /user/proofofinsurance/:id
 
 
-// DA31 Endpoints
-app.post("/api/da31", function(req, res) {
-	let pdfTemplatePath = "../../public/DA_31.pdf";
-	let formatter = new da31Pdf.Da31PdfFormat();
-	let formData = formatter.fillOutPdfForm(req.body);
 
-  	let pdfFiller = require('pdffiller');
-  	let sourcePDF = "public/DA_31.pdf";
-	let destinationPDF =  "public/DA_31_complete.pdf";
- 
-	pdfFiller.fillForm( sourcePDF, destinationPDF, formData, function(err) {
-    	if (err){
-    		res.send(err);
-		} else {
-			postPDFFileToAmazonS3(res, "public/DA_31_complete.pdf");
-		}
-	});
-});
 
 // TODO: Extract these into their files or modules
 function handleError(res, reason, message, code) {
 	console.log("API Error: " + reason);
 	res.status(code || 500).json({"Error": message});
-}
-
-// DA31 PDF Functions
-function postPDFFileToAmazonS3(res, pdfFilePath) {
-	let fs  = require('fs');
-    fs.readFile(pdfFilePath, (err, data) => {
-  		if (!err){
-  			console.log("LOADING PDF");
-  			console.log(data);
-  			postPDFDataToAmazonS3(res, data);
-  		} else {
-  			console.log("FAILED TO UPLOAD PDF");
-  			console.log(err);
-  		}
-	});
-}
-
-function postPDFDataToAmazonS3(res, pdfDataBuffer) {
-	var AWS = require("aws-sdk");
-	// AWS.config.update({accessKeyId: "AKIAIDMIESKUD4F657BQ", 
-	//  				  secretAccessKey: "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" });
-    		
-	var params = {
-		Bucket: "popsmoke", /* pull these into a configuration file */
-		Key: "myarchive.pdf",
-		ACL: "public-read",
-		ContentDisposition: "inline",
-		ContentType: "application/pdf",
-		Body: pdfDataBuffer
-	};
-
-	s3 = new AWS.S3({apiVersion: "2006-03-01"});
-	s3.putObject(params, function(err, data) {
-		if (err) {
-			res.send(err);
-		} else {
-			res.send({"url": "https://s3-us-west-2.amazonaws.com/popsmoke/myarchive.pdf"});
-		}
-	});
 }

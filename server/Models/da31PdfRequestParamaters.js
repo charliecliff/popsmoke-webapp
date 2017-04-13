@@ -6,7 +6,7 @@ module.exports = Object.freeze({
   MIDDLE_INITIAL: "MIDDLE_INITIAL",
   SSN: "SSN",
   RANK: "RANK",
-  PHONE: "PHONE",
+  PHONE: "PHONE", // Move this to the Destination model
 
   // POSTING
   PLATOON: "PLATOON",
@@ -31,7 +31,9 @@ module.exports = Object.freeze({
 	REQUESTED_LEAVE: "REQUESTED_LEAVE",
 	ADVANCED_LEAVE: "ADVANCED_LEAVE",
 	EXCESS_LEAVE: "EXCESS_LEAVE",
-
+  START_DATE: "START_DATE",
+  END_DATE: "END_DATE",
+  
 	// LEAVE TYPES
   LEAVE_ORDINARY:   "ORDINARY",
   LEAVE_EMERGENCY:  "EMERGENCY",

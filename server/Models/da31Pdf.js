@@ -8,12 +8,10 @@ let ssn               = "SSN";
 let date              = "Date";
 let address           = "Address";
 let station           = "ORGN";
-
 let leave_ordinary    = "Ordinary";
 let leave_emergency   = "Emergency";
 let leave_permissive  = "Permissive";
 let leave_other       = "Other";
-
 let leave_explanation = "Other Explainations";
 let accrued_leave     = "Accrued";
 let advanced_leave    = "Advanced";
@@ -43,8 +41,8 @@ module.exports.Da31PdfFormat = class Da31PdfFormat {
     var city = requestBody[REQ_PARAMS.CITY];
     var state = requestBody[REQ_PARAMS.STATE];
     var zip = requestBody[REQ_PARAMS.ZIP];
-
-    return street + "\n"+ city + ", " + state + " " + zip + "\n";
+    var phone = requestBody[REQ_PARAMS.PHONE];
+    return street + "\n"+ city + ", " + state + " " + zip + "\n" + phone;
   }
 
   formatPost(requestBody) {
@@ -88,17 +86,13 @@ module.exports.Da31PdfFormat = class Da31PdfFormat {
     formData[address] = this.formatDestinationAddress(requestBody);
     formData[station] = this.formatPost(requestBody);
     formData[rank]    = requestBody[REQ_PARAMS.RANK];
-
     formData[accrued_leave]   = requestBody[REQ_PARAMS.ACCRUED_LEAVE];
     formData[advanced_leave]  = requestBody[REQ_PARAMS.ADVANCED_LEAVE];
     formData[excess_leave]    = requestBody[REQ_PARAMS.EXCESS_LEAVE];
     formData[requested_leave] = requestBody[REQ_PARAMS.REQUESTED_LEAVE];
-    
-    // formData[date_to] = "Testing Name";
-    // formData[date_from] = "Testing Name";
-    
+    formData[date_to]         = requestBody[REQ_PARAMS.START_DATE];
+    formData[date_from]       = requestBody[REQ_PARAMS.END_DATE];
     this.appendLeaveTypeSelection(requestBody, formData);
-
     return formData;
   }
 }

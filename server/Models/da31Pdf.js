@@ -8,10 +8,12 @@ let ssn               = "SSN";
 let date              = "Date";
 let address           = "Address";
 let station           = "ORGN";
+
 let leave_ordinary    = "Ordinary";
 let leave_emergency   = "Emergency";
 let leave_permissive  = "Permissive";
 let leave_other       = "Other";
+
 let leave_explanation = "Other Explainations";
 let accrued_leave     = "Accrued";
 let advanced_leave    = "Advanced";
@@ -22,13 +24,13 @@ let date_from         = "Date-From";
 
 module.exports.Da31PdfFormat = class Da31PdfFormat {
    
-  constructor() {}
+  constructor() { }
 
   formatNameBlock(requestBody) {
     var firstName = requestBody[REQ_PARAMS.FIRST_NAME];
     var middleInitial = requestBody[REQ_PARAMS.MIDDLE_INITIAL];
     var lastName = requestBody[REQ_PARAMS.LAST_NAME];
-    return lastName + ", "+ firstName + middleInitial + ".";
+    return lastName + ", "+ firstName + " " + middleInitial + ".";
   }
 
   formatSocialSecurityNumber(requestBody) {
@@ -41,6 +43,7 @@ module.exports.Da31PdfFormat = class Da31PdfFormat {
     var city = requestBody[REQ_PARAMS.CITY];
     var state = requestBody[REQ_PARAMS.STATE];
     var zip = requestBody[REQ_PARAMS.ZIP];
+
     return street + "\n"+ city + ", " + state + " " + zip + "\n";
   }
 
@@ -58,10 +61,10 @@ module.exports.Da31PdfFormat = class Da31PdfFormat {
   }
 
   appendLeaveTypeSelection(requestBody, formData) {
-    formData[leave_ordinary]    = "No";
-    formData[leave_emergency]   = "No";
-    formData[leave_permissive]  = "No";
-    formData[leave_other]       = "No";
+    formData[leave_ordinary]    = "Yes";
+    formData[leave_emergency]   = "Yes";
+    formData[leave_permissive]  = "Yes";
+    formData[leave_other]       = "Yes";
     formData[leave_explanation] = "N/A";
     
     let leaveType = requestBody[REQ_PARAMS.leaveType]
@@ -85,15 +88,15 @@ module.exports.Da31PdfFormat = class Da31PdfFormat {
 
   fillOutPdfForm(requestBody) { 
     var formData = {};
-    formData[name] = this.formatNameBlock(requestBody);
-    formData[rank] = requestBody[REQ_PARAMS.RANK];
-    formData[ssn] = this.formatSocialSecurityNumber(requestBody);
+    formData[name]    = this.formatNameBlock(requestBody);
+    formData[ssn]     = this.formatSocialSecurityNumber(requestBody);
     formData[address] = this.formatDestinationAddress(requestBody);
     formData[station] = this.formatPost(requestBody);
-    
-    formData[accrued_leave] = requestBody[REQ_PARAMS.ACCRUED_LEAVE];
-    formData[advanced_leave] = requestBody[REQ_PARAMS.ADVANCED_LEAVE];
-    formData[excess_leave] = requestBody[REQ_PARAMS.EXCESS_LEAVE];
+    formData[rank]    = requestBody[REQ_PARAMS.RANK];
+
+    formData[accrued_leave]   = requestBody[REQ_PARAMS.ACCRUED_LEAVE];
+    formData[advanced_leave]  = requestBody[REQ_PARAMS.ADVANCED_LEAVE];
+    formData[excess_leave]    = requestBody[REQ_PARAMS.EXCESS_LEAVE];
     formData[requested_leave] = requestBody[REQ_PARAMS.REQUESTED_LEAVE];
     
     // formData[date_to] = "Testing Name";

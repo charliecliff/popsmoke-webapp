@@ -45,6 +45,8 @@ export class DA31Provider {
     body[DA31Constants.STATE]             = packet.destination.state;
     body[DA31Constants.ZIP]               = packet.destination.zip;
     body[DA31Constants.TYPE_OF_LEAVE]     = packet.leave.leaveType;
+
+    
     body[DA31Constants.LEAVE_EXPLANATION] = packet.leave.leaveExplanation;
     body[DA31Constants.ACCRUED_LEAVE]     = packet.leave.accruedLeave;
     body[DA31Constants.REQUESTED_LEAVE]   = packet.leave.requestedLeave;
@@ -58,7 +60,6 @@ export class DA31Provider {
     
     return JSON.stringify(body);
   }
-
   private extractPDFDataFromResponse(res: Response) {
     var pdfBlob = new Blob([res.blob()], {type: 'application/pdf'});
     return pdfBlob;

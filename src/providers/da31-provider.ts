@@ -26,48 +26,36 @@ export class DA31Provider {
 
   private buildRequestBodyFromPacket(packet: Models.Packet) {
     let body = {};
-    body[DA31Constants.FIRST_NAME]      = packet.bio.firstName;
-    body[DA31Constants.LAST_NAME]       = packet.bio.lastName;
-    body[DA31Constants.MIDDLE_INITIAL]  = packet.bio.middleInitial;
-    body[DA31Constants.SSN]             = packet.bio.ssn;
-    body[DA31Constants.RANK]            = packet.bio.rank;
-    body[DA31Constants.PHONE]           = packet.bio.phoneNumber;
-
-    body[DA31Constants.PLATOON]         = packet.station.platoon;
-    body[DA31Constants.COMPANY]         = packet.station.company;
-    body[DA31Constants.BATTALION]       = packet.station.battalion;
-    body[DA31Constants.BRIGADE]         = packet.station.brigade;
-    body[DA31Constants.DIVISION]        = packet.station.division;
-    body[DA31Constants.POST]            = packet.station.post;
-    body[DA31Constants.STATION_ZIP]     = packet.station.zip;
-    body[DA31Constants.STATION_PHONE]   = packet.station.phoneNumber;
-    
-    body[DA31Constants.STREET]          = packet.destination.street;
-    body[DA31Constants.CITY]            = packet.destination.city;
-    body[DA31Constants.STATE]           = packet.destination.state;
-    body[DA31Constants.ZIP]             = packet.destination.zip;
-    
-    body[DA31Constants.TYPE_OF_LEAVE]   = packet.leave.leaveType;
+    body[DA31Constants.FIRST_NAME]        = packet.bio.firstName;
+    body[DA31Constants.LAST_NAME]         = packet.bio.lastName;
+    body[DA31Constants.MIDDLE_INITIAL]    = packet.bio.middleInitial;
+    body[DA31Constants.SSN]               = packet.bio.ssn;
+    body[DA31Constants.RANK]              = packet.bio.rank;
+    body[DA31Constants.PHONE]             = packet.bio.phoneNumber;
+    body[DA31Constants.PLATOON]           = packet.station.platoon;
+    body[DA31Constants.COMPANY]           = packet.station.company;
+    body[DA31Constants.BATTALION]         = packet.station.battalion;
+    body[DA31Constants.BRIGADE]           = packet.station.brigade;
+    body[DA31Constants.DIVISION]          = packet.station.division;
+    body[DA31Constants.POST]              = packet.station.post;
+    body[DA31Constants.STATION_ZIP]       = packet.station.zip;
+    body[DA31Constants.STATION_PHONE]     = packet.station.phoneNumber;
+    body[DA31Constants.STREET]            = packet.destination.street;
+    body[DA31Constants.CITY]              = packet.destination.city;
+    body[DA31Constants.STATE]             = packet.destination.state;
+    body[DA31Constants.ZIP]               = packet.destination.zip;
+    body[DA31Constants.TYPE_OF_LEAVE]     = packet.leave.leaveType;
     body[DA31Constants.LEAVE_EXPLANATION] = packet.leave.leaveExplanation;
-    body[DA31Constants.ACCRUED_LEAVE]   = packet.leave.accruedLeave;
-    body[DA31Constants.REQUESTED_LEAVE] = packet.leave.requestedLeave;
-    body[DA31Constants.ADVANCED_LEAVE]  = packet.leave.advancedLeave;
-    body[DA31Constants.EXCESS_LEAVE]    = packet.leave.excessLeave;
+    body[DA31Constants.ACCRUED_LEAVE]     = packet.leave.accruedLeave;
+    body[DA31Constants.REQUESTED_LEAVE]   = packet.leave.requestedLeave;
+    body[DA31Constants.ADVANCED_LEAVE]    = packet.leave.advancedLeave;
+    body[DA31Constants.EXCESS_LEAVE]      = packet.leave.excessLeave;
 
     
-    // body[DA31Constants.LEAVE_DATE_FROM] = packet.leave.startDate;
-    
-    // body[DA31Constants.LEAVE_DATE_TO]   = packet.leave.endDate;
-    
-    console.log("buildRequestBodyFromPacket");
-    console.log("packet")
-    console.log( Object.assign({}, packet) );
+    // body[DA31Constants.LEAVE_START_DATE] = packet.leave.startDate;
 
-    console.log("body")
-    console.log( Object.assign({}, body) );
-    console.log("JSON");
-    console.log(JSON.stringify(body));
-
+    // body[DA31Constants.LEAVE_END_DATE]   = packet.leave.endDate;
+    
     return JSON.stringify(body);
   }
 

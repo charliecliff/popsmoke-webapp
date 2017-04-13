@@ -1,24 +1,24 @@
 var REQ_PARAMS = require('./da31PdfRequestParamaters');
 
 // PDF Template Field Names
-let control_number          = "Control Number";
-let name                    = "Name";
-let rank                    = "Rank";
-let ssn                     = "SSN";
-let date                    = "Date";
-let address                 = "Address";
-let station                 = "ORGN";
-let leave_ordinary          = "Ordinary";
-let leave_emergency         = "Emergency";
-let leave_permissive        = "Permissive";
-let leave_other             = "Other";
-let leave_other_explanation = "Other Explainations";
-let accrued_leave           = "Accrued";
-let advanced_leave          = "Advanced";
-let excess_leave            = "Excess";
-let requested_leave         = "Requested";
-let date_to = "Date-To";
-let date_from = "Date-From";
+let control_number    = "Control Number";
+let name              = "Name";
+let rank              = "Rank";
+let ssn               = "SSN";
+let date              = "Date";
+let address           = "Address";
+let station           = "ORGN";
+let leave_ordinary    = "Ordinary";
+let leave_emergency   = "Emergency";
+let leave_permissive  = "Permissive";
+let leave_other       = "Other";
+let leave_explanation = "Other Explainations";
+let accrued_leave     = "Accrued";
+let advanced_leave    = "Advanced";
+let excess_leave      = "Excess";
+let requested_leave   = "Requested";
+let date_to           = "Date-To";
+let date_from         = "Date-From";
 
 module.exports.Da31PdfFormat = class Da31PdfFormat {
    
@@ -58,6 +58,12 @@ module.exports.Da31PdfFormat = class Da31PdfFormat {
   }
 
   appendLeaveTypeSelection(requestBody, formData) {
+    formData[leave_ordinary]    = "No";
+    formData[leave_emergency]   = "No";
+    formData[leave_permissive]  = "No";
+    formData[leave_other]       = "No";
+    formData[leave_explanation] = "N/A";
+    
     let leaveType = requestBody[REQ_PARAMS.leaveType]
     if (leaveType == REQ_PARAMS.LEAVE_ORDINARY) {
       formData[leave_ordinary] = "Yes";
@@ -68,15 +74,12 @@ module.exports.Da31PdfFormat = class Da31PdfFormat {
     else if (leaveType == REQ_PARAMS.LEAVE_PERMISSIVE) {
       formData[leave_permissive] = "Yes";
     }
-    else if (leaveType == REQ_PARAMS.LEAVE_TDY) {
-      // TODO: What is done here?
-    }
     else if (leaveType == REQ_PARAMS.LEAVE_OTHER) {
       formData[leave_other] = "Yes";
     }
     let explanation = requestBody[REQ_PARAMS.leaveTypeExplanation]
     if (explanation != undefined) {
-      formData[leave_other_explanation] = explanation;
+      formData[leave_explanation] = explanation;
     }
   }
 

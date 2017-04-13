@@ -8,7 +8,6 @@ var exports = module.exports = {};
 
 exports.getFileFromAmazonS3 = function(req, res) {
   console.log("getFileFromAmazonS3");
-
 }
 
 exports.postDA31FileToAmazonS3 = function(req, res) {
@@ -17,22 +16,13 @@ exports.postDA31FileToAmazonS3 = function(req, res) {
 
 exports.deleteFileFromAmazonS3 = function(req, res) {
   console.log("getFileFromAmazonS3");
-
 }
 
 function generateDA31Document(req, res, pdfFilePath) {
-  console.log("generateDA31Document");
-  console.log(req.body);
-
-    
   let formatter = new da31Pdf.Da31PdfFormat();
   let formData = formatter.fillOutPdfForm(req.body);
-  console.log("formData");
-  console.log(formData);
-
   let pdfTemplatePath = "public/DA_31.pdf";
   let destinationPDF = pdfFilePath;
- 
   pdfFiller.fillForm( pdfTemplatePath, destinationPDF, formData, function(err) {
       if (err){
         res.send(err);
@@ -46,12 +36,9 @@ function uploadPDFFileToAmazonS3(req, res, pdfFilePath) {
   let fs  = require('fs');
     fs.readFile(pdfFilePath, (err, data) => {
       if (!err){
-        console.log("LOADING PDF");
-        console.log(data);
         uploadPDFDataBufferToAmazonS3(res, data);
       } else {
-        console.log("FAILED TO UPLOAD PDF");
-        console.log(err);
+        res.err = err;
       }
   });
 }

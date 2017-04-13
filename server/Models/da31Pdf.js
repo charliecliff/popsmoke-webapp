@@ -60,13 +60,7 @@ module.exports.Da31PdfFormat = class Da31PdfFormat {
       division + "\n" + post + " " + zip + ", " + phone;
   }
 
-  appendLeaveTypeSelection(requestBody, formData) {
-    formData[leave_ordinary]    = "Yes";
-    formData[leave_emergency]   = "Yes";
-    formData[leave_permissive]  = "Yes";
-    formData[leave_other]       = "Yes";
-    formData[leave_explanation] = "N/A";
-    
+  appendLeaveTypeSelection(requestBody, formData) {    
     let leaveType = requestBody[REQ_PARAMS.TYPE_OF_LEAVE]
     if (leaveType == REQ_PARAMS.LEAVE_ORDINARY) {
       formData[leave_ordinary] = "Yes";
@@ -80,6 +74,7 @@ module.exports.Da31PdfFormat = class Da31PdfFormat {
     else if (leaveType == REQ_PARAMS.LEAVE_OTHER) {
       formData[leave_other] = "Yes";
     }
+    formData[leave_explanation] = "N/A";
     let explanation = requestBody[REQ_PARAMS.LEAVE_EXPLANATION]
     if (explanation != undefined) {
       formData[leave_explanation] = explanation;

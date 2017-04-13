@@ -43,6 +43,8 @@ import { UserProvider } from '../providers/user-provider';
 import { UserValidationProvider } from '../providers/user-validation-provider';
 import { ValidationProvider } from '../providers/validation-provider';
 
+import * as Providers from '../providers';
+
 // Reducers
 import { reducer } from '../reducers';
 
@@ -105,7 +107,8 @@ export const firebaseAuthConfig = {
     HolidayProvider,
     UserProvider,
     UserValidationProvider,
-    ValidationProvider
+    ValidationProvider,
+    Providers.DA31Provider
     ]
 })
 export class AppModule { }

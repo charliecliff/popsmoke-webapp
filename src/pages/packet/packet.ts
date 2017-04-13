@@ -5,6 +5,9 @@ import * as PSModels from '../../models';
 import * as PSState from '../../reducers';
 import * as PSActions from '../../reducers/packets-reducer';
 import * as PSValidators from '../../validators';
+import * as Providers from '../../providers';
+
+import * as da31BuilderActions from '../../actions/da31builder.actions';
 
 enum packetForm {
     kBioForm = 0,
@@ -14,7 +17,8 @@ enum packetForm {
 }
 
 @Component({
-  templateUrl: 'packet.html'
+  templateUrl: 'packet.html',
+  providers: [Providers.DA31Provider]
 })
 export class PacketPage {
 
@@ -39,7 +43,8 @@ export class PacketPage {
   constructor(private navCtrl: NavController, 
               private navParams: NavParams,
               private formBuilder: FormBuilder,
-              private store: PSState.Store<PSState.AppState>) {
+              private store: PSState.Store<PSState.AppState>,
+              private da31Provider: Providers.DA31Provider) {
 
     console.log("Holiday Selected: " + JSON.stringify(navParams["packet"]) );
 
@@ -235,5 +240,23 @@ export class PacketPage {
       this.currentForm = this.currentForm + 1;
       this.slides.lockSwipes(true);
     }
+  }
+
+// -----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
+
+  private submit() {
+    let leaveInfo = this.currentPacket;
+
+    console.log(this.currentPacket);
+
+    // this.store.dispatch(new da31BuilderActions.AddPersonalInfoAction(this.currentPacket));
+
+    // TODO: This is CONTROLLER Level logic and should be pulled into a service
+    this.da31Provider.postDA31Form(leaveInfo).subscribe(data => {
+      console.log("subcribe closure");
+    });
   }
 }

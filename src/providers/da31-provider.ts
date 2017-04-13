@@ -8,7 +8,7 @@ import * as Models from '../models';
 @Injectable()
 export class DA31Provider {
 
-  da31Url = "https://sleepy-scrubland-83197.herokuapp.com/api/da31";
+  da31Url = "https://sleepy-scrubland-83197.herokuapp.com/packet/5678/da31/create";
 
   constructor(public http: Http) { }
 

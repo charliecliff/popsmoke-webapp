@@ -1,3 +1,5 @@
+var da31Pdf = require('./Models/da31Pdf');
+
 var express = require('express');
 var AWS = require("aws-sdk");
 

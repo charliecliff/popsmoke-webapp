@@ -1,4 +1,5 @@
 var da31Pdf = require('./Models/da31Pdf');
+var pdfFiller = require('pdffiller');
 
 var express = require('express');
 var AWS = require("aws-sdk");
@@ -23,15 +24,16 @@ function generateDA31Document(req, res, pdfFilePath) {
   console.log("generateDA31Document");
   console.log(req.body);
 
-  let pdfTemplatePath = "../../public/DA_31.pdf";
+    
   let formatter = new da31Pdf.Da31PdfFormat();
   let formData = formatter.fillOutPdfForm(req.body);
+  console.log("formData");
+  console.log(formData);
 
-  let pdfFiller = require('pdffiller');
-  let sourcePDF = "public/DA_31.pdf";
+  let pdfTemplatePath = "../public/DA_31.pdf";
   let destinationPDF = pdfFilePath;
  
-  pdfFiller.fillForm( sourcePDF, destinationPDF, formData, function(err) {
+  pdfFiller.fillForm( pdfTemplatePath, destinationPDF, formData, function(err) {
       if (err){
         res.send(err);
     } else {

@@ -30,7 +30,7 @@ function generateDA31Document(req, res, pdfFilePath) {
   console.log("formData");
   console.log(formData);
 
-  let pdfTemplatePath = "../public/DA_31.pdf";
+  let pdfTemplatePath = "public/DA_31.pdf";
   let destinationPDF = pdfFilePath;
  
   pdfFiller.fillForm( pdfTemplatePath, destinationPDF, formData, function(err) {

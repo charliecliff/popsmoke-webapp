@@ -1,13 +1,13 @@
 var REQ_PARAMS = require('./da31PdfRequestParamaters');
 
 // PDF Template Field Names
-let control_number = "Control Number";
-let name = "Name";
-let rank = "Rank";
-let ssn = "SSN";
-let date = "Date";
-let address = "Address";
-let station = "ORGN";
+let control_number          = "Control Number";
+let name                    = "Name";
+let rank                    = "Rank";
+let ssn                     = "SSN";
+let date                    = "Date";
+let address                 = "Address";
+let station                 = "ORGN";
 let leave_ordinary          = "Ordinary";
 let leave_emergency         = "Emergency";
 let leave_permissive        = "Permissive";

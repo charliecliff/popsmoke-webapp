@@ -94,7 +94,7 @@ export class PacketPage {
       lastName: [lastNameValue, PSValidators.lastNameValidators()],
       ssn: [ssnValue, PSValidators.ssnValidators()],
       rank: [rankValue, PSValidators.rankValidators()],
-      phone: [phoneValue, PSValidators.phoneNumberValidators()],
+      phoneNumber: [phoneValue, PSValidators.phoneNumberValidators()],
     });
   }
   
@@ -129,8 +129,8 @@ export class PacketPage {
       brigade: [brigadeValue, PSValidators.stringValidators()],
       division: [divisionValue, PSValidators.stringValidators()],
       post: [postValue, PSValidators.stringValidators()],
-      stationZip: [stationZipValue, PSValidators.stringValidators()],
-      stationPhone: [stationPhoneValue, PSValidators.phoneNumberValidators()],
+      zip: [stationZipValue, PSValidators.stringValidators()],
+      phoneNumber: [stationPhoneValue, PSValidators.phoneNumberValidators()],
     });
   }
 
@@ -250,7 +250,8 @@ export class PacketPage {
   private submit() {
     let leaveInfo = this.currentPacket;
 
-    console.log(this.currentPacket);
+    console.log("this.currentPacket");
+    console.log( Object.assign({},this.currentPacket) );
 
     // this.store.dispatch(new da31BuilderActions.AddPersonalInfoAction(this.currentPacket));
 

@@ -94,14 +94,14 @@
 
         <ion-item>
           <ion-label floating>Phone Number</ion-label>
-          <ion-input formControlName="phone"
+          <ion-input formControlName="phoneNumber"
                      type="text"
                      clearInput=true
-                     [class.invalid]="!bioForm.controls.phone.valid && 
+                     [class.invalid]="!bioForm.controls.phoneNumber.valid && 
                      submitTried"></ion-input>
         </ion-item>
         <ion-item no-lines class="warning"
-                  *ngIf="!bioForm.controls.phone.valid  && submitTried">
+                  *ngIf="!bioForm.controls.phoneNumber.valid  && submitTried">
           <p>Please enter a valid Phoen Number</p>
         </ion-item>
 
@@ -187,28 +187,26 @@
         </ion-item>
         <ion-item>
           <ion-label floating>Zip Code</ion-label>
-          <ion-input formControlName="stationZip"
+          <ion-input formControlName="zip"
                      type="text"
                      clearInput=true
-                     [class.invalid]="!stationForm.controls.stationZip.valid && 
+                     [class.invalid]="!stationForm.controls.zip.valid && 
                      submitTried"></ion-input>
         </ion-item>
         <ion-item no-lines class="warning"
-                  *ngIf="!stationForm.controls.stationZip.valid  && 
-                  submitTried">
+                  *ngIf="!stationForm.controls.zip.valid  && submitTried">
           <p>Please enter a valid Zip Code</p>
         </ion-item>
         <ion-item>
           <ion-label floating>Contact Phone Number</ion-label>
-          <ion-input formControlName="stationPhone"
+          <ion-input formControlName="phoneNumber"
                      type="text"
                      clearInput=true
-                     [class.invalid]="!stationForm.controls.stationPhone.valid 
+                     [class.invalid]="!stationForm.controls.phoneNumber.valid 
                      && submitTried"></ion-input>
         </ion-item>
         <ion-item no-lines class="warning"
-                  *ngIf="!stationForm.controls.stationPhone.valid  && 
-                  submitTried">
+                  *ngIf="!stationForm.controls.phoneNumber.valid  && submitTried">
           <p>Please enter a valid Phone Number</p>
         </ion-item>
       </form>
@@ -260,7 +258,7 @@
         <ion-item>
           <ion-label floating>ZIP</ion-label>
           <ion-input formControlName="zip"
-                     type="number"
+                     type="text"
                      clearInput=true
                      [class.invalid]="!destinationForm.controls.zip.valid 
                      && submitTried"></ion-input>

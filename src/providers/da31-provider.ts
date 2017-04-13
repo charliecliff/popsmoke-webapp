@@ -13,8 +13,10 @@ export class DA31Provider {
 
   constructor(public http: Http) { }
 
-	postDA31Form(packet: Models.Packet): Observable<Blob> {		
+  postDA31Form(packet: Models.Packet): Observable<Blob> {
+
     let body = this.buildRequestBodyFromPacket(packet);
+
     let headers = new Headers({"Content-Type": "application/json"});
     let options = { headers: headers, responseType: ResponseContentType.Blob }
     return this.http.post(this.da31Url, body, options)
@@ -30,6 +32,7 @@ export class DA31Provider {
     body[DA31Constants.SSN]             = packet.bio.ssn;
     body[DA31Constants.RANK]            = packet.bio.rank;
     body[DA31Constants.PHONE]           = packet.bio.phoneNumber;
+
     body[DA31Constants.PLATOON]         = packet.station.platoon;
     body[DA31Constants.COMPANY]         = packet.station.company;
     body[DA31Constants.BATTALION]       = packet.station.battalion;
@@ -38,11 +41,12 @@ export class DA31Provider {
     body[DA31Constants.POST]            = packet.station.post;
     body[DA31Constants.STATION_ZIP]     = packet.station.zip;
     body[DA31Constants.STATION_PHONE]   = packet.station.phoneNumber;
+    
     body[DA31Constants.STREET]          = packet.destination.street;
     body[DA31Constants.CITY]            = packet.destination.city;
     body[DA31Constants.STATE]           = packet.destination.state;
     body[DA31Constants.ZIP]             = packet.destination.zip;
-    body[DA31Constants.TYPE_OF_LEAVE]     = packet.leave.leaveType;
+    body[DA31Constants.TYPE_OF_LEAVE]   = packet.leave.leaveType;
     // body[DA31Constants.LEAVE_EXPLANATION] = packet.leave.leaveExplanation;
 
     // let accruedValue = packet.leave.accruedLeave === 0 ? "0" : packet.leave.accruedLeave;
@@ -55,6 +59,14 @@ export class DA31Provider {
     // body[DA31Constants.LEAVE_DATE_FROM] = packet.leave.startDate;
     
     // body[DA31Constants.LEAVE_DATE_TO]   = packet.leave.endDate;
+    console.log("buildRequestBodyFromPacket");
+    console.log("packet")
+    console.log( Object.assign({}, packet) );
+
+    console.log("body")
+    console.log( Object.assign({}, body) );
+    console.log("JSON");
+    console.log(JSON.stringify(body));
 
     return JSON.stringify(body);
   }

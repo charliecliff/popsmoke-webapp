@@ -72,26 +72,27 @@ module.exports.Da31PdfFormat = class Da31PdfFormat {
     else if (leaveType == REQ_PARAMS.LEAVE_OTHER) {
       formData[leave_other] = "Yes";
     }
-    formData[leave_other_explanation] = requestBody[REQ_PARAMS.leaveTypeExplanation];
+    if ( requestBody[REQ_PARAMS.leaveTypeExplanation] != undefined) {
+      formData[leave_other_explanation] = requestBody[REQ_PARAMS.leaveTypeExplanation];
+    }
   }
 
   fillOutPdfForm(requestBody) { 
     var formData = {};
     formData[name] = this.formatNameBlock(requestBody);
-    formData[rank] = requestBody[REQ_PARAMS.rank];
+    formData[rank] = requestBody[REQ_PARAMS.RANK];
     formData[ssn] = this.formatSocialSecurityNumber(requestBody);
     formData[address] = this.formatDestinationAddress(requestBody);
     formData[station] = this.formatPost(requestBody);
-    formData[accrued_leave] = requestBody[REQ_PARAMS.accruedLeave];
-    formData[advanced_leave] = requestBody[REQ_PARAMS.advancedLeave];
-    formData[excess_leave] = requestBody[REQ_PARAMS.excessLeave];
-    formData[requested_leave] = requestBody[REQ_PARAMS.requestedLeave];
+    formData[accrued_leave] = requestBody[REQ_PARAMS.ACCRUED_LEAVE];
+    formData[advanced_leave] = requestBody[REQ_PARAMS.ADVANCED_LEAVE];
+    formData[excess_leave] = requestBody[REQ_PARAMS.EXCESS_LEAVE];
+    formData[requested_leave] = requestBody[REQ_PARAMS.REQUESTED_LEAVE];
     
-    // formData[date] = "Testing Name";
     // formData[date_to] = "Testing Name";
     // formData[date_from] = "Testing Name";
     
-    // this.appendLeaveTypeSelection(requestBody, formData);
+    this.appendLeaveTypeSelection(requestBody, formData);
 
     return formData;
   }

@@ -1,13 +1,4 @@
-/*
-{ 
-	"firstName": ,
-	"lastName": ,
-	"middleInitial": ,
-	"ssn": ,
-	"rank": ,
-	"phoneNumber": ,
-}
-*/
+
 export class PersonalInfo {
     firstName: string     = "Edgar";  
     lastName: string      = "Burroughs";

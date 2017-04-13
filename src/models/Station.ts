@@ -1,24 +1,13 @@
-/*
-{ 
-	"platoon": ,
-	"company": ,
-	"battalion": ,
-	"brigade": ,
-	"division": ,
-	"post": ,
-	"zip": ,
-	"phone": ,
-}
-*/
+
 export class Station {
-    platoon: string;  
-    company: string;
-    battalion: string;
-    brigade: string;
-    division: string;
-    post: string;
-    zip: string;
-    phoneNumber: string;
+  platoon: string;  
+  company: string;
+  battalion: string;
+  brigade: string;
+  division: string;
+  post: string;
+  zip: string;
+  phoneNumber: string;
 
   constructor(data = {}) {
   	this.platoon = data["platoon"];

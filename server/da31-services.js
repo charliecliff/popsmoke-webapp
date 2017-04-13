@@ -20,6 +20,9 @@ exports.deleteFileFromAmazonS3 = function(req, res) {
 }
 
 function generateDA31Document(req, res, pdfFilePath) {
+  console.log("generateDA31Document");
+  console.log(req.body);
+
   let pdfTemplatePath = "../../public/DA_31.pdf";
   let formatter = new da31Pdf.Da31PdfFormat();
   let formData = formatter.fillOutPdfForm(req.body);

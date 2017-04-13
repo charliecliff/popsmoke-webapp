@@ -23,21 +23,21 @@ function generateDA31Document(req, res, pdfFilePath) {
   console.log("generateDA31Document");
   console.log(req.body);
 
-  // let pdfTemplatePath = "../../public/DA_31.pdf";
-  // let formatter = new da31Pdf.Da31PdfFormat();
-  // let formData = formatter.fillOutPdfForm(req.body);
+  let pdfTemplatePath = "../../public/DA_31.pdf";
+  let formatter = new da31Pdf.Da31PdfFormat();
+  let formData = formatter.fillOutPdfForm(req.body);
 
-  // let pdfFiller = require('pdffiller');
-  // let sourcePDF = "public/DA_31.pdf";
-  // let destinationPDF = pdfFilePath;
+  let pdfFiller = require('pdffiller');
+  let sourcePDF = "public/DA_31.pdf";
+  let destinationPDF = pdfFilePath;
  
-  // pdfFiller.fillForm( sourcePDF, destinationPDF, formData, function(err) {
-  //     if (err){
-  //       res.send(err);
-  //   } else {
-  //     uploadPDFFileToAmazonS3(req, res, destinationPDF);
-  //   }
-  // });
+  pdfFiller.fillForm( sourcePDF, destinationPDF, formData, function(err) {
+      if (err){
+        res.send(err);
+    } else {
+      uploadPDFFileToAmazonS3(req, res, destinationPDF);
+    }
+  });
 }
 
 function uploadPDFFileToAmazonS3(req, res, pdfFilePath) {

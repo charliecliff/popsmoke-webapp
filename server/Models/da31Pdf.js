@@ -1,5 +1,6 @@
 var REQ_PARAMS = require('./da31PdfRequestParamaters');
 
+// PDF Template Field Names
 let control_number = "Control Number";
 let name = "Name";
 let rank = "Rank";
@@ -7,15 +8,15 @@ let ssn = "SSN";
 let date = "Date";
 let address = "Address";
 let station = "ORGN";
-let leave_ordinary = "Ordinary";
-let leave_emergency = "Emergency";
-let leave_permissive = "Permissive";
-let leave_other = "Other";
+let leave_ordinary          = "Ordinary";
+let leave_emergency         = "Emergency";
+let leave_permissive        = "Permissive";
+let leave_other             = "Other";
 let leave_other_explanation = "Other Explainations";
-let accrued_leave = "Accrued";
-let advanced_leave = "Advanced";
-let excess_leave = "Excess";
-let requested_leave = "Requested";
+let accrued_leave           = "Accrued";
+let advanced_leave          = "Advanced";
+let excess_leave            = "Excess";
+let requested_leave         = "Requested";
 let date_to = "Date-To";
 let date_from = "Date-From";
 
@@ -68,12 +69,14 @@ module.exports.Da31PdfFormat = class Da31PdfFormat {
       formData[leave_permissive] = "Yes";
     }
     else if (leaveType == REQ_PARAMS.LEAVE_TDY) {
+      // TODO: What is done here?
     }
     else if (leaveType == REQ_PARAMS.LEAVE_OTHER) {
       formData[leave_other] = "Yes";
     }
-    if ( requestBody[REQ_PARAMS.leaveTypeExplanation] != undefined) {
-      formData[leave_other_explanation] = requestBody[REQ_PARAMS.leaveTypeExplanation];
+    let explanation = requestBody[REQ_PARAMS.leaveTypeExplanation]
+    if (explanation != undefined) {
+      formData[leave_other_explanation] = explanation;
     }
   }
 
@@ -84,6 +87,7 @@ module.exports.Da31PdfFormat = class Da31PdfFormat {
     formData[ssn] = this.formatSocialSecurityNumber(requestBody);
     formData[address] = this.formatDestinationAddress(requestBody);
     formData[station] = this.formatPost(requestBody);
+    
     formData[accrued_leave] = requestBody[REQ_PARAMS.ACCRUED_LEAVE];
     formData[advanced_leave] = requestBody[REQ_PARAMS.ADVANCED_LEAVE];
     formData[excess_leave] = requestBody[REQ_PARAMS.EXCESS_LEAVE];

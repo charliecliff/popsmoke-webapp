@@ -20,14 +20,17 @@ export let CITY                         = "CITY"
 export let STATE                        = "STATE"
 export let ZIP                          = "ZIP"
 
-export let ACCRUED_LEAVE                = "ACCRUED";
-export let REQUESTED_LEAVE              = "REQUESTED";
-export let ADVANCED_LEAVE               = "ADVANCED";
-export let EXCESS_LEAVE                 = "EXCESS";
-export let LEAVE_DATE_FROM              = "FROM";
-export let LEAVE_DATE_TO   = "TO";
-export let TYPE_OF_LEAVE	 = "TYPE_OF_LEAVE";
-export let LEAVE_EXPLANATION = "EXPLANATION";
+export let TYPE_OF_LEAVE      = "TYPE_OF_LEAVE";
+export let LEAVE_EXPLANATION  = "LEAVE_EXPLANATION";
+export let ACCRUED_LEAVE      = "ACCRUED_LEAVE";
+export let REQUESTED_LEAVE    = "REQUESTED_LEAVE";
+export let ADVANCED_LEAVE     = "ADVANCED_LEAVE";
+export let EXCESS_LEAVE       = "EXCESS_LEAVE";
+
+
+export let LEAVE_DATE_FROM    = "FROM";
+export let LEAVE_DATE_TO      = "TO";
+
 
 // export let ORDINARY                     = "ORDINARY";
 // export let EMERGENCY                    = "EMERGENCY";

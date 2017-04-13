@@ -46,19 +46,19 @@ export class DA31Provider {
     body[DA31Constants.CITY]            = packet.destination.city;
     body[DA31Constants.STATE]           = packet.destination.state;
     body[DA31Constants.ZIP]             = packet.destination.zip;
+    
     body[DA31Constants.TYPE_OF_LEAVE]   = packet.leave.leaveType;
-    // body[DA31Constants.LEAVE_EXPLANATION] = packet.leave.leaveExplanation;
-
-    // let accruedValue = packet.leave.accruedLeave === 0 ? "0" : packet.leave.accruedLeave;
-    // body[DA31Constants.ACCRUED_LEAVE]   = packet.leave.accruedLeave;
-    // body[DA31Constants.REQUESTED_LEAVE] = packet.leave.requestedLeave;
-    // body[DA31Constants.ADVANCED_LEAVE]  = packet.leave.advancedLeave;
-    // body[DA31Constants.EXCESS_LEAVE]    = packet.leave.excessLeave;
+    body[DA31Constants.LEAVE_EXPLANATION] = packet.leave.leaveExplanation;
+    body[DA31Constants.ACCRUED_LEAVE]   = packet.leave.accruedLeave;
+    body[DA31Constants.REQUESTED_LEAVE] = packet.leave.requestedLeave;
+    body[DA31Constants.ADVANCED_LEAVE]  = packet.leave.advancedLeave;
+    body[DA31Constants.EXCESS_LEAVE]    = packet.leave.excessLeave;
 
     
     // body[DA31Constants.LEAVE_DATE_FROM] = packet.leave.startDate;
     
     // body[DA31Constants.LEAVE_DATE_TO]   = packet.leave.endDate;
+    
     console.log("buildRequestBodyFromPacket");
     console.log("packet")
     console.log( Object.assign({}, packet) );

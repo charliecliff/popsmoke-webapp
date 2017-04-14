@@ -67,6 +67,9 @@ export class DA31Provider {
 
     body[DA31Constants.LEAVE_END_DATE]   = packet.leave.endDate;
     
+    console.log("body");
+    console.log(JSON.stringify(body));
+
     return JSON.stringify(body);
   }
   private extractPDFDataFromResponse(res: Response) {

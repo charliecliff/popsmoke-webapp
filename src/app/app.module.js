@@ -24,7 +24,6 @@ import { PacketHistoryPage } from '../pages/packet-history/packet-history';
 import { InboxPage } from '../pages/inbox/inbox';
 import { EditFieldPage } from '../pages/edit-field/edit-field';
 // Providers
-import { Da31Service } from '../providers/da31.service';
 import { AuthProvider } from '../providers/auth-provider';
 import { HolidayProvider } from '../providers/holiday-provider';
 import { UserProvider } from '../providers/user-provider';
@@ -89,7 +88,6 @@ AppModule = __decorate([
         ],
         providers: [
             { provide: ErrorHandler, useClass: IonicErrorHandler },
-            Da31Service,
             AuthProvider,
             HolidayProvider,
             UserProvider,

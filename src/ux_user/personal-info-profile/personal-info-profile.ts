@@ -4,6 +4,8 @@ import { NavController, MenuController } from 'ionic-angular';
 import { Store } from '@ngrx/store';
 
 import * as Constants from '../constants';
+import * as PSValidators from '../../validators';
+
 import { AppState } from '../../reducers';
 import { User } from '../../models/User';
 import { UserProvider } from '../../providers/user-provider';
@@ -38,26 +40,25 @@ export class PersonalInfoProfilePage {
   constructor(private navCtrl: NavController,
               private menuCtrl: MenuController,
               private formBuilder: FormBuilder,
-              private store: Store<AppState>,
-              private validations: UserValidationProvider) {
+              private store: Store<AppState>) {
     
     this.store.select("user").take(1).subscribe(this.userCallback);
 
     this.userForm = formBuilder.group({
-        firstNameInput: ["", this.validations.firstNameValidators()],
-        middleInitialInput: ["", this.validations.firstNameValidators()],
-        lastNameInput: ["", this.validations.firstNameValidators()],
-        ssnInput: ["", this.validations.firstNameValidators()],
-        rankInput: ["", this.validations.firstNameValidators()],
-        phoneInput: ["", this.validations.firstNameValidators()],
-        stationPlatoonInput: ["", this.validations.firstNameValidators()],
-        stationCompanyInput: ["", this.validations.firstNameValidators()],
-        stationBattalionInput: ["", this.validations.firstNameValidators()],
-        stationBrigadeInput: ["", this.validations.firstNameValidators()],
-        stationDivisionInput: ["", this.validations.firstNameValidators()],
-        stationPostInput: ["", this.validations.firstNameValidators()],
-        stationZipInput: ["", this.validations.firstNameValidators()],
-        stationPhoneInput: ["", this.validations.firstNameValidators()],
+        firstNameInput: ["", PSValidators.firstNameValidators()],
+        middleInitialInput: ["", PSValidators.firstNameValidators()],
+        lastNameInput: ["", PSValidators.firstNameValidators()],
+        ssnInput: ["", PSValidators.firstNameValidators()],
+        rankInput: ["", PSValidators.firstNameValidators()],
+        phoneInput: ["", PSValidators.firstNameValidators()],
+        stationPlatoonInput: ["", PSValidators.firstNameValidators()],
+        stationCompanyInput: ["", PSValidators.firstNameValidators()],
+        stationBattalionInput: ["", PSValidators.firstNameValidators()],
+        stationBrigadeInput: ["", PSValidators.firstNameValidators()],
+        stationDivisionInput: ["", PSValidators.firstNameValidators()],
+        stationPostInput: ["", PSValidators.firstNameValidators()],
+        stationZipInput: ["", PSValidators.firstNameValidators()],
+        stationPhoneInput: ["", PSValidators.firstNameValidators()],
     });
   }
 

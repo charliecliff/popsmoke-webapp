@@ -62,9 +62,10 @@ export class DA31Provider {
     body[DA31Constants.EXCESS_LEAVE] = packet.leave.excessLeave == "" 
       ? "0" : packet.leave.excessLeave;
 
-    // body[DA31Constants.LEAVE_START_DATE] = packet.leave.startDate;
+    
+    body[DA31Constants.LEAVE_START_DATE] = packet.leave.startDate;
 
-    // body[DA31Constants.LEAVE_END_DATE]   = packet.leave.endDate;
+    body[DA31Constants.LEAVE_END_DATE]   = packet.leave.endDate;
     
     return JSON.stringify(body);
   }

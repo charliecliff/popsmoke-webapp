@@ -7,46 +7,29 @@ import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
 //  Because FUCK YOU! That's WHY!
 import { CustomFormsModule } from 'ng2-validation'
 
-
-
-
-
-
 // 
 import { MyApp } from './app.component';
 
 // Pages
-import { PacketPage } from '../pages/packet/packet';
-import { AddressFormPage } from '../pages/address-form/address-form';
-import { LeaveFormPage } from '../pages/leave-form/leave-form';
-import { PdfPage } from '../pages/pdf/pdf';
-
 import { LaunchPage } from '../pages/launch/launch';
 import { LoginPage } from '../pages/login/login';
 import { MainTabPage } from '../pages/main-tab/main-tab';
-
-
+import { PacketPage } from '../pages/packet/packet';
+import { PdfPage } from '../pages/pdf/pdf';
 import { DocumentsPage } from '../pages/documents/documents';
 import { HomePage } from '../pages/home/home';
 import { PacketHistoryPage } from '../pages/packet-history/packet-history';
 import { InboxPage } from '../pages/inbox/inbox';
-
-
 import { EditFieldPage } from '../pages/edit-field/edit-field';
-
-
-// Providers
-import { Da31Service } from '../providers/da31.service';
-import { AuthProvider } from '../providers/auth-provider';
-import { HolidayProvider } from '../providers/holiday-provider';
-import { UserProvider } from '../providers/user-provider';
-import { UserValidationProvider } from '../providers/user-validation-provider';
-import { ValidationProvider } from '../providers/validation-provider';
-
-import * as Providers from '../providers';
 
 // Reducers
 import { reducer } from '../reducers';
+
+
+
+import * as Providers from '../providers';
+
+
 
 // AF2 Settings
 export const firebaseConfig = {
@@ -66,8 +49,6 @@ export const firebaseAuthConfig = {
   declarations: [
     MyApp,
     PacketPage,
-    AddressFormPage,
-    LeaveFormPage,
     PdfPage,
     HomePage,
     LaunchPage,
@@ -88,8 +69,6 @@ export const firebaseAuthConfig = {
   entryComponents: [
     MyApp,
     PacketPage,
-    AddressFormPage,
-    LeaveFormPage,
     PdfPage,
     HomePage,
     LaunchPage,
@@ -102,12 +81,9 @@ export const firebaseAuthConfig = {
   ],
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    Da31Service,
-    AuthProvider,
-    HolidayProvider,
-    UserProvider,
-    UserValidationProvider,
-    ValidationProvider,
+    Providers.AuthProvider,
+    Providers.HolidayProvider,
+    Providers.UserProvider,
     Providers.DA31Provider
     ]
 })

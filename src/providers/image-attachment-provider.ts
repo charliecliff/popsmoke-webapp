@@ -9,7 +9,7 @@ export class ImageAttachmentProvider {
 
   uploadImageFile(file: File) {
       console.log("upload");
-        this.makeFileRequest("http://localhost:3000/upload", [], file).then((result) => {
+        this.makeFileRequest("https://sleepy-scrubland-83197.herokuapp.com/upload", [], file).then((result) => {
             console.log(result);
         }, (error) => {
             console.error(error);

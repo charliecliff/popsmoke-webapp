@@ -6,6 +6,7 @@ import * as PSState from '../../reducers';
 import * as PSActions from '../../reducers/packets-reducer';
 import * as PSValidators from '../../validators';
 import * as Providers from '../../providers';
+import { PdfPage } from '../pdf/pdf';
 
 import * as da31BuilderActions from '../../actions/da31builder.actions';
 
@@ -258,6 +259,7 @@ export class PacketPage {
     // TODO: This is CONTROLLER Level logic and should be pulled into a service
     this.da31Provider.postDA31Form(leaveInfo).subscribe(data => {
       console.log("subcribe closure");
+      this.navCtrl.push(PdfPage);
     });
   }
 }

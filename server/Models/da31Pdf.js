@@ -93,10 +93,6 @@ module.exports.Da31PdfFormat = class Da31PdfFormat {
     formData[date_to]         = requestBody[REQ_PARAMS.START_DATE];
     formData[date_from]       = requestBody[REQ_PARAMS.END_DATE];
     this.appendLeaveTypeSelection(requestBody, formData);
-
-    console.log("fillOutPdfForm");
-    console.log(formData);
-    
     return formData;
   }
 }

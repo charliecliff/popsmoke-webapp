@@ -21,6 +21,7 @@ import { HomePage } from '../pages/home/home';
 import { PacketHistoryPage } from '../pages/packet-history/packet-history';
 import { InboxPage } from '../pages/inbox/inbox';
 import { EditFieldPage } from '../pages/edit-field/edit-field';
+import { CameraPage } from '../pages/camera/camera';
 
 // Reducers
 import { reducer } from '../reducers';
@@ -57,7 +58,8 @@ export const firebaseAuthConfig = {
     DocumentsPage,
     PacketHistoryPage,
     InboxPage,
-    EditFieldPage
+    EditFieldPage,
+    CameraPage
   ],
   imports: [
     CustomFormsModule,
@@ -77,7 +79,8 @@ export const firebaseAuthConfig = {
     DocumentsPage,
     PacketHistoryPage,
     InboxPage,
-    EditFieldPage
+    EditFieldPage,
+    CameraPage
   ],
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler},

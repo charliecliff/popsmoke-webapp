@@ -18,6 +18,7 @@ import { HolidayProvider } from '../providers/holiday-provider';
 
 import { LaunchPage } from '../pages/launch/launch';
 import { PacketPage } from '../pages/packet/packet';
+import { CameraPage } from '../pages/camera/camera';
 
 
 @Component({
@@ -30,7 +31,7 @@ export class MyApp {
 
   public menu: Menu;
 
-  rootPage = LaunchPage;
+  rootPage = CameraPage;
 
   constructor(public platform: Platform,
               public store: Store<Reducers.AppState>,

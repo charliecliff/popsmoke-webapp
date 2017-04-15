@@ -81,7 +81,7 @@ app.post("/packet/:id/da31/create", function(req, res) {
 // DELETE Insurance Image /user/proofofinsurance/:id
 app.post("/upload", function(req, res) {
 		console.log("/upload");
-    res.send(req.files);
+    console.log(req.files);
 });
 
 

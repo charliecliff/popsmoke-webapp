@@ -21,7 +21,7 @@ export class ImageAttachmentProvider {
         return new Promise((resolve, reject) => {
             var formData: any = new FormData();
             var xhr = new XMLHttpRequest();
-            formData.append("upload", file, file.name);
+            formData.append("uploads[]", file, file.name);
             
             xhr.onreadystatechange = function () {
                 if (xhr.readyState == 4) {

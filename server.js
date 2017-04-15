@@ -4,9 +4,11 @@ var da31Services = require('./server/da31-services');
 
 var express = require('express');
 var bodyParser = require('body-parser');
-var multer = require("multer");
 var cors = require('cors');
 var app = express();
+
+var multer = require("multer");
+var formidable = require('formidable');
 
 var mongodb = require('mongodb'),
 mongoClient = mongodb.MongoClient,
@@ -79,9 +81,39 @@ app.post("/packet/:id/da31/create", function(req, res) {
 // GET Insurance Image /user/proofofinsurance/:id
 // POST Insurance Image /user/proofofinsurance/:id
 // DELETE Insurance Image /user/proofofinsurance/:id
-app.post("/upload", function(req, res) {
-		console.log("/upload");
-    console.log(req);
+
+app.post('/upload', function(req, res){
+
+	console.log("/upload");
+
+  // create an incoming form object
+  var form = new formidable.IncomingForm();
+
+  // specify that we want to allow the user to upload multiple files in a single request
+  form.multiples = true;
+
+  // store all uploads in the /uploads directory
+  form.uploadDir = path.join(__dirname, '/uploads');
+
+  // every time a file has been uploaded successfully,
+  // rename it to it's orignal name
+  form.on('file', function(field, file) {
+    fs.rename(file.path, path.join(form.uploadDir, file.name));
+  });
+
+  // log any errors that occur
+  form.on('error', function(err) {
+    console.log('An error has occured: \n' + err);
+  });
+
+  // once all the files have been uploaded, send a response to the client
+  form.on('end', function() {
+    res.end('success');
+  });
+
+  // parse the incoming request containing the form data
+  form.parse(req);
+
 });
 
 

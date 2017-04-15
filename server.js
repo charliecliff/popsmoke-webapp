@@ -79,7 +79,7 @@ app.post("/packet/:id/da31/create", function(req, res) {
 // GET Insurance Image /user/proofofinsurance/:id
 // POST Insurance Image /user/proofofinsurance/:id
 // DELETE Insurance Image /user/proofofinsurance/:id
-app.post("/upload", multer({dest: "./uploads/"}).array("uploads", 12), function(req, res) {
+app.post("/upload", function(req, res) {
 		consoler.log("/upload");
     res.send(req.files);
 });

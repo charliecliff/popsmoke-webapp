@@ -6,6 +6,6 @@ export class DA31Leave {
   requestedLeave: string = "";
   advancedLeave: string = "";
   excessLeave: string = "";
-  startDate: Date;
-  endDate: Date;
+  startDate: string = "";
+  endDate: string = "";
 }

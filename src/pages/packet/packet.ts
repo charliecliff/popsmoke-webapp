@@ -160,8 +160,8 @@ export class PacketPage {
       leaveType: ["", PSValidators.leaveTypeValidators()],
       explanationOfLeaveType: [""], accruedLeave: [""], requestedLeave: [""], 
       advancedLeave: [""], excessLeave: [""],
-      leaveDateFrom: ["", PSValidators.dateValidators()],
-      leaveDateTo: ["", PSValidators.dateValidators()]
+      startDate: ["", PSValidators.dateValidators()],
+      endDate: ["", PSValidators.dateValidators()]
     });
   }
 

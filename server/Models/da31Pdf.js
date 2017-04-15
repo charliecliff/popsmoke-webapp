@@ -90,9 +90,13 @@ module.exports.Da31PdfFormat = class Da31PdfFormat {
     formData[advanced_leave]  = requestBody[REQ_PARAMS.ADVANCED_LEAVE];
     formData[excess_leave]    = requestBody[REQ_PARAMS.EXCESS_LEAVE];
     formData[requested_leave] = requestBody[REQ_PARAMS.REQUESTED_LEAVE];
-    // formData[date_to]         = requestBody[REQ_PARAMS.START_DATE];
-    // formData[date_from]       = requestBody[REQ_PARAMS.END_DATE];
+    formData[date_to]         = requestBody[REQ_PARAMS.START_DATE];
+    formData[date_from]       = requestBody[REQ_PARAMS.END_DATE];
     this.appendLeaveTypeSelection(requestBody, formData);
+
+    console.log("fillOutPdfForm");
+    console.log(formData);
+    
     return formData;
   }
 }

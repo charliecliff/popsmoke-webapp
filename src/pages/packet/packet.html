@@ -330,23 +330,23 @@
         </ion-item>
         <ion-item>
           <ion-label floating>LEAVE START DATE</ion-label>
-           <ion-datetime formControlName="leaveDateFrom" 
+           <ion-datetime formControlName="startDate" 
                         displayFormat="YYYY/M/D" 
                         pickerFormat="YYYY M D"></ion-datetime>
         </ion-item>
         <ion-item no-lines class="warning"
-                  *ngIf="!leaveForm.controls.leaveDateFrom.valid  && 
+                  *ngIf="!leaveForm.controls.startDate.valid  && 
                   submitTried">
           <p>Please enter valid Start Date</p>
         </ion-item>
         <ion-item>
           <ion-label floating>LEAVE END DATE</ion-label> 
-          <ion-datetime formControlName="leaveDateTo" 
+          <ion-datetime formControlName="endDate" 
                         displayFormat="YYYY/M/D" 
                         pickerFormat="YYYY M D"></ion-datetime>
         </ion-item>
         <ion-item no-lines class="warning"
-                  *ngIf="!leaveForm.controls.leaveDateTo.valid  && submitTried">
+                  *ngIf="!leaveForm.controls.endDate.valid  && submitTried">
           <p>Please enter a valid End Date</p>
         </ion-item>
       </form>

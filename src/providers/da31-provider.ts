@@ -64,7 +64,6 @@ export class DA31Provider {
 
     
     body[DA31Constants.LEAVE_START_DATE] = packet.leave.startDate;
-
     body[DA31Constants.LEAVE_END_DATE]   = packet.leave.endDate;
     
     console.log("body");

@@ -4,6 +4,7 @@ var da31Services = require('./server/da31-services');
 
 var express = require('express');
 var bodyParser = require('body-parser');
+var multer = require("multer");
 var cors = require('cors');
 var app = express();
 
@@ -78,6 +79,11 @@ app.post("/packet/:id/da31/create", function(req, res) {
 // GET Insurance Image /user/proofofinsurance/:id
 // POST Insurance Image /user/proofofinsurance/:id
 // DELETE Insurance Image /user/proofofinsurance/:id
+app.post("/upload", multer({dest: "./uploads/"}).array("uploads", 12), function(req, res) {
+		consoler.log("/upload");
+    res.send(req.files);
+});
+
 
 // TODO: Extract these into their files or modules
 function handleError(res, reason, message, code) {

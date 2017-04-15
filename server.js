@@ -80,7 +80,7 @@ app.post("/packet/:id/da31/create", function(req, res) {
 // POST Insurance Image /user/proofofinsurance/:id
 // DELETE Insurance Image /user/proofofinsurance/:id
 app.post("/upload", function(req, res) {
-		consoler.log("/upload");
+		console.log("/upload");
     res.send(req.files);
 });
 

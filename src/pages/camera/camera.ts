@@ -1,12 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
-/*
-  Generated class for the Camera page.
+import * as Providers from '../../providers';
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-camera',
   templateUrl: 'camera.html'
@@ -18,8 +14,11 @@ export class CameraPage {
 
   public title: string;
   public imageUrl: any;
+  public imageFile: File;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams,
+              private attachmentProvider: Providers.ImageAttachmentProvider) { }
 
   private clickCameraButton() {
     this.cameraInput.nativeElement.click();
@@ -27,6 +26,7 @@ export class CameraPage {
 
   private loadImageUrl(event) {
     if (event.target.files && event.target.files[0]) {
+      this.imageFile = event.target.files[0];
       var reader = new FileReader();
       reader.onload = (newEvent) => {
         // TYPESCRIPT BUG: Typescript does doest not recognize the "result" 
@@ -36,8 +36,15 @@ export class CameraPage {
         // generally considered bad practice to rely on a priori knowdlege of 
         // object structure,
          this.imageUrl = newEvent.target["result"];
+         console.log("imageURL");
+         console.log(this.imageUrl);
       }
       reader.readAsDataURL(event.target.files[0]);
     }
+  }
+
+  private uploadImage(event) {
+    console.log("uploadImage");
+    this.attachmentProvider.uploadImageFile(this.imageFile);
   }
 }

@@ -85,9 +85,10 @@ export const firebaseAuthConfig = {
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Providers.AuthProvider,
+    Providers.DA31Provider,
     Providers.HolidayProvider,
+    Providers.ImageAttachmentProvider,
     Providers.UserProvider,
-    Providers.DA31Provider
     ]
 })
 export class AppModule { }

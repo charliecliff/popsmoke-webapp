@@ -7,8 +7,13 @@ var bodyParser = require('body-parser');
 var cors = require('cors');
 var app = express();
 
-var multer = require("multer");
+
+
+var path = require('path');
 var formidable = require('formidable');
+var fs = require('fs');
+
+
 
 var mongodb = require('mongodb'),
 mongoClient = mongodb.MongoClient,

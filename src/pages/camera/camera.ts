@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
 /*
@@ -13,10 +13,16 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class CameraPage {
 
+  @ViewChild('cameraInput') myInput ;
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CameraPage');
   }
 
+  myFunc(event) {
+    console.log("myFunc");
+    console.log(this.myInput);
+  }
 }

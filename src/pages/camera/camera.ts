@@ -12,8 +12,12 @@ import { NavController, NavParams } from 'ionic-angular';
   templateUrl: 'camera.html'
 })
 export class CameraPage {
+  
+  @ViewChild('cameraInput') cameraInput;
+  @ViewChild('cameraPreview') cameraPreview;
 
-  @ViewChild('cameraInput') myInput ;
+  public title: string;
+  public imageUrl: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {}
 
@@ -21,8 +25,19 @@ export class CameraPage {
     console.log('ionViewDidLoad CameraPage');
   }
 
-  myFunc(event) {
-    console.log("myFunc");
-    console.log(this.myInput);
-  }
+  loadImageUrl(event) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+      reader.onload = (newEvent) => {
+        // TYPESCRIPT BUG: Typescript does doest not recognize the "result" 
+        // property of the Progress Event Type, although it is proper JS.
+        // Until TypeScript fixes this issues, we will use the following
+        // syntax to pull this property from our result object, although 
+        // generally considered bad practice to rely on a priori knowdlege of 
+        // object structure,
+         this.imageUrl = newEvent.target["result"];
+      }
+      reader.readAsDataURL(event.target.files[0]);
+    }
+  } 
 }

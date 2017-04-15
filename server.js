@@ -93,6 +93,10 @@ app.post('/upload', function(req, res){
   form.multiples = true;
 
   // store all uploads in the /uploads directory
+
+console.log("directory");
+console.log(__dirname);
+
   form.uploadDir = path.join(__dirname, '/uploads');
 
   // every time a file has been uploaded successfully,

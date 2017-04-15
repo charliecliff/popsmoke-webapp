@@ -12,7 +12,7 @@ import { NavController, NavParams } from 'ionic-angular';
   templateUrl: 'camera.html'
 })
 export class CameraPage {
-  
+
   @ViewChild('cameraInput') cameraInput;
   @ViewChild('cameraPreview') cameraPreview;
 
@@ -21,11 +21,11 @@ export class CameraPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {}
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad CameraPage');
+  private clickCameraButton() {
+    this.cameraInput.nativeElement.click();
   }
 
-  loadImageUrl(event) {
+  private loadImageUrl(event) {
     if (event.target.files && event.target.files[0]) {
       var reader = new FileReader();
       reader.onload = (newEvent) => {
@@ -39,5 +39,5 @@ export class CameraPage {
       }
       reader.readAsDataURL(event.target.files[0]);
     }
-  } 
+  }
 }

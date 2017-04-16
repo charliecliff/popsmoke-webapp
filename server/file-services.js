@@ -20,11 +20,11 @@ exports.parseFileWithIDFromUploadRequest = function(req, id, callback) {
   });
   form.on('error', function(err) {    
     console.log('An error has occured: \n' + err);
-    // callback(err);
+    callback(err);
   });
   form.on('end', function() {
     console.log('end');
-    awsServices.uploadJPEGFileAtPathToAmazonS3(file.path, callback);
+    awsServices.uploadJPEGFileAtPathToAmazonS3(form.file.path, callback);
   });
   form.parse(req);
 }

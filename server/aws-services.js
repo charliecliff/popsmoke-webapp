@@ -48,10 +48,8 @@ exports.uploadJPEGFileAtPathToAmazonS3 = function (localJpegFilePath,
   let fs  = require('fs');
   fs.readFile(localJpegFilePath, (err, dataBuffer) => {
     if (err){
-      console.log("error reading file:" + err);
       callback(err);
     } else {
-      console.log("READ FILE!!!");
       uploadJPEGDataBufferToAmazonS3(awsJPEGFileName, dataBuffer, callback);
     }
   });

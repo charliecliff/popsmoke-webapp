@@ -87,6 +87,7 @@ app.post('/upload', function(req, res){
 																								req.params.id, 
 																								function(err, awsURL) {
   	if (err) {
+  		console.log("error reading file:" + err);
   		res.send({"error": err});
   	} else {
   		res.send({"url": awsURL});

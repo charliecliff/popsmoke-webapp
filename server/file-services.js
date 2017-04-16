@@ -13,9 +13,12 @@ exports.parseFileWithIDFromUploadRequest = function(req, id, callback) {
   form.multiples = true;
   form.uploadDir = 'public/uploads';
 
-  form.on('file', function(field, file) {
-    console.log('file');
-    
+  form.on('file', function(name, file) {
+    console.log("on file");
+    console.log("name: " + name);
+    console.log("file: " + file);
+
+
     fs.rename(file.path, path.join(form.uploadDir, file.name), function (err) {
       if (err) {
         callback(err);
@@ -23,6 +26,7 @@ exports.parseFileWithIDFromUploadRequest = function(req, id, callback) {
         awsServices.uploadJPEGFileAtPathToAmazonS3(file.path, callback);
       }
     });
+
 
   });
   form.on('error', function(err) {    

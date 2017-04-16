@@ -40,14 +40,17 @@ exports.uploadJPEGFileAtPathToAmazonS3 = function (jpegFilePath, callback) {
   let fs  = require('fs');
     fs.readFile(jpegFilePath, (err, dataBuffer) => {
       if (err){
+        console.log("error reading file:" + err);
         callback(err);
       } else {
+        console.log("READ FILE!!!");
         uploadJPEGDataBufferToAmazonS3("newJPEGFileName.jpeg", dataBuffer, callback);
       }
   });
 }
 
 function uploadJPEGDataBufferToAmazonS3(fileName, dataBuffer, callback) {
+  console.log("uploadJPEGDataBufferToAmazonS3");
   let params = awsJPEGParams(fileName);
   s3 = new AWS.S3({apiVersion: "2006-03-01"});
   s3.putObject(params, function(err, data) {
@@ -62,7 +65,7 @@ function uploadJPEGDataBufferToAmazonS3(fileName, dataBuffer, callback) {
 
 function awsJPEGUrl(fileName) {
   console.log("awsJPEGUrl");
-  return "https://s3-us-west-2.amazonaws.com/popsmokeimages/" + fileName;
+  return "https://s3-us-west-2.amazonaws.com/popsmoke/" + fileName;
 }
 
 function awsJPEGParams(fileName) {

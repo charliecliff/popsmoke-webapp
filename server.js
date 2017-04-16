@@ -85,7 +85,7 @@ app.post("/packet/:id/da31/create", function(req, res) {
 app.post('/upload', function(req, res){
 	console.log("/upload");
 
-	fileServices.parseFileWithIDFromUploadRequest(req, req.params.id, function(error, awsURL) {
+	fileServices.parseFileWithIDFromUploadRequest(req, req.params.id, function(err, awsURL) {
 		console.log("Callback in Upload URL");
   	if (err) {
   		res.send(err);

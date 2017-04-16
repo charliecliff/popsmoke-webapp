@@ -7,15 +7,11 @@ var path        = require('path');
 var exports = module.exports = {};
 
 exports.parseFileWithIDFromUploadRequest = function(req, id, callback) {
-  console.log("parseFileWithIDFromUploadRequest");
-
   var form = new formidable.IncomingForm();
   form.multiples = true;
   form.uploadDir = 'public/uploads';
-
   form.on('file', function(field, file) {
-    console.log("on file: " + file.name);
-    awsServices.uploadJPEGFileAtPathToAmazonS3(file.path, callback);
+    awsServices.uploadJPEGFileAtPathToAmazonS3(file.path, file.name, callback);
   });
   form.on('error', function(err) {    
     callback(err);

@@ -3,6 +3,9 @@ var AWS = require("aws-sdk");
 
 var exports = module.exports = {};
 
+// -----------------------------------------------------------------------------
+// PDF Files Buckets
+// -----------------------------------------------------------------------------
 exports.uploadPDFFileAtPathToAmazonS3 = function(req, res, pdfFilePath) {
   let fs  = require('fs');
   fs.readFile(pdfFilePath, (err, data) => {
@@ -35,17 +38,20 @@ function uploadPDFDataBufferToAmazonS3(res, pdfDataBuffer) {
   });
 }
 
+// -----------------------------------------------------------------------------
+// JPEG Files Buckets
+// -----------------------------------------------------------------------------
 exports.uploadJPEGFileAtPathToAmazonS3 = function (jpegFilePath, callback) {
   console.log("uploadJPEGFileAtPathToAmazonS3");
   let fs  = require('fs');
-    fs.readFile(jpegFilePath, (err, dataBuffer) => {
-      if (err){
-        console.log("error reading file:" + err);
-        callback(err);
-      } else {
-        console.log("READ FILE!!!");
-        uploadJPEGDataBufferToAmazonS3("newJPEGFileName.jpeg", dataBuffer, callback);
-      }
+  fs.readFile(jpegFilePath, (err, dataBuffer) => {
+    if (err){
+      console.log("error reading file:" + err);
+      callback(err);
+    } else {
+      console.log("READ FILE!!!");
+      uploadJPEGDataBufferToAmazonS3("newJPEGFileName.jpeg", dataBuffer, callback);
+    }
   });
 }
 
@@ -61,6 +67,11 @@ function uploadJPEGDataBufferToAmazonS3(fileName, dataBuffer, callback) {
       callback(null, fileURL);
     }
   });
+}
+
+function awsFileNameFromFilePath(fileName) {
+  console.log("awsJPEGUrl");
+  return "https://s3-us-west-2.amazonaws.com/popsmoke/" + fileName;
 }
 
 function awsJPEGUrl(fileName) {

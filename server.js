@@ -83,17 +83,15 @@ app.post("/packet/:id/da31/create", function(req, res) {
 // DELETE Insurance Image /user/proofofinsurance/:id
 
 app.post('/upload', function(req, res){
-	console.log("/upload");
-
-	fileServices.parseFileWithIDFromUploadRequest(req, req.params.id, function(err, awsURL) {
-		console.log("Callback in Upload URL");
+	fileServices.parseFileWithIDFromUploadRequest(req, 
+																								req.params.id, 
+																								function(err, awsURL) {
   	if (err) {
-  		res.send(err);
+  		res.send({"error": err});
   	} else {
-  		res.send(awsURL);
+  		res.send({"url": awsURL});
   	}
 	});
-
 });
 
 // app.post('/user/driverslicense/:id', function(req, res){

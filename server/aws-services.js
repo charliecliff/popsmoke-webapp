@@ -51,7 +51,7 @@ exports.uploadJPEGFileAtPathToAmazonS3 = function (jpegFilePath, callback) {
 
 function uploadJPEGDataBufferToAmazonS3(fileName, dataBuffer, callback) {
   console.log("uploadJPEGDataBufferToAmazonS3");
-  let params = awsJPEGParams(fileName);
+  let params = awsJPEGParams(fileName, dataBuffer);
   s3 = new AWS.S3({apiVersion: "2006-03-01"});
   s3.putObject(params, function(err, data) {
     if (err) {
@@ -68,7 +68,7 @@ function awsJPEGUrl(fileName) {
   return "https://s3-us-west-2.amazonaws.com/popsmoke/" + fileName;
 }
 
-function awsJPEGParams(fileName) {
+function awsJPEGParams(fileName, dataBuffer) {
   console.log("awsJPEGParams");
   return {
     Bucket: "popsmoke", /* pull these into a configuration file */

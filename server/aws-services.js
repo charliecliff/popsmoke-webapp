@@ -68,7 +68,7 @@ function awsJPEGUrl(fileName) {
 function awsJPEGParams(fileName) {
   console.log("awsJPEGParams");
   return {
-    Bucket: "popsmoke-images", /* pull these into a configuration file */
+    Bucket: "popsmoke", /* pull these into a configuration file */
     Key: fileName,
     ACL: "public-read",
     ContentDisposition: "inline",

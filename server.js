@@ -38,6 +38,7 @@ mongoClient.connect(MONGODB_URI, function (err, database) {
 		console.log("You're a wizard, Harry. I'm a what? Yes, a wizard, on port", app.get('port'));
 	});
 });
+
 // The Key to allowing CORS
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -45,6 +46,7 @@ app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
+
 // User Endpoints
 app.get("/user/:id", function(req, res) {
 	userServices.getUserFromAmazonDynamo(res, req.params.id);
@@ -84,27 +86,27 @@ app.post("/packet/:id/da31/create", function(req, res) {
 app.post('/upload', function(req, res){
 	console.log("/upload");
 
-	fileServices.parseFileWithIDFromUploadRequest(req, req.params.id, function(error, awsURL) {
-		console.log("Callback in Upload URL");
-  	if (err) {
-  		res.send(err);
-  	} else {
-  		res.send(awsURL);
-  	}
-	});
+	// fileServices.parseFileWithIDFromUploadRequest(req, req.params.id, function(error, awsURL) {
+	// 	console.log("Callback in Upload URL");
+ //  	if (err) {
+ //  		res.send(err);
+ //  	} else {
+ //  		res.send(awsURL);
+ //  	}
+	// });
 
 });
 
-app.post('/user/driverslicense/:id', function(req, res){
-	console.log("/user/driverslicense");
-	fileServices.parseFileWithIDFromUploadRequest(req, req.params.id, (error, awsURL) {
-  	if (err) {
-  		res.send(err);
-  	} else {
-  		res.send(awsURL);
-  	}
-	});
-});
+// app.post('/user/driverslicense/:id', function(req, res){
+// 	console.log("/user/driverslicense");
+// 	fileServices.parseFileWithIDFromUploadRequest(req, req.params.id, (error, awsURL) {
+//   	if (err) {
+//   		res.send(err);
+//   	} else {
+//   		res.send(awsURL);
+//   	}
+// 	});
+// });
 
 // TODO: Extract these into their files or modules
 function handleError(res, reason, message, code) {

@@ -18,11 +18,7 @@ exports.parseFileWithIDFromUploadRequest = function(req, id, callback) {
     console.log("name: " + file.name);
     console.log("path: " + file.path);
 
-    let fileName = path.join(file.path, file.name);
-    console.log("new file name: " + fileName);
-
-
-    awsServices.uploadJPEGFileAtPathToAmazonS3(fileName, callback);
+    awsServices.uploadJPEGFileAtPathToAmazonS3(file.path, callback);
 
 
     // fs.rename(file.path, path.join(form.uploadDir, file.name), function (err) {

@@ -16,14 +16,13 @@ exports.parseFileWithIDFromUploadRequest = function(req, id, callback) {
   let fileName = form.name;
   console.log("Uploaded File Name:" + fileName);
 
-
-
   form.on('file', function(field, file) {
     fs.rename(file.path, path.join(form.uploadDir, file.name));
   });
-
-
-  form.on('error', callback);
+  form.on('error', function(err) {    
+    console.log('An error has occured: \n' + err);
+    callback(err);
+  });
   form.on('end', function() {
     awsServices.uploadJPEGFileAtPathToAmazonS3(file.path, callback);
   });

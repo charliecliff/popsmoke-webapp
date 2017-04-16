@@ -14,7 +14,7 @@ exports.parseFileWithIDFromUploadRequest = function(req, id, callback) {
   form.uploadDir = 'public/uploads';
 
   form.on('file', function(field, file) {
-    console.log("on file");
+    console.log("on file: " + file.path);
     awsServices.uploadJPEGFileAtPathToAmazonS3(file.path, callback);
   });
   form.on('error', function(err) {    

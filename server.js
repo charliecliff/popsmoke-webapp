@@ -1,21 +1,12 @@
-var userServices = require('./server/user-services');
+var awsServices 		= require('./server/aws-services');
+var da31Services 		= require('./server/da31-services');
+var fileServices 		= require('./server/file-services');
 var holidayServices = require('./server/holiday-services');
-var da31Services = require('./server/da31-services');
-var awsServices = require('./server/aws-services');
-
-
-
-var express = require('express');
-var bodyParser = require('body-parser');
-var cors = require('cors');
-var app = express();
-
-
-
-var path = require('path');
-var formidable = require('formidable');
-var fs = require('fs');
-
+var userServices 		= require('./server/user-services');
+var express 				= require('express');
+var bodyParser 			= require('body-parser');
+var cors 						= require('cors');
+var app 						= express();
 
 
 var mongodb = require('mongodb'),
@@ -91,39 +82,29 @@ app.post("/packet/:id/da31/create", function(req, res) {
 // DELETE Insurance Image /user/proofofinsurance/:id
 
 app.post('/upload', function(req, res){
-
 	console.log("/upload");
 
-  // create an incoming form object
-  var form = new formidable.IncomingForm();
-
-  // specify that we want to allow the user to upload multiple files in a single request
-  form.multiples = true;
-
-  // store all uploads in the /uploads directory
-  form.uploadDir = path.join(__dirname, '/uploads');
-
-  // every time a file has been uploaded successfully,
-  // rename it to it's orignal name
-  form.on('file', function(field, file) {
-    fs.rename(file.path, path.join(form.uploadDir, file.name));
-  });
-
-  // log any errors that occur
-  form.on('error', function(err) {
-    console.log('An error has occured: \n' + err);
-  });
-
-  // once all the files have been uploaded, send a response to the client
-  form.on('end', function() {
-    res.end('success');
-  });
-
-  // parse the incoming request containing the form data
-  form.parse(req);
+	fileServices.parseFileWithIDFromUploadRequest(req, req.params.id, function(error, awsURL) {
+		console.log("Callback in Upload URL");
+  	if (err) {
+  		res.send(err);
+  	} else {
+  		res.send(awsURL);
+  	}
+	});
 
 });
 
+app.post('/user/driverslicense/:id', function(req, res){
+	console.log("/user/driverslicense");
+	fileServices.parseFileWithIDFromUploadRequest(req, req.params.id, (error, awsURL) {
+  	if (err) {
+  		res.send(err);
+  	} else {
+  		res.send(awsURL);
+  	}
+	});
+});
 
 // TODO: Extract these into their files or modules
 function handleError(res, reason, message, code) {

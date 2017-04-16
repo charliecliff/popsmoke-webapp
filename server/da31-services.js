@@ -32,7 +32,7 @@ function generateDA31Document(req, res, pdfFilePath) {
   });
 }
 
-function uploadPDFFileToAmazonS3(req, res, pdfFilePath) {
+exports.uploadPDFFileToAmazonS3 = function(req, res, pdfFilePath) {
   let fs  = require('fs');
     fs.readFile(pdfFilePath, (err, data) => {
       if (!err){

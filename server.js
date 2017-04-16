@@ -1,6 +1,9 @@
 var userServices = require('./server/user-services');
 var holidayServices = require('./server/holiday-services');
 var da31Services = require('./server/da31-services');
+var awsServices = require('./server/aws-services');
+
+
 
 var express = require('express');
 var bodyParser = require('body-parser');
@@ -98,10 +101,6 @@ app.post('/upload', function(req, res){
   form.multiples = true;
 
   // store all uploads in the /uploads directory
-
-console.log("directory");
-console.log(__dirname);
-
   form.uploadDir = path.join(__dirname, '/uploads');
 
   // every time a file has been uploaded successfully,

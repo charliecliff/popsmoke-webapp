@@ -1,4 +1,4 @@
-var awsServices = require('./server/aws-services');
+var awsServices = require('./aws-services');
 var formidable  = require('formidable');
 var fs          = require('fs');
 var express     = require('express');

@@ -1,4 +1,3 @@
-var awsServices 		= require('./server/aws-services');
 var da31Services 		= require('./server/da31-services');
 var fileServices 		= require('./server/file-services');
 var holidayServices = require('./server/holiday-services');

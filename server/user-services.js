@@ -31,7 +31,7 @@ exports.getUserFromAmazonDynamo = function(res, userID) {
 exports.getUserFromAmazonDynamoWithPhoneNumber = function(phoneNumber, callback) {
   console.log("getUserFromAmazonDynamo");
   console.log(phoneNumber);
-  var self = this;
+
   AWS.config.update({ accessKeyId: "AKIAIDMIESKUD4F657BQ", 
                       secretAccessKey: "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",
                       region:'us-east-1'});      
@@ -51,7 +51,7 @@ exports.getUserFromAmazonDynamoWithPhoneNumber = function(phoneNumber, callback)
     } else if (data == undefined) {
       callback({error: "OH SNAP"});
     } else {
-      var user = self.buildModelFromAWSMap(data);
+      var user = buildModelFromAWSMap(data);
       callback(null, user);
     }
   });
@@ -185,7 +185,9 @@ exports.buildAWSMapFromUser = function(user) {
   return buildModelFromUserRequestBody(user);
 }
 
-exports.buildModelFromAWSMap = function(map) {
+function buildModelFromAWSMap(map) {
+  console.log("buildModelFromAWSMap");
+  console.log("fucking map: " + map);
   var outputModel = new Object();
   var itemMap        = map.Item;
   var userID         = itemMap.userID.S;

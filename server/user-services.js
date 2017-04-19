@@ -42,6 +42,10 @@ exports.getUserFromAmazonDynamoWithPhoneNumber = function(phoneNumber, callback)
 
   var params = { Key: outputMap, TableName: "popsmoke-users"};
   dynamodb.getItem(params, function(err, data) {
+
+    console.log("fucking output");
+    console.log("date: " + data);
+    console.log("error: "+ err);
     if (err) {
       callback(err);
     } else if (data == undefined) {

@@ -5,7 +5,7 @@ var exports = module.exports = {};
 
 exports.getUserFromAmazonDynamo = function(res, userID) {
   console.log("getUserFromAmazonDynamo");
-  var self = this;
+
   AWS.config.update({ accessKeyId: "AKIAIDMIESKUD4F657BQ", 
                       secretAccessKey: "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",
                       region:'us-east-1'});      
@@ -21,7 +21,7 @@ exports.getUserFromAmazonDynamo = function(res, userID) {
       console.log("error\n" + err);
       res.status(err.statusCode).send("Problem with AWS");
     } else {
-      var userModel = self.buildModelFromAWSMap(data);
+      var userModel = buildModelFromAWSMap(data);
       res.send( {User: userModel} );
     }
   });
@@ -62,7 +62,7 @@ exports.postUserToAmazonDynamoTEST = function(user, callback) {
                       region:'us-east-1'});      
   var dynamodb = new AWS.DynamoDB({apiVersion: '2012-08-10'});
 
-  var userMap = this.buildAWSMapFromUser(user);
+  var userMap = buildAWSMapFromUser(user);
   var params = { Item: userMap,
                  ReturnConsumedCapacity: "TOTAL", 
                  TableName: "popsmoke-users"
@@ -83,8 +83,8 @@ exports.postUserToAmazonDynamo = function(req, res) {
                       region:'us-east-1'});      
   var dynamodb = new AWS.DynamoDB({apiVersion: '2012-08-10'});
 
-  var userMap = this.buildAWSMapFromUserRequestBody(req.body);
-  var userModel = this.buildModelFromUserRequestBody(req.body);
+  var userMap   = buildAWSMapFromUserRequestBody(req.body);
+  var userModel = buildModelFromUserRequestBody(req.body);
   var params = { Item: userMap,
                  ReturnConsumedCapacity: "TOTAL", 
                  TableName: "popsmoke-users"
@@ -156,7 +156,7 @@ exports.createUserWithPhoneNumber = function(phoneNumber) {
 
 */
 
-exports.buildAWSMapFromUserRequestBody = function(requestBody) {
+function buildAWSMapFromUserRequestBody(requestBody) {
   var outputMap = new Map();
   if ( requestBody.hasOwnProperty("userID") ) {
     outputMap["userID"] = { S: requestBody["userID"] };
@@ -173,7 +173,7 @@ exports.buildAWSMapFromUserRequestBody = function(requestBody) {
   return outputMap;
 }
 
-exports.buildModelFromUserRequestBody = function(requestBody) {
+function buildModelFromUserRequestBody(requestBody) {
   var outputModel = new Object();
   if ( requestBody.hasOwnProperty("userID") ) {
     outputModel.userID = requestBody["userID"];
@@ -181,14 +181,14 @@ exports.buildModelFromUserRequestBody = function(requestBody) {
   return outputModel;
 }
 
-exports.buildAWSMapFromUser = function(user) {
+function buildAWSMapFromUser(user) {
   return buildModelFromUserRequestBody(user);
 }
 
 function buildModelFromAWSMap(map) {
   console.log("buildModelFromAWSMap");
   console.log("fucking map: " + JSON.stringify(map) );
-  var outputModel = new Object();
+  var outputModel    = new Object();
   var itemMap        = map.Item;
   var userID         = itemMap.userID.S;
   outputModel.userID = userID;

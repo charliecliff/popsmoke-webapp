@@ -30,6 +30,7 @@ exports.getUserFromAmazonDynamo = function(res, userID) {
 
 exports.getUserFromAmazonDynamoWithPhoneNumber = function(phoneNumber, callback) {
   console.log("getUserFromAmazonDynamo");
+  console.log(phoneNumber);
   var self = this;
   AWS.config.update({ accessKeyId: "AKIAIDMIESKUD4F657BQ", 
                       secretAccessKey: "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",

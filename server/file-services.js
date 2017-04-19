@@ -6,7 +6,9 @@ var path        = require('path');
 
 var exports = module.exports = {};
 
+// This works because we're not doing anything with the ID right now
 exports.parseFileWithIDFromUploadRequest = function(req, id, callback) {
+
   var form = new formidable.IncomingForm();
   form.multiples = true;
   form.uploadDir = 'public/uploads';

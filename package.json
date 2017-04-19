@@ -41,6 +41,7 @@
     "pdffiller": "^0.0.10",
     "rxjs": "5.0.1",
     "sw-toolbox": "^3.4.0",
+    "twilio": "2.11.1",
     "zone.js": "0.7.2"
   },
   "devDependencies": {

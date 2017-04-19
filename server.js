@@ -1,6 +1,7 @@
 var da31Services 		= require('./server/da31-services');
 var fileServices 		= require('./server/file-services');
 var holidayServices = require('./server/holiday-services');
+var twilioServices  = require('./server/twilio-services');
 var userServices 		= require('./server/user-services');
 var express 				= require('express');
 var bodyParser 			= require('body-parser');
@@ -76,13 +77,10 @@ app.post("/packet/:id/da31/create", function(req, res) {
 });
 
 // GET DL Image /user/driverslicense/:id
-// POST DL Image /user/driverslicense/:id
 // DELETE DL Image /user/driverslicense/:id
-// GET Insurance Image /user/proofofinsurance/:id
-// POST Insurance Image /user/proofofinsurance/:id
-// DELETE Insurance Image /user/proofofinsurance/:id
-
+// POST DL Image /user/driverslicense/:id
 app.post('/upload', function(req, res){
+// app.post('/user/driverslicense/:id', function(req, res){
 	fileServices.parseFileWithIDFromUploadRequest(req, 
 																								req.params.id, 
 																								function(err, awsURL) {
@@ -95,16 +93,15 @@ app.post('/upload', function(req, res){
 	});
 });
 
-// app.post('/user/driverslicense/:id', function(req, res){
-// 	console.log("/user/driverslicense");
-// 	fileServices.parseFileWithIDFromUploadRequest(req, req.params.id, (error, awsURL) {
-//   	if (err) {
-//   		res.send(err);
-//   	} else {
-//   		res.send(awsURL);
-//   	}
-// 	});
-// });
+// GET Insurance Image /user/proofofinsurance/:id
+// POST Insurance Image /user/proofofinsurance/:id
+// DELETE Insurance Image /user/proofofinsurance/:id
+
+// POST call to get API Text Code
+app.post("/sendText", function(req, res) {
+  da31Services.postDA31FileToAmazonS3(req, res);
+});
+
 
 // TODO: Extract these into their files or modules
 function handleError(res, reason, message, code) {

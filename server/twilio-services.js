@@ -13,6 +13,7 @@ var client = new twilio.RestClient(accountSid, authToken);
 exports.sendAuthenticationShortCode = function(phoneNumber, callback) {
   console.log("sendAuthenticationShortCode");
   console.log(phoneNumber);
+
   userServices.getUserFromAmazonDynamoWithPhoneNumber(phoneNumber, (err, user) => {
     if (err){
       user = userServices.createUserWithPhoneNumber(phoneNumber);
@@ -20,8 +21,6 @@ exports.sendAuthenticationShortCode = function(phoneNumber, callback) {
     user["password"] = newAuthenticationShortCode();
     userServices.postUserToAmazonDynamoTEST(user);
     sendTestMessage();
-
-    callback(err);
   });
 }
 

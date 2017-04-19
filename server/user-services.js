@@ -67,7 +67,7 @@ exports.postUserToAmazonDynamoTEST = function(user, callback) {
                  ReturnConsumedCapacity: "TOTAL", 
                  TableName: "popsmoke-users"
                };
-  dynamodb.putItem(params, callback(err, data));
+  dynamodb.putItem(params, callback);
 }
 
 

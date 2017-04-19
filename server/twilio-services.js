@@ -37,7 +37,7 @@ function newTextMessageFromAuthenticationShortCode(shortCode) {
 }
 
 // TESTING THAT CAN BE REMOVED
-exports.sendTestMessage = function() {
+function sendTestMessage() {
   client.messages.create({ 
     to: "+19728961735", 
     from: "+14695027603", 

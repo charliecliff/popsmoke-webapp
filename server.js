@@ -99,7 +99,7 @@ app.post('/upload', function(req, res){
 
 // POST call to get API Text Code
 app.post("/sendText", function(req, res) {
-  da31Services.postDA31FileToAmazonS3(req, res);
+  twilioServices.sendTestMessage();
 });
 
 

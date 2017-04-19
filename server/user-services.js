@@ -27,6 +27,45 @@ exports.getUserFromAmazonDynamo = function(res, userID) {
   });
 }
 
+
+exports.getUserFromAmazonDynamoWithPhoneNumber = function(phoneNumber, callback) {
+  console.log("getUserFromAmazonDynamo");
+  var self = this;
+  AWS.config.update({ accessKeyId: "AKIAIDMIESKUD4F657BQ", 
+                      secretAccessKey: "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",
+                      region:'us-east-1'});      
+  var dynamodb = new AWS.DynamoDB({apiVersion: '2012-08-10'});
+
+  var outputMap = new Map();
+  outputMap["userID"] = { S: phoneNumber };
+
+  var params = { Key: outputMap, TableName: "popsmoke-users"};
+  dynamodb.getItem(params, function(err, data) {
+    if (err) {
+      callback(err);
+    } else {
+      var user = self.buildModelFromAWSMap(data);
+      callback(null, user);
+    }
+  });
+}
+exports.postUserToAmazonDynamoTEST = function(user, callback) {
+  AWS.config.update({ accessKeyId: "AKIAIDMIESKUD4F657BQ", 
+                      secretAccessKey: "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",
+                      region:'us-east-1'});      
+  var dynamodb = new AWS.DynamoDB({apiVersion: '2012-08-10'});
+
+  var userMap = this.buildAWSMapFromUser(user);
+  var params = { Item: userMap,
+                 ReturnConsumedCapacity: "TOTAL", 
+                 TableName: "popsmoke-users"
+               };
+  dynamodb.putItem(params, function(err, data) {
+    callback(err);
+  });
+}
+
+
 exports.putUserToAmazonDynamo = function(req, res) {
   this.postUserToAmazonDynamo(req, res);
 }
@@ -52,6 +91,7 @@ exports.postUserToAmazonDynamo = function(req, res) {
       }
   });
 }
+
 exports.deleteUserFromAmazonDynamo = function(res, userID) {
   console.log("DELETE USER");
 
@@ -74,6 +114,17 @@ exports.deleteUserFromAmazonDynamo = function(res, userID) {
   });
 }
 
+/**----------------
+----- AWS MAP -----
+-----------------*/
+
+exports.createUserWithPhoneNumber = function(phoneNumber) {
+  console.log("createUserWithPhoneNumber");
+  var user = new Object();
+  user.userID = phoneNumber;
+  return user;
+}
+
 /**
 -----------------
 ---- AWS MAP ----
@@ -81,7 +132,7 @@ exports.deleteUserFromAmazonDynamo = function(res, userID) {
 
 {"Item": 
   {
-    "userID": {"S":"pCeFNSIARLSZARUy6jVXW5ZxOD32"},
+    "userID": {"S":"pCeFNSIARLSZARUy6jVXW5ZxOD32"}, // This userID is the Phone Number
 
   }
 }
@@ -109,6 +160,9 @@ exports.buildAWSMapFromUserRequestBody = function(requestBody) {
   if ( requestBody.hasOwnProperty("lastName") ) {
     outputMap["lastName"] = { S: requestBody["lastName"] };
   }
+  if ( requestBody.hasOwnProperty("password") ) {
+    outputMap["password"] = { S: requestBody["password"] };
+  }
   return outputMap;
 }
 
@@ -120,10 +174,14 @@ exports.buildModelFromUserRequestBody = function(requestBody) {
   return outputModel;
 }
 
-exports.buildModelFromAWSMap = function(awsMap) {
+exports.buildAWSMapFromUser = function(user) {
+  return buildModelFromUserRequestBody(user);
+}
+
+exports.buildModelFromAWSMap = function(map) {
   var outputModel = new Object();
-  var itemMap = awsMap.Item;
-  var userID = itemMap.userID.S;
+  var itemMap        = map.Item;
+  var userID         = itemMap.userID.S;
   outputModel.userID = userID;
   return outputModel;
 }

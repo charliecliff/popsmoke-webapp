@@ -12,8 +12,8 @@ export class User {
 
   constructor(data = {}) {
   	this.userID = data["userID"];
-  	this.firstName = data["firstName"];
-    this.lastName = data["lastName"];
+  	this.firstName  = data["firstName"];
+    this.lastName   = data["lastName"];
 
     this.personalInfo = new PersonalInfo({ "firstName": "FIRST NAME",
     																			 "lastName": " ",

@@ -47,6 +47,22 @@ app.use(function(req, res, next) {
   next();
 });
 
+// Login With Phone Number Endpoints
+app.get("/shortcode/:phoneNumber", function(req, res) {
+  console.log("GET - /shortcode/:phoneNumber");
+  phoneNumber = req.params.phoneNumber;
+  twilioServices.sendAuthenticationShortCode(phoneNumber, (err) => {
+    if (err){
+      res.status(500).send("Problem with twilioServices");
+    }
+    res.status(200);
+  });
+});
+
+app.post("/login/:phoneNumber/:shortcode", function(req, res) {
+
+});
+
 // User Endpoints
 app.get("/user/:id", function(req, res) {
 	userServices.getUserFromAmazonDynamo(res, req.params.id);
@@ -64,6 +80,7 @@ app.delete("/user/:id", function(req, res) {
 app.get("/holidays", function(req, res) {
 	holidayServices.getHolidaysFromAmazonDynamo(req, res);
 });
+
 // Packet Endpoints
 // GET packet/:packetid
 // POST packet/:packetid

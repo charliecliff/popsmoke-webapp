@@ -1,4 +1,5 @@
-var express = require('express');
+var express       = require('express');
+var userServices  = require('./user-services');
 
 var exports = module.exports = {};
 
@@ -6,12 +7,35 @@ var exports = module.exports = {};
 var accountSid = 'AC21b8290923be5bd38d4a216aaceba567'; 
 var authToken = 'b306cd858751dfd31fe86b113d373d45'; 
  
-//require the Twilio module and create a REST client 
 var twilio = require('twilio');
 var client = new twilio.RestClient(accountSid, authToken);
 
+exports.sendAuthenticationShortCode = function(phoneNumber, callback) {
+  userServices.getUserFromAmazonDynamoWithPhoneNumber(phoneNumber, (err, user) => {
+    if (err){
+      user = userServices.createUserWithPhoneNumber(phoneNumber);
+    }
+    user["password"] = newAuthenticationShortCode();
+    userServices.postUserToAmazonDynamoTEST(user);
+    sendTestMessage();
 
+    callback(err);
+  });
+}
 
+// TESTING Generating a New 
+
+function newAuthenticationShortCode() {
+  console.log("newTextMessageCode");
+  return "444444";
+}
+
+function newTextMessageFromAuthenticationShortCode(shortCode) {
+  console.log("newTextMessageFromAuthenticationShortCode");
+  return shortCode;
+}
+
+// TESTING THAT CAN BE REMOVED
 exports.sendTestMessage = function() {
   client.messages.create({ 
     to: "+19728961735", 

@@ -48,7 +48,7 @@ exports.getUserFromAmazonDynamoWithPhoneNumber = function(phoneNumber, callback)
     console.log("error: "+ err);
     if (err) {
       callback(err);
-    } else if (data == undefined) {
+    } else if (data.hasOwnProperty("Item")) {
       callback({error: "OH SNAP"});
     } else {
       var user = buildModelFromAWSMap(data);

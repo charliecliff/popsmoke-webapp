@@ -44,7 +44,7 @@ exports.getUserFromAmazonDynamoWithPhoneNumber = function(phoneNumber, callback)
   dynamodb.getItem(params, function(err, data) {
 
     console.log("fucking output");
-    console.log("date: " + data);
+    console.log("date: " + JSON.stringify(data));
     console.log("error: "+ err);
     if (err) {
       callback(err);
@@ -187,7 +187,7 @@ exports.buildAWSMapFromUser = function(user) {
 
 function buildModelFromAWSMap(map) {
   console.log("buildModelFromAWSMap");
-  console.log("fucking map: " + map);
+  console.log("fucking map: " + JSON.stringify(map) );
   var outputModel = new Object();
   var itemMap        = map.Item;
   var userID         = itemMap.userID.S;

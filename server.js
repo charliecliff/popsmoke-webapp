@@ -48,9 +48,9 @@ app.use(function(req, res, next) {
 });
 
 // Login With Phone Number Endpoints
-app.post("/shortcode/:phoneNumber", function(req, res) {
+app.post("/shortcode", function(req, res) {
   console.log("POST - /shortcode");
-  phoneNumber = req.params.phoneNumber;
+  phoneNumber = "8888888888";
   twilioServices.sendAuthenticationShortCode(phoneNumber, (err) => {
     if (err){
       res.status(500).send("Problem with twilioServices");

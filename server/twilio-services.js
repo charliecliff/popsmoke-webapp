@@ -40,7 +40,6 @@ function setNewShortCodeForUser(err, user) {
      user = userServices.createUserWithPhoneNumber(phoneNumber);
   }
   user["password"] = newAuthenticationShortCode();
-  userServices.postUserToAmazonDynamoTEST(user, );
     
   sendTestMessage();
 }

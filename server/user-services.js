@@ -1,6 +1,7 @@
-var express   = require('express');
-var AWS       = require("aws-sdk");
-var fuckOffconfig = require("./config/aws-config");
+var express    = require('express');
+var AWS        = require("aws-sdk");
+var awsService = require("aws-service");
+var awsConfig  = require("./config/aws-config");
 
 var exports = module.exports = {};
 
@@ -31,16 +32,29 @@ exports.getUserFromAmazonDynamo = function(res, userID) {
 
 
 
-exports.getRegisteredUserWithPhoneNumber = function(phoneNumber, callback) {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+exports.getUserWithPhoneNumber = function(phoneNumber, callback) {
   console.log("getRegisteredUserWithPhoneNumber");
   console.log(phoneNumber);
 
   var dynamodb = newDynamoBD();
-
-  var outputMap = new Map();
-  outputMap["userID"] = { S: phoneNumber };
-
-  var params = { Key: outputMap, TableName: "popsmoke-users"};
+  var params   = awsService.userQueryParams(phoneNumber);
   dynamodb.getItem(params, function(err, data) {
 
     console.log("fucking output");
@@ -59,6 +73,51 @@ exports.getRegisteredUserWithPhoneNumber = function(phoneNumber, callback) {
     }
   });
 }
+
+
+exports.resetUserPasscode = function(user, callback) {
+
+
+  callback(null);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function registerUserWithPhoneNumber(phoneNumber, callback) {
   var user = createUserWithPhoneNumber(phoneNumber);
@@ -157,7 +216,7 @@ exports.deleteUserFromAmazonDynamo = function(res, userID) {
 
 
 function newDynamoBD() {
-  AWS.config.update({ accessKeyId: fuckOffconfig.SECRET_KEY,
+  AWS.config.update({ accessKeyId: awsConfig.SECRET_KEY,
                       secretAccessKey: awsConfig.ACCESS_ID,
                       region:'us-east-1'});      
   var dynamodb = new AWS.DynamoDB({apiVersion: '2012-08-10'});

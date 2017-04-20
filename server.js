@@ -52,7 +52,7 @@ app.post("/shortcode", function(req, res) {
   console.log("POST - /shortcode");
   phoneNumber = "8888888888";
 
-  userServices.getRegisteredUserWithPhoneNumber(phoneNumber, onGetRegiesteredUser);
+  userServices.getUserWithPhoneNumber(phoneNumber, onGetRegisteredUser);
   
   function onGetRegisteredUser(err, data) {
     console.log("onGetRegisteredUser");

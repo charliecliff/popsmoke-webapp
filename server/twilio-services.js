@@ -10,24 +10,33 @@ var authToken = 'b306cd858751dfd31fe86b113d373d45';
 var twilio = require('twilio');
 var client = new twilio.RestClient(accountSid, authToken);
 
-
-
-
-
-
-
-
-
-
+//------------------------------------------------------------------------------
+// PUBlIC INTERFACE
+//------------------------------------------------------------------------------
 exports.sendPassCodeMessage = function(user, callback) {
   console.log("sendPassCodeMessage");
   console.log("phoneNumber: " + user['userID']);
   console.log("pass code: "   + user['password']);
-  sendTestMessage();
+  
+  client.messages.create({ 
+    to: "+19728961735", 
+    from: "+14695027603", 
+    body: "This is the ship that made the Kessel Run in fourteen parsecs?", 
+  }, function(err, message) {
+    if (err) {
+      callback(err);
+      return; 
+    }
+    callback(null);
+  });
 }
-
-
-
+//------------------------------------------------------------------------------
+// MESSAGING HELPERS 
+//------------------------------------------------------------------------------
+function newTextMessageFromAuthenticationShortCode(shortCode) {
+  console.log("newTextMessageFromAuthenticationShortCode");
+  return shortCode;
+}
 
 
 
@@ -67,10 +76,7 @@ function newAuthenticationShortCode() {
   return "444444";
 }
 
-function newTextMessageFromAuthenticationShortCode(shortCode) {
-  console.log("newTextMessageFromAuthenticationShortCode");
-  return shortCode;
-}
+
 
 // TESTING THAT CAN BE REMOVED
 function sendTestMessage() {

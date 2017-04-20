@@ -265,12 +265,30 @@ function newDynamoBD() {
   return dynamodb;
 }
 
-function dynamoPostParamsForUserMap(map) {
+function dynamoPostParamsForUser(user) {
+  var map = awsMapFromUser(user);
   var params = { Item: map,
                  ReturnConsumedCapacity: "TOTAL", 
                  TableName: "popsmoke-users"
                };
   return params;
+}
+
+function awsMapFromUser(user) {
+  var outputMap = new Map();
+  if ( requestBody.hasOwnProperty("userID") ) {
+    outputMap["userID"] = { S: user["userID"] };
+  }
+  if ( requestBody.hasOwnProperty("firstName") ) {
+    outputMap["firstName"] = { S: user["firstName"] };
+  }
+  if ( requestBody.hasOwnProperty("lastName") ) {
+    outputMap["lastName"] = { S: user["lastName"] };
+  }
+  if ( requestBody.hasOwnProperty("password") ) {
+    outputMap["password"] = { S: user["password"] };
+  }
+  return outputMap;
 }
 
 /**----------------
@@ -301,23 +319,6 @@ function dynamoPostParamsForUserMap(map) {
 }
 
 */
-
-function buildAWSMapFromUserRequestBody(requestBody) {
-  var outputMap = new Map();
-  if ( requestBody.hasOwnProperty("userID") ) {
-    outputMap["userID"] = { S: requestBody["userID"] };
-  }
-  if ( requestBody.hasOwnProperty("firstName") ) {
-    outputMap["firstName"] = { S: requestBody["firstName"] };
-  }
-  if ( requestBody.hasOwnProperty("lastName") ) {
-    outputMap["lastName"] = { S: requestBody["lastName"] };
-  }
-  if ( requestBody.hasOwnProperty("password") ) {
-    outputMap["password"] = { S: requestBody["password"] };
-  }
-  return outputMap;
-}
 
 function buildModelFromUserRequestBody(requestBody) {
   var outputModel = new Object();

@@ -74,10 +74,19 @@ exports.getUserWithPhoneNumber = function(phoneNumber, callback) {
   });
 }
 
+exports.postUserToDatabase = function(user, callback) {
+  var dynamodb = newDynamoBD();
+  var userMap  = buildAWSMapFromUser(user);
+  var params   = dynamoPostParamsForUserMap(userMap);
+  dynamodb.putItem(params, callback);
+}
+
+// HELPER FUNCTIONS
+
 function registerUserWithPhoneNumber(phoneNumber, callback) {
   console.log("registerUserWithPhoneNumber");
   var user = createUserWithPhoneNumber(phoneNumber);
-  postUserToDatabase(user, callback);
+  userService.postUserToDatabase(user, callback);
 }
 
 function createUserWithPhoneNumber(phoneNumber) {
@@ -158,14 +167,6 @@ exports.getUserFromAmazonDynamoWithPhoneNumber = function(phoneNumber, callback)
   });
 }
 
-
-
-exports.postUserToDatabase = function(user, callback) {
-  var dynamodb = newDynamoBD();
-  var userMap  = buildAWSMapFromUser(user);
-  var params   = dynamoPostParamsForUserMap(userMap);
-  dynamodb.putItem(params, callback);
-}
 
 
 

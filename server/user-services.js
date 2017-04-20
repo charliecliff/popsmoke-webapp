@@ -146,6 +146,9 @@ function dynamoPostParamsForUser(user) {
 }
 
 function awsMapFromUser(user) {
+  console.log("awsMapFromUser");
+  console.log("user: " + JSON.stringify(user));
+
   var outputMap = new Map();
   if ( user.hasOwnProperty("userID") ) {
     outputMap["userID"] = { S: user["userID"] };

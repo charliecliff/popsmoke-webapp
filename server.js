@@ -48,33 +48,28 @@ app.use(function(req, res, next) {
 });
 
 // Login With Phone Number Endpoints
-app.post("/shortcode", function(req, res) {
+app.post("/shortcode/:phoneNumber", function(req, res) {
   console.log("POST - /shortcode");
-  phoneNumber = "8888888888";
+  phoneNumber = req.params.phoneNumber;
 
   userServices.getUserWithPhoneNumber(phoneNumber, onGetUser);
   function onGetUser(err, user) {
-    console.log("onGetRegisteredUser");
     if (err) return res.status(500).send(err);
     twilioServices.resetPassCodeForUser(user, onResetPasscode);
   }
   function onResetPasscode(err, user) {
-    console.log("onResetUserPasscode");
     if (err) return res.status(500).send(err);
     userServices.postUser(user, onPostUser);
   }
   function onPostUser(err, user) {
-    console.log("onPostUser");
     if (err) return res.status(500).send(err);
     twilioServices.sendPassCodeMessage(user, onSendPassCodeMesage);
   }
   function onSendPassCodeMesage(err, user) {
-    console.log("onSendPassCode");
     if (err) return res.status(500).send(err);
     return res.status(200).send({message: "Pass Code is on it's way"});
   }
 });
-
 
 app.post("/login/:phoneNumber/:shortcode", function(req, res) {
 

@@ -70,6 +70,7 @@ exports.getUserFromAmazonDynamo = function(res, userID) {
 //------------------------------------------------------------------------------
 // PUBlIC INTERFACE
 //------------------------------------------------------------------------------
+
 exports.getUserWithPhoneNumber = function(phoneNumber, callback) {
   console.log("getUserWithPhoneNumber");
   var dynamodb = awsService.newDynamoBD();
@@ -98,11 +99,6 @@ exports.deleteUser = function(user, callback) {
 
 }
 
-// exports.resetUserPasscode = function(user, callback) {
-//   console.log("resetUserPasscode");
-//   user["password"] = newPassCode();
-//   callback(null, user);
-// }
 //------------------------------------------------------------------------------
 // HELPER FUNCTIONS
 //------------------------------------------------------------------------------
@@ -124,11 +120,6 @@ function insertUserIntoDatabase(user, callback) {
   console.log("params: " + JSON.stringify(params));
 
   dynamodb.putItem(params, callback);
-}
-
-function newPassCode() {
-  console.log("newTextMessageCode");
-  return "444444";
 }
 
 //------------------------------------------------------------------------------

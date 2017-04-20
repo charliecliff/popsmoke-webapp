@@ -13,6 +13,7 @@ var client = new twilio.RestClient(accountSid, authToken);
 //------------------------------------------------------------------------------
 // PUBlIC INTERFACE
 //------------------------------------------------------------------------------
+
 exports.sendPassCodeMessage = function(user, callback) {
   console.log("sendPassCodeMessage");
   console.log("phoneNumber: " + user['userID']);
@@ -30,21 +31,26 @@ exports.sendPassCodeMessage = function(user, callback) {
     callback(null);
   });
 }
+
 exports.resetPassCodeForUser = function(user, callback) {
   console.log("resetUserPasscode");
   user["password"] = newPassCode();
   callback(null, user);
 }
+
 //------------------------------------------------------------------------------
 // PASS CODE HELPERS 
 //------------------------------------------------------------------------------
+
 function newPassCode() {
   console.log("newTextMessageCode");
   return "444444";
 }
+
 //------------------------------------------------------------------------------
 // MESSAGING HELPERS 
 //------------------------------------------------------------------------------
+
 function newTextMessageFromAuthenticationShortCode(shortCode) {
   console.log("newTextMessageFromAuthenticationShortCode");
   return shortCode;

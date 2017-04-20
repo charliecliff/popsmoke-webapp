@@ -54,11 +54,27 @@ app.post("/shortcode", function(req, res) {
 
   userServices.getUserWithPhoneNumber(phoneNumber, onGetRegisteredUser);
   
-  function onGetRegisteredUser(err, data) {
+  function onGetRegisteredUser(err, user) {
     console.log("onGetRegisteredUser");
-    if (err) return res.status(500).send(err)
-    // userServices.resetUserPasscode(data, onResetUserPasscode)
+    if (err) return res.status(500).send(err);
+    userServices.resetUserPasscode(user, onResetUserPasscode);
   }
+  function onResetUserPasscode(err, user) {
+    console.log("onResetUserPasscode");
+    if (err) return res.status(500).send(err);
+    userServices.postUser(user, onPostUser);
+  }
+  function onPostUser(err, user) {
+    console.log("onPostUser");
+    if (err) return res.status(500).send(err);
+    twilioServices.sendPassCodeMessage(user, onPostUser);
+  }
+  function onPostUser(err, user) {
+    console.log("onPostUser");
+    if (err) return res.status(500).send(err);
+
+  }
+
 
 
 });

@@ -51,16 +51,9 @@ exports.getUserFromAmazonDynamo = function(res, userID) {
 
 exports.getUserWithPhoneNumber = function(phoneNumber, callback) {
   console.log("getUserWithPhoneNumber");
-  console.log(phoneNumber);
-
   var dynamodb = newDynamoBD();
   var params   = awsService.userQueryParams(phoneNumber);
   dynamodb.getItem(params, function(err, data) {
-
-    console.log("fucking output");
-    console.log("data: " + JSON.stringify(data));
-    console.log("error: "+ err);
-    
     if (err) {
       callback(err);
       return;
@@ -74,20 +67,24 @@ exports.getUserWithPhoneNumber = function(phoneNumber, callback) {
   });
 }
 
-exports.postUserToDatabase = function(user, callback) {
+exports.postUser = function(user, callback) {
+  console.log("postUserToDatabase");
   insertUserIntoDatabase(user, callback);
 }
 
+exports.resetUserPasscode = function(user, callback) {
+  console.log("resetUserPasscode");
+  user["password"] = newPassCode();
+  callback(null, user);
+}
 // HELPER FUNCTIONS
 
 function registerUserWithPhoneNumber(phoneNumber, callback) {
-  console.log("registerUserWithPhoneNumber");
   var user = createUserWithPhoneNumber(phoneNumber);
   insertUserIntoDatabase(user, callback);
 }
 
 function createUserWithPhoneNumber(phoneNumber) {
-  console.log("createUserWithPhoneNumber");
   var user = new Object();
   user.userID = phoneNumber;
   return user;
@@ -100,10 +97,9 @@ function insertUserIntoDatabase(user, callback) {
   dynamodb.putItem(params, callback);
 }
 
-exports.resetUserPasscode = function(user, callback) {
-
-
-  callback(null);
+function newPassCode() {
+  console.log("newTextMessageCode");
+  return "444444";
 }
 
 

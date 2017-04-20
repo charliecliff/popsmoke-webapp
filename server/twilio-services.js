@@ -10,6 +10,29 @@ var authToken = 'b306cd858751dfd31fe86b113d373d45';
 var twilio = require('twilio');
 var client = new twilio.RestClient(accountSid, authToken);
 
+
+
+
+
+
+
+
+
+
+exports.sendPassCodeMessage = function(user, callback) {
+  console.log("sendPassCodeMessage");
+  console.log("phoneNumber: " + user['userID']);
+  console.log("pass code: "   + user['password']);
+  sendTestMessage();
+}
+
+
+
+
+
+
+
+
 exports.sendAuthenticationShortCode = function(phoneNumber, callback) {
   
   console.log("sendAuthenticationShortCode");

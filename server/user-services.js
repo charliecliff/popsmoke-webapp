@@ -52,7 +52,7 @@ exports.getRegisteredUserWithPhoneNumber = function(phoneNumber, callback) {
       return;
     }
     if (!data.hasOwnProperty("Item")) {
-      registerUserWithPhoneNumber(phoneNumber, callback)
+      registerUserWithPhoneNumber(phoneNumber, callback);
     } else {
       var user = buildModelFromAWSMap(data);
       callback(null, user);
@@ -62,8 +62,10 @@ exports.getRegisteredUserWithPhoneNumber = function(phoneNumber, callback) {
 
 function registerUserWithPhoneNumber(phoneNumber, callback) {
   var user = createUserWithPhoneNumber(phoneNumber);
-  postUserToAmazonDynamoTEST(user, callback);
+  postUserToDatabase(user, callback);
 }
+
+
 
 exports.getUserFromAmazonDynamoWithPhoneNumber = function(phoneNumber, callback) {
   console.log("getUserFromAmazonDynamo");
@@ -96,7 +98,7 @@ exports.getUserFromAmazonDynamoWithPhoneNumber = function(phoneNumber, callback)
 
 
 
-exports.postUserToAmazonDynamoTEST = function(user, callback) {
+exports.postUserToDatabase = function(user, callback) {
   var dynamodb = newDynamoBD();
   var userMap  = buildAWSMapFromUser(user);
   var params   = dynamoPostParamsForUserMap(userMap);
@@ -105,9 +107,9 @@ exports.postUserToAmazonDynamoTEST = function(user, callback) {
 
 
 
-exports.putUserToAmazonDynamo = function(req, res) {
-  this.postUserToAmazonDynamo(req, res);
-}
+// exports.putUserToAmazonDynamo = function(req, res) {
+//   this.postUserToAmazonDynamo(req, res);
+// }
 
 exports.postUserToAmazonDynamo = function(req, res) {
   AWS.config.update({ accessKeyId: "AKIAIDMIESKUD4F657BQ", 

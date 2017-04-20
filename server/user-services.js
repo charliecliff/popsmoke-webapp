@@ -49,6 +49,29 @@ exports.getUserFromAmazonDynamo = function(res, userID) {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 exports.getUserWithPhoneNumber = function(phoneNumber, callback) {
   console.log("getUserWithPhoneNumber");
   var dynamodb = newDynamoBD();
@@ -94,6 +117,10 @@ function insertUserIntoDatabase(user, callback) {
   var dynamodb = newDynamoBD();
   var userMap  = buildAWSMapFromUser(user);
   var params   = dynamoPostParamsForUserMap(userMap);
+
+  console.log("userMap: " + userMap);
+  console.log("params: " + params);
+
   dynamodb.putItem(params, callback);
 }
 
@@ -101,6 +128,17 @@ function newPassCode() {
   console.log("newTextMessageCode");
   return "444444";
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -1,6 +1,6 @@
 var express   = require('express');
 var AWS       = require("aws-sdk");
-var awsConfig = require("./config/aws-config");
+var fuckOffconfig = require("./config/aws-config");
 
 var exports = module.exports = {};
 
@@ -157,7 +157,7 @@ exports.deleteUserFromAmazonDynamo = function(res, userID) {
 
 
 function newDynamoBD() {
-  AWS.config.update({ accessKeyId: awsConfig.SECRET_KEY,
+  AWS.config.update({ accessKeyId: fuckOffconfig.SECRET_KEY,
                       secretAccessKey: awsConfig.ACCESS_ID,
                       region:'us-east-1'});      
   var dynamodb = new AWS.DynamoDB({apiVersion: '2012-08-10'});

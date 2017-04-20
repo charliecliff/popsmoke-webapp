@@ -36,12 +36,7 @@ function assignNewShortCodeToUser(err, user, callback) {
 // };
 
 function setNewShortCodeForUser(err, user) {
-  if (err){
-     user = userServices.createUserWithPhoneNumber(phoneNumber);
-  }
-  user["password"] = newAuthenticationShortCode();
-    
-  sendTestMessage();
+
 }
 
 function newAuthenticationShortCode() {

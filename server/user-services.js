@@ -35,7 +35,7 @@ exports.getRegisteredUserWithPhoneNumber = function(phoneNumber, callback) {
   console.log("getRegisteredUserWithPhoneNumber");
   console.log(phoneNumber);
 
-    var dynamodb = newDynamoBD();
+  var dynamodb = newDynamoBD();
 
   var outputMap = new Map();
   outputMap["userID"] = { S: phoneNumber };

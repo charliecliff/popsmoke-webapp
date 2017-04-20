@@ -1,6 +1,6 @@
 var express    = require('express');
 var AWS        = require("aws-sdk");
-var awsService = require("aws-services");
+var awsService = require("./aws-services");
 var awsConfig  = require("./config/aws-config");
 
 var exports = module.exports = {};

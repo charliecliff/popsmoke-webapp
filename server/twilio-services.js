@@ -11,20 +11,39 @@ var twilio = require('twilio');
 var client = new twilio.RestClient(accountSid, authToken);
 
 exports.sendAuthenticationShortCode = function(phoneNumber, callback) {
+  
   console.log("sendAuthenticationShortCode");
   console.log(phoneNumber);
 
-  userServices.getUserFromAmazonDynamoWithPhoneNumber(phoneNumber, (err, user) => {
+  // var sendSMSCallback = sendTestMessage(callback);
+  
+  var assignShortCodeCallback = assignNewShortCodeToUser(err, user)
+  
+  userServices.getRegisteredUserWithPhoneNumber(phoneNumber, assignNewShortCodeToUser);
+}
+
+function assignNewShortCodeToUser(err, user, callback) {
     if (err){
       user = userServices.createUserWithPhoneNumber(phoneNumber);
     }
     user["password"] = newAuthenticationShortCode();
-    userServices.postUserToAmazonDynamoTEST(user);
-    sendTestMessage();
-  });
+    userServices.postUserToAmazonDynamoTEST(user, callback);
 }
 
-// TESTING Generating a New 
+// var myCallback = function(err, data) {
+//   if (err) throw err; // Check for the error and throw if it exists.
+//   console.log('got data: '+data); // Otherwise proceed as usual.
+// };
+
+function setNewShortCodeForUser(err, user) {
+  if (err){
+     user = userServices.createUserWithPhoneNumber(phoneNumber);
+  }
+  user["password"] = newAuthenticationShortCode();
+  userServices.postUserToAmazonDynamoTEST(user, );
+    
+  sendTestMessage();
+}
 
 function newAuthenticationShortCode() {
   console.log("newTextMessageCode");

@@ -1,5 +1,6 @@
-var express = require('express');
-var AWS = require("aws-sdk");
+var express   = require('express');
+var AWS       = require("aws-sdk");
+var awsConfig = require("./config/aws-config");
 
 var exports = module.exports = {};
 
@@ -28,14 +29,13 @@ exports.getUserFromAmazonDynamo = function(res, userID) {
 }
 
 
-exports.getUserFromAmazonDynamoWithPhoneNumber = function(phoneNumber, callback) {
-  console.log("getUserFromAmazonDynamo");
+
+
+exports.getRegisteredUserWithPhoneNumber = function(phoneNumber, callback) {
+  console.log("getRegisteredUserWithPhoneNumber");
   console.log(phoneNumber);
 
-  AWS.config.update({ accessKeyId: "AKIAIDMIESKUD4F657BQ", 
-                      secretAccessKey: "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",
-                      region:'us-east-1'});      
-  var dynamodb = new AWS.DynamoDB({apiVersion: '2012-08-10'});
+    var dynamodb = newDynamoBD();
 
   var outputMap = new Map();
   outputMap["userID"] = { S: phoneNumber };
@@ -46,29 +46,63 @@ exports.getUserFromAmazonDynamoWithPhoneNumber = function(phoneNumber, callback)
     console.log("fucking output");
     console.log("date: " + JSON.stringify(data));
     console.log("error: "+ err);
+    
     if (err) {
       callback(err);
-    } else if (!data.hasOwnProperty("Item")) {
-      callback({error: "OH SNAP"});
+      return;
+    }
+    if (!data.hasOwnProperty("Item")) {
+      registerUserWithPhoneNumber(phoneNumber, callback)
     } else {
       var user = buildModelFromAWSMap(data);
       callback(null, user);
     }
   });
 }
-exports.postUserToAmazonDynamoTEST = function(user, callback) {
-  AWS.config.update({ accessKeyId: "AKIAIDMIESKUD4F657BQ", 
-                      secretAccessKey: "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",
-                      region:'us-east-1'});      
-  var dynamodb = new AWS.DynamoDB({apiVersion: '2012-08-10'});
 
-  var userMap = buildAWSMapFromUser(user);
-  var params = { Item: userMap,
-                 ReturnConsumedCapacity: "TOTAL", 
-                 TableName: "popsmoke-users"
-               };
+function registerUserWithPhoneNumber(phoneNumber, callback) {
+  var user = createUserWithPhoneNumber(phoneNumber);
+  postUserToAmazonDynamoTEST(user, callback);
+}
+
+exports.getUserFromAmazonDynamoWithPhoneNumber = function(phoneNumber, callback) {
+  console.log("getUserFromAmazonDynamo");
+  console.log(phoneNumber);
+
+  var dynamodb = newDynamoBD();
+
+  var outputMap = new Map();
+  outputMap["userID"] = { S: phoneNumber };
+
+  var params = { Key: outputMap, TableName: "popsmoke-users"};
+  dynamodb.getItem(params, function(err, data) {
+    console.log("fucking output");
+    console.log("date: " + JSON.stringify(data));
+    console.log("error: "+ err);
+    
+    if (err) {
+      callback(err);
+      return;
+    }
+    var user;
+    if (!data.hasOwnProperty("Item")) {
+      user = userServices.createUserWithPhoneNumber(phoneNumber);
+    } else {
+      user = buildModelFromAWSMap(data);
+    }
+    callback(null, user);
+  });
+}
+
+
+
+exports.postUserToAmazonDynamoTEST = function(user, callback) {
+  var dynamodb = newDynamoBD();
+  var userMap  = buildAWSMapFromUser(user);
+  var params   = dynamoPostParamsForUserMap(userMap);
   dynamodb.putItem(params, callback);
 }
+
 
 
 exports.putUserToAmazonDynamo = function(req, res) {
@@ -117,6 +151,23 @@ exports.deleteUserFromAmazonDynamo = function(res, userID) {
       res.send(data);
     }
   });
+}
+
+
+function newDynamoBD() {
+  AWS.config.update({ accessKeyId: awsConfig.SECRET_KEY,
+                      secretAccessKey: awsConfig.ACCESS_ID,
+                      region:'us-east-1'});      
+  var dynamodb = new AWS.DynamoDB({apiVersion: '2012-08-10'});
+  return dynamodb;
+}
+
+function dynamoPostParamsForUserMap(map) {
+  var params = { Item: map,
+                 ReturnConsumedCapacity: "TOTAL", 
+                 TableName: "popsmoke-users"
+               };
+  return params;
 }
 
 /**----------------

@@ -52,10 +52,12 @@ app.post("/shortcode", function(req, res) {
   console.log("POST - /shortcode");
   phoneNumber = "8888888888";
   twilioServices.sendAuthenticationShortCode(phoneNumber, (err) => {
+    
     if (err){
       res.status(500).send("Problem with twilioServices");
     }
     res.status(200);
+    
   });
   
 });

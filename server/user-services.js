@@ -115,10 +115,8 @@ function createUserWithPhoneNumber(phoneNumber) {
 
 function insertUserIntoDatabase(user, callback) {
   var dynamodb = newDynamoBD();
-  var userMap  = buildAWSMapFromUser(user);
-  var params   = dynamoPostParamsForUserMap(userMap);
+  var params   = dynamoPostParamsForUser(user);
 
-  console.log("userMap: " + JSON.stringify(userMap));
   console.log("params: " + JSON.stringify(params));
 
   dynamodb.putItem(params, callback);
@@ -129,7 +127,23 @@ function newPassCode() {
   return "444444";
 }
 
+//  AWS Helpers should not be in this service...
+function newDynamoBD() {
+  AWS.config.update({ accessKeyId: "AKIAIDMIESKUD4F657BQ",
+                      secretAccessKey: "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",
+                      region:'us-east-1'});      
+  var dynamodb = new AWS.DynamoDB({apiVersion: '2012-08-10'});
+  return dynamodb;
+}
 
+function dynamoPostParamsForUser(user) {
+  var map = awsMapFromUser(user);
+  var params = { Item: map,
+                 ReturnConsumedCapacity: "TOTAL", 
+                 TableName: "popsmoke-users"
+               };
+  return params;
+}
 
 
 
@@ -257,22 +271,7 @@ exports.deleteUserFromAmazonDynamo = function(res, userID) {
 }
 
 
-function newDynamoBD() {
-  AWS.config.update({ accessKeyId: "AKIAIDMIESKUD4F657BQ",
-                      secretAccessKey: "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",
-                      region:'us-east-1'});      
-  var dynamodb = new AWS.DynamoDB({apiVersion: '2012-08-10'});
-  return dynamodb;
-}
 
-function dynamoPostParamsForUser(user) {
-  var map = awsMapFromUser(user);
-  var params = { Item: map,
-                 ReturnConsumedCapacity: "TOTAL", 
-                 TableName: "popsmoke-users"
-               };
-  return params;
-}
 
 function awsMapFromUser(user) {
   var outputMap = new Map();

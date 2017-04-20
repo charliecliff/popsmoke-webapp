@@ -56,7 +56,7 @@ app.post("/shortcode", function(req, res) {
   function onGetUser(err, user) {
     console.log("onGetRegisteredUser");
     if (err) return res.status(500).send(err);
-    twilioServices.resetUserPasscode(user, onResetPasscode);
+    twilioServices.resetPassCodeForUser(user, onResetPasscode);
   }
   function onResetPasscode(err, user) {
     console.log("onResetUserPasscode");

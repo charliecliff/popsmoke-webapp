@@ -1,6 +1,6 @@
 var express    = require('express');
 var AWS        = require("aws-sdk");
-var awsService = require("aws-service");
+var awsService = require("aws-services");
 var awsConfig  = require("./config/aws-config");
 
 var exports = module.exports = {};
@@ -50,7 +50,7 @@ exports.getUserFromAmazonDynamo = function(res, userID) {
 
 
 exports.getUserWithPhoneNumber = function(phoneNumber, callback) {
-  console.log("getRegisteredUserWithPhoneNumber");
+  console.log("getUserWithPhoneNumber");
   console.log(phoneNumber);
 
   var dynamodb = newDynamoBD();

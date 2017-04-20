@@ -75,10 +75,7 @@ exports.getUserWithPhoneNumber = function(phoneNumber, callback) {
 }
 
 exports.postUserToDatabase = function(user, callback) {
-  var dynamodb = newDynamoBD();
-  var userMap  = buildAWSMapFromUser(user);
-  var params   = dynamoPostParamsForUserMap(userMap);
-  dynamodb.putItem(params, callback);
+  insertUserIntoDatabase(user, callback);
 }
 
 // HELPER FUNCTIONS
@@ -86,7 +83,7 @@ exports.postUserToDatabase = function(user, callback) {
 function registerUserWithPhoneNumber(phoneNumber, callback) {
   console.log("registerUserWithPhoneNumber");
   var user = createUserWithPhoneNumber(phoneNumber);
-  userService.postUserToDatabase(user, callback);
+  insertUserIntoDatabase(user, callback);
 }
 
 function createUserWithPhoneNumber(phoneNumber) {
@@ -94,6 +91,13 @@ function createUserWithPhoneNumber(phoneNumber) {
   var user = new Object();
   user.userID = phoneNumber;
   return user;
+}
+
+function insertUserIntoDatabase(user, callback) {
+  var dynamodb = newDynamoBD();
+  var userMap  = buildAWSMapFromUser(user);
+  var params   = dynamoPostParamsForUserMap(userMap);
+  dynamodb.putItem(params, callback);
 }
 
 exports.resetUserPasscode = function(user, callback) {

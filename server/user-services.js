@@ -5,68 +5,6 @@ var awsConfig  = require("./config/aws-config");
 
 var exports = module.exports = {};
 
-exports.getUserFromAmazonDynamo = function(res, userID) {
-  console.log("getUserFromAmazonDynamo");
-
-  AWS.config.update({ accessKeyId: "AKIAIDMIESKUD4F657BQ", 
-                      secretAccessKey: "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",
-                      region:'us-east-1'});      
-  var dynamodb = new AWS.DynamoDB({apiVersion: '2012-08-10'});
-
-  var outputMap = new Map();
-  outputMap["userID"] = { S: userID };
-
-  var params = { Key: outputMap, 
-                 TableName: "popsmoke-users"};
-  dynamodb.getItem(params, function(err, data) {
-    if (err) {
-      console.log("error\n" + err);
-      res.status(err.statusCode).send("Problem with AWS");
-    } else {
-      var userModel = buildModelFromAWSMap(data);
-      res.send( {User: userModel} );
-    }
-  });
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //------------------------------------------------------------------------------
 // PUBlIC INTERFACE
 //------------------------------------------------------------------------------
@@ -166,6 +104,30 @@ function insertUserIntoDatabase(user, callback) {
 
 
 
+
+exports.getUserFromAmazonDynamo = function(res, userID) {
+  console.log("getUserFromAmazonDynamo");
+
+  AWS.config.update({ accessKeyId: "AKIAIDMIESKUD4F657BQ", 
+                      secretAccessKey: "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",
+                      region:'us-east-1'});      
+  var dynamodb = new AWS.DynamoDB({apiVersion: '2012-08-10'});
+
+  var outputMap = new Map();
+  outputMap["userID"] = { S: userID };
+
+  var params = { Key: outputMap, 
+                 TableName: "popsmoke-users"};
+  dynamodb.getItem(params, function(err, data) {
+    if (err) {
+      console.log("error\n" + err);
+      res.status(err.statusCode).send("Problem with AWS");
+    } else {
+      var userModel = buildModelFromAWSMap(data);
+      res.send( {User: userModel} );
+    }
+  });
+}
 
 
 

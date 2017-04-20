@@ -1,11 +1,17 @@
-var express = require('express');
-var AWS = require("aws-sdk");
+var express = require("express");
+var AWS     = require("aws-sdk");
 
 var exports = module.exports = {};
+
+// AWS Credentials 
+var accessKey = "AKIAIDMIESKUD4F657BQ"; 
+var secretKey = "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"; 
+var s3URL     = "https://s3-us-west-2.amazonaws.com/popsmoke/"; 
 
 // -----------------------------------------------------------------------------
 // PDF Files Buckets
 // -----------------------------------------------------------------------------
+
 exports.uploadPDFFileAtPathToAmazonS3 = function(req, res, pdfFilePath) {
   let fs  = require('fs');
   fs.readFile(pdfFilePath, (err, data) => {
@@ -33,7 +39,7 @@ function uploadPDFDataBufferToAmazonS3(res, pdfDataBuffer) {
     if (err) {
       res.send(err);
     } else {
-      res.send({"url": "https://s3-us-west-2.amazonaws.com/popsmoke/myarchive.pdf"}); //TODO: Pull this into a Configuration File
+      res.send({"url": "https://s3-us-west-2.amazonaws.com/popsmoke/myarchive.pdf"});
     }
   });
 }
@@ -41,6 +47,7 @@ function uploadPDFDataBufferToAmazonS3(res, pdfDataBuffer) {
 // -----------------------------------------------------------------------------
 // JPEG Files Buckets
 // -----------------------------------------------------------------------------
+
 exports.uploadJPEGFileAtPathToAmazonS3 = function (localJpegFilePath, 
                                                    awsJPEGFileName, 
                                                    callback) {
@@ -85,9 +92,11 @@ function awsJPEGParams(fileName, dataBuffer) {
     Body: dataBuffer
   };
 }
+
 //------------------------------------------------------------------------------
 // DYNAMO DB METHODS
 //------------------------------------------------------------------------------
+
 exports.newDynamoBD = function() {
   AWS.config.update({ accessKeyId: "AKIAIDMIESKUD4F657BQ",
                       secretAccessKey: "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",
@@ -99,6 +108,7 @@ exports.newDynamoBD = function() {
 //------------------------------------------------------------------------------
 // USER METHODS
 //------------------------------------------------------------------------------
+
 exports.dynamoPostParamsForUser = function(user) {
   var map = awsMapFromUser(user);
   var params = { Item: map,
@@ -131,6 +141,3 @@ exports.userQueryParams = function(phoneNumber) {
   var params = { Key: outputMap, TableName: "popsmoke-users"};
   return params;
 }
-//------------------------------------------------------------------------------
-//------------------------------------------------------------------------------
-//------------------------------------------------------------------------------

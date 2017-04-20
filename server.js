@@ -47,11 +47,13 @@ app.use(function(req, res, next) {
   next();
 });
 
-// Login With Phone Number Endpoints
-app.post("/shortcode/:phoneNumber", function(req, res) {
+//------------------------------------------------------------------------------
+// AUTH ENDPOINTS
+//------------------------------------------------------------------------------
+
+app.post("/auth/resetpasscode/:phoneNumber", function(req, res) {
   console.log("POST - /shortcode");
   phoneNumber = req.params.phoneNumber;
-
   userServices.getUserWithPhoneNumber(phoneNumber, onGetUser);
   function onGetUser(err, user) {
     if (err) return res.status(500).send(err);
@@ -71,9 +73,19 @@ app.post("/shortcode/:phoneNumber", function(req, res) {
   }
 });
 
-app.post("/login/:phoneNumber/:shortcode", function(req, res) {
+app.post("/auth/login", function(req, res) {
+  console.log("POST - /login");
 
 });
+
+app.post("/auth/logout", function(req, res) {
+  console.log("POST - /logout");
+
+});
+
+//------------------------------------------------------------------------------
+// HELPER FUNCTIONS
+//------------------------------------------------------------------------------
 
 // User Endpoints
 app.get("/user/:id", function(req, res) {

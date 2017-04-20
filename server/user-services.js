@@ -118,8 +118,8 @@ function insertUserIntoDatabase(user, callback) {
   var userMap  = buildAWSMapFromUser(user);
   var params   = dynamoPostParamsForUserMap(userMap);
 
-  console.log("userMap: " + userMap);
-  console.log("params: " + params);
+  console.log("userMap: " + JSON.stringify(userMap));
+  console.log("params: " + JSON.stringify(params));
 
   dynamodb.putItem(params, callback);
 }

@@ -90,7 +90,7 @@ exports.getUserWithPhoneNumber = function(phoneNumber, callback) {
 }
 
 exports.postUser = function(user, callback) {
-  console.log("postUserToDatabase");
+  console.log("postUser");
   insertUserIntoDatabase(user, callback);
 }
 
@@ -109,11 +109,13 @@ function registerUserWithPhoneNumber(phoneNumber, callback) {
 
 function createUserWithPhoneNumber(phoneNumber) {
   var user = new Object();
-  user.userID = phoneNumber;
+  user["userID"] = phoneNumber;
   return user;
 }
 
 function insertUserIntoDatabase(user, callback) {
+  console.log("insertUserIntoDatabase: " + JSON.stringify(user));
+
   var dynamodb = awsService.newDynamoBD();
   var params   = awsService.dynamoPostParamsForUser(user);
 

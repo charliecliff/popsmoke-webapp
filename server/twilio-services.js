@@ -23,6 +23,8 @@ exports.sendPassCodeMessage = function(user, callback) {
     from: "+14695027603", 
     body: "This is the ship that made the Kessel Run in fourteen parsecs?", 
   }, function(err, message) {
+    console.log("callback message");
+    
     if (err) {
       callback(err);
       return; 

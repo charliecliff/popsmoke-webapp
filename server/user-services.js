@@ -68,10 +68,10 @@ exports.getUserFromAmazonDynamo = function(res, userID) {
 
 
 
-
-
-
-
+//------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
+// PUBlIC INTERFACE
+//------------------------------------------------------------------------------
 exports.getUserWithPhoneNumber = function(phoneNumber, callback) {
   console.log("getUserWithPhoneNumber");
   var dynamodb = newDynamoBD();
@@ -95,13 +95,18 @@ exports.postUser = function(user, callback) {
   insertUserIntoDatabase(user, callback);
 }
 
+exports.deleteUser = function(user, callback) {
+
+}
 exports.resetUserPasscode = function(user, callback) {
   console.log("resetUserPasscode");
   user["password"] = newPassCode();
   callback(null, user);
 }
+//------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 // HELPER FUNCTIONS
-
+//------------------------------------------------------------------------------
 function registerUserWithPhoneNumber(phoneNumber, callback) {
   var user = createUserWithPhoneNumber(phoneNumber);
   insertUserIntoDatabase(user, callback);
@@ -127,6 +132,9 @@ function newPassCode() {
   return "444444";
 }
 
+//------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 //  AWS Helpers should not be in this service...
 function newDynamoBD() {
   AWS.config.update({ accessKeyId: "AKIAIDMIESKUD4F657BQ",
@@ -164,8 +172,9 @@ function awsMapFromUser(user) {
   }
   return outputMap;
 }
-
-
+//------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 
 
 

@@ -52,14 +52,13 @@ app.post("/shortcode", function(req, res) {
   console.log("POST - /shortcode");
   phoneNumber = "8888888888";
 
-  userServices.getUserWithPhoneNumber(phoneNumber, onGetRegisteredUser);
-  
-  function onGetRegisteredUser(err, user) {
+  userServices.getUserWithPhoneNumber(phoneNumber, onGetUser);
+  function onGetUser(err, user) {
     console.log("onGetRegisteredUser");
     if (err) return res.status(500).send(err);
-    userServices.resetUserPasscode(user, onResetUserPasscode);
+    userServices.resetUserPasscode(user, onResetPasscode); // MOVE THIS TO THE TWILLIO...?
   }
-  function onResetUserPasscode(err, user) {
+  function onResetPasscode(err, user) {
     console.log("onResetUserPasscode");
     if (err) return res.status(500).send(err);
     userServices.postUser(user, onPostUser);
@@ -67,17 +66,15 @@ app.post("/shortcode", function(req, res) {
   function onPostUser(err, user) {
     console.log("onPostUser");
     if (err) return res.status(500).send(err);
-    twilioServices.sendPassCodeMessage(user, onPostUser);
+    twilioServices.sendPassCodeMessage(user, onSendPassCodeMesage);
   }
-  function onPostUser(err, user) {
-    console.log("onPostUser");
+  function onSendPassCodeMesage(err, user) {
+    console.log("onSendPassCode");
     if (err) return res.status(500).send(err);
-
+    return res.status(200).send({message: "Pass Code is on it's way"});
   }
-
-
-
 });
+
 
 app.post("/login/:phoneNumber/:shortcode", function(req, res) {
 

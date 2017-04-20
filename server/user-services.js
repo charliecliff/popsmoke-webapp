@@ -145,7 +145,22 @@ function dynamoPostParamsForUser(user) {
   return params;
 }
 
-
+function awsMapFromUser(user) {
+  var outputMap = new Map();
+  if ( user.hasOwnProperty("userID") ) {
+    outputMap["userID"] = { S: user["userID"] };
+  }
+  if ( user.hasOwnProperty("firstName") ) {
+    outputMap["firstName"] = { S: user["firstName"] };
+  }
+  if ( user.hasOwnProperty("lastName") ) {
+    outputMap["lastName"] = { S: user["lastName"] };
+  }
+  if ( user.hasOwnProperty("password") ) {
+    outputMap["password"] = { S: user["password"] };
+  }
+  return outputMap;
+}
 
 
 
@@ -268,26 +283,6 @@ exports.deleteUserFromAmazonDynamo = function(res, userID) {
       res.send(data);
     }
   });
-}
-
-
-
-
-function awsMapFromUser(user) {
-  var outputMap = new Map();
-  if ( requestBody.hasOwnProperty("userID") ) {
-    outputMap["userID"] = { S: user["userID"] };
-  }
-  if ( requestBody.hasOwnProperty("firstName") ) {
-    outputMap["firstName"] = { S: user["firstName"] };
-  }
-  if ( requestBody.hasOwnProperty("lastName") ) {
-    outputMap["lastName"] = { S: user["lastName"] };
-  }
-  if ( requestBody.hasOwnProperty("password") ) {
-    outputMap["password"] = { S: user["password"] };
-  }
-  return outputMap;
 }
 
 /**----------------

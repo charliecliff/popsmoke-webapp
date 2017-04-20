@@ -67,13 +67,12 @@ exports.getUserFromAmazonDynamo = function(res, userID) {
 
 
 
-
 //------------------------------------------------------------------------------
 // PUBlIC INTERFACE
 //------------------------------------------------------------------------------
 exports.getUserWithPhoneNumber = function(phoneNumber, callback) {
   console.log("getUserWithPhoneNumber");
-  var dynamodb = newDynamoBD();
+  var dynamodb = awsService.newDynamoBD();
   var params   = awsService.userQueryParams(phoneNumber);
   dynamodb.getItem(params, function(err, data) {
     if (err) {
@@ -95,13 +94,15 @@ exports.postUser = function(user, callback) {
 }
 
 exports.deleteUser = function(user, callback) {
+  console.log("deleteUser");
 
 }
-exports.resetUserPasscode = function(user, callback) {
-  console.log("resetUserPasscode");
-  user["password"] = newPassCode();
-  callback(null, user);
-}
+
+// exports.resetUserPasscode = function(user, callback) {
+//   console.log("resetUserPasscode");
+//   user["password"] = newPassCode();
+//   callback(null, user);
+// }
 //------------------------------------------------------------------------------
 // HELPER FUNCTIONS
 //------------------------------------------------------------------------------
@@ -117,8 +118,8 @@ function createUserWithPhoneNumber(phoneNumber) {
 }
 
 function insertUserIntoDatabase(user, callback) {
-  var dynamodb = newDynamoBD();
-  var params   = dynamoPostParamsForUser(user);
+  var dynamodb = awsService.newDynamoBD();
+  var params   = awsService.dynamoPostParamsForUser(user);
 
   console.log("params: " + JSON.stringify(params));
 
@@ -130,46 +131,6 @@ function newPassCode() {
   return "444444";
 }
 
-//------------------------------------------------------------------------------
-//------------------------------------------------------------------------------
-//------------------------------------------------------------------------------
-//  AWS Helpers should not be in this service...
-function newDynamoBD() {
-  AWS.config.update({ accessKeyId: "AKIAIDMIESKUD4F657BQ",
-                      secretAccessKey: "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",
-                      region:'us-east-1'});      
-  var dynamodb = new AWS.DynamoDB({apiVersion: '2012-08-10'});
-  return dynamodb;
-}
-
-function dynamoPostParamsForUser(user) {
-  var map = awsMapFromUser(user);
-  var params = { Item: map,
-                 ReturnConsumedCapacity: "TOTAL", 
-                 TableName: "popsmoke-users"
-               };
-  return params;
-}
-
-function awsMapFromUser(user) {
-  console.log("awsMapFromUser");
-  console.log("user: " + JSON.stringify(user));
-
-  var outputMap = new Map();
-  if ( user.hasOwnProperty("userID") ) {
-    outputMap["userID"] = { S: user["userID"] };
-  }
-  if ( user.hasOwnProperty("firstName") ) {
-    outputMap["firstName"] = { S: user["firstName"] };
-  }
-  if ( user.hasOwnProperty("lastName") ) {
-    outputMap["lastName"] = { S: user["lastName"] };
-  }
-  if ( user.hasOwnProperty("password") ) {
-    outputMap["password"] = { S: user["password"] };
-  }
-  return outputMap;
-}
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
@@ -219,7 +180,7 @@ exports.getUserFromAmazonDynamoWithPhoneNumber = function(phoneNumber, callback)
   console.log("getUserFromAmazonDynamo");
   console.log(phoneNumber);
 
-  var dynamodb = newDynamoBD();
+  var dynamodb = awsService.newDynamoBD();
 
   var outputMap = new Map();
   outputMap["userID"] = { S: phoneNumber };

@@ -22,15 +22,25 @@ exports.sendPassCodeMessage = function(user, callback) {
     to: "+19728961735", 
     from: "+14695027603", 
     body: "This is the ship that made the Kessel Run in fourteen parsecs?", 
-  }, function(err, message) {
-    console.log("callback message");
-    
+  }, function(err, message) {    
     if (err) {
       callback(err);
       return; 
     }
     callback(null);
   });
+}
+exports.resetPassCodeForUser = function(user, callback) {
+  console.log("resetUserPasscode");
+  user["password"] = newPassCode();
+  callback(null, user);
+}
+//------------------------------------------------------------------------------
+// PASS CODE HELPERS 
+//------------------------------------------------------------------------------
+function newPassCode() {
+  console.log("newTextMessageCode");
+  return "444444";
 }
 //------------------------------------------------------------------------------
 // MESSAGING HELPERS 
@@ -87,10 +97,6 @@ function setNewShortCodeForUser(err, user) {
 
 }
 
-function newAuthenticationShortCode() {
-  console.log("newTextMessageCode");
-  return "444444";
-}
 
 
 

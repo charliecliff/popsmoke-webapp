@@ -85,10 +85,45 @@ function awsJPEGParams(fileName, dataBuffer) {
     Body: dataBuffer
   };
 }
+//------------------------------------------------------------------------------
+// DYNAMO DB METHODS
+//------------------------------------------------------------------------------
+exports.newDynamoBD = function() {
+  AWS.config.update({ accessKeyId: "AKIAIDMIESKUD4F657BQ",
+                      secretAccessKey: "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",
+                      region:'us-east-1'});      
+  var dynamodb = new AWS.DynamoDB({apiVersion: '2012-08-10'});
+  return dynamodb;
+}
 
+//------------------------------------------------------------------------------
+// USER METHODS
+//------------------------------------------------------------------------------
+exports.dynamoPostParamsForUser = function(user) {
+  var map = awsMapFromUser(user);
+  var params = { Item: map,
+                 ReturnConsumedCapacity: "TOTAL", 
+                 TableName: "popsmoke-users"
+               };
+  return params;
+}
 
-
-
+function awsMapFromUser(user) {
+  var outputMap = new Map();
+  if ( user.hasOwnProperty("userID") ) {
+    outputMap["userID"] = { S: user["userID"] };
+  }
+  if ( user.hasOwnProperty("firstName") ) {
+    outputMap["firstName"] = { S: user["firstName"] };
+  }
+  if ( user.hasOwnProperty("lastName") ) {
+    outputMap["lastName"] = { S: user["lastName"] };
+  }
+  if ( user.hasOwnProperty("password") ) {
+    outputMap["password"] = { S: user["password"] };
+  }
+  return outputMap;
+}
 
 exports.userQueryParams = function(phoneNumber) {
   var outputMap = new Map();
@@ -96,3 +131,6 @@ exports.userQueryParams = function(phoneNumber) {
   var params = { Key: outputMap, TableName: "popsmoke-users"};
   return params;
 }
+//------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
+//------------------------------------------------------------------------------

@@ -51,15 +51,16 @@ app.use(function(req, res, next) {
 app.post("/shortcode", function(req, res) {
   console.log("POST - /shortcode");
   phoneNumber = "8888888888";
-  twilioServices.sendAuthenticationShortCode(phoneNumber, (err) => {
-    
-    if (err){
-      res.status(500).send("Problem with twilioServices");
-    }
-    res.status(200);
-    
-  });
+
+  userServices.getRegisteredUserWithPhoneNumber(phoneNumber, onGetRegiesteredUser);
   
+  function onGetRegisteredUser(err, data) {
+    console.log("onGetRegisteredUser");
+    if (err) return res.status(500).send(err)
+    // userServices.resetUserPasscode(data, onResetUserPasscode)
+  }
+
+
 });
 
 app.post("/login/:phoneNumber/:shortcode", function(req, res) {

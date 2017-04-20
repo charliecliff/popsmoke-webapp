@@ -86,3 +86,13 @@ function awsJPEGParams(fileName, dataBuffer) {
   };
 }
 
+
+
+
+
+exports.userQueryParams = function(phoneNumber) {
+  var outputMap = new Map();
+  outputMap["userID"] = { S: phoneNumber };
+  var params = { Key: outputMap, TableName: "popsmoke-users"};
+  return params;
+}

@@ -74,6 +74,18 @@ exports.getUserWithPhoneNumber = function(phoneNumber, callback) {
   });
 }
 
+function registerUserWithPhoneNumber(phoneNumber, callback) {
+  console.log("registerUserWithPhoneNumber");
+  var user = createUserWithPhoneNumber(phoneNumber);
+  postUserToDatabase(user, callback);
+}
+
+function createUserWithPhoneNumber(phoneNumber) {
+  console.log("createUserWithPhoneNumber");
+  var user = new Object();
+  user.userID = phoneNumber;
+  return user;
+}
 
 exports.resetUserPasscode = function(user, callback) {
 
@@ -117,15 +129,6 @@ exports.resetUserPasscode = function(user, callback) {
 
 
 
-
-
-function registerUserWithPhoneNumber(phoneNumber, callback) {
-  var user = createUserWithPhoneNumber(phoneNumber);
-  postUserToDatabase(user, callback);
-}
-
-
-
 exports.getUserFromAmazonDynamoWithPhoneNumber = function(phoneNumber, callback) {
   console.log("getUserFromAmazonDynamo");
   console.log(phoneNumber);
@@ -147,7 +150,7 @@ exports.getUserFromAmazonDynamoWithPhoneNumber = function(phoneNumber, callback)
     }
     var user;
     if (!data.hasOwnProperty("Item")) {
-      user = userServices.createUserWithPhoneNumber(phoneNumber);
+      user = createUserWithPhoneNumber(phoneNumber);
     } else {
       user = buildModelFromAWSMap(data);
     }
@@ -235,12 +238,6 @@ function dynamoPostParamsForUserMap(map) {
 ----- AWS MAP -----
 -----------------*/
 
-exports.createUserWithPhoneNumber = function(phoneNumber) {
-  console.log("createUserWithPhoneNumber");
-  var user = new Object();
-  user.userID = phoneNumber;
-  return user;
-}
 
 /**
 -----------------

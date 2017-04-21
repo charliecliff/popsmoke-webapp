@@ -35849,6 +35849,383 @@ ion-footer.packet-footer button {
   color: white;
 }
 
+ion-digit-keyboard {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: transparent;
+  font-size: 24px;
+  z-index: 5000;
+  transition: -webkit-transform linear 150ms;
+  transition: transform linear 150ms;
+  transition: transform linear 150ms, -webkit-transform linear 150ms;
+  -webkit-transform: translate3d(0, 100%, 0);
+  transform: translate3d(0, 100%, 0);
+}
+
+ion-digit-keyboard.visible {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+
+ion-digit-keyboard * {
+  box-sizing: border-box;
+}
+
+ion-digit-keyboard > div {
+  /*
+        * Keyboard color styles
+        */
+  /*&.animation-slide {
+            -webkit-transition: transform linear 150ms;
+            transition: transform linear 150ms;
+            transform: translate3d(0,0,0);
+        }
+
+        &.animation-slide.hidden {
+            transform: translate3d(0,100%,0);
+        }*/
+  /*&.animation-pop {
+            -webkit-transition: transform linear 150ms;
+            transition: transform linear 150ms;
+            transform: scale3d(1, 1, 1);
+        }
+
+        &.animation-pop.hidden {
+            transform: scale3d(0, 0, 1);
+        }*/
+}
+
+ion-digit-keyboard > div .digit-keyboard-row {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  border-bottom: 1px solid #333;
+}
+
+ion-digit-keyboard > div .digit-keyboard-row .digit-keyboard-key-wrapper {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  text-align: center;
+  position: relative;
+  height: 60px;
+}
+
+ion-digit-keyboard > div .digit-keyboard-row .digit-keyboard-key-wrapper .digit-keyboard-key {
+  display: block;
+  margin: 0 auto;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  border-right: 1px solid #333;
+  border-left: 1px solid #333;
+  line-height: 60px;
+  transition: all 150ms ease-out;
+}
+
+ion-digit-keyboard > div .digit-keyboard-row .digit-keyboard-key-wrapper .digit-keyboard-key .digit-keyboard-key-number {
+  font-size: 1em;
+  vertical-align: middle;
+  display: inline-block;
+  line-height: normal;
+  text-align: center;
+  margin-top: -0.40em;
+}
+
+ion-digit-keyboard > div .digit-keyboard-row .digit-keyboard-key-wrapper .digit-keyboard-key .digit-keyboard-key-number .digit-keyboard-key-letters {
+  font-size: 9.6px;
+  line-height: 9.6px;
+  height: 9.6px;
+  margin-top: -0.25em;
+}
+
+ion-digit-keyboard > div .digit-keyboard-row .digit-keyboard-key-wrapper .digit-keyboard-key .digit-keyboard-key-number .digit-keyboard-key-letters.hidden {
+  visibility: hidden;
+}
+
+ion-digit-keyboard > div .digit-keyboard-row .digit-keyboard-key-wrapper .digit-keyboard-key .digit-keyboard-key-action {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  line-height: 60px;
+  font-size: 24px;
+}
+
+ion-digit-keyboard > div .digit-keyboard-row .digit-keyboard-key-wrapper.hidden {
+  visibility: hidden;
+}
+
+ion-digit-keyboard > div .digit-keyboard-row .digit-keyboard-key-wrapper:first-child .digit-keyboard-key {
+  border-right: none;
+}
+
+ion-digit-keyboard > div .digit-keyboard-row .digit-keyboard-key-wrapper:last-child .digit-keyboard-key {
+  border-left: none;
+}
+
+ion-digit-keyboard > div .digit-keyboard-row:first-child {
+  border-top: 1px solid #333;
+}
+
+ion-digit-keyboard > div .digit-keyboard-row:last-child {
+  border: none;
+}
+
+ion-digit-keyboard > div .digit-keyboard-row:last-child .digit-keyboard-key-wrapper .digit-keyboard-key {
+  border-bottom: 1px solid #333;
+}
+
+ion-digit-keyboard > div.align-center {
+  margin: 0 auto;
+}
+
+ion-digit-keyboard > div.align-left {
+  margin-right: auto;
+}
+
+ion-digit-keyboard > div.align-right {
+  margin-left: auto;
+}
+
+ion-digit-keyboard > div.no-letters .digit-keyboard-row .digit-keyboard-key-wrapper .digit-keyboard-key .digit-keyboard-key-number {
+  margin-top: -0.30em;
+}
+
+ion-digit-keyboard > div.no-letters .digit-keyboard-row .digit-keyboard-key-wrapper .digit-keyboard-key .digit-keyboard-key-number .digit-keyboard-key-letters {
+  display: none;
+}
+
+ion-digit-keyboard > div.round-buttons .digit-keyboard-row {
+  border: none;
+}
+
+ion-digit-keyboard > div.round-buttons .digit-keyboard-row .digit-keyboard-key-wrapper {
+  margin: 10px 0 0 0;
+}
+
+ion-digit-keyboard > div.round-buttons .digit-keyboard-row .digit-keyboard-key-wrapper .digit-keyboard-key {
+  width: 60px;
+  border-radius: 100%;
+  border: 1px solid #333;
+}
+
+ion-digit-keyboard > div.round-buttons .digit-keyboard-row .digit-keyboard-key-wrapper .digit-keyboard-key:active {
+  -webkit-transform: scale3d(0.95, 0.95, 1);
+  transform: scale3d(0.95, 0.95, 1);
+}
+
+ion-digit-keyboard > div.round-buttons .digit-keyboard-row:last-child .digit-keyboard-key-wrapper {
+  margin-bottom: 10px;
+}
+
+ion-digit-keyboard > div.round-buttons.no-letters .digit-keyboard-row .digit-keyboard-key-wrapper .digit-keyboard-key .digit-keyboard-key-number {
+  height: 57.6px;
+  line-height: 57.6px;
+}
+
+ion-digit-keyboard > div.keyboard-light [class^="digit-keyboard"] {
+  border-color: #e6e6e6 !important;
+}
+
+ion-digit-keyboard > div.keyboard-light .digit-keyboard-key {
+  background: #fff;
+  color: #444;
+}
+
+ion-digit-keyboard > div.keyboard-light .digit-keyboard-key:active {
+  background: #e6e6e6;
+}
+
+ion-digit-keyboard > div.keyboard-dark [class^="digit-keyboard"] {
+  border-color: #2b2b2b !important;
+}
+
+ion-digit-keyboard > div.keyboard-dark .digit-keyboard-key {
+  background: #444;
+  color: #fff;
+}
+
+ion-digit-keyboard > div.keyboard-dark .digit-keyboard-key:active {
+  background: #5e5e5e;
+}
+
+ion-digit-keyboard > div.keyboard-ionic {
+  background: #3782fe;
+}
+
+ion-digit-keyboard > div.keyboard-ionic [class^="digit-keyboard"] {
+  border: none !important;
+}
+
+ion-digit-keyboard > div.keyboard-ionic .digit-keyboard-key {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 1px !important;
+}
+
+ion-digit-keyboard > div.keyboard-ionic .digit-keyboard-key.action-key {
+  background: transparent !important;
+}
+
+ion-digit-keyboard > div.keyboard-ionic .digit-keyboard-key .digit-keyboard-key-action {
+  transition: color 150ms ease-out;
+}
+
+ion-digit-keyboard > div.keyboard-ionic .digit-keyboard-key:active {
+  background: rgba(255, 255, 255, 0.25);
+  -webkit-transform: scale3d(0.95, 0.95, 1);
+  transform: scale3d(0.95, 0.95, 1);
+}
+
+ion-digit-keyboard > div.keyboard-ionic .digit-keyboard-key:active .digit-keyboard-key-action {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+ion-digit-keyboard > div.keyboard-opaque-black [class^="digit-keyboard"] {
+  border-color: rgba(0, 0, 0, 0.75) !important;
+}
+
+ion-digit-keyboard > div.keyboard-opaque-black .digit-keyboard-key {
+  background: rgba(0, 0, 0, 0.15);
+  color: rgba(0, 0, 0, 0.75);
+}
+
+ion-digit-keyboard > div.keyboard-opaque-black .digit-keyboard-key:active {
+  background: rgba(0, 0, 0, 0.25);
+}
+
+ion-digit-keyboard > div.keyboard-opaque-white [class^="digit-keyboard"] {
+  border-color: rgba(255, 255, 255, 0.75) !important;
+}
+
+ion-digit-keyboard > div.keyboard-opaque-white .digit-keyboard-key {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.75);
+}
+
+ion-digit-keyboard > div.keyboard-opaque-white .digit-keyboard-key:active {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+ion-digit-keyboard > div.keyboard-dusk {
+  background: #19547b;
+  background: linear-gradient(45deg, #19547b 0%, #ffd89b 98%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#19547b', endColorstr='#ffd89b',GradientType=1 );
+}
+
+ion-digit-keyboard > div.keyboard-dusk [class^="digit-keyboard"] {
+  border: none !important;
+}
+
+ion-digit-keyboard > div.keyboard-dusk .digit-keyboard-key {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+ion-digit-keyboard > div.keyboard-dusk .digit-keyboard-key .digit-keyboard-key-action {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+ion-digit-keyboard > div.keyboard-dusk .digit-keyboard-key:active {
+  color: #fff;
+  background: rgba(0, 0, 0, 0.05);
+  -webkit-transform: scale3d(0.95, 0.95, 1);
+  transform: scale3d(0.95, 0.95, 1);
+}
+
+ion-digit-keyboard > div.keyboard-nepal {
+  background: #de6161;
+  background: linear-gradient(45deg, #de6161 0%, #2657eb 98%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#de6161', endColorstr='#2657eb',GradientType=1 );
+}
+
+ion-digit-keyboard > div.keyboard-nepal [class^="digit-keyboard"] {
+  border: none !important;
+}
+
+ion-digit-keyboard > div.keyboard-nepal .digit-keyboard-key {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+ion-digit-keyboard > div.keyboard-nepal .digit-keyboard-key .digit-keyboard-key-action {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+ion-digit-keyboard > div.keyboard-nepal .digit-keyboard-key:active {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.05);
+  -webkit-transform: scale3d(0.95, 0.95, 1);
+  transform: scale3d(0.95, 0.95, 1);
+}
+
+ion-digit-keyboard > div.keyboard-nepal .digit-keyboard-key:active .digit-keyboard-key-action {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+ion-digit-keyboard > div.keyboard-alihossein {
+  background: #E8CC00;
+  background: linear-gradient(45deg, #E8CC00 0%, #db36a4 98%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#E8CC00', endColorstr='#db36a4',GradientType=1 );
+}
+
+ion-digit-keyboard > div.keyboard-alihossein [class^="digit-keyboard"] {
+  border-color: rgba(255, 255, 255, 0.25) !important;
+}
+
+ion-digit-keyboard > div.keyboard-alihossein .digit-keyboard-key {
+  color: #fff;
+}
+
+ion-digit-keyboard > div.keyboard-alihossein .digit-keyboard-key .digit-keyboard-key-action {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+ion-digit-keyboard > div.keyboard-alihossein .digit-keyboard-key:active {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+ion-digit-keyboard > div.keyboard-messenger {
+  background: #00c6ff;
+  background: linear-gradient(45deg, #00c6ff 0%, #0072ff 98%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00c6ff', endColorstr='#0072ff',GradientType=1 );
+}
+
+ion-digit-keyboard > div.keyboard-messenger [class^="digit-keyboard"] {
+  border: none !important;
+}
+
+ion-digit-keyboard > div.keyboard-messenger .digit-keyboard-key {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 1px !important;
+}
+
+ion-digit-keyboard > div.keyboard-messenger .digit-keyboard-key.action-key {
+  background: transparent !important;
+}
+
+ion-digit-keyboard > div.keyboard-messenger .digit-keyboard-key .digit-keyboard-key-action {
+  transition: color 150ms ease-out;
+}
+
+ion-digit-keyboard > div.keyboard-messenger .digit-keyboard-key:active {
+  background: rgba(255, 255, 255, 0.25);
+  -webkit-transform: scale3d(0.95, 0.95, 1);
+  transform: scale3d(0.95, 0.95, 1);
+}
+
+ion-digit-keyboard > div.keyboard-messenger .digit-keyboard-key:active .digit-keyboard-key-action {
+  color: rgba(255, 255, 255, 0.5);
+}
+
 .ios page-personal-info-profile ion-slide.swiper-slide.swiper-slide-active, .md page-personal-info-profile ion-slide.swiper-slide.swiper-slide-active {
   height: 0px !important;
 }

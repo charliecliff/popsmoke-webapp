@@ -7,43 +7,25 @@
 
 <ion-content class="login-content" padding>
   
-  <ion-row class="logo-row">
-    <ion-col></ion-col>
-    <ion-col width-67>
-      <img class="logo" src="./assets/images/popsmoke.svg"/>
-    </ion-col>
-    <ion-col></ion-col>
-  </ion-row>
-  
-  <div class="login-box">
-  
-    <form #registerForm="ngForm">
-      <ion-row>
-        <ion-col>
-          <ion-list inset>
-            
-            <ion-item>
-              <ion-input type="text" placeholder="Email" name="email" [(ngModel)]="registerCredentials.email" required></ion-input>
-            </ion-item>
-            
-            <ion-item>
-              <ion-input type="password" placeholder="Password" name="password" [(ngModel)]="registerCredentials.password" required></ion-input>
-            </ion-item>
-            
-          </ion-list>
-        </ion-col>
-      </ion-row>
-      
-      <ion-row>
-        <ion-col class="signup-col">
-          
-          <button ion-button class="submit-btn" block clear [disabled]="!registerForm.form.valid" (click)="login()">Login</button>
-          
-          <button ion-button class="register-btn" block clear [disabled]="!registerForm.form.valid" (click)="registerAccount()">Create New Account</button>
-        
-        </ion-col>
-      </ion-row>
-      
-    </form>
-  </div>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-3>This column will take 12 columns</ion-col>
+      <ion-col col-2></ion-col>
+      <ion-col col-3>This column will take 12 columns</ion-col>
+      <ion-col col-2></ion-col>
+      <ion-col col-3>This column will take 12 columns</ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col col-2></ion-col>
+      <ion-col col-8>
+        <button style="margin:auto" ion-button secondary full (click)="showKeyboard()">Show Keyboard</button>
+      </ion-col>
+      <ion-col col-2></ion-col>
+    </ion-row>
+  </ion-grid>
+
+
 </ion-content>

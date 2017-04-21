@@ -31,6 +31,8 @@ import { reducer } from '../reducers';
 import * as Providers from '../providers';
 
 
+import { IonDigitKeyboard } from '../third-party-components/ion-digit-keyboard/ion-digit-keyboard';
+
 
 // AF2 Settings
 export const firebaseConfig = {
@@ -49,6 +51,7 @@ export const firebaseAuthConfig = {
 @NgModule({
   declarations: [
     MyApp,
+    IonDigitKeyboard,
     PacketPage,
     PdfPage,
     HomePage,
@@ -70,6 +73,7 @@ export const firebaseAuthConfig = {
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    IonDigitKeyboard,
     PacketPage,
     PdfPage,
     HomePage,

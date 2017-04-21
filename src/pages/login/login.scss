@@ -1,5 +1,15 @@
 page-login {
 
+  .ps-visible-area {
+    background-color: red;
+    // height: calc(100% - 240px) !important;
+  }
+
+  .ps-keyboard-area {
+    background-color: blue;
+    // height: 240px;
+  }
+
   .login-content {
     background: transparent;
  

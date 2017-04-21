@@ -5,27 +5,36 @@
   Ionic pages and navigation.
 -->
 
-<ion-content class="login-content" padding>
+<ion-content class="login-content">
   
-  <ion-grid>
-    <ion-row>
-      <ion-col col-3>This column will take 12 columns</ion-col>
-      <ion-col col-2></ion-col>
-      <ion-col col-3>This column will take 12 columns</ion-col>
-      <ion-col col-2></ion-col>
-      <ion-col col-3>This column will take 12 columns</ion-col>
-    </ion-row>
-  </ion-grid>
+  <div class="ps-visible-area" [style.height.px]="visibleHeight">
 
   <ion-grid>
     <ion-row>
-      <ion-col col-2></ion-col>
-      <ion-col col-8>
-        <button style="margin:auto" ion-button secondary full (click)="showKeyboard()">Show Keyboard</button>
+      <ion-col col-3>
+        <ion-input style="margin: auto">
+        </ion-input>
       </ion-col>
-      <ion-col col-2></ion-col>
+      <ion-col col-1></ion-col>
+      <ion-col col-3>This column will take 12 columns</ion-col>
+      <ion-col col-1></ion-col>
+      <ion-col col-4>This column will take 12 columns</ion-col>
     </ion-row>
   </ion-grid>
+  </div>
+
+  <div class="ps-keyboard-area" [style.height.px]="keyboardHeight">
+      <ion-grid>
+      <ion-row>
+        <ion-col col-2></ion-col>
+        <ion-col col-8>
+          <button style="margin:auto" ion-button secondary full (click)="showKeyboard()">Show Keyboard</button>
+        </ion-col>
+        <ion-col col-2></ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
 
 
 </ion-content>

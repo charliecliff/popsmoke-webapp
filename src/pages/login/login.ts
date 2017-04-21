@@ -12,6 +12,11 @@ import { UserProvider } from '../../providers/user-provider';
 })
 export class LoginPage {
 
+  public visibleHeight: number = 1;
+  public keyboardHeight: number = 1;
+
+  // @ViewChild(Slides) slides: Slides;
+
   loginForm: FormGroup;
   registerCredentials = {email: '', password: ''};
 
@@ -23,11 +28,20 @@ export class LoginPage {
       password: ['']
 		});
 
+    this.adjustZoomLevel();
 
     IonDigitKeyboard.onClick.subscribe((key: any) => {
-      console.log("fuck you");
+      
     });
   }
+
+    ngOnInit() {
+        this.adjustZoomLevel();
+    }
+
+    public onWindowResize(event): void {
+        this.adjustZoomLevel();        
+    }
 
   login() {
     let email = this.registerCredentials.email;
@@ -44,5 +58,13 @@ export class LoginPage {
   showKeyboard() {
     console.log("cdzvdsv");
     IonDigitKeyboard.show();
+  }
+
+  private adjustZoomLevel(): void {
+    let referenceHeight = 568; // iPhone 5
+    let currentHeight = window.screen.height;
+    let zoom = currentHeight / referenceHeight;
+    this.keyboardHeight = 240*zoom;
+    this.visibleHeight = window.innerHeight - this.keyboardHeight;
   }
 }

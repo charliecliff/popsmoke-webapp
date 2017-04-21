@@ -35706,6 +35706,14 @@ page-home .card-ios {
   width: 100%;
 }
 
+page-login .ps-visible-area {
+  background-color: red;
+}
+
+page-login .ps-keyboard-area {
+  background-color: blue;
+}
+
 page-login .login-content {
   background: transparent;
 }

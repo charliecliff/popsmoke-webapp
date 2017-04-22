@@ -36125,7 +36125,7 @@ page-home .card-ios {
   color: #00bfa5;
 }
 
-.ios h2.tagline, .md h2.tagline {
+.ios h2, .md h2 {
   margin: auto;
   margin-bottom: 12px;
   margin-top: 12px;
@@ -36133,16 +36133,6 @@ page-home .card-ios {
   text-align: center;
   overflow: hidden;
   color: white;
-}
-
-.ios h2.explanation, .md h2.explanation {
-  margin: auto;
-  margin-bottom: 12px;
-  margin-top: 12px;
-  padding: 0px;
-  text-align: center;
-  overflow: hidden;
-  color: #00bfa5;
 }
 
 .ios page-login .submit-btn, .md page-login .submit-btn {
@@ -36237,6 +36227,50 @@ ion-footer.packet-footer button {
 
 .ios ion-content.packet-content ion-datetime .datetime-text, .md ion-content.packet-content ion-datetime .datetime-text {
   color: white;
+}
+
+.ios page-pass-code h2, .md page-pass-code h2 {
+  margin: auto;
+  margin-bottom: 12px;
+  margin-top: 12px;
+  padding: 0px;
+  text-align: center;
+  overflow: hidden;
+  color: white;
+}
+
+.ios page-pass-code img, .md page-pass-code img {
+  max-height: 60px;
+  max-width: 60px;
+}
+
+.ios page-pass-code .passcode-content, .md page-pass-code .passcode-content {
+  background: transparent;
+}
+
+.ios page-pass-code .passcode-content ion-row, .md page-pass-code .passcode-content ion-row {
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  text-align: center;
+}
+
+.ios page-pass-code .pass-code-field, .md page-pass-code .pass-code-field {
+  text-align: center;
+  margin: auto;
+  padding: 1px;
+  height: 50px;
+  line-height: 50px;
+  font-size: 40px;
+  color: white;
+  border-style: none;
+}
+
+.ios page-pass-code .pass-code-field.highlighted, .md page-pass-code .pass-code-field.highlighted {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #00bfa5;
+  border-radius: 4px;
 }
 
 ion-digit-keyboard {

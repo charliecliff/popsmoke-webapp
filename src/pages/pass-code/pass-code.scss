@@ -1,3 +1,48 @@
-page-pass-code {
+.ios, .md {
+  
+  page-pass-code {
 
+    h2 {
+      margin: auto;
+      margin-bottom: 12px;
+      margin-top: 12px;
+      padding: 0px;
+      text-align: center;
+      overflow: hidden;
+      color: map-get($colors, text);
+    }
+
+    img {
+      max-height: 60px;
+      max-width: 60px;
+    }
+
+    .passcode-content {
+      background: transparent;
+ 
+      ion-row {
+        align-items: center;
+        text-align: center;
+      }
+    }
+
+    .pass-code-field {
+      text-align: center;
+      margin: auto;
+      padding: 1px;
+      height: 50px;
+      line-height: 50px;
+      font-size: 40px;
+      color: map-get($colors, text);
+      border-style: none;
+    }
+
+    .pass-code-field.highlighted {
+      border-style: solid;
+      border-width: 1px;
+      border-color: map-get($colors, accent);
+      border-radius: 4px;
+    }
+  }
 }
+

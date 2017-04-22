@@ -2,14 +2,13 @@ import { Component } from '@angular/core';
 import { trigger, state, style, transition, animate} from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { IonDigitKeyboard } from '../../third-party-components/ion-digit-keyboard/ion-digit-keyboard';
-
-import { UserProvider } from '../../providers/user-provider';
+import * as Providers from '../../providers';
 import { PassCodePage } from '../pass-code/pass-code';
 
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
-  providers: [UserProvider],
+  providers: [Providers.UserProvider],
   animations:[
     trigger('keyboardTrigger', [
       state('visible', style({ height: '*' })),
@@ -56,6 +55,7 @@ export class LoginPage {
   public explanation: string = "Login with your PHONE NUMBER";
   public phoneNumberFieldMargin: number = 36;
 
+  // PHONE NUMBER STATE
   public phoneNumber: string = "";
   public value1: string = "";
   public value2: string = "";
@@ -64,6 +64,7 @@ export class LoginPage {
   public highlightFieldTwo : boolean   = false;
   public highlightFieldThree : boolean = false;
 
+  // 
   public introMinHeight: number         = 1;
   public phoneNumberFieldHeight: number = 1;
   public visibleHeight: number          = 1;
@@ -77,38 +78,17 @@ export class LoginPage {
   public phoneNumberState : string     = "hidden";
 
   constructor(public navCtrl: NavController,
-              public userProvider: UserProvider) { }
+              public userProvider: Providers.UserProvider) { }
 
-  ngOnInit() {
+  private ngOnInit(): void {
     this.adjustZoomLevel();
     IonDigitKeyboard.onClick.subscribe(this.didPressKeyCallback);
   }
 
-  onWindowResize(event): void {
+  private onWindowResize(event): void {
     this.adjustZoomLevel();        
   }
-
-  postPhoneNumber() {
-    this.userProvider.resetPassCodeForPhoneNumber(this.phoneNumber);
-    this.navCtrl.push(PassCodePage);
-  }
   
-  private showKeyboard() {
-    IonDigitKeyboard.show();
-    this.keyboardState        = 'visible';
-    this.logoSizeState        = 'compressedSize';
-    this.taglineSizeState     = 'compressedSize';
-    this.explanationSizeState = 'fullSize';
-
-    this.phoneNumberState = 'visible';
-  }
-  
-  private keyboardShowAnimationDone(){
-    if (this.keyboardState == 'visible') {
-
-    }
-  }
-
   private adjustZoomLevel(): void {
     this.phoneNumberFieldHeight = 60 + this.phoneNumberFieldMargin*2;
     let referenceHeight = 568; // iPhone 5
@@ -119,7 +99,23 @@ export class LoginPage {
     this.introMinHeight = this.visibleHeight - this.phoneNumberFieldHeight;
   }
 
-  private setPhoneNumber(input: string): void{
+  private showKeyboard(): void {
+    IonDigitKeyboard.show();
+    this.keyboardState        = 'visible';
+    this.logoSizeState        = 'compressedSize';
+    this.taglineSizeState     = 'compressedSize';
+    this.explanationSizeState = 'fullSize';
+
+    this.phoneNumberState = 'visible';
+  }
+  
+  private keyboardShowAnimationDone(): void {
+    if (this.keyboardState == 'visible') {
+
+    }
+  }
+
+  private setPhoneNumber(input: string): void {
     this.phoneNumber = input;
     this.value1 = this.phoneNumber.slice(0, 3);
     this.value2 = this.phoneNumber.slice(3, 6);
@@ -145,5 +141,10 @@ export class LoginPage {
       return;
     }
     this.setPhoneNumber(this.phoneNumber += key);
+  }
+
+  private postPhoneNumber(): void {
+    this.userProvider.resetPassCodeForPhoneNumber(this.phoneNumber);
+    this.navCtrl.push(PassCodePage);
   }
 }

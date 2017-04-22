@@ -46,7 +46,7 @@
     color: map-get($colors, accent);
   }
 
-  h2.tagline {
+  h2 {
     margin: auto;
     margin-bottom: 12px;
     margin-top: 12px;
@@ -54,16 +54,6 @@
     text-align: center;
     overflow: hidden;
     color: map-get($colors, text);
-  }
-
-  h2.explanation {
-    margin: auto;
-    margin-bottom: 12px;
-    margin-top: 12px;
-    padding: 0px;
-    text-align: center;
-    overflow: hidden;
-    color: map-get($colors, accent);
   }
 
   page-login .submit-btn {

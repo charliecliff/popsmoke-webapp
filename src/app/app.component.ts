@@ -33,7 +33,7 @@ export class MyApp {
 
   public menu: Menu;
 
-  rootPage = LoginPage;
+  rootPage = Pages.PassCodePage;
 
   keyboardSettings: IonDigitKeyboardOptions = {
     align: 'center',

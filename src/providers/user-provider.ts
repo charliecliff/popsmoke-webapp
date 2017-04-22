@@ -29,12 +29,17 @@ export class UserProvider {
              .subscribe();
   }
 
-  login(loginData) {
+  login(phoneNumber, pasCode) {
     console.log("login");
-    this.authProvider.logIn(loginData)
-                     .subscribe(this.getUserCallback, 
-                                this.handleErrorCallback);
+    // let getUserURL = "https://sleepy-scrubland-83197.herokuapp.com" + "/auth/resetpasscode/" + phoneNumber;
+    // let headers = new Headers({"Content-Type": "application/json"});
+    // this.http.post(getUserURL, {headers: headers})
+    //          .map((res:Response) => res.json())
+    //          .subscribe();
   }
+
+
+
 
   logout() {
     console.log("logout");

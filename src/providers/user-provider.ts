@@ -20,8 +20,6 @@ export class UserProvider {
               public store: Store<AppState>,
               public authProvider: AuthProvider) { }
 
-
-
   resetPassCodeForPhoneNumber(phoneNumber) {
     console.log("resetPassCodeForPhoneNumber");
     let getUserURL = "https://sleepy-scrubland-83197.herokuapp.com" + "/auth/resetpasscode/" + phoneNumber;

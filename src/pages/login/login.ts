@@ -2,7 +2,9 @@ import { Component } from '@angular/core';
 import { trigger, state, style, transition, animate} from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { IonDigitKeyboard } from '../../third-party-components/ion-digit-keyboard/ion-digit-keyboard';
+
 import { UserProvider } from '../../providers/user-provider';
+import { PassCodePage } from '../pass-code/pass-code';
 
 @Component({
   selector: 'page-login',
@@ -87,8 +89,8 @@ export class LoginPage {
   }
 
   postPhoneNumber() {
-    console.log('post Phone Number');
     this.userProvider.resetPassCodeForPhoneNumber(this.phoneNumber);
+    this.navCtrl.push(PassCodePage);
   }
   
   private showKeyboard() {

@@ -29,6 +29,7 @@ import { reducer } from '../reducers';
 
 
 import * as Providers from '../providers';
+import * as Pages from '../pages';
 
 
 import { IonDigitKeyboard } from '../third-party-components/ion-digit-keyboard/ion-digit-keyboard';
@@ -62,7 +63,8 @@ export const firebaseAuthConfig = {
     PacketHistoryPage,
     InboxPage,
     EditFieldPage,
-    CameraPage
+    CameraPage,
+    Pages.PassCodePage
   ],
   imports: [
     CustomFormsModule,
@@ -84,7 +86,8 @@ export const firebaseAuthConfig = {
     PacketHistoryPage,
     InboxPage,
     EditFieldPage,
-    CameraPage
+    CameraPage,
+    Pages.PassCodePage
   ],
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler},

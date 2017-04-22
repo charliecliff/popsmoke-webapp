@@ -17,6 +17,8 @@
 
 /* APP GLOBAL CONSTANTS */
 
+@import './third-party-components/ion-digit-keyboard/ion-digit-keyboard';
+
 .ios, .md {
 	ion-header.ps-header {
 		background-color: map-get($backgrounds, dark);

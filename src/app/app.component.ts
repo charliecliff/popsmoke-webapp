@@ -35,6 +35,24 @@ export class MyApp {
 
   rootPage = LoginPage;
 
+  keyboardSettings: IonDigitKeyboardOptions = {
+    align: 'center',
+    width: '',
+    visible: false,
+    leftActionOptions: {
+        iconName: 'ios-backspace-outline',
+        fontSize: '1.4em'
+    },
+    rightActionOptions: {
+        iconName: 'ios-checkmark-circle-outline',
+        fontSize: '1.4em'
+    },
+    roundButtons: false,
+    showLetters: true,
+    swipeToHide: true,
+    theme: 'dark'
+  }
+
   constructor(public platform: Platform,
               public store: Store<Reducers.AppState>,
               public userProvider: UserProvider,

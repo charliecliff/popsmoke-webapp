@@ -1,82 +1,93 @@
-page-login {
+.ios, .md {
 
   .ps-visible-area {
-    background-color: red;
-    // height: calc(100% - 240px) !important;
+    margin-bottom: 18px;
+    margin-left: 12px;
+    margin-right: 12px;
+    background-color: transparent;
+    
+    ion-grid {
+      height: 100%
+    }
+  }
+  
+  .ps-keyboard-area {
+
   }
 
-  .ps-keyboard-area {
-    background-color: blue;
-    // height: 240px;
+  .phone-field {
+    margin: auto;
+    padding: 1px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 40px;
+    color: map-get($colors, text);
+    border-style: none;
   }
+
+  .phone-field.highlighted {
+    margin: auto;
+    padding: 1px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 40px;
+    color: map-get($colors, text);
+    border-style: solid;
+    border-width: 1px;
+    border-color: map-get($colors, accent);
+    border-radius: 4px;
+  }
+
+  .phone-hyphen {
+    height: 50px;
+    line-height: 50px;
+    font-size: 40px;
+    padding: 0;
+    color: map-get($colors, accent);
+  }
+
+  h2.tagline {
+    margin: auto;
+    margin-bottom: 12px;
+    margin-top: 12px;
+    padding: 0px;
+    text-align: center;
+    overflow: hidden;
+    color: map-get($colors, text);
+  }
+
+  h2.explanation {
+    margin: auto;
+    margin-bottom: 12px;
+    margin-top: 12px;
+    padding: 0px;
+    text-align: center;
+    overflow: hidden;
+    color: map-get($colors, accent);
+  }
+
+  page-login .submit-btn {
+    background: #292929;
+    color: #b8b8b8;
+    border-radius: 0px !important;
+    border: 1px solid #ffffff;
+  }
+
+  page-login .submit-btn:hover {
+    background: #292929;
+    color: #b8b8b8;
+  }
+}
+
+
+page-login {
 
   .login-content {
     background: transparent;
  
-    .logo-row {
-      padding-top: 50px;
-      padding-bottom: 20px;
-
-      .logo {
-      	max-height: 200px;
-      	max-width: 200px;
-      }
-    }
- 
-    .login-box {
-      background: transparent;
-      padding: 20px 20px 0px 20px;
-      margin-top: 30px;
-    }
- 
     ion-row {
        align-items: center;
        text-align: center;
-     }
- 
-     ion-item {
-         border-radius: 0px !important;
-         padding-left: 30px !important;
-         font-size: 0.9em;
-         margin-bottom: 10px;
-         border: 1px solid #ffffff;
-         border-bottom: 0px !important;
-         box-shadow: none !important;
-     }
- 
-     .signup-col {
-       margin: 0px 16px 0px 16px;
-       padding-bottom: 20px;
-     }
- 
-     .item-inner {
-       border-bottom-color: #ffffff !important;
-       box-shadow: none !important;
-     }
- 
-     .submit-btn {
-       background: #292929;
-       color: #b8b8b8;
-       border-radius: 0px !important;
-       border: 1px solid #ffffff;
-     }
-      
-     .submit-btn:hover {
-       background: #292929;
-       color: #b8b8b8;
-     }
-
-     .register-btn {
-       font-size: 0.8em;
-       background: #292929;
-       color: #b8b8b8;
-       border-radius: 0px !important;
-       border: 1px solid #ffffff;
-     }
-
-	 .register-btn:hover {
-       background: #292929;
-       color: #b8b8b8;
-     }
+    }
   }
 }

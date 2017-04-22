@@ -143,7 +143,6 @@ export class IonDigitKeyboard {
     public btnClick(event, key: any): void {
         // Prevent click on keyboard swip
         if (this.swipeToHide && this._isSwiping) return;
-        
         this.buttonClick.emit(key);
         IonDigitKeyboard.onClick.next(key);
         if (key == 'left') this.leftActionClick.emit();

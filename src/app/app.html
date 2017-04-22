@@ -39,8 +39,13 @@
 </ion-nav>
 
 <ion-digit-keyboard
-  [visible]=false
->
-  
+    [visible]="keyboardSettings.visible"
+    [align]="keyboardSettings.align"
+    [width]="keyboardSettings.width"
+    [leftActionOptions]="keyboardSettings.leftActionOptions"
+    [rightActionOptions]="keyboardSettings.rightActionOptions"
+    [roundButtons]="keyboardSettings.roundButtons"
+    [showLetters]="keyboardSettings.showLetters"
+    [swipeToHide]="keyboardSettings.swipeToHide"
+    [theme]="keyboardSettings.theme">
 </ion-digit-keyboard>
-

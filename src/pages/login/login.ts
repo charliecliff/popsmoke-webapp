@@ -72,8 +72,7 @@ export class LoginPage {
   public logoSizeState : string        = "fullSize";
   public taglineSizeState : string     = "fullSize";
   public explanationSizeState : string = "compressedSize";
-
-  public phoneNumberState : string = "hidden";
+  public phoneNumberState : string     = "hidden";
 
   constructor(public navCtrl: NavController,
               public userProvider: UserProvider) { }
@@ -88,7 +87,8 @@ export class LoginPage {
   }
 
   postPhoneNumber() {
-
+    console.log('post Phone Number');
+    this.userProvider.resetPassCodeForPhoneNumber(this.phoneNumber);
   }
   
   private showKeyboard() {
@@ -136,7 +136,7 @@ export class LoginPage {
       return;
     }
     if (key == "right") {
-      
+      this.postPhoneNumber();
       return;
     }
     if (this.phoneNumber.length == 10) {

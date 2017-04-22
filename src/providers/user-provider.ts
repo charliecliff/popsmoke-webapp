@@ -20,6 +20,17 @@ export class UserProvider {
               public store: Store<AppState>,
               public authProvider: AuthProvider) { }
 
+
+
+  resetPassCodeForPhoneNumber(phoneNumber) {
+    console.log("resetPassCodeForPhoneNumber");
+    let getUserURL = "https://sleepy-scrubland-83197.herokuapp.com" + "/auth/resetpasscode/" + phoneNumber;
+    let headers = new Headers({"Content-Type": "application/json"});
+    this.http.post(getUserURL, {headers: headers})
+             .map((res:Response) => res.json())
+             .subscribe();
+  }
+
   login(loginData) {
     console.log("login");
     this.authProvider.logIn(loginData)

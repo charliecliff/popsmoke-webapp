@@ -15,15 +15,15 @@
                [@shrinkLogoTrigger]="logoSizeState"
                src="https://s3.amazonaws.com/popsmoke-assets/icon.png" >
           <h2 class="tagline"
-              [@shrinkTaglineTrigger]="taglineSizeState" >{{ tagline }}</h2>
+              [@shrinkTaglineTrigger]="taglineSizeState">{{tagline}}</h2>
           <h2 class="explanation"
-              [@shrinkExplanationTrigger]="explanationSizeState" >{{ explanation }}</h2>
+              [@shrinkExplanationTrigger]="explanationSizeState">{{explanation}}</h2>
         </ion-col>
       </ion-row>
 
       <ion-row [style.margin-top.px]="phoneNumberFieldMargin"
                [style.margin-bottom.px]="phoneNumberFieldMargin"
-               [@revealPhoneNumberTrigger]="phoneNumberState" >
+               [@revealPhoneNumberTrigger]="phoneNumberState">
         <ion-col col-3
                  style="margin-top: 0px; margin-bottom: 0px;">
           <ion-label class="phone-field" 

@@ -94,10 +94,12 @@ app.post("/auth/logout", function(req, res) {
 
 
 app.post('/signup', passport.authenticate('local-login', {
-        successRedirect : '/', // redirect to the secure profile section
-        failureRedirect : '/', // redirect back to the signup page if there is an error
         failureFlash : false // allow flash messages
-}));
+}), function(req, res) {
+  console.log("fuck you");
+  return res.status(200).send({message: "Pass Code is on it's way"});
+}
+);
 
 //------------------------------------------------------------------------------
 // HELPER FUNCTIONS

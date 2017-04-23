@@ -9,6 +9,8 @@ var bodyParser 			= require('body-parser');
 var cors 						= require('cors');
 var passport        = require('passport');
 
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
+
 var app 						= express();
 
 var mongodb = require('mongodb'),
@@ -105,7 +107,7 @@ app.post("/auth/logout", function(req, res) {
 
 
 
-app.post('/signup',
+app.post('/signup', urlencodedParser,
  function(req, res, next) {
   passport.authenticate('local', function(err, user, info) {
 

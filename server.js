@@ -98,7 +98,8 @@ app.post('/signup',
     console.log("Fuck you!!!!1");
     res.send({"error": "err"});
     // res.redirect('/');
-  });
+  }
+);
 
 // app.post('/signup', passport.authenticate(
 //   'local-login',

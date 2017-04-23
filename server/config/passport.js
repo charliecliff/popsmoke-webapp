@@ -25,7 +25,7 @@ module.exports = function(passport) {
       passwordField : 'password',
       passReqToCallback : true
     },
-    function(req, username, password, done) {
+    function(username, password, done) {
       
       console.warn("local-login");
 
@@ -34,7 +34,7 @@ module.exports = function(passport) {
       userService.getUserWithPhoneNumber(phoneNumber, function(err, user) {
         if (err) {
 
-                console.warn("local-login: err");
+          console.warn("local-login: err");
           return done(err); 
         }
         if (!user) {

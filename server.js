@@ -3,11 +3,13 @@ var fileServices 		= require('./server/file-services');
 var holidayServices = require('./server/holiday-services');
 var twilioServices  = require('./server/twilio-services');
 var userServices 		= require('./server/user-services');
+
 var express 				= require('express');
 var bodyParser 			= require('body-parser');
 var cors 						= require('cors');
-var app 						= express();
+var passport        = require('passport');
 
+var app 						= express();
 
 var mongodb = require('mongodb'),
 mongoClient = mongodb.MongoClient,
@@ -39,7 +41,14 @@ mongoClient.connect(MONGODB_URI, function (err, database) {
 	});
 });
 
+
+
+require('./server/config/passport')(passport); // pass passport for configuration
+
+//------------------------------------------------------------------------------
 // The Key to allowing CORS
+//------------------------------------------------------------------------------
+
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header('Access-Control-Allow-Methods', "OPTIONS,GET,PUT,POST,DELETE");
@@ -82,6 +91,13 @@ app.post("/auth/logout", function(req, res) {
   console.log("POST - /logout");
 
 });
+
+
+app.post('/signup', passport.authenticate('local-signup', {
+        successRedirect : '/', // redirect to the secure profile section
+        failureRedirect : '/', // redirect back to the signup page if there is an error
+        failureFlash : true // allow flash messages
+}));
 
 //------------------------------------------------------------------------------
 // HELPER FUNCTIONS

@@ -92,6 +92,6 @@ export class PassCodePage {
   private loginWithPassCode() {
     IonDigitKeyboard.hide();
     this.userProvider.login("9728961735", "4444");
-    this.navCtrl.push(Pages.HomePage);
+    this.navCtrl.push(Pages.MainTabPage);
   }
 }

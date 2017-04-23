@@ -1,7 +1,7 @@
 var express       = require('express');
 var userService   = require("../user-services");
 var passport      = require('passport');
-var localStrategy = require('passport-local').Strategy;
+var LocalStrategy = require('passport-local').Strategy;
 
 //------------------------------------------------------------------------------
 // PUBlIC INTERFACE

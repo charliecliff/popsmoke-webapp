@@ -97,6 +97,11 @@ app.post('/signup',
   passport.authenticate('local', function(err, user, info) {
 
     console.log("anything");
+
+    console.log("err: " + JSON.stringify(err));
+    console.log("user: " + JSON.stringify(user));
+    console.log("info: " + JSON.stringify(info));
+
     if (err) {
       return next(err); // will generate a 500 error
     }

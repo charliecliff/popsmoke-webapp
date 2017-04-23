@@ -28,30 +28,30 @@ module.exports = function(passport) {
     },
     function(username, password, done) {
       
-      console.log("local-login");
+      console.log("local");
 
-      // let phoneNumber = username;
+      let phoneNumber = username;
       
-      // userService.getUserWithPhoneNumber(phoneNumber, function(err, user) {
-      //   if (err) {
+      userService.getUserWithPhoneNumber(phoneNumber, function(err, user) {
+        if (err) {
 
-      //     console.warn("local-login: err");
-      //     return done(err); 
-      //   }
-      //   if (!user) {
-      //           console.warn("local-login username");
+          console.warn("local-login: err");
+          return done(err); 
+        }
+        if (!user) {
+                console.warn("local-login username");
 
-      //     return done(null, false, { message: 'Incorrect username.' });
-      //   }
-      //   if (!user.validPassword(password)) {
-      //           console.warn("local-login password");
+          return done(null, false, { message: 'Incorrect username.' });
+        }
+        if (!user.validPassword(password)) {
+                console.warn("local-login password");
 
-      //     return done(null, false, { message: 'Incorrect password.' });
-      //   }
-      //         console.warn("local-login success");
+          return done(null, false, { message: 'Incorrect password.' });
+        }
+              console.warn("local-login success");
 
-      //   return done(null, user);
-      // });
+        return done(null, user);
+      });
     })
   );
 };

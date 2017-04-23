@@ -107,7 +107,7 @@ app.post("/auth/logout", function(req, res) {
 
 
 
-app.post('/signup', urlencodedParser,
+app.post('/signup',
  function(req, res, next) {
   console.log("/signup");
   console.log(req.body);

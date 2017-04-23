@@ -92,6 +92,19 @@ app.post("/auth/logout", function(req, res) {
 
 });
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 app.post('/signup',
  function(req, res, next) {
   passport.authenticate('local', function(err, user, info) {
@@ -123,6 +136,15 @@ app.post('/signup',
     });      
   })(req, res, next);
 });
+
+
+
+
+
+
+
+
+
 
 
 // app.post('/signup', passport.authenticate(

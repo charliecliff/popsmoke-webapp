@@ -10,45 +10,43 @@ var userService   = require("../user-services");
 module.exports = function(passport) {
 
   passport.serializeUser(function(user, done) {
-    console.log("serializeUser");
-    // done(null, user.userID);
+    done(null, user.userID);
   });
 
   passport.deserializeUser(function(id, done) {
-    console.log("deserializeUser");
-    // userService.getUserWithPhoneNumber(phoneNumber, function(err, user) {
-    //   done(err, user);
-    // });
+    userService.getUserWithPhoneNumber(phoneNumber, function(err, user) {
+      done(err, user);
+    });
   });
 
-  passport.use( new LocalStrategy({
+  passport.use('local', new LocalStrategy({
       usernameField : 'userID',
       passwordField : 'password',
-      passReqToCallback : true
+      passReqToCallback : true,
     },
-    function(username, password, done) {
+    function(req, userID, password, done) {
       
       console.log("local");
 
-      let phoneNumber = username;
+      let phoneNumber = userID;
       
       userService.getUserWithPhoneNumber(phoneNumber, function(err, user) {
+        
         if (err) {
-
-          console.warn("local-login: err");
+          console.log("local-login: err");
           return done(err); 
         }
         if (!user) {
-                console.warn("local-login username");
+                console.log("local-login username");
 
           return done(null, false, { message: 'Incorrect username.' });
         }
         if (!user.validPassword(password)) {
-                console.warn("local-login password");
+                console.log("local-login password");
 
           return done(null, false, { message: 'Incorrect password.' });
         }
-              console.warn("local-login success");
+              console.log("local-login success");
 
         return done(null, user);
       });

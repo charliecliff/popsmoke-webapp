@@ -93,11 +93,14 @@ app.post("/auth/logout", function(req, res) {
 });
 
 
-app.post('/signup', passport.authenticate('local-login', {
-        successRedirect : '/', // redirect to the secure profile section
-        failureRedirect : '/', // redirect back to the signup page if there is an error
-        failureFlash : false // allow flash messages
-}));
+app.post('/signup', passport.authenticate('local-login', function (err, account) {
+  req.logIn(account, function() {
+    
+    console.log("DID GET CALLBACK");
+
+    res.status(err ? 500 : 200).send(err ? err : account);
+  });
+})(this.req, this.res, this.next);
 
 //------------------------------------------------------------------------------
 // HELPER FUNCTIONS
@@ -164,4 +167,14 @@ app.post("/sendText", function(req, res) {
 function handleError(res, reason, message, code) {
 	console.log("API Error: " + reason);
 	res.status(code || 500).json({"Error": message});
+}
+
+function isLoggedIn(req, res, next) {
+
+    // if user is authenticated in the session, carry on 
+    if (req.isAuthenticated())
+        return next();
+
+    // if they aren't redirect them to the home page
+    res.redirect('/');
 }

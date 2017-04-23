@@ -15,7 +15,7 @@ exports.getUserWithPhoneNumber = function(phoneNumber, callback) {
   var params   = awsService.userQueryParams(phoneNumber);
   dynamodb.getItem(params, function(err, data) {
     if (err) {
-      callback(err);
+      callback(err, null);
       return;
     }
     if (!data.hasOwnProperty("Item")) {

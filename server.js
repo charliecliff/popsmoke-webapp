@@ -92,15 +92,12 @@ app.post("/auth/logout", function(req, res) {
 
 });
 
-app.post('/signup',
-  passport.authenticate('local-login'),
-  function(req, res) {
-    // If this function gets called, authentication was successful.
-    // `req.user` contains the authenticated user.
-    res.redirect('/' + req.user.username);
-  });
 
-// app.post('/signup', handler(req, res, next));
+app.post('/signup', passport.authenticate('local-login', {
+        successRedirect : '/', // redirect to the secure profile section
+        failureRedirect : '/', // redirect back to the signup page if there is an error
+        failureFlash : false // allow flash messages
+}));
 
 //------------------------------------------------------------------------------
 // HELPER FUNCTIONS
@@ -167,29 +164,4 @@ app.post("/sendText", function(req, res) {
 function handleError(res, reason, message, code) {
 	console.log("API Error: " + reason);
 	res.status(code || 500).json({"Error": message});
-}
-
-function isLoggedIn(req, res, next) {
-
-    // if user is authenticated in the session, carry on 
-    if (req.isAuthenticated())
-        return next();
-
-    // if they aren't redirect them to the home page
-    res.redirect('/');
-}
-
-function handler(req, res, next) {
-passport.authenticate('local-login', 
-  (err, user, params) => {
-    if (err) return next(err)
-    if (!user) return next(new Error('Authentication Failed'))
-
-    // user is authenticated, create a session
-    req.logIn(user, (err) => {
-      if (err) return next(err)
-      // handle response
-      res.status(200).json({ some: 'data' })
-    })
-  })(req, res, next)
 }

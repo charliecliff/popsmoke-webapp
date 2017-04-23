@@ -93,11 +93,22 @@ app.post("/auth/logout", function(req, res) {
 });
 
 
-app.post('/signup', passport.authenticate('local-login', {failureFlash : false}),
-  function(req, res) {
-    console.warn("fuck you");
-    // res.status(200).send({message: "Pass Code is on it's way"});
-  }
+app.post('/signup', passport.authenticate(
+  'local-login',
+  function(err, user, info) {
+    console.log("literally anything!!!!!!1");
+
+    // if (err) { return next(err); }
+    // if (!user) { return res.redirect('/'); }
+
+    // // req / res held in closure
+    // req.logIn(user, function(err) {
+    //   if (err) { return next(err); }
+    //   return res.send(user);
+    // });
+
+  })
+  (req, res, next)
 );
 
 //------------------------------------------------------------------------------

@@ -92,21 +92,15 @@ app.post("/auth/logout", function(req, res) {
 
 });
 
+app.post('/signup',
+  passport.authenticate('local-login'),
+  function(req, res) {
+    // If this function gets called, authentication was successful.
+    // `req.user` contains the authenticated user.
+    return res.status(200).send({message: "YOU did it!"});
+  });
 
-app.post('/signup', passport.authenticate('local-login', 
-  (err, user, params) => {
-    if (err) return next(err)
-    if (!user) return next(new Error('Authentication Failed'))
-
-    // user is authenticated, create a session
-    req.logIn(user, (err) => {
-      if (err) return next(err)
-      // handle response
-      res.status(200).json({ some: 'data' })
-    })
-  })(req, res, next)
-
-);
+// app.post('/signup', handler(req, res, next));
 
 //------------------------------------------------------------------------------
 // HELPER FUNCTIONS
@@ -183,4 +177,19 @@ function isLoggedIn(req, res, next) {
 
     // if they aren't redirect them to the home page
     res.redirect('/');
+}
+
+function handler(req, res, next) {
+passport.authenticate('local-login', 
+  (err, user, params) => {
+    if (err) return next(err)
+    if (!user) return next(new Error('Authentication Failed'))
+
+    // user is authenticated, create a session
+    req.logIn(user, (err) => {
+      if (err) return next(err)
+      // handle response
+      res.status(200).json({ some: 'data' })
+    })
+  })(req, res, next)
 }

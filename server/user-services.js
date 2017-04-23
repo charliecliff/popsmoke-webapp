@@ -253,11 +253,11 @@ function buildAWSMapFromUser(user) {
 }
 
 function buildModelFromAWSMap(map) {
-  console.log("buildModelFromAWSMap");
-  console.log("fucking map: " + JSON.stringify(map) );
-  var outputModel    = new Object();
-  var itemMap        = map.Item;
-  var userID         = itemMap.userID.S;
-  outputModel.userID = userID;
+  var outputModel      = new Object();
+  var itemMap          = map.Item;
+  var userID           = itemMap.userID.S;
+  outputModel.userID   = userID;
+  var passCode         = itemMap.password.S;
+  outputModel.password = passCode;
   return outputModel;
 }

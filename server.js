@@ -97,7 +97,7 @@ app.post('/signup',
   function(req, res) {
     // If this function gets called, authentication was successful.
     // `req.user` contains the authenticated user.
-    return res.status(200).send({message: "YOU did it!"});
+    res.redirect('/' + req.user.username);
   });
 
 // app.post('/signup', handler(req, res, next));

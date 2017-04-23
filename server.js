@@ -96,7 +96,8 @@ app.post('/signup',
   passport.authenticate('local-login', { failureRedirect: '/signup', failureFlash : false }),
   function(req, res) {
     console.log("Fuck you!!!!1");
-    res.redirect('/');
+    res.send({"error": "err"});
+    // res.redirect('/');
   });
 
 // app.post('/signup', passport.authenticate(

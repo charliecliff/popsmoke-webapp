@@ -93,7 +93,7 @@ app.post("/auth/logout", function(req, res) {
 });
 
 
-app.post('/signup', passport.authenticate('local-signup', {
+app.post('/signup', passport.authenticate('local-login', {
         successRedirect : '/', // redirect to the secure profile section
         failureRedirect : '/', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages

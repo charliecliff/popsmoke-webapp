@@ -1,6 +1,5 @@
 var express       = require('express');
 var twilio        = require('twilio');
-var userServices  = require('./user-services');
 
 var exports = module.exports = {};
 

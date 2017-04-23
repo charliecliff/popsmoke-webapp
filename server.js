@@ -97,7 +97,7 @@ app.post('/signup', passport.authenticate('local-login', {
         failureFlash : false // allow flash messages
 }), function(req, res) {
   console.log("fuck you");
-  return res.status(200).send({message: "Pass Code is on it's way"});
+  res.status(200).send({message: "Pass Code is on it's way"});
 }
 );
 

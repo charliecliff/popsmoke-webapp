@@ -109,6 +109,9 @@ app.post("/auth/logout", function(req, res) {
 
 app.post('/signup', urlencodedParser,
  function(req, res, next) {
+  console.log("/signup");
+  console.log(req.body);
+
   passport.authenticate('local', function(err, user, info) {
 
     console.log("anything");

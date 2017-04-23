@@ -11,14 +11,14 @@ module.exports = function(passport) {
 
   passport.serializeUser(function(user, done) {
     console.log("serializeUser");
-    done(null, user.userID);
+    // done(null, user.userID);
   });
 
   passport.deserializeUser(function(id, done) {
     console.log("deserializeUser");
-    userService.getUserWithPhoneNumber(phoneNumber, function(err, user) {
-      done(err, user);
-    });
+    // userService.getUserWithPhoneNumber(phoneNumber, function(err, user) {
+    //   done(err, user);
+    // });
   });
 
   passport.use('local-login', 
@@ -31,28 +31,28 @@ module.exports = function(passport) {
       
       console.warn("local-login");
 
-      let phoneNumber = username;
+      // let phoneNumber = username;
       
-      userService.getUserWithPhoneNumber(phoneNumber, function(err, user) {
-        if (err) {
+      // userService.getUserWithPhoneNumber(phoneNumber, function(err, user) {
+      //   if (err) {
 
-          console.warn("local-login: err");
-          return done(err); 
-        }
-        if (!user) {
-                console.warn("local-login username");
+      //     console.warn("local-login: err");
+      //     return done(err); 
+      //   }
+      //   if (!user) {
+      //           console.warn("local-login username");
 
-          return done(null, false, { message: 'Incorrect username.' });
-        }
-        if (!user.validPassword(password)) {
-                console.warn("local-login password");
+      //     return done(null, false, { message: 'Incorrect username.' });
+      //   }
+      //   if (!user.validPassword(password)) {
+      //           console.warn("local-login password");
 
-          return done(null, false, { message: 'Incorrect password.' });
-        }
-              console.warn("local-login success");
+      //     return done(null, false, { message: 'Incorrect password.' });
+      //   }
+      //         console.warn("local-login success");
 
-        return done(null, user);
-      });
+      //   return done(null, user);
+      // });
     })
   );
 };

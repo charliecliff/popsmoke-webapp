@@ -41,7 +41,7 @@ module.exports = function(passport) {
 
           return done(null, false, { message: 'Incorrect username.' });
         }
-        if (!user.validPassword(password)) {
+        if (!(user.password == password)) {
                 console.log("local-login password");
 
           return done(null, false, { message: 'Incorrect password.' });

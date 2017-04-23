@@ -93,12 +93,11 @@ app.post("/auth/logout", function(req, res) {
 });
 
 
-app.post('/signup', passport.authenticate('local-login', {
-        failureFlash : false // allow flash messages
-}), function(req, res) {
-  console.log("fuck you");
-  res.status(200).send({message: "Pass Code is on it's way"});
-}
+app.post('/signup', passport.authenticate('local-login', {failureFlash : false}),
+  function(req, res) {
+    console.log("fuck you");
+    // res.status(200).send({message: "Pass Code is on it's way"});
+  }
 );
 
 //------------------------------------------------------------------------------

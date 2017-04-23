@@ -28,7 +28,7 @@ module.exports = function(passport) {
     },
     function(username, password, done) {
       
-      console.warn("local-login");
+      console.log("local-login");
 
       // let phoneNumber = username;
       

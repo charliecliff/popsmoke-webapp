@@ -114,16 +114,14 @@ app.post('/signup', urlencodedParser,
 
   passport.authenticate('local', function(err, user, info) {
 
-    console.log("anything");
-
+    console.log("local login");
     console.log("err: " + JSON.stringify(err));
     console.log("user: " + JSON.stringify(user));
     console.log("info: " + JSON.stringify(info));
 
     if (err) {
-      return next(err); // will generate a 500 error
+      return next(err);
     }
-    // Generate a JSON response reflecting authentication status
     if (! user) {
       return res.send({ success : false, message : 'authentication failed' });
     }
@@ -135,7 +133,8 @@ app.post('/signup', urlencodedParser,
     // ***********************************************************************
     req.login(user, loginErr => {
       if (loginErr) {
-        return next(loginErr);
+        console.log("login Err: " + JSON.stringify(loginErr) );
+      return res.send({ success : false, message : 'authentication failed' });
       }
       return res.send({ success : true, message : 'authentication succeeded' });
     });      

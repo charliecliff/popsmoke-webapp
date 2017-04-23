@@ -24,7 +24,7 @@ module.exports = function(passport) {
         passwordField : 'password',
         passReqToCallback : true
     },
-    function(username, password, done) {
+    function(req, username, password, done) {
       
       console.log("local-login");
       let phoneNumber = username;

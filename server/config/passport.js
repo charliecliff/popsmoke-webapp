@@ -32,6 +32,8 @@ module.exports = function(passport) {
       
       userService.getUserWithPhoneNumber(phoneNumber, function(err, user) {
         
+        console.log("iser: " + JSON.stringify(user) );
+
         if (err) {
           console.log("local-login: err");
           return done(err); 

@@ -97,10 +97,11 @@ app.post('/signup', passport.authenticate('local-login', function (err, account)
   req.logIn(account, function() {
     
     console.log("DID GET CALLBACK");
-
-    res.status(err ? 500 : 200).send(err ? err : account);
+    res.status(200);
+    // res.status(err ? 500 : 200).send(err ? err : account);
   });
-})(this.req, this.res, this.next);
+});
+// (this.req, this.res, this.next);
 
 //------------------------------------------------------------------------------
 // HELPER FUNCTIONS

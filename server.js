@@ -22,28 +22,28 @@ app.set('port', process.env.PORT || 5000);
 
 
 
-var options = {
-    // Optional DynamoDB table name, defaults to 'sessions'
-    table: 'popsmoke-sessions',
+// var options = {
+//     // Optional DynamoDB table name, defaults to 'sessions'
+//     table: 'popsmoke-sessions',
 
-    // Optional path to AWS credentials and configuration file
-    // AWSConfigPath: './path/to/credentials.json',
+//     // Optional path to AWS credentials and configuration file
+//     // AWSConfigPath: './path/to/credentials.json',
 
-    // Optional JSON object of AWS credentials and configuration
-    AWSConfigJSON: {
-        accessKeyId: "AKIAIDMIESKUD4F657BQ",
-        secretAccessKey: "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",
-        region: "us-east-1"
-    },
+//     // Optional JSON object of AWS credentials and configuration
+//     AWSConfigJSON: {
+//         accessKeyId: "AKIAIDMIESKUD4F657BQ",
+//         secretAccessKey: "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",
+//         region: "us-east-1"
+//     },
 
-    // Optional clean up interval, defaults to 600000 (10 minutes)
-    reapInterval: 86400000,    // 1 day
+//     // Optional clean up interval, defaults to 600000 (10 minutes)
+//     reapInterval: 86400000,    // 1 day
 
-    // Optional ProvisionedThroughput params, defaults to 5
-    readCapacityUnits: 25,
-    writeCapacityUnits: 25
-};
-var DynamoDBStore = require('connect-dynamodb')({session: session});
+//     // Optional ProvisionedThroughput params, defaults to 5
+//     readCapacityUnits: 25,
+//     writeCapacityUnits: 25
+// };
+// var DynamoDBStore = require('connect-dynamodb')({session: session});
 
 
 
@@ -52,7 +52,7 @@ var DynamoDBStore = require('connect-dynamodb')({session: session});
 app.use(cookieParser());
 app.use(session({
   cookieName: 'session',
-  store: new DynamoDBStore(options),
+  // store: new DynamoDBStore(options),
   secret: 'eg[isfd-8yF9-7w2315df{}+Ijsli;;to8',
   duration: 30 * 60 * 1000,
   activeDuration: 5 * 60 * 1000,

@@ -1,43 +1,58 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
-import { Store } from '@ngrx/store';
-import { AngularFire, AngularFireAuth, FirebaseAuthState } from 'angularfire2';
+import { Http, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/Rx';
 
-import { AppState } from '../reducers';  
-import * as userIDReducer from '../reducers/userID-reducer';
-
 @Injectable()
 export class AuthProvider {
 
-  constructor(public http: Http, 
-              public angularFire: AngularFire, 
-              public store: Store<AppState>) { }
+  baseAuthUrl: string = "https://sleepy-scrubland-83197.herokuapp.com/auth/";
 
-  logOut(): Observable<void> {
-    let promise = this.angularFire.auth.logout();
-    return Observable.fromPromise(<Promise<void>>promise);
+  constructor(public http: Http) { }
+
+  // This function is the first step in the PopSmoke Loging Process. We will 
+  // either:
+  // A) Register a New User for the Entered Phone Number, at which point we will
+  //    create a 6 Digit Passcode that can be used in order to Login 
+  // B) Fetch an existing User and update the 6 Digit Passcode that can be used 
+  //    in order to Login 
+  setPassCodeForPhoneNumber(phoneNumber) {
+    console.log("resetPassCodeForPhoneNumber");
+    
+    let resetPassCodeURL = this.baseAuthUrl + "resetpasscode/" + phoneNumber;
+    let headers = new Headers({"Content-Type": "application/json"});
+    this.http.post(resetPassCodeURL, {headers: headers})
+             .map((res:Response) => res.json())
+             .subscribe();
   }
 
-  // USERNAME + PASSWORD PARADIGM 
+  // Login Function that uses a Phone Number and a 6 Digit Passcode
+  login(phoneNumber, passCode) {
+    console.log("login");
 
-  logIn(creds): Observable<string> {
-    var self = this;
-    let promise = self.angularFire.auth.login(creds);
-    return Observable.fromPromise(<Promise<FirebaseAuthState>>promise)
-                     .map(firebaseAuthState => {
-                       return firebaseAuthState.uid;
-                     });
+    let loginURL = this.baseAuthUrl + "login";
+    let headers = new Headers({"Content-Type": "application/json"});
+
+    let body = JSON.stringify({"userID": "8888888888", "password": "444444"});
+    
+    this.http.post(loginURL, body, {headers: headers})
+             .map((res:Response) => res.json())
+             .subscribe();
   }
 
-  createAccount(creds): Observable<string> {
-    var self = this;
-    let promise = self.angularFire.auth.createUser(creds);;
-    return Observable.fromPromise(<Promise<FirebaseAuthState>>promise)
-                     .map(firebaseAuthState => {
-                       return firebaseAuthState.uid;
-                     });
+  // Logout Function which is intended to Burn the current Session
+  logout() {
+    console.log("logout");
+    let logoutURL = this.baseAuthUrl + "logout";
+    let headers = new Headers({"Content-Type": "application/json"});
+    this.http.post(logoutURL, {headers: headers})
+             .map((res:Response) => res.json())
+             .subscribe();
+  }
+
+  private handleErrorCallback = (err) => {
+    console.log("PopSmoke Error in the Auth Provider: " + JSON.stringify(err));
+
   }
 }

@@ -20,41 +20,33 @@ export class UserProvider {
               public store: Store<AppState>,
               public authProvider: AuthProvider) { }
 
-  resetPassCodeForPhoneNumber(phoneNumber) {
-    console.log("resetPassCodeForPhoneNumber");
-    let getUserURL = "https://sleepy-scrubland-83197.herokuapp.com" + "/auth/resetpasscode/" + phoneNumber;
-    let headers = new Headers({"Content-Type": "application/json"});
-    this.http.post(getUserURL, {headers: headers})
-             .map((res:Response) => res.json())
-             .subscribe();
-  }
+  // resetPassCodeForPhoneNumber(phoneNumber) {
+  //   console.log("resetPassCodeForPhoneNumber");
+  //   let getUserURL = "https://sleepy-scrubland-83197.herokuapp.com" + "/auth/resetpasscode/" + phoneNumber;
+  //   let headers = new Headers({"Content-Type": "application/json"});
+  //   this.http.post(getUserURL, {headers: headers})
+  //            .map((res:Response) => res.json())
+  //            .subscribe();
+  // }
 
-  login(phoneNumber, pasCode) {
-    console.log("login");
-    let getUserURL = "https://sleepy-scrubland-83197.herokuapp.com" + "/signup";
-    let headers = new Headers({"Content-Type": "application/json"});
-    let body = JSON.stringify({"userID": "8888888888", "password": "444444"});
-    this.http.post(getUserURL, body, {headers: headers})
-             .map((res:Response) => res.json())
-             .subscribe();
-  }
+  // login(phoneNumber, pasCode) {
+  //   console.log("login");
+  //   let getUserURL = "https://sleepy-scrubland-83197.herokuapp.com" + "/signup";
+  //   let headers = new Headers({"Content-Type": "application/json"});
+  //   let body = JSON.stringify({"userID": "8888888888", "password": "444444"});
+  //   this.http.post(getUserURL, body, {headers: headers})
+  //            .map((res:Response) => res.json())
+  //            .subscribe();
+  // }
 
-
-
-
-  logout() {
-    console.log("logout");
-    this.authProvider.logOut()
-                     .subscribe(this.updateAnonymousStateCallback, 
-                                this.handleErrorCallback);
-  }
-
-  createAccount(newUserData) {
-    console.log("createAccount");
-    this.authProvider.createAccount(newUserData)
-                     .subscribe(this.createUserCallback, 
-                                this.handleErrorCallback);
-  }
+  // logout() {
+  //   console.log("logout");
+  //   let getUserURL = "https://sleepy-scrubland-83197.herokuapp.com" + "/signup";
+  //   let headers = new Headers({"Content-Type": "application/json"});
+  //   this.http.post(getUserURL, {headers: headers})
+  //            .map((res:Response) => res.json())
+  //            .subscribe();
+  // }
 
 	getUser(userID) {
     console.log("getUser");
@@ -88,16 +80,16 @@ export class UserProvider {
                         this.handleErrorCallback);
   }
 
-  private createUserCallback = (userID) => {
-    let userURL = this.baseUserUrl + "/" + userID;
-    let headers = new Headers({"Content-Type": "application/json"});
-    let body = JSON.stringify({"userID": userID});
-    this.http.post(userURL, body, {headers: headers})
-             .map((res:Response) => res.json())
-             .map(this.parseUserFromResponse)
-             .subscribe(this.updateUserStateCallback, 
-                        this.handleErrorCallback);
-  }
+  // private createUserCallback = (userID) => {
+  //   let userURL = this.baseUserUrl + "/" + userID;
+  //   let headers = new Headers({"Content-Type": "application/json"});
+  //   let body = JSON.stringify({"userID": userID});
+  //   this.http.post(userURL, body, {headers: headers})
+  //            .map((res:Response) => res.json())
+  //            .map(this.parseUserFromResponse)
+  //            .subscribe(this.updateUserStateCallback, 
+  //                       this.handleErrorCallback);
+  // }
 
   private parseUserFromResponse(json) {
     return new User(json["User"]);

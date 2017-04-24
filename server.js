@@ -21,11 +21,10 @@ app.set('port', process.env.PORT || 5000);
 
 
 
-var session = require('express-session');
 
 var options = {
     // Optional DynamoDB table name, defaults to 'sessions'
-    table: 'myapp-sessions',
+    table: 'popsmoke-sessions',
 
     // Optional path to AWS credentials and configuration file
     // AWSConfigPath: './path/to/credentials.json',
@@ -34,11 +33,8 @@ var options = {
     AWSConfigJSON: {
         accessKeyId: "AKIAIDMIESKUD4F657BQ",
         secretAccessKey: "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",
-        region: 'us-east-1'
+        region: "us-east-1"
     },
-
-    // Optional client for alternate endpoint, such as DynamoDB Local
-    // client: new AWS.DynamoDB({ endpoint: new AWS.Endpoint('http://localhost:8000')}),
 
     // Optional clean up interval, defaults to 600000 (10 minutes)
     reapInterval: 86400000,    // 1 day
@@ -48,27 +44,21 @@ var options = {
     writeCapacityUnits: 25
 };
 var DynamoDBStore = require('connect-dynamodb')({session: session});
-app.use(session({
-  store: new DynamoDBStore(options), 
-  secret: 'keyboard cat',
-  resave: true,
-  saveUninitialized: true
-}));
 
 
 
 
 
 app.use(cookieParser());
-// app.use(session({
-//   cookieName: 'session',
-//   store: new DynamoDBStore(options),
-//   secret: 'eg[isfd-8yF9-7w2315df{}+Ijsli;;to8',
-//   duration: 30 * 60 * 1000,
-//   activeDuration: 5 * 60 * 1000,
-//   resave: true,
-//   saveUninitialized: true
-// }));
+app.use(session({
+  cookieName: 'session',
+  store: new DynamoDBStore(options),
+  secret: 'eg[isfd-8yF9-7w2315df{}+Ijsli;;to8',
+  duration: 30 * 60 * 1000,
+  activeDuration: 5 * 60 * 1000,
+  resave: true,
+  saveUninitialized: true
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 

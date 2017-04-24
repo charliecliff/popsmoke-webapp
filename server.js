@@ -48,7 +48,12 @@ var options = {
     writeCapacityUnits: 25
 };
 var DynamoDBStore = require('connect-dynamodb')({session: session});
-app.use(session({store: new DynamoDBStore(options), secret: 'keyboard cat'}));
+app.use(session({
+  store: new DynamoDBStore(options), 
+  secret: 'keyboard cat',
+  resave: true,
+  saveUninitialized: true
+}));
 
 
 

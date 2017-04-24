@@ -1,7 +1,7 @@
 var config = {}
 
 config.dynamoDB = {
-    table: 'popsmoke-sessions',
+    table: 'sessions',
     AWSConfigJSON: {
         accessKeyId: "AKIAIDMIESKUD4F657BQ",
         secretAccessKey: "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",

@@ -7,6 +7,8 @@ var userServices 		= require('./server/user-services');
 var express 				= require('express');
 
 var bodyParser 			 = require('body-parser');
+var cookieParser     = require('cookie-parser');
+
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 var cors 						= require('cors');
@@ -17,7 +19,6 @@ var passport        = require('passport');
 var app 						= express();
 
 app.use(express.cookieParser());
-
 app.use(session({
   cookieName: 'session',
   secret: 'eg[isfd-8yF9-7w2315df{}+Ijsli;;to8',

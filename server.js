@@ -18,7 +18,7 @@ var passport        = require('passport');
 
 var app 						= express();
 
-app.use(express.cookieParser());
+app.use(cookieParser());
 app.use(session({
   cookieName: 'session',
   secret: 'eg[isfd-8yF9-7w2315df{}+Ijsli;;to8',

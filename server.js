@@ -32,9 +32,9 @@ var options = {
     AWSConfigJSON: {
         accessKeyId: "AKIAIDMIESKUD4F657BQ",
         secretAccessKey: "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",
-        region: 'us-east-1'
+        region: "us-east-1"
     },
-    
+
     // Optional clean up interval, defaults to 600000 (10 minutes)
     reapInterval: 86400000,    // 1 day
 
@@ -43,6 +43,10 @@ var options = {
     writeCapacityUnits: 25
 };
 var DynamoDBStore = require('connect-dynamodb')({session: session});
+
+
+
+
 
 app.use(cookieParser());
 app.use(session({
@@ -66,7 +70,7 @@ app.use('/public', express.static(__dirname + '/public'));
 
 app.use(bodyParser.json());
 
-app.set('port', process.env.PORT || 8080);
+app.set('port', process.env.PORT || 8000);
 app.use(cors()); // CORS (Cross-Origin Resource Sharing) headers to support Cross-site HTTP requests
 app.use(express.static("www")); // Our Ionic app build is in the www folder (kept up-to-date by the Ionic CLI using 'ionic serve')
 

@@ -70,7 +70,7 @@ app.use('/public', express.static(__dirname + '/public'));
 
 app.use(bodyParser.json());
 
-app.set('port', process.env.PORT || 8000);
+app.set('port', process.env.PORT || 5000);
 app.use(cors()); // CORS (Cross-Origin Resource Sharing) headers to support Cross-site HTTP requests
 app.use(express.static("www")); // Our Ionic app build is in the www folder (kept up-to-date by the Ionic CLI using 'ionic serve')
 

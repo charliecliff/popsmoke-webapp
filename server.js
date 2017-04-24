@@ -3,7 +3,7 @@ var fileServices 		= require('./server/file-services');
 var holidayServices = require('./server/holiday-services');
 var twilioServices  = require('./server/twilio-services');
 var userServices 		= require('./server/user-services');
-var config          = require('./server/config');
+var config          = require('./server/config/config');
 
 var express       = require('express');
 var bodyParser    = require('body-parser');

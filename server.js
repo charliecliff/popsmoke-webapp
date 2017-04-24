@@ -3,6 +3,7 @@ var fileServices 		= require('./server/file-services');
 var holidayServices = require('./server/holiday-services');
 var twilioServices  = require('./server/twilio-services');
 var userServices 		= require('./server/user-services');
+var config          = require('./config');
 
 var express       = require('express');
 var bodyParser    = require('body-parser');
@@ -10,6 +11,7 @@ var cookieParser  = require('cookie-parser');
 var session       = require('express-session')
 var passport      = require('passport');
 
+var DynamoDBStore    = require('connect-dynamodb')({session: session});
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 var cors 						= require('cors');
@@ -19,40 +21,10 @@ var app = express();
 app.set('port', process.env.PORT || 5000);
 
 
-
-
-
-var options = {
-    // Optional DynamoDB table name, defaults to 'sessions'
-    table: 'popsmoke-sessions',
-
-    // Optional path to AWS credentials and configuration file
-    // AWSConfigPath: './path/to/credentials.json',
-
-    // Optional JSON object of AWS credentials and configuration
-    AWSConfigJSON: {
-        accessKeyId: "AKIAIDMIESKUD4F657BQ",
-        secretAccessKey: "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",
-        region: "us-east-1"
-    },
-
-    // Optional clean up interval, defaults to 600000 (10 minutes)
-    reapInterval: 86400000,    // 1 day
-
-    // Optional ProvisionedThroughput params, defaults to 5
-    readCapacityUnits: 25,
-    writeCapacityUnits: 25
-};
-var DynamoDBStore = require('connect-dynamodb')({session: session});
-
-
-
-
-
 app.use(cookieParser());
 app.use(session({
   cookieName: 'session',
-  store: new DynamoDBStore(options),
+  store: new DynamoDBStore(config.dynamoDB),
   secret: 'eg[isfd-8yF9-7w2315df{}+Ijsli;;to8',
   duration: 30 * 60 * 1000,
   activeDuration: 5 * 60 * 1000,
@@ -62,11 +34,6 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-// var mongodb = require('mongodb'),
-// mongoClient = mongodb.MongoClient,
-// ObjectID = mongodb.ObjectID, // Used in API endpoints
-// db; // We'll initialize connection below
-
 app.use('/public', express.static(__dirname + '/public'));
 
 app.use(bodyParser.json());
@@ -75,32 +42,9 @@ app.use(cors()); // CORS (Cross-Origin Resource Sharing) headers to support Cros
 app.use(express.static("www")); // Our Ionic app build is in the www folder (kept up-to-date by the Ionic CLI using 'ionic serve')
 
 
-
-
-// I do not think that I use this.... AT ALL
-
-// var MONGODB_URI = process.env.MONGODB_URI || 'mongodb://heroku_qh0mdwmz:tnk9ln40ct6k7ncnlle3tf8fte@ds121980.mlab.com:21980/heroku_qh0mdwmz';
-
-// // Initialize database connection and then start the server.
-// mongoClient.connect(MONGODB_URI, function (err, database) {
-// 	if (err) {
-// 		process.exit(1);
-// 	}
-
-// 	db = database; // Our database object from mLab
-
-// 	console.log("Database connection ready");
-
-	// Initialize the app.
-	app.listen(app.get('port'), function () {
-		console.log("You're a wizard, Harry. I'm a what? Yes, a wizard, on port", app.get('port'));
-	});
-// });
-
-
-
-
-
+app.listen(app.get('port'), function () {
+	console.log("You're a wizard, Harry. I'm a what? Yes, a wizard, on port", app.get('port'));
+});
 
 
 
@@ -171,11 +115,6 @@ app.post("/auth/logout", function(req, res) {
   console.log("POST - /logout");
 
 });
-
-
-
-
-
 
 
 //------------------------------------------------------------------------------

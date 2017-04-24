@@ -27,7 +27,13 @@ module.exports = function(passport) {
     },
     function(req, userID, password, done) {
       let phoneNumber = userID;
+      console.log("phoneNumber: " + phoneNumber);
+
       userService.getUserWithPhoneNumber(phoneNumber, function(err, user) {
+        
+        console.log("Err: " + JSON.stringify(err));
+        console.log("User: " + JSON.stringify(user));
+
         if (err) {
           return done(err); 
         }

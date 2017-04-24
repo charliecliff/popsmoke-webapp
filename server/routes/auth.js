@@ -13,7 +13,9 @@ router.get('/brands', function(req, res) {
 // login
 app.post('/signup', urlencodedParser, function(req, res, next) {
   passport.authenticate('local', function(err, user, info) {
+    console.log("/signup");
     if (err) {
+      
       return next(err);
     }
     if (! user) {

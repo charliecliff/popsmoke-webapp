@@ -5,13 +5,27 @@ var twilioServices  = require('./server/twilio-services');
 var userServices 		= require('./server/user-services');
 
 var express 				= require('express');
-var bodyParser 			= require('body-parser');
-var cors 						= require('cors');
-var passport        = require('passport');
 
+var bodyParser 			 = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
+var cors 						= require('cors');
+
+var passport        = require('passport');
+
+
 var app 						= express();
+
+app.use(express.cookieParser());
+
+app.use(session({
+  cookieName: 'session',
+  secret: 'eg[isfd-8yF9-7w2315df{}+Ijsli;;to8',
+  duration: 30 * 60 * 1000,
+  activeDuration: 5 * 60 * 1000,
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 
 // var mongodb = require('mongodb'),
 // mongoClient = mongodb.MongoClient,
@@ -27,8 +41,7 @@ app.use(cors()); // CORS (Cross-Origin Resource Sharing) headers to support Cros
 app.use(express.static("www")); // Our Ionic app build is in the www folder (kept up-to-date by the Ionic CLI using 'ionic serve')
 
 
-app.use(passport.initialize());
-app.use(passport.session());
+
 
 // I do not think that I use this.... AT ALL
 
@@ -99,6 +112,11 @@ app.post("/auth/resetpasscode/:phoneNumber", function(req, res) {
 app.post('/auth/login', urlencodedParser, function(req, res, next) {
   console.log("POST - /login");
   passport.authenticate('local', function(err, user, info) {
+    
+    console.log("Err: " + JSON.stringify(err));
+    console.log("User: " + JSON.stringify(user));
+    console.log("Info: " + JSON.stringify(info));
+    
     if (err) {
       return next(err);
     }
@@ -107,7 +125,7 @@ app.post('/auth/login', urlencodedParser, function(req, res, next) {
     }
     req.login(user, loginErr => {
       if (loginErr) {
-        console.log("login Err: " + JSON.stringify(loginErr) );
+      console.log("login Err: " + JSON.stringify(loginErr) );
       return res.send({ success : false, message : 'authentication failed' });
       }
       return res.send({ success : true, message : 'authentication succeeded' });

@@ -4,16 +4,16 @@ var holidayServices = require('./server/holiday-services');
 var twilioServices  = require('./server/twilio-services');
 var userServices 		= require('./server/user-services');
 
-var express 				= require('express');
-
-var bodyParser 			 = require('body-parser');
-var cookieParser     = require('cookie-parser');
+var express       = require('express');
+var bodyParser    = require('body-parser');
+var cookieParser  = require('cookie-parser');
+var session       = require('express-session')
+var passport      = require('passport');
 
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 var cors 						= require('cors');
 
-var passport        = require('passport');
 
 
 var app 						= express();

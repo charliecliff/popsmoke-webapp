@@ -29,12 +29,6 @@ app.use(express.static("www")); // Our Ionic app build is in the www folder (kep
 app.use(passport.initialize());
 app.use(passport.session());
 
-
-
-
-
-
-
 // I do not think tat I use this.... AT ALL
 
 var MONGODB_URI = process.env.MONGODB_URI || 'mongodb://heroku_qh0mdwmz:tnk9ln40ct6k7ncnlle3tf8fte@ds121980.mlab.com:21980/heroku_qh0mdwmz';
@@ -101,9 +95,23 @@ app.post("/auth/resetpasscode/:phoneNumber", function(req, res) {
   }
 });
 
-app.post("/auth/login", function(req, res) {
+app.post('/auth/login', urlencodedParser, function(req, res, next) {
   console.log("POST - /login");
-
+  passport.authenticate('local', function(err, user, info) {
+    if (err) {
+      return next(err);
+    }
+    if (! user) {
+      return res.send({ success : false, message : 'authentication failed' });
+    }
+    req.login(user, loginErr => {
+      if (loginErr) {
+        console.log("login Err: " + JSON.stringify(loginErr) );
+      return res.send({ success : false, message : 'authentication failed' });
+      }
+      return res.send({ success : true, message : 'authentication succeeded' });
+    });      
+  })(req, res, next);
 });
 
 app.post("/auth/logout", function(req, res) {
@@ -116,75 +124,6 @@ app.post("/auth/logout", function(req, res) {
 
 
 
-
-
-
-
-
-
-
-
-app.post('/signup', urlencodedParser,
- function(req, res, next) {
-  console.log("/signup");
-  console.log(req.body);
-
-  passport.authenticate('local', function(err, user, info) {
-
-    console.log("local login");
-    console.log("err: " + JSON.stringify(err));
-    console.log("user: " + JSON.stringify(user));
-    console.log("info: " + JSON.stringify(info));
-
-    if (err) {
-      return next(err);
-    }
-    if (! user) {
-      return res.send({ success : false, message : 'authentication failed' });
-    }
-    // ***********************************************************************
-    // "Note that when using a custom callback, it becomes the application's
-    // responsibility to establish a session (by calling req.login()) and send
-    // a response."
-    // Source: http://passportjs.org/docs
-    // ***********************************************************************
-    req.login(user, loginErr => {
-      if (loginErr) {
-        console.log("login Err: " + JSON.stringify(loginErr) );
-      return res.send({ success : false, message : 'authentication failed' });
-      }
-      return res.send({ success : true, message : 'authentication succeeded' });
-    });      
-  })(req, res, next);
-});
-
-
-
-
-
-
-
-
-
-
-
-// app.post('/signup', passport.authenticate(
-//   'local-login',
-//   function(err, user, info) {
-//     console.log("literally anything!!!!!!1");
-
-//     // if (err) { return next(err); }
-//     // if (!user) { return res.redirect('/'); }
-
-//     // // req / res held in closure
-//     // req.logIn(user, function(err) {
-//     //   if (err) { return next(err); }
-//     //   return res.send(user);
-//     // });
-
-//   })
-//   (req, res, next)
-// );
 
 //------------------------------------------------------------------------------
 // HELPER FUNCTIONS
@@ -203,6 +142,7 @@ app.post("/user/:id", function(req, res) {
 app.delete("/user/:id", function(req, res) {
 	userServices.deleteUserFromAmazonDynamo(res, req.params.id);
 });
+
 // Holiday Endpoints
 app.get("/holidays", function(req, res) {
 	holidayServices.getHolidaysFromAmazonDynamo(req, res);
@@ -246,6 +186,14 @@ app.post("/sendText", function(req, res) {
   twilioServices.sendTestMessage();
 });
 
+function authenticationMiddleware () {  
+  return function (req, res, next) {
+    if (req.isAuthenticated()) {
+      return next()
+    }
+    return res.status(400).send({message: "Invalid Session"});
+  }
+}
 
 // TODO: Extract these into their files or modules
 function handleError(res, reason, message, code) {

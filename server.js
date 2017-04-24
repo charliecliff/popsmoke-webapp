@@ -13,14 +13,15 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 var app 						= express();
 
-var mongodb = require('mongodb'),
-mongoClient = mongodb.MongoClient,
-ObjectID = mongodb.ObjectID, // Used in API endpoints
-db; // We'll initialize connection below
+// var mongodb = require('mongodb'),
+// mongoClient = mongodb.MongoClient,
+// ObjectID = mongodb.ObjectID, // Used in API endpoints
+// db; // We'll initialize connection below
 
 app.use('/public', express.static(__dirname + '/public'));
 
 app.use(bodyParser.json());
+
 app.set('port', process.env.PORT || 8080);
 app.use(cors()); // CORS (Cross-Origin Resource Sharing) headers to support Cross-site HTTP requests
 app.use(express.static("www")); // Our Ionic app build is in the www folder (kept up-to-date by the Ionic CLI using 'ionic serve')
@@ -29,25 +30,25 @@ app.use(express.static("www")); // Our Ionic app build is in the www folder (kep
 app.use(passport.initialize());
 app.use(passport.session());
 
-// I do not think tat I use this.... AT ALL
+// I do not think that I use this.... AT ALL
 
-var MONGODB_URI = process.env.MONGODB_URI || 'mongodb://heroku_qh0mdwmz:tnk9ln40ct6k7ncnlle3tf8fte@ds121980.mlab.com:21980/heroku_qh0mdwmz';
+// var MONGODB_URI = process.env.MONGODB_URI || 'mongodb://heroku_qh0mdwmz:tnk9ln40ct6k7ncnlle3tf8fte@ds121980.mlab.com:21980/heroku_qh0mdwmz';
 
-// Initialize database connection and then start the server.
-mongoClient.connect(MONGODB_URI, function (err, database) {
-	if (err) {
-		process.exit(1);
-	}
+// // Initialize database connection and then start the server.
+// mongoClient.connect(MONGODB_URI, function (err, database) {
+// 	if (err) {
+// 		process.exit(1);
+// 	}
 
-	db = database; // Our database object from mLab
+// 	db = database; // Our database object from mLab
 
-	console.log("Database connection ready");
+// 	console.log("Database connection ready");
 
-	// Initialize the app.
-	app.listen(app.get('port'), function () {
-		console.log("You're a wizard, Harry. I'm a what? Yes, a wizard, on port", app.get('port'));
-	});
-});
+// 	// Initialize the app.
+// 	app.listen(app.get('port'), function () {
+// 		console.log("You're a wizard, Harry. I'm a what? Yes, a wizard, on port", app.get('port'));
+// 	});
+// });
 
 
 

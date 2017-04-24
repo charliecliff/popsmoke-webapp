@@ -13,7 +13,8 @@ module.exports = function(passport) {
     done(null, user.userID);
   });
 
-  passport.deserializeUser(function(id, done) {
+  passport.deserializeUser(function(userID, done) {
+    let phoneNumber = userID;
     userService.getUserWithPhoneNumber(phoneNumber, function(err, user) {
       done(err, user);
     });
@@ -25,9 +26,7 @@ module.exports = function(passport) {
       passReqToCallback : true,
     },
     function(req, userID, password, done) {
-      
       let phoneNumber = userID;
-      
       userService.getUserWithPhoneNumber(phoneNumber, function(err, user) {
         if (err) {
           return done(err); 

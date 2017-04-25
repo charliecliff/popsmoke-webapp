@@ -67,10 +67,7 @@ app.listen(app.get('port'), function () {
 require('./server/config/passport')(passport); // pass passport for configuration
 
 
-app.get('/test', isLoggedIn, function(req, res) {
-  
-  return res.status(200).end();
-});
+
 
 // TODO... maybe p
 function isLoggedIn(req, res, next) {
@@ -160,6 +157,9 @@ app.get("/auth/logout", function(req, res) {
   return res.status(200).send({message: "Logout Successful"});
 });
 
+app.get('auth/is-logged-in', isLoggedIn, function(req, res) {
+  return res.status(200).end();
+});
 
 //------------------------------------------------------------------------------
 // HELPER FUNCTIONS

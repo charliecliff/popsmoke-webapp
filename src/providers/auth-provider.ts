@@ -42,7 +42,6 @@ export class AuthProvider {
                         this.handleErrorCallback);
   }
 
-  // Logout Function which is intended to Burn the current Session
   logout() {
     console.log("logout");
     let logoutURL = this.baseAuthUrl + "logout";
@@ -52,6 +51,17 @@ export class AuthProvider {
              .subscribe();
   }
 
+  // Logout Function which is intended to Burn the current Session
+  verifyAuthorization() {
+    console.log("logout");
+    let logoutURL = this.baseAuthUrl + "test";
+    let headers = new Headers({"Content-Type": "application/json"});
+    this.http.get(logoutURL, {headers: headers})
+             .map((res:Response) => res.json())
+             .subscribe(this.updateSessionStateCallback,
+                        this.handleErrorCallback);
+  }
+
   private handleErrorCallback = (err) => {
     console.log("PopSmoke Error in the Auth Provider: " + JSON.stringify(err));
 
@@ -59,6 +69,9 @@ export class AuthProvider {
   
   private updateSessionStateCallback = (req) => {
     console.log("updateSessionStateCallback: " + JSON.stringify(req) );
+
+    this.verifyAuthorization();
+    console.log("verify Call made");
 
   }
 

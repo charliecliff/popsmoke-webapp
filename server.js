@@ -38,9 +38,9 @@ app.use('/public', express.static(__dirname + '/public'));
 
 app.use(bodyParser.json());
 
-var corsOptions = {
-  origin: true,
-};
+// var corsOptions = {
+//   origin: true,
+// };
 // app.use(cors()); // CORS (Cross-Origin Resource Sharing) headers to support Cross-site HTTP requests
 
 app.use(express.static("www")); // Our Ionic app build is in the www folder (kept up-to-date by the Ionic CLI using 'ionic serve')
@@ -50,6 +50,7 @@ app.use(function(req, res, next) {
   console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
   res.header("Access-Control-Allow-Origin", "http://localhost:8100");
   res.header("Access-Control-Allow-Credentials", true);
+  res.header("Access-Control-Expose-Headers", true);
   res.header('Access-Control-Allow-Methods', "OPTIONS,GET,PUT,POST,DELETE");
   res.header("Access-Control-Allow-Headers", "Origin, Authorization, X-Requested-With, Content-Type, Accept");
   

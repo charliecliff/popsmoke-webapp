@@ -163,6 +163,7 @@ app.post('/auth/login', urlencodedParser, function(req, res, next) {
 app.get("/auth/logout", function(req, res) {
   console.log("POST - /logout");
   req.logout();
+  return res.status(200).send({message: "Logout Successful"});
 });
 
 

@@ -63,6 +63,19 @@ export class AuthProvider {
                         this.handleErrorCallback);
   }
 
+
+
+    private updateSessionStateCallback = (req) => {
+    console.log("updateSessionStateCallback: " + JSON.stringify(req) );
+
+    this.verifyAuthorization();
+    console.log("verify Call made");
+
+  }
+
+
+  
+
   private handleErrorCallback = (err) => {
     console.log("PopSmoke Error in the Auth Provider: " + JSON.stringify(err));
 
@@ -82,14 +95,6 @@ export class AuthProvider {
 
   private handleVerifyAuthorizationCallback = (req) => {
     console.log("user is Logged In: " + JSON.stringify(req));
-
-  }
-
-  private updateSessionStateCallback = (req) => {
-    console.log("updateSessionStateCallback: " + JSON.stringify(req) );
-
-    this.verifyAuthorization();
-    console.log("verify Call made");
 
   }
 

@@ -157,7 +157,7 @@ app.get("/auth/logout", function(req, res) {
   return res.status(200).send({message: "Logout Successful"});
 });
 
-app.get('auth/is-logged-in', isLoggedIn, function(req, res) {
+app.get('/auth/is-logged-in', isLoggedIn, function(req, res) {
   return res.status(200).end();
 });
 

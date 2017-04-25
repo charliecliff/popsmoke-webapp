@@ -54,7 +54,7 @@ export class AuthProvider {
   // Logout Function which is intended to Burn the current Session
   verifyAuthorization() {
     console.log("logout");
-    let logoutURL = this.baseAuthUrl + "test";
+    let logoutURL = this.baseAuthUrl + "is-logged-in";
     let headers = new Headers({"Content-Type": "application/json"});
     this.http.get(logoutURL, {headers: headers})
              .map((res:Response) => res.json())

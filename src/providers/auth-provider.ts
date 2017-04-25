@@ -36,7 +36,7 @@ export class AuthProvider {
 
     let body = JSON.stringify({"userID": "8888888888", "password": "444444"});
     
-    this.http.post(loginURL, body, {headers: headers})
+    this.http.post(loginURL, body, {headers: headers, withCredentials: true})
              // .map((res:Response) => res.json())
              .subscribe(this.updateSessionStateCallback, 
                         this.handleErrorCallback);

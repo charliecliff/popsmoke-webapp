@@ -75,7 +75,8 @@ app.get('/test', isLoggedIn, function(req, res) {
 function isLoggedIn(req, res, next) {
 
     console.log("isLoggedIn");
-    console.log( JSON.stringify(req) );
+    console.log( "REQUEST BODY: " + req.body );
+    console.log( "REQUEST BODY: " + req.header );
 
     // if user is authenticated in the session, carry on 
     if (req.isAuthenticated())

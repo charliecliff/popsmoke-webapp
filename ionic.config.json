@@ -2,5 +2,11 @@
   "name": "popsmoke-webapp",
   "app_id": "",
   "v2": true,
-  "typescript": true
+  "typescript": true,
+  "proxies": [
+    {
+      "path": "/api",
+      "proxyUrl": "https://sleepy-scrubland-83197.herokuapp.com/"
+    }
+  ]
 }

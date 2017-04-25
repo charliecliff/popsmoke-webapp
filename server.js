@@ -78,8 +78,9 @@ require('./server/config/passport')(passport); // pass passport for configuratio
 function isLoggedIn(req, res, next) {
 
     console.log("isLoggedIn");
-    console.log( "REQUEST BODY: " + req.body );
-    console.log( "REQUEST HEADER: " + req.header );
+    console.log( "REQUEST SESSION ID: " + req.sessionID );
+    console.log( "REQUEST BODY: " + JSON.stringify(req.body) );
+    console.log( "REQUEST HEADER: " + JSON.stringify(req.header) );
 
   if (req.isAuthenticated()) {
     console.log("authenticated");

@@ -79,9 +79,16 @@ function isLoggedIn(req, res, next) {
     console.log( "REQUEST BODY: " + req.header );
 
     // if user is authenticated in the session, carry on 
-    if (req.isAuthenticated())
-        return next();
+    if (req.isAuthenticated()) {
 
+
+      console.log("authenticated");
+
+        return next();
+    }
+
+  console.log("NOT authenticated");
+    
     // if they aren't redirect them to the home page
     res.redirect('/');
 }

@@ -52,7 +52,7 @@ app.use(function(req, res, next) {
   
   res.header("Access-Control-Allow-Origin", "http://localhost:8100");
   res.header("Access-Control-Allow-Credentials", true);
-  res.header("Access-Control-Expose-Headers", "Accept-Ranges, Content-Encoding, Content-Length, Content-Range, Cookies");
+  res.header("Access-Control-Expose-Headers", "Accept-Ranges, Content-Encoding, Content-Length, Content-Range, Set-Cookie");
 
   // res.header("Access-Control-Expose-Headers", true);
   res.header('Access-Control-Allow-Methods', "OPTIONS,GET,PUT,POST,DELETE");

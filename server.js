@@ -48,8 +48,9 @@ app.use(express.static("www")); // Our Ionic app build is in the www folder (kep
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "'http://localhost:8100");
+  res.header("Access-Control-Allow-Credentials", true);
   res.header('Access-Control-Allow-Methods', "OPTIONS,GET,PUT,POST,DELETE");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header("Access-Control-Allow-Headers", "Origin, Authorization, X-Requested-With, Content-Type, Accept");
   next();
 });
 

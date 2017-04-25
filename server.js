@@ -128,7 +128,7 @@ app.post('/auth/login', urlencodedParser, function(req, res, next) {
       }
 
 
-      console.log("THINGS::::::::::  " + req.session);
+      console.log("THINGS::::::::::  " + JSON.stringify(req.session));
       return res.send({ user: user, success : true, message : 'authentication succeeded' });
     });      
   })(req, res, next);

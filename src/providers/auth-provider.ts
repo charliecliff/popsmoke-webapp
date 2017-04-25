@@ -37,8 +37,9 @@ export class AuthProvider {
     let body = JSON.stringify({"userID": "8888888888", "password": "444444"});
     
     this.http.post(loginURL, body, {headers: headers})
-             .map((res:Response) => res.json())
-             .subscribe();
+             // .map((res:Response) => res.json())
+             .subscribe(this.updateSessionStateCallback, 
+                        this.handleErrorCallback);
   }
 
   // Logout Function which is intended to Burn the current Session
@@ -54,5 +55,16 @@ export class AuthProvider {
   private handleErrorCallback = (err) => {
     console.log("PopSmoke Error in the Auth Provider: " + JSON.stringify(err));
 
+  }
+  
+  private updateSessionStateCallback = (user) => {
+    console.log("updateSessionStateCallback: " + JSON.stringify(user) );
+
+  }
+
+  private persistSession(sessionString) {
+    if (typeof(Storage) !== "undefined") {
+      localStorage.setItem("session", "Smith");
+    }
   }
 }

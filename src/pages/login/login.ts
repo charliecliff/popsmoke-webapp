@@ -78,7 +78,7 @@ export class LoginPage {
   public phoneNumberState : string     = "hidden";
 
   constructor(public navCtrl: NavController,
-              public userProvider: Providers.UserProvider) { }
+              public authProvider: Providers.AuthProvider) { }
 
   private ngOnInit(): void {
     this.adjustZoomLevel();
@@ -144,7 +144,7 @@ export class LoginPage {
   }
 
   private postPhoneNumber(): void {
-    this.userProvider.resetPassCodeForPhoneNumber(this.phoneNumber);
+    this.authProvider.setPassCodeForPhoneNumber(this.phoneNumber);
     this.navCtrl.push(PassCodePage);
   }
 }

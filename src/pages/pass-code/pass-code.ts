@@ -34,7 +34,7 @@ export class PassCodePage {
   public keyboardHeight: number         = 1;
 
   constructor(public navCtrl: NavController,
-              public userProvider: Providers.UserProvider) { }
+              public authProvider: Providers.AuthProvider) { }
 
   private ngOnInit() {
     IonDigitKeyboard.show();
@@ -91,7 +91,7 @@ export class PassCodePage {
 
   private loginWithPassCode() {
     IonDigitKeyboard.hide();
-    this.userProvider.login("9728961735", "4444");
+    this.authProvider.login("9728961735", "4444");
     this.navCtrl.push(Pages.MainTabPage);
   }
 }

@@ -69,10 +69,6 @@ export class MyApp {
     });
   }
 
-  signOut() {
-    this.userProvider.logout();
-  }
-
   selectMenuOption(option) {
     this.store.dispatch(new menuReducer.SelectMenuOptionAction( option.name ));
   }

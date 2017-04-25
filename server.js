@@ -11,7 +11,7 @@ var cookieParser  = require('cookie-parser');
 var session       = require('express-session')
 var passport      = require('passport');
 
-var DynamoDBStore    = require('connect-dynamodb')({session: session});
+var DynamoDBStore = require('connect-dynamodb')({session: session});
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 var cors 						= require('cors');
@@ -46,8 +46,6 @@ app.listen(app.get('port'), function () {
 	console.log("You're a wizard, Harry. I'm a what? Yes, a wizard, on port", app.get('port'));
 });
 
-
-
 require('./server/config/passport')(passport); // pass passport for configuration
 
 //------------------------------------------------------------------------------
@@ -57,7 +55,7 @@ require('./server/config/passport')(passport); // pass passport for configuratio
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header('Access-Control-Allow-Methods', "OPTIONS,GET,PUT,POST,DELETE");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Set-Cookie, Accept");
   next();
 });
 

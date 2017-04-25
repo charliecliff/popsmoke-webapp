@@ -46,6 +46,13 @@ var corsOptions = {
 app.use(express.static("www")); // Our Ionic app build is in the www folder (kept up-to-date by the Ionic CLI using 'ionic serve')
 
 
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header('Access-Control-Allow-Methods', "OPTIONS,GET,PUT,POST,DELETE");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 app.listen(app.get('port'), function () {
 	console.log("You're a wizard, Harry. I'm a what? Yes, a wizard, on port", app.get('port'));
 });

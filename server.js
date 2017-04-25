@@ -116,7 +116,8 @@ app.post('/auth/login', urlencodedParser, function(req, res, next) {
     if (err) {
       return next(err);
     }
-    if (! user) {
+    if (!user) {
+
       return res.send({ success : false, message : 'authentication failed' });
     }
     req.login(user, loginErr => {

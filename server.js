@@ -124,7 +124,7 @@ app.post('/auth/login', urlencodedParser, function(req, res, next) {
       console.log("login Err: " + JSON.stringify(loginErr) );
       return res.send({ success : false, message : 'authentication failed' });
       }
-      return res.send({ success : true, message : 'authentication succeeded' });
+      return res.send({ user: user, success : true, message : 'authentication succeeded' });
     });      
   })(req, res, next);
 });

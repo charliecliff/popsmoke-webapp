@@ -20,9 +20,8 @@ var cors 						= require('cors');
 var app = express();
 app.set('port', process.env.PORT || 5000);
 
-app.use(bodyParser.json());
-app.use(cookieParser());
-app.use(session({
+
+var sessionMiddleWare = session({
   cookieName: 'session',
   store: new DynamoDBStore(config.dynamoDB),
   secret: 'eg[isfd-8yF9-7w2315df{}+Ijsli;;to8',
@@ -30,7 +29,10 @@ app.use(session({
   activeDuration: 5 * 60 * 1000,
   resave: true,
   saveUninitialized: true
-}));
+});
+
+app.use(bodyParser.json());
+app.use(cookieParser());
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -77,7 +79,7 @@ function isLoggedIn(req, res, next) {
 
     console.log("isLoggedIn");
     console.log( "REQUEST BODY: " + req.body );
-    console.log( "REQUEST BODY: " + req.header );
+    console.log( "REQUEST HEADER: " + req.header );
 
   if (req.isAuthenticated()) {
     console.log("authenticated");
@@ -125,7 +127,7 @@ app.post("/auth/resetpasscode/:phoneNumber", function(req, res) {
   }
 });
 
-app.post('/auth/login', urlencodedParser, function(req, res, next) {
+app.post('/auth/login', urlencodedParser, sessionMiddleWare, function(req, res, next) {
   console.log("POST - /login");
   passport.authenticate('local', function(err, user, info) {
     

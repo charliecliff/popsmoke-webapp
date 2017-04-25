@@ -22,7 +22,7 @@ export class AuthProvider {
     
     let resetPassCodeURL = this.baseAuthUrl + "resetpasscode/" + phoneNumber;
     let headers = new Headers({"Content-Type": "application/json"});
-    this.http.post(resetPassCodeURL, {headers: headers, withCredentials: false})
+    this.http.post(resetPassCodeURL, {headers: headers, withCredentials: true})
              .map((res:Response) => res.json())
              .subscribe();
   }
@@ -36,10 +36,12 @@ export class AuthProvider {
 
     let body = JSON.stringify({"userID": "8888888888", "password": "444444"});
     
-    this.http.post(loginURL, body, {headers: headers, withCredentials: false})
+    this.http.post(loginURL, body, {headers: headers, withCredentials: true})
              // .map((res:Response) => res.json())
-             .subscribe(this.updateSessionStateCallback, 
-                        this.handleErrorCallback);
+             .subscribe(
+                function(response) { console.log("Success Response" + JSON.stringify(response) )},
+                function(error) { console.log("Error happened" + error)},
+                function() { console.log("the subscription is completed")});
   }
 
   logout() {
@@ -84,6 +86,13 @@ export class AuthProvider {
   private handleVerifyLoginback = (req) => {
     console.log("user is Logged In: " + JSON.stringify(req));
 
+  }
+
+  private handleLoginCallback = (req) => {
+    console.log("handleLoginCallback: " + JSON.stringify(req));
+
+    this.verifyAuthorization();
+    console.log("verify Call made");
   }
 
   private handleLogoutCallback = (req) => {

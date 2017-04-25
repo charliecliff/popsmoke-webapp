@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {trigger, state, style, transition, animate} from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Store } from '@ngrx/store';
+import * as Providers from '../../providers';
+
 import * as PSState from '../../reducers';
 import * as PSActions from '../../reducers/packets-reducer';
 import { HolidayProvider } from '../../providers/holiday-provider';
@@ -10,7 +12,7 @@ import { PacketPage } from '../packet/packet';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html',
-  providers: [HolidayProvider],
+  providers: [HolidayProvider, Providers.AuthProvider],
   animations:[
     trigger('visibleState', [
       state('visible', style({ opacity: 1 })),
@@ -30,7 +32,8 @@ export class HomePage {
 
   constructor(public navCtrl: NavController, 
   						public store: PSState.Store<PSState.AppState>,
-  						public holidayProvider: HolidayProvider) { 
+  						public holidayProvider: HolidayProvider,
+              public authProvider: Providers.AuthProvider) { 
     this.holidayProvider.getHolidays("army", "2020-01-01");
   }
 
@@ -43,6 +46,10 @@ export class HomePage {
   ionViewWillEnter() {
     this.visibleState = 'visible';
     this.showsCloseIcon = false;
+  }
+
+  click(){
+    this.authProvider.logout();
   }
 
   private holidaySelected(holiday) {

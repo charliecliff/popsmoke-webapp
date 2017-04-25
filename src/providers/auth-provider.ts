@@ -46,9 +46,10 @@ export class AuthProvider {
     console.log("logout");
     let logoutURL = this.baseAuthUrl + "logout";
     let headers = new Headers({"Content-Type": "application/json"});
-    this.http.post(logoutURL, {headers: headers, withCredentials: true})
+    this.http.get(logoutURL, {headers: headers, withCredentials: true})
              .map((res:Response) => res.json())
-             .subscribe();
+             .subscribe(this.handleLogoutCallback,
+                        this.handleErrorCallback);
   }
 
   // Logout Function which is intended to Burn the current Session
@@ -58,7 +59,7 @@ export class AuthProvider {
     let headers = new Headers({"Content-Type": "application/json"});
     this.http.get(url, {headers: headers, withCredentials: true})
              .map((res:Response) => res.json())
-             .subscribe(this.updateSessionStateCallback,
+             .subscribe(this.handleVerifyAuthorizationCallback,
                         this.handleErrorCallback);
   }
 
@@ -66,7 +67,24 @@ export class AuthProvider {
     console.log("PopSmoke Error in the Auth Provider: " + JSON.stringify(err));
 
   }
-  
+
+  private handleVerifyLoginback = (req) => {
+    console.log("user is Logged In: " + JSON.stringify(req));
+
+  }
+
+  private handleLogoutCallback = (req) => {
+    console.log("handleLogoutCallback: " + JSON.stringify(req));
+
+    this.verifyAuthorization();
+    console.log("verify Call made");
+  }
+
+  private handleVerifyAuthorizationCallback = (req) => {
+    console.log("user is Logged In: " + JSON.stringify(req));
+
+  }
+
   private updateSessionStateCallback = (req) => {
     console.log("updateSessionStateCallback: " + JSON.stringify(req) );
 

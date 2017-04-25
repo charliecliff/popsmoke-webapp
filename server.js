@@ -109,6 +109,7 @@ app.post('/auth/login', urlencodedParser, function(req, res, next) {
   console.log("POST - /login");
   passport.authenticate('local', function(err, user, info) {
     
+    console.log("RESULT!!!");
     console.log("Err: " + JSON.stringify(err));
     console.log("User: " + JSON.stringify(user));
     console.log("Info: " + JSON.stringify(info));
@@ -118,12 +119,12 @@ app.post('/auth/login', urlencodedParser, function(req, res, next) {
     }
     if (!user) {
 
-      return res.send({ success : false, message : 'authentication failed' });
+      return res.send({ success : false, message : 'authentication failed: No User' });
     }
     req.login(user, loginErr => {
       if (loginErr) {
       console.log("login Err: " + JSON.stringify(loginErr) );
-      return res.send({ success : false, message : 'authentication failed' });
+      return res.send({ success : false, message : 'authentication failed' + JSON.stringify(loginErr) });
       }
 
 

@@ -4,6 +4,10 @@ import { IonDigitKeyboard } from '../../third-party-components/ion-digit-keyboar
 import * as Providers from '../../providers';
 import * as Pages from '../../pages';
 
+
+import { Http, Headers, Response } from '@angular/http';
+
+
 @Component({
   selector: 'page-pass-code',
   templateUrl: 'pass-code.html',
@@ -34,9 +38,18 @@ export class PassCodePage {
   public keyboardHeight: number         = 1;
 
   constructor(public navCtrl: NavController,
-              public authProvider: Providers.AuthProvider) { }
+              public authProvider: Providers.AuthProvider,
+              public http: Http) { }
 
   private ngOnInit() {
+
+        let url = "https://sleepy-scrubland-83197.herokuapp.com/auth/" + "is-logged-in";
+    let headers = new Headers({"Content-Type": "application/json"});
+    this.http.get(url, {headers: headers, withCredentials: true})
+             .map((res:Response) => res.json())
+             .subscribe(this.handleVerifyAuthorizationCallback,
+                        this.handleErrorCallback);
+
     IonDigitKeyboard.show();
 
     this.adjustZoomLevel();
@@ -94,4 +107,15 @@ export class PassCodePage {
     this.authProvider.login("9728961735", "4444");
     this.navCtrl.push(Pages.MainTabPage);
   }
+
+  private handleVerifyAuthorizationCallback = (req) => {
+    console.log("user is Logged In: " + JSON.stringify(req));
+    this.navCtrl.push(Pages.MainTabPage);
+  }
+
+   private handleErrorCallback = (err) => {
+    console.log("PopSmoke Error in the Auth Provider: " + JSON.stringify(err));
+
+  }
+
 }

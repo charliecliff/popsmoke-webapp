@@ -44,6 +44,7 @@ export class AuthProvider {
                 function() { console.log("the subscription is completed")});
   }
 
+  // Logout Function which is intended to Burn the current Session
   logout() {
     console.log("logout");
     let logoutURL = this.baseAuthUrl + "logout";
@@ -54,7 +55,6 @@ export class AuthProvider {
                         this.handleErrorCallback);
   }
 
-  // Logout Function which is intended to Burn the current Session
   verifyAuthorization() {
     console.log("verifyAuthorization");
     let url = this.baseAuthUrl + "is-logged-in";
@@ -67,7 +67,7 @@ export class AuthProvider {
 
 
 
-    private updateSessionStateCallback = (req) => {
+  private updateSessionStateCallback = (req) => {
     console.log("updateSessionStateCallback: " + JSON.stringify(req) );
 
     this.verifyAuthorization();

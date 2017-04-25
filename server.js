@@ -229,6 +229,9 @@ app.post("/sendText", function(req, res) {
 
 function authenticationMiddleware () {  
   return function (req, res, next) {
+    console.log("authenticationMiddleware");
+    console.log( "REQUEST: " + JSON.stringify(req.body) + JSON.stringify(req.header) );
+
     if (req.isAuthenticated()) {
       return next()
     }

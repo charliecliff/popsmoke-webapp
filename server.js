@@ -122,9 +122,9 @@ app.post('/auth/login', urlencodedParser, function(req, res, next) {
       return res.send({ success : false, message : 'authentication failed: No User' });
     }
     req.login(user, loginErr => {
-      if (loginErr) {
-      console.log("login Err: " + JSON.stringify(loginErr) );
-      return res.send({ success : false, message : 'authentication failed' + JSON.stringify(loginErr) });
+      if (loginErr && !(Object.keys(loginErr).length === 0) {
+        console.log("login Err: " + JSON.stringify(loginErr) );
+        return res.send({ success : false, message : 'authentication failed' + JSON.stringify(loginErr) });
       }
 
 

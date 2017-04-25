@@ -20,7 +20,7 @@ var cors 						= require('cors');
 var app = express();
 app.set('port', process.env.PORT || 5000);
 
-
+app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(session({
   cookieName: 'session',
@@ -36,7 +36,6 @@ app.use(passport.session());
 
 app.use('/public', express.static(__dirname + '/public'));
 
-app.use(bodyParser.json());
 
 // var corsOptions = {
 //   origin: true,
@@ -66,6 +65,25 @@ app.listen(app.get('port'), function () {
 });
 
 require('./server/config/passport')(passport); // pass passport for configuration
+
+
+app.get('/test', isLoggedIn, function(req, res) {
+  
+  return res.status(200).end();
+});
+
+function isLoggedIn(req, res, next) {
+
+    console.log("isLoggedIn");
+    console.log( JSON.stringify(req) );
+
+    // if user is authenticated in the session, carry on 
+    if (req.isAuthenticated())
+        return next();
+
+    // if they aren't redirect them to the home page
+    res.redirect('/');
+}
 
 //------------------------------------------------------------------------------
 // The Key to allowing CORS
@@ -128,7 +146,7 @@ app.post('/auth/login', urlencodedParser, function(req, res, next) {
       }
 
 
-      console.log("THINGS::::::::::  " + JSON.stringify(req.session));
+      console.log("THINGS::::::::::  " + JSON.stringify(req.sessionID));
       return res.send({ user: user, success : true, message : 'authentication succeeded' });
     });      
   })(req, res, next);

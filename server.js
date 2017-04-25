@@ -54,8 +54,8 @@ require('./server/config/passport')(passport); // pass passport for configuratio
 
 app.use(function(req, res, next) {
 
-  let localHost = "https://localhost:" + app.get('port');
-  console.log("localHost:" + localhost);
+  var localHost = "https://localhost:" + app.get('port');
+  console.log("Fuck you!!! localHost:" + localhost);
 
 
   res.header("Access-Control-Allow-Origin", localHost);

@@ -58,7 +58,7 @@ app.use(function(req, res, next) {
   console.log("Fuck you!!! localHost:" + localhost);
 
 
-  res.header("Access-Control-Allow-Origin", localHost);
+  res.header("Access-Control-Allow-Origin", "http://localhost:8100");
   res.header('Access-Control-Allow-Methods', "OPTIONS,GET,PUT,POST,DELETE");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Set-Cookie, Accept");
   res.header( "Access-Control-Expose-Headers", true);

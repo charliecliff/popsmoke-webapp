@@ -57,10 +57,9 @@ require('./server/config/passport')(passport); // pass passport for configuratio
 //------------------------------------------------------------------------------
 
 app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "http://localhost:8100");
   res.header('Access-Control-Allow-Methods', "OPTIONS,GET,PUT,POST,DELETE");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Set-Cookie, Accept");
-  res.header( "Access-Control-Expose-Headers", true);
+  res.header("Access-Control-Expose-Headers", true);
   res.header("Access-Control-Allow-Credentials", true);
   next();
 });

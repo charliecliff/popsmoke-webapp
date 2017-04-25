@@ -160,9 +160,9 @@ app.post('/auth/login', urlencodedParser, function(req, res, next) {
   })(req, res, next);
 });
 
-app.post("/auth/logout", function(req, res) {
+app.get("/auth/logout", function(req, res) {
   console.log("POST - /logout");
-
+  req.logout();
 });
 
 

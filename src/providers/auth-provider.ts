@@ -57,8 +57,8 @@ export class AuthProvider {
 
   }
   
-  private updateSessionStateCallback = (user) => {
-    console.log("updateSessionStateCallback: " + JSON.stringify(user) );
+  private updateSessionStateCallback = (req) => {
+    console.log("updateSessionStateCallback: " + JSON.stringify(req.headers) );
 
   }
 

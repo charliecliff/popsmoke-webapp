@@ -22,7 +22,7 @@ export class AuthProvider {
     
     let resetPassCodeURL = this.baseAuthUrl + "resetpasscode/" + phoneNumber;
     let headers = new Headers({"Content-Type": "application/json"});
-    this.http.post(resetPassCodeURL, {headers: headers})
+    this.http.post(resetPassCodeURL, {headers: headers, withCredentials: false})
              .map((res:Response) => res.json())
              .subscribe();
   }
@@ -36,7 +36,7 @@ export class AuthProvider {
 
     let body = JSON.stringify({"userID": "8888888888", "password": "444444"});
     
-    this.http.post(loginURL, body, {headers: headers, withCredentials: true})
+    this.http.post(loginURL, body, {headers: headers, withCredentials: false})
              // .map((res:Response) => res.json())
              .subscribe(this.updateSessionStateCallback, 
                         this.handleErrorCallback);
@@ -46,17 +46,17 @@ export class AuthProvider {
     console.log("logout");
     let logoutURL = this.baseAuthUrl + "logout";
     let headers = new Headers({"Content-Type": "application/json"});
-    this.http.post(logoutURL, {headers: headers})
+    this.http.post(logoutURL, {headers: headers, withCredentials: true})
              .map((res:Response) => res.json())
              .subscribe();
   }
 
   // Logout Function which is intended to Burn the current Session
   verifyAuthorization() {
-    console.log("logout");
-    let logoutURL = this.baseAuthUrl + "is-logged-in";
+    console.log("verifyAuthorization");
+    let url = this.baseAuthUrl + "is-logged-in";
     let headers = new Headers({"Content-Type": "application/json"});
-    this.http.get(logoutURL, {headers: headers})
+    this.http.get(url, {headers: headers, withCredentials: true})
              .map((res:Response) => res.json())
              .subscribe(this.updateSessionStateCallback,
                         this.handleErrorCallback);

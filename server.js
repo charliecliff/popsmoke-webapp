@@ -158,7 +158,7 @@ app.get("/auth/logout", function(req, res) {
 });
 
 app.get('/auth/is-logged-in', isLoggedIn, function(req, res) {
-  return res.status(200).end();
+  return res.status(200).send({message: "User is Logged In"});
 });
 
 //------------------------------------------------------------------------------

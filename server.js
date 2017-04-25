@@ -72,25 +72,19 @@ app.get('/test', isLoggedIn, function(req, res) {
   return res.status(200).end();
 });
 
+// TODO... maybe p
 function isLoggedIn(req, res, next) {
 
     console.log("isLoggedIn");
     console.log( "REQUEST BODY: " + req.body );
     console.log( "REQUEST BODY: " + req.header );
 
-    // if user is authenticated in the session, carry on 
-    if (req.isAuthenticated()) {
-
-
-      console.log("authenticated");
-
-        return next();
-    }
-
+  if (req.isAuthenticated()) {
+    console.log("authenticated");
+    return next();
+  }
   console.log("NOT authenticated");
-    
-    // if they aren't redirect them to the home page
-    res.redirect('/');
+  return res.status(401).send({message: "Current Session is Invalid: Please Log In to Continue"});
 }
 
 //------------------------------------------------------------------------------

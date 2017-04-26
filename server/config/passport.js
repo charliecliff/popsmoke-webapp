@@ -10,10 +10,12 @@ var userService   = require("../user-services");
 module.exports = function(passport) {
 
   passport.serializeUser(function(user, done) {
+    console.log("serializeUser");
     done(null, user.userID);
   });
 
   passport.deserializeUser(function(userID, done) {
+    console.log("deserializeUser");
     let phoneNumber = userID;
     userService.getUserWithPhoneNumber(phoneNumber, function(err, user) {
       done(err, user);

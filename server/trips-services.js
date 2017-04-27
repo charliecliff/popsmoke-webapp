@@ -1,4 +1,3 @@
-var da31Pdf = require('./Models/da31Pdf');
 var pdfFiller = require('pdffiller');
 
 var express = require('express');
@@ -6,8 +5,6 @@ var express = require('express');
 var exports = module.exports = {};
 
 exports.generateDocument = function(req, res, pdfFilePath) {
-  let formatter = new da31Pdf.Da31PdfFormat();
-  let formData = formatter.fillOutPdfForm(req.body);
   let pdfTemplatePath = "public/TRIPS.pdf";
   let destinationPDF = pdfFilePath;
 

@@ -5,7 +5,7 @@ var express = require('express');
 
 var exports = module.exports = {};
 
-function generateDocument(req, res, pdfFilePath) {
+exports.generateDocument = function(req, res, pdfFilePath) {
   let formatter = new da31Pdf.Da31PdfFormat();
   let formData = formatter.fillOutPdfForm(req.body);
   let pdfTemplatePath = "public/TRIPS.pdf";
@@ -14,7 +14,7 @@ function generateDocument(req, res, pdfFilePath) {
   pdfFiller.generateFieldJson(dest2PDF, null, function(err, fdfData) {
 
     console.log(fdfData);
-    
+
     fdfData.length.should.equal(0);
     done();
   });

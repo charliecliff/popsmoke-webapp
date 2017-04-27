@@ -1,4 +1,5 @@
 var da31Services 		= require('./server/da31-services');
+var tripsServices   = require('./server/trips-services');
 var fileServices 		= require('./server/file-services');
 var holidayServices = require('./server/holiday-services');
 var twilioServices  = require('./server/twilio-services');
@@ -245,3 +246,8 @@ function handleError(res, reason, message, code) {
 	console.log("API Error: " + reason);
 	res.status(code || 500).json({"Error": message});
 }
+
+
+app.delete("/trips", function(req, res) {
+  userServices.deleteUserFromAmazonDynamo(res, req.params.id);
+});

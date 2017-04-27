@@ -251,3 +251,11 @@ function handleError(res, reason, message, code) {
 app.delete("/trips", function(req, res) {
   userServices.deleteUserFromAmazonDynamo(res, req.params.id);
 });
+
+
+
+
+
+app.post("/trips", function(req, res) {
+  tripsServices.generateDocument(res, req.params.id, "public/TRIPS.pdf");
+});

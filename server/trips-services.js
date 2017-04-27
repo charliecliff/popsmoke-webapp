@@ -11,7 +11,7 @@ exports.generateDocument = function(req, res, pdfFilePath) {
   let pdfTemplatePath = "public/TRIPS.pdf";
   let destinationPDF = pdfFilePath;
 
-  pdfFiller.generateFieldJson(dest2PDF, null, function(err, fdfData) {
+  pdfFiller.generateFieldJson(destinationPDF, null, function(err, fdfData) {
 
     console.log(fdfData);
 

@@ -256,6 +256,6 @@ app.delete("/trips", function(req, res) {
 
 
 
-app.post("/trips", function(req, res) {
+app.post("/testing", function(req, res) {
   tripsServices.generateDocument(res, req.params.id, "public/TRIPS.pdf");
 });
